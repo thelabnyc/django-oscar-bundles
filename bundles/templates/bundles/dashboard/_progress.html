@@ -1,0 +1,31 @@
+{% load i18n %}
+
+
+<div data-spy="affix" class="affix-top" data-offset-top="200">
+    <div class="table-header">
+        <h3>{% trans "Steps" %}</h3>
+    </div>
+    <ul class="nav nav-list bs-docs-sidenav">
+        <li class="step1 {% if step == 1 %}active{% endif %} {% if step > 1 %}visited{% endif %} {% if not bundle %}disabled{% endif %}">
+            {% if bundle %}
+                <a href="{% url 'dashboard-bundle-edit' pk=bundle.pk %}">{% trans "Metadata" %}</a>
+            {% else %}
+                <a href="{% url 'dashboard-bundle-create' %}">{% trans "Metadata" %}</a>
+            {% endif %}
+        </li>
+        <li class="step2 {% if step == 2 %}active{% endif %} {% if step > 2 %}visited{% endif %} {% if not bundle %}disabled{% endif %}">
+            {% if bundle %}
+                <a href="{% url 'dashboard-bundle-triggering-products' pk=bundle.pk %}">{% trans "Triggering Products" %}</a>
+            {% else %}
+                <span>{% trans "Triggering Products" %}</span>
+            {% endif %}
+        </li>
+        <li class="step3 {% if step == 3 %}active{% endif %} {% if step > 3 %}visited{% endif %} {% if not bundle %}disabled{% endif %}">
+            {% if bundle %}
+                <a href="{% url 'dashboard-bundle-suggested-products' pk=bundle.pk %}">{% trans "Suggested Products" %}</a>
+            {% else %}
+                <span>{% trans "Suggested Products" %}</span>
+            {% endif %}
+        </li>
+    </ul>
+</div>

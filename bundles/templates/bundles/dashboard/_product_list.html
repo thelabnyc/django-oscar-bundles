@@ -1,0 +1,20 @@
+<ul class="list-unstyled">
+    {% for group in groups %}
+        <li>
+            <a href="{% url 'dashboard:catalogue-product' pk=group.parent.pk %}"><em>{{ group.parent.title }}</em></a>
+            <ul>
+                {% for product in group.products %}
+                    <li>
+                        <a href="{% url 'dashboard:catalogue-product' pk=product.pk %}">{{ product.title }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </li>
+    {% endfor %}
+
+    {% for product in orphans %}
+        <li>
+            <a href="{% url 'dashboard:catalogue-product' pk=product.pk %}">{{ product.title }}</a>
+        </li>
+    {% endfor %}
+</ul>

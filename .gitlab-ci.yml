@@ -1,0 +1,32 @@
+variables:
+  POSTGRES_DB: postgres
+  POSTGRES_USER: postgres
+  POSTGRES_PASSWORD: ""
+
+stages:
+  - test
+
+services:
+  - postgres:latest
+
+before_script:
+  - pip install -r requirements.txt
+  - export PYTHONPATH=`pwd`
+
+lint:
+  stage: test
+  image: python:3.5
+  script:
+    - flake8 bundles/ sandbox/
+
+test_python:3.4:
+  stage: test
+  image: python:3.4
+  script:
+    - ./test.sh
+
+test_python:3.5:
+  stage: test
+  image: python:3.5
+  script:
+    - ./test.sh

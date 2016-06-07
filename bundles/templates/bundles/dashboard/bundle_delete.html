@@ -1,0 +1,70 @@
+{% extends 'dashboard/layout.html' %}
+{% load i18n %}
+{% load bundle_dashboard_tags %}
+
+
+{% block body_class %}{{ block.super }} delete-bundle{% endblock %}
+
+
+{% block title %}
+    {% trans "Delete bundle" %} | {% trans "Bundles" %} | {{ block.super }}
+{% endblock %}
+
+
+{% block breadcrumbs %}
+    <ul class="breadcrumb">
+        <li>
+            <a href="{% url 'dashboard:index' %}">{% trans "Dashboard" %}</a>
+        </li>
+        <li>
+            <a href="{% url 'dashboard-bundle-list' %}">{% trans "Bundles" %}</a>
+        </li>
+        <li>
+            {% trans "Delete bundle: " %} {% if bundle.name %}{{ bundle.name }}{% else %}{{ bundle.pk }}{% endif %}
+        </li>
+    </ul>
+{% endblock %}
+
+
+{% block headertext %}
+    {% trans "Delete bundle: " %} {% if bundle.name %}{{ bundle.name }}{% else %}{{ bundle.pk }}{% endif %}
+{% endblock %}
+
+
+{% block dashboard_content %}
+    <div class="row">
+        <div class="col-md-12">
+            <form action="." method="post" class="form-stacked">
+                {% csrf_token %}
+                <div class="table-header">
+                    <h3>{% trans "Delete bundle: " %} {% if bundle.name %}{{ bundle.name }}{% else %}{{ bundle.pk }}{% endif %}</h3>
+                </div>
+                <table class="table table-striped table-bordered">
+                    <tr>
+                        <th>Name</th>
+                        <td>{{ bundle.name | default:"-" }}</td>
+                    </tr>
+                    <tr>
+                        <th>Description</th>
+                        <td>{{ bundle.description | default:"-" }}</td>
+                    </tr>
+                    <tr>
+                        <th>Triggering Products</th>
+                        <td>{% grouped_product_list bundle.triggering_products %}</td>
+                    </tr>
+                    <tr>
+                        <th>Suggested Products</th>
+                        <td>{% grouped_product_list bundle.suggested_products %}</td>
+                    </tr>
+                </table>
+
+                {% include 'dashboard/partials/form_fields.html' with form=form %}
+
+                <div class="form-group">
+                    <a class="btn btn-default" href="{% url 'dashboard-bundle-detail' pk=bundle.pk %}">{% trans "Cancel" %}</a>
+                    <button class="btn btn-danger" type="submit">{% trans "Delete" %}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock dashboard_content %}

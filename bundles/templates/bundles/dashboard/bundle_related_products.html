@@ -1,0 +1,74 @@
+{% extends 'dashboard/layout.html' %}
+{% load i18n %}
+{% load bundle_dashboard_tags %}
+
+
+{% block body_class %}{{ block.super }} add-related-product{% endblock %}
+
+
+{% block title %}
+    {{ title }} | {% trans "Bundles" %} | {{ block.super }}
+{% endblock %}
+
+
+{% block breadcrumbs %}
+    <ul class="breadcrumb">
+        <li>
+            <a href="{% url 'dashboard:index' %}">{% trans "Dashboard" %}</a>
+        </li>
+        <li>
+            <a href="{% url 'dashboard-bundle-list' %}">{% trans "Bundles" %}</a>
+        </li>
+        <li>
+            {% if bundle.name %}{{ bundle.name }}{% else %}{{ bundle.pk }}{% endif %}
+        </li>
+    </ul>
+{% endblock %}
+
+
+{% block headertext %}{{ title }}{% endblock %}
+
+
+{% block dashboard_content %}
+    <div class="row">
+        <div class="col-md-3">
+            {% if field_name == 'triggering_products' %}
+                {% include 'bundles/dashboard/_progress.html' with step=2 bundle=bundle %}
+            {% else %}
+                {% include 'bundles/dashboard/_progress.html' with step=3 bundle=bundle %}
+            {% endif %}
+        </div>
+        <div class="col-md-9">
+            <div class="table-header">
+                <h3>{{ title }}</h3>
+            </div>
+            <div class="well">
+                <form action="." method="get" class="form-stacked">
+                    {% include 'dashboard/partials/form_fields.html' with form=category_form %}
+                </form>
+
+                <form action="." method="post" class="form-stacked">
+                    {% csrf_token %}
+                    {% include 'dashboard/partials/form_fields.html' with form=form %}
+                    <div class="form-group">
+                        <a class="btn btn-default" href="{% url 'dashboard-bundle-list' %}">{% trans "Cancel" %}</a>
+                        <button class="btn btn-primary" type="submit">{% trans "Continue" %}</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        var category_select = document.getElementById('id_category');
+        var product_select = document.getElementById('id_{{ field_name }}');
+
+        category_select.onchange = function() {
+            this.form.submit();
+        };
+
+        product_select.onchange = function() {
+            category_select.disabled = !!product_select.value;
+        };
+    </script>
+{% endblock dashboard_content %}
