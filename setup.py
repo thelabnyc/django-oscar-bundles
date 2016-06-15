@@ -7,12 +7,15 @@ from versiontag import get_version, cache_git_tag
 
 packages = [
     'bundles',
+    'bundles.api',
     'bundles.dashboard',
+    'bundles.migrations',
+    'bundles.templatetags',
     'bundles.tests',
 ]
 
 setup_requires = [
-    'versiontag>=1.0.3',
+    'versiontag>=1.1.0',
 ]
 
 requires = [
