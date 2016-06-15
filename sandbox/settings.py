@@ -21,6 +21,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.flatpages',
     'widget_tweaks',
+    'rest_framework',
+    'oscarapi',
     'bundles',
 ] + get_core_apps([])
 
