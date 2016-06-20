@@ -11,7 +11,7 @@ services:
 
 before_script:
   - pip install -r requirements.txt
-  - export PYTHONPATH=`pwd`
+  - pip install -e .
 
 lint:
   stage: test
