@@ -17,7 +17,7 @@ lint:
   stage: test
   image: python:3.5
   script:
-    - flake8 bundles/ sandbox/
+    - flake8 oscarbundles/ sandbox/
 
 test_python:3.4:
   stage: test

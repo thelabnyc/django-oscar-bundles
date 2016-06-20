@@ -1,27 +1,28 @@
 from django.shortcuts import get_object_or_404
 from rest_framework import generics
-from oscar.core.loading import get_model
-from .. import models
-from . import serializers
+from oscar.core.loading import get_model, get_class
 
 Product = get_model('catalogue', 'Product')
+Bundle = get_model('oscarbundles', 'Bundle')
+
+BundleSerializer = get_class('oscarbundles.api.serializers', 'BundleSerializer')
 
 
 class BundleList(generics.ListAPIView):
-    queryset = models.Bundle.objects.order_by('id')
-    serializer_class = serializers.BundleSerializer
+    queryset = Bundle.objects.order_by('id')
+    serializer_class = BundleSerializer
 
 
 class BundleDetail(generics.RetrieveAPIView):
-    queryset = models.Bundle.objects.order_by('id')
-    serializer_class = serializers.BundleSerializer
+    queryset = Bundle.objects.order_by('id')
+    serializer_class = BundleSerializer
 
 
 class ProductBundleList(generics.ListAPIView):
-    serializer_class = serializers.BundleSerializer
+    serializer_class = BundleSerializer
 
     def get_queryset(self):
-        qs = models.Bundle.objects.order_by('id')
+        qs = Bundle.objects.order_by('id')
         qs = qs.filter(triggering_products=self.product)
         return qs.all()
 

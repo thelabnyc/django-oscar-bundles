@@ -1,10 +1,10 @@
 from django.conf.urls import url
 from oscar.core.application import Application
-from .views import (
-    BundleList,
-    BundleDetail,
-    ProductBundleList,
-)
+from oscar.core.loading import get_class
+
+BundleList = get_class('oscarbundles.api.views', 'BundleList')
+BundleDetail = get_class('oscarbundles.api.views', 'BundleDetail')
+ProductBundleList = get_class('oscarbundles.api.views', 'ProductBundleList')
 
 
 class DashboardBundleApplication(Application):

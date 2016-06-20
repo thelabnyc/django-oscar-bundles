@@ -6,12 +6,12 @@ from versiontag import get_version, cache_git_tag
 
 
 packages = [
-    'bundles',
-    'bundles.api',
-    'bundles.dashboard',
-    'bundles.migrations',
-    'bundles.templatetags',
-    'bundles.tests',
+    'oscarbundles',
+    'oscarbundles.api',
+    'oscarbundles.dashboard',
+    'oscarbundles.migrations',
+    'oscarbundles.templatetags',
+    'oscarbundles.tests',
 ]
 
 setup_requires = [

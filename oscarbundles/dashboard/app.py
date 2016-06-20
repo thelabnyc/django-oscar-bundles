@@ -1,14 +1,14 @@
 from django.conf.urls import url
 from oscar.core.application import Application
-from .views import (
-    BundleListView,
-    BundleDetailView,
-    CreateBundleView,
-    EditBundleView,
-    TriggeringProductView,
-    SuggestedProductView,
-    DeleteBundleView,
-)
+from oscar.core.loading import get_class
+
+BundleListView = get_class('oscarbundles.dashboard.views', 'BundleListView')
+BundleDetailView = get_class('oscarbundles.dashboard.views', 'BundleDetailView')
+CreateBundleView = get_class('oscarbundles.dashboard.views', 'CreateBundleView')
+EditBundleView = get_class('oscarbundles.dashboard.views', 'EditBundleView')
+TriggeringProductView = get_class('oscarbundles.dashboard.views', 'TriggeringProductView')
+SuggestedProductView = get_class('oscarbundles.dashboard.views', 'SuggestedProductView')
+DeleteBundleView = get_class('oscarbundles.dashboard.views', 'DeleteBundleView')
 
 
 class DashboardBundleApplication(Application):

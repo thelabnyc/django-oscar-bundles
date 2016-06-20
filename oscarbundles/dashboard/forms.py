@@ -1,11 +1,12 @@
 from django import forms
 from django.utils.translation import ugettext_lazy as _
-from oscar.core.loading import get_model
-from ..models import Bundle
-from .fields import GroupedModelMultipleChoiceField
+from oscar.core.loading import get_model, get_class
 
 Category = get_model('catalogue', 'Category')
 Product = get_model('catalogue', 'Product')
+Bundle = get_model('oscarbundles', 'Bundle')
+
+GroupedModelMultipleChoiceField = get_class('oscarbundles.dashboard.fields', 'GroupedModelMultipleChoiceField')
 
 
 class CategoryFilterForm(forms.Form):

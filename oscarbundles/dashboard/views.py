@@ -4,47 +4,51 @@ from django.utils.translation import ugettext_lazy as _
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
-from oscar.core.loading import get_model
-from .. import models
-from . import forms
+from oscar.core.loading import get_model, get_class
 
 Category = get_model('catalogue', 'Category')
 Product = get_model('catalogue', 'Product')
+Bundle = get_model('oscarbundles', 'Bundle')
+
+MetadataForm = get_class('oscarbundles.dashboard.forms', 'MetadataForm')
+CategoryFilterForm = get_class('oscarbundles.dashboard.forms', 'CategoryFilterForm')
+TriggeringProductsForm = get_class('oscarbundles.dashboard.forms', 'TriggeringProductsForm')
+SuggestedProductsForm = get_class('oscarbundles.dashboard.forms', 'SuggestedProductsForm')
 
 
 class BundleListView(ListView):
-    model = models.Bundle
+    model = Bundle
     ordering = ('-id', )
     paginate_by = 25
-    template_name = 'bundles/dashboard/bundle_list.html'
+    template_name = 'oscarbundles/dashboard/bundle_list.html'
 
 
 class BundleDetailView(DetailView):
-    model = models.Bundle
-    template_name = 'bundles/dashboard/bundle_detail.html'
+    model = Bundle
+    template_name = 'oscarbundles/dashboard/bundle_detail.html'
 
 
 class CreateBundleView(CreateView):
-    model = models.Bundle
-    form_class = forms.MetadataForm
-    template_name = 'bundles/dashboard/bundle_create.html'
+    model = Bundle
+    form_class = MetadataForm
+    template_name = 'oscarbundles/dashboard/bundle_create.html'
 
     def get_success_url(self):
         return reverse('dashboard-bundle-triggering-products', args=(self.object.pk, ))
 
 
 class EditBundleView(UpdateView):
-    model = models.Bundle
-    form_class = forms.MetadataForm
-    template_name = 'bundles/dashboard/bundle_update.html'
+    model = Bundle
+    form_class = MetadataForm
+    template_name = 'oscarbundles/dashboard/bundle_update.html'
 
     def get_success_url(self):
         return reverse('dashboard-bundle-detail', args=(self.object.pk, ))
 
 
 class RelatedProductView(UpdateView):
-    model = models.Bundle
-    template_name = 'bundles/dashboard/bundle_related_products.html'
+    model = Bundle
+    template_name = 'oscarbundles/dashboard/bundle_related_products.html'
     field_name = None
     title = None
 
@@ -80,11 +84,11 @@ class RelatedProductView(UpdateView):
         return data
 
     def _load_category_filter(self, request):
-        self.category_form = forms.CategoryFilterForm(request.GET)
+        self.category_form = CategoryFilterForm(request.GET)
 
 
 class TriggeringProductView(RelatedProductView):
-    form_class = forms.TriggeringProductsForm
+    form_class = TriggeringProductsForm
     field_name = 'triggering_products'
     title = _('Edit triggering products')
 
@@ -93,7 +97,7 @@ class TriggeringProductView(RelatedProductView):
 
 
 class SuggestedProductView(RelatedProductView):
-    form_class = forms.SuggestedProductsForm
+    form_class = SuggestedProductsForm
     field_name = 'suggested_products'
     title = _('Edit suggested products')
 
@@ -102,6 +106,6 @@ class SuggestedProductView(RelatedProductView):
 
 
 class DeleteBundleView(DeleteView):
-    model = models.Bundle
-    template_name = 'bundles/dashboard/bundle_delete.html'
+    model = Bundle
+    template_name = 'oscarbundles/dashboard/bundle_delete.html'
     success_url = reverse_lazy('dashboard-bundle-list')

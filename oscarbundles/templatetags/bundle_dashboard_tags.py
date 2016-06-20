@@ -3,7 +3,7 @@ from django import template
 register = template.Library()
 
 
-@register.inclusion_tag('bundles/dashboard/_product_list.html')
+@register.inclusion_tag('oscarbundles/dashboard/_product_list.html')
 def grouped_product_list(products):
     groups = {}
     orphans = []

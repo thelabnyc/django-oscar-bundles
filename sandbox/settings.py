@@ -23,7 +23,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'rest_framework',
     'oscarapi',
-    'bundles',
+    'oscarbundles',
 ] + get_core_apps([])
 
 
