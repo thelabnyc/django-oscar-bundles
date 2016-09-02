@@ -1,0 +1,67 @@
+{% extends 'dashboard/layout.html' %}
+{% load i18n %}
+{% load bundle_dashboard_tags %}
+
+
+{% block title %}
+    {% trans "Bundle Groups" %} | {{ block.super }}
+{% endblock %}
+
+
+{% block breadcrumbs %}
+    <ul class="breadcrumb">
+        <li>
+            <a href="{% url 'dashboard:index' %}">{% trans "Dashboard" %}</a>
+        </li>
+        <li>
+            <a href="{% url 'dashboard-bundle-group-list' %}">{% trans "Bundle Groups" %}</a>
+        </li>
+    </ul>
+{% endblock %}
+
+
+{% block header %}
+    <div class="page-header">
+        <a href="{% url 'dashboard-bundle-group-create' %}" class="btn btn-primary btn-lg pull-right"><i class="icon-plus"></i> {% trans "Create new bundle group" %}</a>
+        <h1>{% trans "Bundle Groups" %}</h1>
+    </div>
+{% endblock header %}
+
+
+{% block dashboard_content %}
+    <table class="table table-striped table-bordered">
+        {% if object_list %}
+            <tr>
+                <th>{% trans "Name" %}</th>
+                <th>{% trans "Description" %}</th>
+                <th></th>
+            </tr>
+            {% for object in object_list %}
+                <tr>
+                    <td>{{ object.name | default:"-" }}</td>
+                    <td>{{ object.description | default:"-" }}</td>
+                    <td>
+                        <div class="btn-toolbar">
+                            <div class="btn-group">
+                                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
+                                    {% trans "Actions" %}
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu pull-right">
+                                    <li><a class="" href="{% url 'dashboard-bundle-group-detail' pk=object.pk %}">{% trans "View details" %}</a></li>
+                                    <li><a class="" href="{% url 'dashboard-bundle-group-edit' pk=object.pk %}">{% trans "Edit metadata" %}</a></li>
+                                    <li><a class="" href="{% url 'dashboard-bundle-group-bundles' pk=object.pk %}">{% trans "Edit bundles" %}</a></li>
+                                    <li><a class="" href="{% url 'dashboard-bundle-group-delete' pk=object.pk %}">{% trans "Delete" %}</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+
+        {% else %}
+            <tr><td>{% trans "No bundle groups found." %}</td></tr>
+        {% endif %}
+    </table>
+    {% include "dashboard/partials/pagination.html" %}
+{% endblock dashboard_content %}

@@ -1,0 +1,24 @@
+{% load i18n %}
+
+
+<div data-spy="affix" class="affix-top" data-offset-top="200">
+    <div class="table-header">
+        <h3>{% trans "Steps" %}</h3>
+    </div>
+    <ul class="nav nav-list bs-docs-sidenav">
+        <li class="step1 {% if step == 1 %}active{% endif %} {% if step > 1 %}visited{% endif %} {% if not bundle %}disabled{% endif %}">
+            {% if bundle %}
+                <a href="{% url 'dashboard-bundle-group-edit' pk=bundle_group.pk %}">{% trans "Metadata" %}</a>
+            {% else %}
+                <a href="{% url 'dashboard-bundle-group-create' %}">{% trans "Metadata" %}</a>
+            {% endif %}
+        </li>
+        <li class="step2 {% if step == 2 %}active{% endif %} {% if step > 2 %}visited{% endif %} {% if not bundle %}disabled{% endif %}">
+            {% if bundle %}
+                <a href="{% url 'dashboard-bundle-group-bundles' pk=bundle_group.pk %}">{% trans "Bundles" %}</a>
+            {% else %}
+                <span>{% trans "Bundles" %}</span>
+            {% endif %}
+        </li>
+    </ul>
+</div>

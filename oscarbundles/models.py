@@ -28,7 +28,7 @@ class BundleMetaMixin(models.Model):
 
 
 class Bundle(BundleMetaMixin, models.Model):
-    bundle_group = models.ForeignKey('BundleGroup', 
+    bundle_group = models.ForeignKey('BundleGroup',
         blank=True, null=True, help_text=_('Optional grouping for bundle'))
     triggering_products = models.ManyToManyField('catalogue.Product',
         related_name='triggering_bundles',

@@ -5,6 +5,7 @@ from oscar.core.loading import get_model, get_class
 Category = get_model('catalogue', 'Category')
 Product = get_model('catalogue', 'Product')
 Bundle = get_model('oscarbundles', 'Bundle')
+BundleGroup = get_model('oscarbundles', 'BundleGroup')
 
 GroupedModelMultipleChoiceField = get_class('oscarbundles.dashboard.fields', 'GroupedModelMultipleChoiceField')
 
@@ -20,7 +21,7 @@ class CategoryFilterForm(forms.Form):
 class MetadataForm(forms.ModelForm):
     class Meta:
         model = Bundle
-        fields = ('name', 'description')
+        fields = ('name', 'description', 'image', 'bundle_group')
 
 
 class TriggeringProductsForm(forms.ModelForm):
@@ -45,3 +46,9 @@ class SuggestedProductsForm(forms.ModelForm):
     class Meta:
         model = Bundle
         fields = ('suggested_products', )
+
+
+class BundleGroupMetadataForm(forms.ModelForm):
+    class Meta:
+        model = BundleGroup
+        fields = ('name', 'description', 'image')

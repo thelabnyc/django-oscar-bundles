@@ -141,6 +141,10 @@ OSCAR_DASHBOARD_NAVIGATION.append({
     'icon': 'icon-sitemap',
     'children': [
         {
+            'label': 'Bundle Groups',
+            'url_name': 'dashboard-bundle-group-list',
+        },
+        {
             'label': 'Bundles',
             'url_name': 'dashboard-bundle-list',
         },

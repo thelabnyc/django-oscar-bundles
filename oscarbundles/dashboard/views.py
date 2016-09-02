@@ -9,11 +9,14 @@ from oscar.core.loading import get_model, get_class
 Category = get_model('catalogue', 'Category')
 Product = get_model('catalogue', 'Product')
 Bundle = get_model('oscarbundles', 'Bundle')
+BundleGroup = get_model('oscarbundles', 'BundleGroup')
 
 MetadataForm = get_class('oscarbundles.dashboard.forms', 'MetadataForm')
 CategoryFilterForm = get_class('oscarbundles.dashboard.forms', 'CategoryFilterForm')
 TriggeringProductsForm = get_class('oscarbundles.dashboard.forms', 'TriggeringProductsForm')
 SuggestedProductsForm = get_class('oscarbundles.dashboard.forms', 'SuggestedProductsForm')
+
+BundleGroupMetadataForm = get_class('oscarbundles.dashboard.forms', 'BundleGroupMetadataForm')
 
 
 class BundleListView(ListView):
@@ -109,3 +112,48 @@ class DeleteBundleView(DeleteView):
     model = Bundle
     template_name = 'oscarbundles/dashboard/bundle_delete.html'
     success_url = reverse_lazy('dashboard-bundle-list')
+
+
+class BundleGroupListView(ListView):
+    model = BundleGroup
+    ordering = ('-id', )
+    paginate_by = 25
+    template_name = 'oscarbundles/dashboard/bundle_group/list.html'
+
+
+class BundleGroupDetailView(DetailView):
+    model = BundleGroup
+    template_name = 'oscarbundles/dashboard/bundle_group/detail.html'
+
+
+class CreateBundleGroupView(CreateView):
+    model = BundleGroup
+    form_class = BundleGroupMetadataForm
+    template_name = 'oscarbundles/dashboard/bundle_group/create.html'
+
+    def get_success_url(self):
+        return reverse('dashboard-bundle-group-bundles', args=(self.object.pk, ))
+
+
+class EditBundleGroupView(UpdateView):
+    model = BundleGroup
+    form_class = BundleGroupMetadataForm
+    template_name = 'oscarbundles/dashboard/bundle_group/update.html'
+
+    def get_success_url(self):
+        return reverse('dashboard-bundle-group-detail', args=(self.object.pk, ))
+
+
+class BundleGroupBundlesView(UpdateView):
+    model = BundleGroup
+    form_class = BundleGroupMetadataForm
+    template_name = 'oscarbundles/dashboard/bundle_group/bundles.html'
+
+    def get_success_url(self):
+        return reverse('dashboard-bundle-group-detail', args=(self.object.pk, ))
+
+
+class DeleteBundleGroupView(DeleteView):
+    model = BundleGroup
+    template_name = 'oscarbundles/dashboard/bundle_group/delete.html'
+    success_url = reverse_lazy('dashboard-bundle-group-list')
