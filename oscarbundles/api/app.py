@@ -4,6 +4,7 @@ from oscar.core.loading import get_class
 
 BundleList = get_class('oscarbundles.api.views', 'BundleList')
 BundleDetail = get_class('oscarbundles.api.views', 'BundleDetail')
+BundleGroupDetail = get_class('oscarbundles.api.views', 'BundleGroupDetail')
 ProductBundleList = get_class('oscarbundles.api.views', 'ProductBundleList')
 
 
@@ -12,6 +13,7 @@ class DashboardBundleApplication(Application):
         urlpatterns = [
             url(r'^bundles/$', BundleList.as_view(), name='bundle-list'),
             url(r'^bundles/(?P<pk>[0-9]+)/$', BundleDetail.as_view(), name='bundle-detail'),
+            url(r'^bundle_groups/(?P<pk>[0-9]+)/$', BundleGroupDetail.as_view(), name='bundlegroup-detail'),
 
             url(r'^products/(?P<pk>[0-9]+)/bundles/$', ProductBundleList.as_view(), name='product-bundle-list'),
         ]
