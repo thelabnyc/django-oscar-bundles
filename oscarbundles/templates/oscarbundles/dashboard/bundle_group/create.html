@@ -1,0 +1,56 @@
+{% extends 'dashboard/layout.html' %}
+{% load i18n %}
+{% load bundle_dashboard_tags %}
+
+
+{% block body_class %}{{ block.super }} create-bundle-group{% endblock %}
+
+
+{% block title %}
+    {% trans "Create new bundle" %} | {% trans "Bundle Groups" %} | {{ block.super }}
+{% endblock %}
+
+
+{% block breadcrumbs %}
+    <ul class="breadcrumb">
+        <li>
+            <a href="{% url 'dashboard:index' %}">{% trans "Dashboard" %}</a>
+        </li>
+        <li>
+            <a href="{% url 'dashboard-bundle-group-list' %}">{% trans "Bundle Groups" %}</a>
+        </li>
+        <li>
+            {% trans "Create new bundle group" %}
+        </li>
+    </ul>
+{% endblock %}
+
+
+{% block headertext %}
+    {% trans "Create new bundle group" %}
+{% endblock %}
+
+
+{% block dashboard_content %}
+    <div class="row">
+        <div class="col-md-3">
+            {% include 'oscarbundles/dashboard/bundle_group/_progress.html' with step=1 %}
+        </div>
+        <div class="col-md-9">
+            <form action="." method="post" class="form-stacked">
+                {% csrf_token %}
+                <div class="table-header">
+                    <h3>{% trans "Create new bundle group" %}</h3>
+                </div>
+                <div class="well">
+                    {% include 'dashboard/partials/form_fields.html' with form=form %}
+
+                    <div class="form-group">
+                        <a class="btn btn-default" href="{% url 'dashboard-bundle-group-list' %}">{% trans "Cancel" %}</a>
+                        <button class="btn btn-primary" type="submit">{% trans "Continue" %}</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock dashboard_content %}

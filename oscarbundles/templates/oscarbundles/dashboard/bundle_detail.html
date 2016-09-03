@@ -52,6 +52,13 @@
                         <td>{{ bundle.description | default:"-" }}</td>
                     </tr>
                     <tr>
+                        <th>{% trans "Bundle Group" %}</th>
+                        <td>{{ bundle.bundle_group | default:"-" }}</td>
+                        <td>
+                            <a href="{% url 'dashboard-bundle-group-edit' pk=bundle.bundle_group.pk %}" class="btn btn-default">{% trans "Edit" %}</a>
+                        </td>
+                    </tr>
+                    <tr>
                         <th>{% trans "Triggering Products" %}</th>
                         <td>{% grouped_product_list bundle.triggering_products %}</td>
                         <td>

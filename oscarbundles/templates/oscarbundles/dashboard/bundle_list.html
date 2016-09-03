@@ -34,6 +34,7 @@
             <tr>
                 <th>{% trans "Name" %}</th>
                 <th>{% trans "Description" %}</th>
+                <th>{% trans "Bundle Group" %}</th>
                 <th>{% trans "Triggering Products" %}</th>
                 <th>{% trans "Suggested Products" %}</th>
                 <th></th>
@@ -42,6 +43,7 @@
                 <tr>
                     <td>{{ bundle.name | default:"-" }}</td>
                     <td>{{ bundle.description | default:"-" }}</td>
+                    <td>{{ bundle.bundle_group | default:"-" }}</td>
                     <td>{% grouped_product_list bundle.triggering_products %}</td>
                     <td>{% grouped_product_list bundle.suggested_products %}</td>
                     <td>
@@ -54,6 +56,9 @@
                                 <ul class="dropdown-menu pull-right">
                                     <li><a class="" href="{% url 'dashboard-bundle-detail' pk=bundle.pk %}">{% trans "View details" %}</a></li>
                                     <li><a class="" href="{% url 'dashboard-bundle-edit' pk=bundle.pk %}">{% trans "Edit metadata" %}</a></li>
+                                    {% if bundle.bundle_group %}
+                                        <li><a class="" href="{% url 'dashboard-bundle-group-edit' pk=bundle.bundle_group.pk %}">{% trans "Edit bundle group" %}</a></li>
+                                    {% endif %}
                                     <li><a class="" href="{% url 'dashboard-bundle-triggering-products' pk=bundle.pk %}">{% trans "Edit triggering products" %}</a></li>
                                     <li><a class="" href="{% url 'dashboard-bundle-suggested-products' pk=bundle.pk %}">{% trans "Edit suggested products" %}</a></li>
                                     <li><a class="" href="{% url 'dashboard-bundle-delete' pk=bundle.pk %}">{% trans "Delete" %}</a></li>
