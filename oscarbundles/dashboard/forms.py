@@ -1,4 +1,5 @@
 from django import forms
+from django.forms.models import ModelMultipleChoiceField
 from django.utils.translation import ugettext_lazy as _
 from oscar.core.loading import get_model, get_class
 
@@ -52,3 +53,27 @@ class BundleGroupMetadataForm(forms.ModelForm):
     class Meta:
         model = BundleGroup
         fields = ('name', 'description', 'image')
+
+
+class BundleGroupBundlesForm(forms.ModelForm):
+    bundle_set = ModelMultipleChoiceField(queryset=Bundle.objects.all())
+
+    class Meta:
+        model = BundleGroup
+        fields = ('bundle_set',)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if self.instance:
+            self.fields['bundle_set'].initial = self.instance.bundle_set.all()
+
+    def save(self, commit=True, *args, **kwargs):
+        obj = super().save(commit, *args, **kwargs)
+        if commit:
+            # Delete any not in new set
+            for bundle in obj.bundle_set.all():
+                if bundle not in self.cleaned_data['bundle_set']:
+                    obj.bundle_set.remove(bundle)
+            for bundle in self.cleaned_data['bundle_set']:
+                obj.bundle_set.add(bundle)
+        return obj

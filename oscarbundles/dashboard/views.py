@@ -17,6 +17,7 @@ TriggeringProductsForm = get_class('oscarbundles.dashboard.forms', 'TriggeringPr
 SuggestedProductsForm = get_class('oscarbundles.dashboard.forms', 'SuggestedProductsForm')
 
 BundleGroupMetadataForm = get_class('oscarbundles.dashboard.forms', 'BundleGroupMetadataForm')
+BundleGroupBundlesForm = get_class('oscarbundles.dashboard.forms', 'BundleGroupBundlesForm')
 
 
 class BundleListView(ListView):
@@ -146,7 +147,7 @@ class EditBundleGroupView(UpdateView):
 
 class BundleGroupBundlesView(UpdateView):
     model = BundleGroup
-    form_class = BundleGroupMetadataForm
+    form_class = BundleGroupBundlesForm
     template_name = 'oscarbundles/dashboard/bundle_group/bundles.html'
 
     def get_success_url(self):

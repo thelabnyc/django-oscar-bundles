@@ -51,6 +51,17 @@
                         <th>{% trans "Description" %}</th>
                         <td>{{ object.description | default:"-" }}</td>
                     </tr>
+                    <tr>
+                        <th>{% trans "Bundles" %}</th>
+                        <td>
+                            {% for bundle in object.bundle_set.all %}
+                            {{ bundle }}{% if not forloop.last %},{% endif %}
+                            {% endfor %}
+                        </td>
+                        <td>
+                            <a href="{% url 'dashboard-bundle-group-bundles' pk=object.pk %}" class="btn btn-default">{% trans "Edit" %}</a>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </div>

@@ -41,7 +41,7 @@
             <form action="." method="post" class="form-stacked">
                 {% csrf_token %}
                 <div class="table-header">
-                    <h3>{% trans "Edit Bundle: " %} {% if bundle.name %}{{ bundle.name }}{% else %}{{ bundle.pk }}{% endif %}</h3>
+                    <h3>{% trans "Edit Bundles in Group: " %} {% if bundle.name %}{{ bundle.name }}{% else %}{{ bundle.pk }}{% endif %}</h3>
                 </div>
                 <div class="well">
                     {% include 'dashboard/partials/form_fields.html' with form=form %}

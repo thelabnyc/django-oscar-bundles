@@ -55,7 +55,9 @@
                         <th>{% trans "Bundle Group" %}</th>
                         <td>{{ bundle.bundle_group | default:"-" }}</td>
                         <td>
-                            <a href="{% url 'dashboard-bundle-group-edit' pk=bundle.bundle_group.pk %}" class="btn btn-default">{% trans "Edit" %}</a>
+                            {% if bundle.bundle_group %}
+                                <a href="{% url 'dashboard-bundle-group-edit' pk=bundle.bundle_group.pk %}" class="btn btn-default">{% trans "Edit" %}</a>
+                            {% endif %}
                         </td>
                     </tr>
                     <tr>
