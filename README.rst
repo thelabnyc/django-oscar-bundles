@@ -8,6 +8,10 @@ An extension on top of django-oscar providing product bundle functionality.
 Changelog
 =========
 
+0.2.1
+------------------
+- Added working bundle group bundle_set editing in dashboard
+
 0.2.0
 ------------------
 - Add optional bundle groupings
