@@ -11,6 +11,39 @@ BundleGroup = get_model('oscarbundles', 'BundleGroup')
 GroupedModelMultipleChoiceField = get_class('oscarbundles.dashboard.fields', 'GroupedModelMultipleChoiceField')
 
 
+class BundleSearchForm(forms.Form):
+    text = forms.CharField(
+        max_length=255, required=False, label=_('Search'))
+    title = forms.CharField(
+        max_length=255, required=False, label=_('Product title'))
+    group = forms.ModelChoiceField(
+        label=_('Group'),
+        help_text=_('Select a bundle group to filter the bundles below.'),
+        queryset=BundleGroup.objects,
+        required=False)
+    category = forms.ModelChoiceField(
+        label=_('Product Category'),
+        help_text=_('Select a category to filter the bundles below.'),
+        queryset=Category.objects,
+        required=False)
+
+    def clean(self):
+        cleaned_data = super().clean()
+        cleaned_data['text'] = cleaned_data['text'].strip()
+        cleaned_data['title'] = cleaned_data['title'].strip()
+        return cleaned_data
+
+
+class BundleGroupSearchForm(forms.Form):
+    text = forms.CharField(
+        max_length=255, required=False, label=_('Search'))
+
+    def clean(self):
+        cleaned_data = super().clean()
+        cleaned_data['text'] = cleaned_data['text'].strip()
+        return cleaned_data
+
+
 class CategoryFilterForm(forms.Form):
     category = forms.ModelChoiceField(
         label=_('Product Category'),
