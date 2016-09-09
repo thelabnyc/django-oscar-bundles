@@ -50,7 +50,13 @@
                     </tr>
                     <tr>
                         <th>Bundles</th>
-                        <td>{% grouped_product_list object.bundle_set %}</td>
+                        <td>
+                            <ul>
+                                {% for bundle in object.bundle_set.all %}
+                                    <li>{{ bundle.name }}</li>
+                                {% endfor %}
+                            </ul>
+                        </td>
                     </tr>
                 </table>
 
