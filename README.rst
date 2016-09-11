@@ -17,6 +17,10 @@ Bundles do not include offers - however it may be used in combination with an of
 Changelog
 =========
 
+0.2.4
+------------------
+- Add view caching to bundles API
+
 0.2.3
 ------------------
 - Fix 500 when deleting a bundle group
