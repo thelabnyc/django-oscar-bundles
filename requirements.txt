@@ -4,7 +4,6 @@ django-extra-views==0.6.4
 django-haystack==2.5.1
 django-oscar==1.3
 django-oscar-api==1.0.10.post1
--e git+git@gitlab.com:thelabnyc/django-oscar-bundles.git@e60538e7415d100aee53d81d5380b13133610f1d#egg=django_oscar_bundles
 django-tables2==1.0.7
 django-treebeard==4.1.0
 django-widget-tweaks==1.4.1
