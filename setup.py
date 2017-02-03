@@ -1,35 +1,36 @@
 #!/usr/bin/env python
+from setuptools import setup, find_packages, Distribution
 import codecs
 import os.path
-from setuptools import setup
-from versiontag import get_version, cache_git_tag
+
+# Make sure versiontag exists before going any further
+Distribution().fetch_build_eggs('versiontag>=1.2.0')
+
+from versiontag import get_version, cache_git_tag  # NOQA
 
 
-packages = [
-    'oscarbundles',
-    'oscarbundles.api',
-    'oscarbundles.dashboard',
-    'oscarbundles.migrations',
-    'oscarbundles.templatetags',
-    'oscarbundles.tests',
-]
-
-setup_requires = [
-    'versiontag>=1.1.0',
-]
+packages = find_packages()
 
 requires = [
-    'Django>=1.8.12',
-    'django-oscar>=1.2.1',
-    'django-oscar-api>=1.0.4',
+    'django-oscar>=1.3.0',
+    'django-oscar-api>=1.0.10post1',
 ]
+
+extras_require = {
+    'development': [
+        'psycopg2>=2.6.2',
+        'flake8>=3.2.1',
+    ],
+}
 
 
 def fpath(name):
     return os.path.join(os.path.dirname(__file__), name)
 
+
 def read(fname):
     return codecs.open(fpath(fname), encoding='utf-8').read()
+
 
 cache_git_tag()
 
@@ -39,7 +40,7 @@ setup(
     version=get_version(pypi=True),
     long_description=open('README.rst').read(),
     classifiers=[
-        'Development Status :: 3 - Alpha',
+        'Development Status :: 4 - Beta',
         'Environment :: Web Environment',
         'Framework :: Django',
         'Framework :: Django :: 1.8',
@@ -60,5 +61,5 @@ setup(
     packages=packages,
     include_package_data=True,
     install_requires=requires,
-    setup_requires=setup_requires
+    extras_require=extras_require,
 )

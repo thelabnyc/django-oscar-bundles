@@ -108,8 +108,7 @@ HAYSTACK_CONNECTIONS = {
 
 CACHES = {
     'default': {
-        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-        'LOCATION': 'bundle-sandbox',
+        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
     }
 }
 
@@ -136,7 +135,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.locmem.EmailBackend'
 
 
 # Append to Oscar dashboard navigation
-OSCAR_DASHBOARD_NAVIGATION.append({
+OSCAR_DASHBOARD_NAVIGATION.append({  # NOQA
     'label': 'Bundles',
     'icon': 'icon-sitemap',
     'children': [

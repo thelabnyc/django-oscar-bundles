@@ -11,13 +11,13 @@ services:
 
 before_script:
   - pip install -r requirements.txt
-  - pip install -e .
+  - pip install -e .[development]
 
 lint:
   stage: test
   image: python:3.5
   script:
-    - flake8 oscarbundles/ sandbox/ --exclude=migrations
+    - flake8 --exclude=migrations
 
 test_python:3.4:
   stage: test
