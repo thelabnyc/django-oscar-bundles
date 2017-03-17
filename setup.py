@@ -9,7 +9,7 @@ Distribution().fetch_build_eggs('versiontag>=1.2.0')
 from versiontag import get_version, cache_git_tag  # NOQA
 
 
-packages = find_packages()
+packages = find_packages('src')
 
 requires = [
     'django-oscar>=1.3.0',
@@ -20,6 +20,9 @@ extras_require = {
     'development': [
         'psycopg2>=2.6.2',
         'flake8>=3.2.1',
+        'sphinx>=1.5.2',
+        'tox>=2.6.0',
+        'versiontag>=1.2.0',
     ],
 }
 
@@ -40,7 +43,7 @@ setup(
     version=get_version(pypi=True),
     long_description=open('README.rst').read(),
     classifiers=[
-        'Development Status :: 4 - Beta',
+        'Development Status :: 5 - Production/Stable',
         'Environment :: Web Environment',
         'Framework :: Django',
         'Framework :: Django :: 1.8',
@@ -53,11 +56,13 @@ setup(
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
     ],
     author='Craig Weber',
     author_email='crgwbr@gmail.com',
     url='https://gitlab.com/thelabnyc/django-oscar-bundles',
     license='ISC',
+    package_dir={'': 'src'},
     packages=packages,
     include_package_data=True,
     install_requires=requires,

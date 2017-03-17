@@ -17,6 +17,10 @@ Bundles do not include offers - however it may be used in combination with an of
 Changelog
 =========
 
+0.2.6
+------------------
+- Improve testing with tox.
+
 0.2.5
 ------------------
 - Updated dependencies
