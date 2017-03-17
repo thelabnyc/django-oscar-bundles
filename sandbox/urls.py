@@ -1,5 +1,5 @@
 from django.conf import settings
-from django.conf.urls import patterns, include, url, i18n
+from django.conf.urls import include, url, i18n
 from django.contrib import admin
 from django.views.static import serve
 from oscar.app import application as oscar
@@ -12,7 +12,7 @@ MEDIA_SETTINGS = {
     'show_indexes': True
 }
 
-urlpatterns = patterns('',
+urlpatterns = [
     url(r'^i18n/', include(i18n)),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^media/(?P<path>.*)$', serve, MEDIA_SETTINGS),
@@ -24,4 +24,4 @@ urlpatterns = patterns('',
 
     # Include stock Oscar
     url(r'', include(oscar.urls)),
-)
+]
