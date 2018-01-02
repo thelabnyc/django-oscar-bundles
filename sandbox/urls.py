@@ -14,14 +14,14 @@ MEDIA_SETTINGS = {
 
 urlpatterns = [
     url(r'^i18n/', include(i18n)),
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin/', admin.site.urls),
     url(r'^media/(?P<path>.*)$', serve, MEDIA_SETTINGS),
 
-    url(r'^api/', include(oscarbundlesapi.urls)),
-    url(r'^api/', include(oscarapi.urls)),
+    url(r'^api/', oscarbundlesapi.urls),
+    url(r'^api/', oscarapi.urls),
 
-    url(r'^dashboard/', include(oscarbundlesdashboard.urls)),
+    url(r'^dashboard/', oscarbundlesdashboard.urls),
 
     # Include stock Oscar
-    url(r'', include(oscar.urls)),
+    url(r'', oscar.urls),
 ]

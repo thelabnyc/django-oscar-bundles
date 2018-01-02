@@ -12,8 +12,9 @@ from versiontag import get_version, cache_git_tag  # NOQA
 packages = find_packages('src')
 
 requires = [
-    'django-oscar>=1.3.0',
-    'django-oscar-api>=1.0.10post1',
+    'django-oscar>=1.5.0',
+    'django-oscar-api>=1.2.0',
+    'phonenumbers>=8.8.8',
 ]
 
 extras_require = {
@@ -46,8 +47,7 @@ setup(
         'Development Status :: 5 - Production/Stable',
         'Environment :: Web Environment',
         'Framework :: Django',
-        'Framework :: Django :: 1.8',
-        'Framework :: Django :: 1.9',
+        'Framework :: Django :: 1.11',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: ISC License (ISCL)',
         'Operating System :: Unix',
