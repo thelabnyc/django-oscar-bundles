@@ -17,6 +17,10 @@ Bundles do not include offers - however it may be used in combination with an of
 Changelog
 =========
 
+0.2.8
+------------------
+- Fix Django 2.0 Deprecation warnings.
+
 0.2.7
 ------------------
 - Adds support for Django 1.11 and Oscar 1.5
