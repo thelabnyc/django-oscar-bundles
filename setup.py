@@ -60,7 +60,7 @@ setup(
     ],
     author='Craig Weber',
     author_email='crgwbr@gmail.com',
-    url='https://gitlab.com/thelabnyc/django-oscar-bundles',
+    url='https://gitlab.com/thelabnyc/django-oscar/django-oscar-bundles/',
     license='ISC',
     package_dir={'': 'src'},
     packages=packages,
