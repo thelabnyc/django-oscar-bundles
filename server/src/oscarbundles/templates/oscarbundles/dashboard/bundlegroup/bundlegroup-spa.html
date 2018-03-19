@@ -1,0 +1,35 @@
+{% extends 'dashboard/layout.html' %}
+{% load i18n %}
+{% load staticfiles %}
+
+
+{% block title %}
+    {% trans "Bundle Groups" %} | {{ block.super }}
+{% endblock %}
+
+
+{% block breadcrumbs %}
+    <ul class="breadcrumb">
+        <li>
+            <a href="{% url 'dashboard:index' %}">{% trans "Dashboard" %}</a>
+        </li>
+        <li>
+            <a href="{% url 'dashboard-bundle-group-list' %}">{% trans "Bundle Groups" %}</a>
+        </li>
+    </ul>
+{% endblock %}
+
+
+{% block dashboard_content %}
+    <div id="bundlegroup-table"
+         data-bundle-api="{% url 'bundle-list' %}"
+         data-bundlegroup-api="{% url 'bundlegroup-list' %}"
+         data-bundle-product-choice-api="{% url 'bundle-product-choice-list' %}">
+     </div>
+{% endblock dashboard_content %}
+
+
+{% block extrascripts %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% static 'oscarbundles/bundles.js' %}"></script>
+{% endblock %}

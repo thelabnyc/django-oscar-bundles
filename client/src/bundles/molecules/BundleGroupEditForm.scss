@@ -1,0 +1,11 @@
+.bundle-group-edit {
+    &__section {
+        &:not(:first-child) {
+            margin-top: 2em;
+        }
+    }
+
+    &__link-table {
+        table-layout: fixed;
+    }
+}
