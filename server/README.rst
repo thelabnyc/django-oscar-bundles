@@ -17,6 +17,10 @@ Bundles do not include offers - however it may be used in combination with an of
 Changelog
 =========
 
+0.3.0
+------------------
+- MAJOR rewrite of bundle functionality with a much improved dashboard interface.
+
 0.2.8
 ------------------
 - Fix Django 2.0 Deprecation warnings.
