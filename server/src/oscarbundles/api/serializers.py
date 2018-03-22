@@ -87,7 +87,7 @@ class BundleGroupSerializer(serializers.ModelSerializer):
             group.triggering_parents.set(validated_data['triggering_parents'])
         if 'suggested_parents' in validated_data:
             group.suggested_parents.set(validated_data['suggested_parents'])
-        if 'bundles' in validated_data:
+        if 'bundles' in validated_data and len(validated_data['bundles']) > 0:
             self._update_bundles(group, validated_data['bundles'])
         return group
 
