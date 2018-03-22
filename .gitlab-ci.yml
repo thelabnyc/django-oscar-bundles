@@ -53,4 +53,4 @@ test_pypy3:
   script:
     - cd server/
     - pip install tox
-    - tox -e 'py35-django111-oscar15'
+    - tox -e 'pypy3-django111-oscar15'
