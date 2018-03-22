@@ -43,6 +43,7 @@ class Bundle(models.Model):
         related_name='bundles')
 
     triggering_product = models.ForeignKey('catalogue.Product',
+        on_delete=models.CASCADE,
         related_name='triggering_bundles',
         verbose_name=_('Triggering Product'),
         help_text=_('Which product should trigger this bundle?'))

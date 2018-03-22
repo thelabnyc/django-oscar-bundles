@@ -20,7 +20,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('bundle_group', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='oscarbundles.BundleGroup')),
                 ('suggested_products', models.ManyToManyField(help_text='Which product(s) should this bundle suggest when triggered?', related_name='suggesting_bundle_entries', to='catalogue.Product', verbose_name='Suggested Products')),
-                ('triggering_product', models.ForeignKey(help_text='Which product should trigger this bundle?', related_name='triggering_bundle_entries', to='catalogue.Product', verbose_name='Triggering Product')),
+                ('triggering_product', models.ForeignKey(help_text='Which product should trigger this bundle?', related_name='triggering_bundle_entries', to='catalogue.Product', verbose_name='Triggering Product', on_delete=django.db.models.deletion.CASCADE)),
             ],
         ),
     ]
