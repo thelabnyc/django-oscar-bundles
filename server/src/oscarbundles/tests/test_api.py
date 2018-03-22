@@ -55,6 +55,7 @@ class BundleAPITest(APITestCase):
                 'id': self.bundle1.pk,
                 'bundle_group': {
                     'id': self.bundle_group1.pk,
+                    'bundle_type': 'default',
                     'name': 'A bundle of bundles',
                     'description': '',
                     'image': None,
@@ -66,6 +67,7 @@ class BundleAPITest(APITestCase):
                 'id': self.bundle2.pk,
                 'bundle_group': {
                     'id': self.bundle_group1.pk,
+                    'bundle_type': 'default',
                     'name': 'A bundle of bundles',
                     'description': '',
                     'image': None,
@@ -76,7 +78,8 @@ class BundleAPITest(APITestCase):
             {
                 'id': self.bundle3.pk,
                 'bundle_group': {
-                    'id': self.bundle_group1.pk,
+                    'id': self.bundle_group2.pk,
+                    'bundle_type': 'default',
                     'name': 'A bundle of bundles',
                     'description': '',
                     'image': None,
@@ -95,6 +98,7 @@ class BundleAPITest(APITestCase):
             'id': self.bundle1.pk,
             'bundle_group': {
                 'id': self.bundle_group1.pk,
+                'bundle_type': 'default',
                 'name': 'A bundle of bundles',
                 'description': '',
                 'image': None,
@@ -111,6 +115,13 @@ class BundleAPITest(APITestCase):
         self.assertEqual(resp.data, [
             {
                 'id': self.bundle1.pk,
+                'bundle_group': {
+                    'id': self.bundle_group1.pk,
+                    'bundle_type': 'default',
+                    'name': 'A bundle of bundles',
+                    'description': '',
+                    'image': None,
+                },
                 'triggering_product': self.product1.pk,
                 'suggested_products': [self.product4.pk, self.product3.pk],
             },
@@ -124,6 +135,7 @@ class BundleAPITest(APITestCase):
                 'id': self.bundle2.pk,
                 'bundle_group': {
                     'id': self.bundle_group1.pk,
+                    'bundle_type': 'default',
                     'name': 'A bundle of bundles',
                     'description': '',
                     'image': None,
@@ -134,7 +146,8 @@ class BundleAPITest(APITestCase):
             {
                 'id': self.bundle3.pk,
                 'bundle_group': {
-                    'id': self.bundle_group1.pk,
+                    'id': self.bundle_group2.pk,
+                    'bundle_type': 'default',
                     'name': 'A bundle of bundles',
                     'description': '',
                     'image': None,
