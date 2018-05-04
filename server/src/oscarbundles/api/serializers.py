@@ -68,6 +68,7 @@ class BundleGroupSerializer(serializers.ModelSerializer):
             bundle_type=validated_data.get('bundle_type', None),
             name=validated_data.get('name', ''),
             description=validated_data.get('description', ''),
+            # headline=validated_data.get('headline', ''),
             image=validated_data.get('image', None))
         group.triggering_parents.set(validated_data.get('triggering_parents', []))
         group.suggested_parents.set(validated_data.get('suggested_parents', []))
@@ -79,6 +80,7 @@ class BundleGroupSerializer(serializers.ModelSerializer):
     def update(self, group, validated_data):
         group.bundle_type = validated_data.get('bundle_type', group.bundle_type)
         group.name = validated_data.get('name', group.name)
+        # group.headline = validated_data.get('headline', group.headline)
         group.description = validated_data.get('description', group.description)
         if 'image' in validated_data:
             group.image = validated_data['image']

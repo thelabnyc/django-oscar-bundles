@@ -55,6 +55,7 @@ class BundleGroupList(generics.ListCreateAPIView):
             'bundles__triggering_product',
             'bundles__suggested_products')\
         .order_by('id')
+    print(queryset)
     serializer_class = BundleGroupSerializer
 
 

@@ -20,6 +20,11 @@ class BundleGroup(models.Model):
         max_length=200,
         blank=True,
         default='')
+    headline = models.CharField(_('Headline'),
+        max_length=200,
+        blank=True,
+        default='Forget Something?',
+        help_text='CTA headline in cart display')
     description = models.TextField(_('Description'),
         blank=True,
         default='')
@@ -28,7 +33,6 @@ class BundleGroup(models.Model):
         max_length=255,
         blank=True,
         null=True)
-
     triggering_parents = models.ManyToManyField('catalogue.Product',
         related_name='triggering_bundle_groups',
         verbose_name=_('Triggering Products'))
