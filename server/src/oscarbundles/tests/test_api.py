@@ -12,14 +12,18 @@ class BundleAPITest(APITestCase):
         self.product3 = create_product()
         self.product4 = create_product()
 
+        self.bundle_name = "A bundle of bundles"
+        self.bundle_headline = "We want you to buy one of these"
+
         self.bundle_group1 = BundleGroup()
-        self.bundle_group1.name = "A bundle of bundles"
+        self.bundle_group1.name = self.bundle_name
+        self.bundle_group1.headline = self.bundle_headline
         self.bundle_group1.save()
         self.bundle_group1.triggering_parents.set([self.product1, self.product2])
         self.bundle_group1.suggested_parents.set([self.product3, self.product4])
 
         self.bundle_group2 = BundleGroup()
-        self.bundle_group2.name = "A bundle of bundles"
+        self.bundle_group2.name = self.bundle_name
         self.bundle_group2.save()
         self.bundle_group2.triggering_parents.set([self.product2])
         self.bundle_group2.suggested_parents.set([self.product1, self.product4])
@@ -56,7 +60,8 @@ class BundleAPITest(APITestCase):
                 'bundle_group': {
                     'id': self.bundle_group1.pk,
                     'bundle_type': 'default',
-                    'name': 'A bundle of bundles',
+                    'name': self.bundle_name,
+                    'headline': self.bundle_headline,
                     'description': '',
                     'image': None,
                 },
@@ -68,7 +73,8 @@ class BundleAPITest(APITestCase):
                 'bundle_group': {
                     'id': self.bundle_group1.pk,
                     'bundle_type': 'default',
-                    'name': 'A bundle of bundles',
+                    'name': self.bundle_name,
+                    'headline': self.bundle_headline,
                     'description': '',
                     'image': None,
                 },
@@ -80,7 +86,8 @@ class BundleAPITest(APITestCase):
                 'bundle_group': {
                     'id': self.bundle_group2.pk,
                     'bundle_type': 'default',
-                    'name': 'A bundle of bundles',
+                    'name': self.bundle_name,
+                    'headline': 'Forget Something?',
                     'description': '',
                     'image': None,
                 },
@@ -99,7 +106,8 @@ class BundleAPITest(APITestCase):
             'bundle_group': {
                 'id': self.bundle_group1.pk,
                 'bundle_type': 'default',
-                'name': 'A bundle of bundles',
+                'name': self.bundle_name,
+                'headline': self.bundle_headline,
                 'description': '',
                 'image': None,
             },
@@ -118,7 +126,8 @@ class BundleAPITest(APITestCase):
                 'bundle_group': {
                     'id': self.bundle_group1.pk,
                     'bundle_type': 'default',
-                    'name': 'A bundle of bundles',
+                    'name': self.bundle_name,
+                    'headline': self.bundle_headline,
                     'description': '',
                     'image': None,
                 },
@@ -136,7 +145,8 @@ class BundleAPITest(APITestCase):
                 'bundle_group': {
                     'id': self.bundle_group1.pk,
                     'bundle_type': 'default',
-                    'name': 'A bundle of bundles',
+                    'name': self.bundle_name,
+                    'headline': self.bundle_headline,
                     'description': '',
                     'image': None,
                 },
@@ -148,7 +158,8 @@ class BundleAPITest(APITestCase):
                 'bundle_group': {
                     'id': self.bundle_group2.pk,
                     'bundle_type': 'default',
-                    'name': 'A bundle of bundles',
+                    'name': self.bundle_name,
+                    'headline': 'Forget Something?',
                     'description': '',
                     'image': None,
                 },

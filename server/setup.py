@@ -21,6 +21,7 @@ extras_require = {
     'development': [
         'psycopg2cffi>=2.7.7',
         'flake8>=3.2.1',
+        'ipdb>=0.10.3',
         'sphinx>=1.5.2',
         'tox>=2.6.0',
         'versiontag>=1.2.0',

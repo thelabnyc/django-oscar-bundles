@@ -30,7 +30,7 @@ class InlineBundleGroupSerializer(serializers.ModelSerializer):
     class Meta:
         model = BundleGroup
         fields = (
-            'id', 'bundle_type', 'name', 'description', 'image',
+            'id', 'bundle_type', 'name', 'headline', 'description', 'image',
         )
 
 
@@ -59,7 +59,7 @@ class BundleGroupSerializer(serializers.ModelSerializer):
     class Meta:
         model = BundleGroup
         fields = (
-            'id', 'bundle_type', 'name', 'description', 'image', 'triggering_parents', 'suggested_parents', 'bundles',
+            'id', 'bundle_type', 'name', 'headline', 'description', 'image', 'triggering_parents', 'suggested_parents', 'bundles',
         )
 
 
@@ -67,6 +67,7 @@ class BundleGroupSerializer(serializers.ModelSerializer):
         group = BundleGroup.objects.create(
             bundle_type=validated_data.get('bundle_type', None),
             name=validated_data.get('name', ''),
+            headline=validated_data.get('headline', ''),
             description=validated_data.get('description', ''),
             image=validated_data.get('image', None))
         group.triggering_parents.set(validated_data.get('triggering_parents', []))
@@ -79,6 +80,7 @@ class BundleGroupSerializer(serializers.ModelSerializer):
     def update(self, group, validated_data):
         group.bundle_type = validated_data.get('bundle_type', group.bundle_type)
         group.name = validated_data.get('name', group.name)
+        group.headline = validated_data.get('headline', group.headline)
         group.description = validated_data.get('description', group.description)
         if 'image' in validated_data:
             group.image = validated_data['image']
