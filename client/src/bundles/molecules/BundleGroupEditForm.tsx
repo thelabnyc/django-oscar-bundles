@@ -15,6 +15,7 @@ export interface IProps {
     errors: {
         bundleType?: string[];
         name?: string[];
+        headline?: string[];
         description?: string[];
         image?: string[];
         triggering_parents?: string[];
@@ -28,6 +29,7 @@ export interface IProps {
 export interface IState {
     bundleType: string;
     name: string;
+    headline: string;
     description: string;
     image: File | null;
     clearImage: boolean;
@@ -63,6 +65,7 @@ class BundleGroupEditForm extends React.PureComponent<IProps, IState> {
             bundleType: props.group ? props.group.bundle_type : props.bundleTypeChoices[0].value,
             name: props.group ? props.group.name : '',
             description: props.group ? props.group.description : '',
+            headline: props.group ? props.group.headline : '',
             image: null,
             clearImage: false,
             triggeringParents: props.group ? props.group.triggering_parents : [],
@@ -88,6 +91,7 @@ class BundleGroupEditForm extends React.PureComponent<IProps, IState> {
             bundle_type: this.state.bundleType,
             name: this.state.name,
             description: this.state.description,
+            headline: this.state.headline,
             image: this.props.group ? this.props.group.image : '',
             newImage: this.state.clearImage ? null : this.state.image,
             clearImage: this.state.clearImage,
@@ -425,6 +429,19 @@ class BundleGroupEditForm extends React.PureComponent<IProps, IState> {
                                    onChange={onEdit}
                                    disabled={this.props.isSaving} />
                             {this.buildErrors('name')}
+                        </div>
+                    </div>
+                    <div className={this.buildFormGroupClasses('headline')}>
+                        <label htmlFor="id_headline" className="control-label">Headline</label>
+                        <div>
+                            <input id="id_headline"
+                                   name="headline"
+                                   maxLength={200}
+                                   className="form-control"
+                                   value={this.state.headline}
+                                   onChange={onEdit}
+                                   disabled={this.props.isSaving} />
+                            {this.buildErrors('headline')}
                         </div>
                     </div>
                     <div className={this.buildFormGroupClasses('description')}>

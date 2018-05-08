@@ -20,6 +20,11 @@ class BundleGroup(models.Model):
         max_length=200,
         blank=True,
         default='')
+    headline = models.CharField(
+        max_length=200,
+        blank=True,
+        default='Forget Something?',
+        help_text='CTA headline in cart display')
     description = models.TextField(_('Description'),
         blank=True,
         default='')

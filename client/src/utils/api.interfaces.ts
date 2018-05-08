@@ -26,6 +26,7 @@ export interface IBundleGroup {
     bundle_type: string;
     name: string;
     description: string;
+    headline: string;
     image: string;
     newImage?: File | null;
     clearImage?: boolean;

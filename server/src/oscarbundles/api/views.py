@@ -58,7 +58,6 @@ class BundleGroupList(generics.ListCreateAPIView):
     serializer_class = BundleGroupSerializer
 
 
-
 class BundleGroupDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = (permissions.DjangoModelPermissionsOrAnonReadOnly, )
     queryset = BundleGroup.objects.order_by('id')
