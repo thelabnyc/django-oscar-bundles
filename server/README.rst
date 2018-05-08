@@ -17,6 +17,10 @@ Bundles do not include offers - however it may be used in combination with an of
 Changelog
 =========
 
+0.3.1
+------------------
+- Add new "Headline" field to bundle groups for holding UI text.
+
 0.3.0
 ------------------
 - MAJOR rewrite of bundle functionality with a much improved dashboard interface.
