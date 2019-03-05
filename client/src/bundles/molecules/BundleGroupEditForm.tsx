@@ -436,7 +436,8 @@ class BundleGroupEditForm extends React.PureComponent<IProps, IState> {
                         <div>
                             <input id="id_headline"
                                    name="headline"
-                                   maxLength={200}
+                                   cols={40}
+                                   rows={10}
                                    className="form-control"
                                    value={this.state.headline}
                                    onChange={onEdit}
