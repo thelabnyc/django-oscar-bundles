@@ -434,13 +434,15 @@ class BundleGroupEditForm extends React.PureComponent<IProps, IState> {
                     <div className={this.buildFormGroupClasses('headline')}>
                         <label htmlFor="id_headline" className="control-label">Headline</label>
                         <div>
-                            <input id="id_headline"
+                            <textarea id="id_headline"
                                    name="headline"
-                                   maxLength={200}
+                                   cols={40}
+                                   rows={10}
                                    className="form-control"
                                    value={this.state.headline}
                                    onChange={onEdit}
-                                   disabled={this.props.isSaving} />
+                                   disabled={this.props.isSaving}>
+                            </textarea>
                             {this.buildErrors('headline')}
                         </div>
                     </div>
