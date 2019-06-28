@@ -25,7 +25,11 @@ class BundleGroupTableRow extends React.PureComponent<IProps, IState> {
         };
         const onDelete = function(e: React.MouseEvent<HTMLAnchorElement>) {
             e.preventDefault();
-            if (confirm(`Are you sure you want to delete this bundle group (${self.props.group.name}) and all its associated bundles?`)) {
+            const msgFormat = gettext("Are you sure you want to delete this bundle group (%(name)s) and all its associated bundles?");
+            const msg = interpolate(msgFormat, {
+                name: self.props.group.name,
+            });
+            if (confirm(msg)) {
                 self.props.onDelete(self.props.group);
             }
         };
@@ -33,11 +37,11 @@ class BundleGroupTableRow extends React.PureComponent<IProps, IState> {
             <div className="btn-toolbar">
                 <div className="btn-group">
                     <button className="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-                        Actions{' '}<span className="caret"></span>
+                        {gettext("Actions")}{' '}<span className="caret"></span>
                     </button>
                     <ul className="dropdown-menu pull-right">
-                        <li><a onClick={onEdit}>Edit</a></li>
-                        <li><a onClick={onDelete}>Delete</a></li>
+                        <li><a onClick={onEdit}>{gettext("Edit")}</a></li>
+                        <li><a onClick={onDelete}>{gettext("Delete")}</a></li>
                     </ul>
                 </div>
             </div>

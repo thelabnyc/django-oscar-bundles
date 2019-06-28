@@ -34,14 +34,14 @@ class BundleGroupSearchForm extends React.PureComponent<IProps, IState> {
             <div className="well">
                 <form className="form-inline" onSubmit={onSubmit}>
                     <span className="form-group">
-                        <label htmlFor="id_text">Search:</label>
+                        <label htmlFor="id_text">{gettext("Search:")}</label>
                         <input className="form-control"
                                id="id_text"
                                value={this.props.searchText}
                                onChange={onChange} />
                     </span>
                     {' '}
-                    <button type="button" className="btn btn-default" onClick={onClear}>Clear Search</button>
+                    <button type="button" className="btn btn-default" onClick={onClear}>{gettext("Clear Search")}</button>
                 </form>
             </div>
         );

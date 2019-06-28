@@ -1,7 +1,6 @@
 import React = require('react');
 import classNames = require('classnames');
 import Select from 'react-select';
-import {Option as SelectOption} from 'react-select';
 import {IBundleGroup, IBundle, IProduct, ICharFieldChoice} from '../../utils/api.interfaces';
 
 import './BundleGroupEditForm.scss';
@@ -41,8 +40,16 @@ export interface IState {
 }
 
 
+type SelectOption = {
+    value: number;
+    label: string;
+};
+
+
 class BundleGroupEditForm extends React.PureComponent<IProps, IState> {
-    productIdx: { [id: number]: IProduct };
+
+    private productIdx: { [id: number]: IProduct };
+
 
     constructor (props: IProps) {
         super(props);
@@ -56,7 +63,7 @@ class BundleGroupEditForm extends React.PureComponent<IProps, IState> {
             }
             linkedProducts[bundle.triggering_product] = linkedProducts[bundle.triggering_product]
                 .concat(bundle.suggested_products)
-                .filter(function(id, i, ids) {
+                .filter((id, i, ids) => {
                     return ids.indexOf(id) === i;
                 });
         });
@@ -77,12 +84,72 @@ class BundleGroupEditForm extends React.PureComponent<IProps, IState> {
     }
 
 
-    componentWillReceiveProps(nextProps: IProps) {
-        this.fillProductIdx(nextProps.products);
+    private readonly onEdit = (e: React.FormEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+        const name = e.currentTarget.name as keyof IState;
+        const value = e.currentTarget.value;
+        this.setState((state) => {
+            return {...state,  [name]: value, };
+        });
     }
 
 
-    private onSave (e: React.FormEvent<HTMLFormElement>) {
+    private readonly onSelectImage = (e: React.FormEvent<HTMLInputElement>) => {
+        const file = e.currentTarget.files[0];
+        this.setState({
+            image: file,
+        });
+    }
+
+
+    private readonly onSelectParent = (name: 'triggeringParents' | 'suggestedParents', opts: SelectOption | ReadonlyArray<SelectOption> | null) => {
+        let options: ReadonlyArray<SelectOption>;
+        if (!opts) {
+            options = [];
+        } else if ((opts as ReadonlyArray<SelectOption>).length === undefined) {
+            options = [opts as SelectOption];
+        } else {
+            options = opts as ReadonlyArray<SelectOption>;
+        }
+        this.setState((state) => {
+            return {...state, [name]: options.map((o) => { return o.value; }), };
+        });
+    }
+
+
+    private readonly onLinkedProductsChange = (trigger: IProduct, suggestParent: IProduct, opts: SelectOption | ReadonlyArray<SelectOption> | null) => {
+        let options: ReadonlyArray<SelectOption>;
+        if (!opts) {
+            options = [];
+        } else if ((opts as ReadonlyArray<SelectOption>).length === undefined) {
+            options = [opts as SelectOption];
+        } else {
+            options = opts as ReadonlyArray<SelectOption>;
+        }
+        const ids = options.map((o) => { return o.value; });
+        this.setState((state) => {
+            const oldIDs = (state.linkedProducts[trigger.id] || [])
+                .filter((sid) => {
+                    const suggestion = this.getProduct(sid);
+                    return suggestion.id !== suggestParent.id && suggestion.parent !== suggestParent.id;
+                });
+            const newIDs = oldIDs
+                .concat(ids)
+                .filter((id, i, ids) => {
+                    return ids.indexOf(id) === i;
+                });
+            const linkedProducts = {...state.linkedProducts, [trigger.id]: newIDs, };
+            return {...state, linkedProducts: linkedProducts, };
+        });
+    }
+
+
+    private readonly onCancel = (e: React.MouseEvent<HTMLElement>) => {
+        e.preventDefault();
+        this.props.onCancel();
+    }
+
+
+    private readonly onSave = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         const self = this;
@@ -135,6 +202,18 @@ class BundleGroupEditForm extends React.PureComponent<IProps, IState> {
     }
 
 
+    private readonly onClearImage = (e: React.FormEvent<HTMLInputElement>) => {
+        this.setState({
+            clearImage: e.currentTarget.checked,
+        });
+    };
+
+
+    componentWillReceiveProps(nextProps: IProps) {
+        this.fillProductIdx(nextProps.products);
+    }
+
+
     private fillProductIdx (products: IProduct[]) {
         const self = this;
         this.productIdx = {};
@@ -158,7 +237,7 @@ class BundleGroupEditForm extends React.PureComponent<IProps, IState> {
                 return a.title.localeCompare(b.title);
             })
             .map((p) => {
-                const opt: SelectOption<number> = {
+                const opt: SelectOption = {
                     value: p.id,
                     label: p.title,
                 };
@@ -176,7 +255,7 @@ class BundleGroupEditForm extends React.PureComponent<IProps, IState> {
                 return a.title.localeCompare(b.title);
             })
             .map((p) => {
-                const opt: SelectOption<number> = {
+                const opt: SelectOption = {
                     value: p.id,
                     label: p.title,
                 };
@@ -214,35 +293,25 @@ class BundleGroupEditForm extends React.PureComponent<IProps, IState> {
         if (!this.props.group || !this.props.group.image) {
             return null;
         }
-        const self = this;
         const pathParts = this.props.group.image.split('/');
         const fileName = pathParts[pathParts.length - 1];
-
-        const onClearImage = function(e: React.FormEvent<HTMLInputElement>) {
-            self.setState({
-                clearImage: e.currentTarget.checked,
-            });
-        };
-
         return (
             <span>
-                Currently: <a target='_blank' href={this.props.group.image}>{fileName}</a>
+                {gettext("Currently:")} <a target='_blank' href={this.props.group.image}>{fileName}</a>
                 {' '}
                 <input type="checkbox"
                        id="bundle-edit-form-clear-img"
                        checked={this.state.clearImage}
-                       onChange={onClearImage}
+                       onChange={this.onClearImage}
                        disabled={this.props.isSaving} />
                 {' '}
-                <label htmlFor="bundle-edit-form-clear-img">Clear</label>
+                <label htmlFor="bundle-edit-form-clear-img">{gettext("Clear")}</label>
             </span>
         )
     }
 
 
     private buildBundleRows (triggerParent: IProduct, suggestParent: IProduct) {
-        const self = this;
-
         const triggerOptions = this.props.products
             .filter((p) => {
                 return !p.is_parent && (p.id === triggerParent.id || p.parent === triggerParent.id);
@@ -250,39 +319,14 @@ class BundleGroupEditForm extends React.PureComponent<IProps, IState> {
             .sort((a, b) => {
                 return a.title.localeCompare(b.title);
             });
-
         const suggestOptions = this.getChildProductSelectOptions(suggestParent);
-
         return (
             <table className="table bundle-group-edit__link-table">
                 <tbody>
                     {triggerOptions.map((trigger) => {
-                        const onChange = function(opts: SelectOption<number> | SelectOption<number>[]) {
-                            let options: SelectOption<number>[];
-                            if ((opts as SelectOption<number>[]).length === undefined) {
-                                options = [opts as SelectOption<number>];
-                            } else {
-                                options = opts as SelectOption<number>[];
-                            }
-                            const ids = options.map((o) => { return o.value; });
-                            self.setState((state) => {
-                                const oldIDs = (state.linkedProducts[trigger.id] || [])
-                                    .filter((sid) => {
-                                        const suggestion = self.getProduct(sid);
-                                        return suggestion.id !== suggestParent.id && suggestion.parent !== suggestParent.id;
-                                    });
-                                const newIDs = oldIDs
-                                    .concat(ids)
-                                    .filter((id, i, ids) => {
-                                        return ids.indexOf(id) === i;
-                                    });
-                                const linkedProducts = {...state.linkedProducts, [trigger.id]: newIDs, };
-                                return {...state, linkedProducts: linkedProducts, };
-                            });
-                        };
-                        const selectValue = (self.state.linkedProducts[trigger.id] || [])
+                        const selectValue = (this.state.linkedProducts[trigger.id] || [])
                             .filter((sid) => {
-                                const suggestion = self.getProduct(sid);
+                                const suggestion = this.getProduct(sid);
                                 return suggestion.id === suggestParent.id || suggestion.parent === suggestParent.id;
                             });
                         return (
@@ -291,12 +335,11 @@ class BundleGroupEditForm extends React.PureComponent<IProps, IState> {
                                     <a href={trigger.dashboard_url} target="_blank">{trigger.title}</a>
                                 </th>
                                 <td>
-                                    <Select multi={true}
-                                            simpleValue={false}
-                                            value={selectValue}
+                                    <Select isMulti={true}
+                                            value={suggestOptions.filter(o => selectValue.includes(o.value))}
                                             options={suggestOptions}
-                                            onChange={onChange}
-                                            disabled={this.props.isSaving} />
+                                            onChange={this.onLinkedProductsChange.bind(this, trigger, suggestParent)}
+                                            isDisabled={this.props.isSaving} />
                                 </td>
                             </tr>
                         );
@@ -312,23 +355,20 @@ class BundleGroupEditForm extends React.PureComponent<IProps, IState> {
             triggerParent: IProduct;
             suggestParent: IProduct;
         };
-
         if (this.state.triggeringParents.length <= 0 || this.state.suggestedParents.length <= 0) {
             return (
                 <div className="row">
                     <div className="col-sm-12">
-                        <p><em>Select at least one trigger product and one suggested product to begin linking variants.</em></p>
+                        <p><em>{gettext("Select at least one trigger product and one suggested product to begin linking variants.")}</em></p>
                     </div>
                 </div>
             );
         }
-
         const self = this;
         const parentCombinations: { [key: string]: ICombination } = {};
         const buildKey = function(triggerParent: number, suggestParent: number) {
             return `${triggerParent}-${suggestParent}`;
         };
-
         this.state.triggeringParents.forEach((triggerID) => {
             self.state.suggestedParents.forEach((suggestionID) => {
                 const key = buildKey(triggerID, suggestionID);
@@ -338,15 +378,14 @@ class BundleGroupEditForm extends React.PureComponent<IProps, IState> {
                 };
             });
         });
-
         return Object.values(parentCombinations).map((combination, i) => {
             return (
                 <div key={i} className="row">
                     <div className="col-sm-6">
-                        <h3><strong>{combination.triggerParent.title}</strong> <em>(Trigger Parent)</em></h3>
+                        <h3><strong>{combination.triggerParent.title}</strong> <em>{gettext("(Trigger Parent)")}</em></h3>
                     </div>
                     <div className="col-sm-6">
-                        <h3><strong>{combination.suggestParent.title}</strong> <em>(Suggestion Parent)</em></h3>
+                        <h3><strong>{combination.suggestParent.title}</strong> <em>{gettext("(Suggestion Parent)")}</em></h3>
                     </div>
                     <div className="col-sm-12">
                         {this.buildBundleRows(combination.triggerParent, combination.suggestParent)}
@@ -358,60 +397,28 @@ class BundleGroupEditForm extends React.PureComponent<IProps, IState> {
 
 
     render () {
-        const self = this;
-
         const title = this.props.group
-            ? 'Edit Bundle Group'
-            : 'Create Bundle Group';
-
-        const onEdit = function(e: React.FormEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
-            const name = e.currentTarget.name as keyof IState;
-            const value = e.currentTarget.value;
-            self.setState((state) => {
-                return {...state,  [name]: value, };
-            });
-        };
-
-        const onSelectImage = function(e: React.FormEvent<HTMLInputElement>) {
-            const file = e.currentTarget.files[0];
-            self.setState({
-                image: file,
-            });
-        };
-
-        const onSelectParent = function(name: 'triggeringParents' | 'suggestedParents', opts: SelectOption<number> | SelectOption<number>[]) {
-            let options: SelectOption<number>[];
-            if ((opts as SelectOption<number>[]).length === undefined) {
-                options = [opts as SelectOption<number>];
-            } else {
-                options = opts as SelectOption<number>[];
-            }
-            self.setState((state) => {
-                return {...state, [name]: options.map((o) => { return o.value; }), };
-            });
-        };
-
-        const onCancel = function(e: React.MouseEvent<HTMLElement>) {
-            e.preventDefault();
-            self.props.onCancel();
-        };
-
+            ? gettext("Edit Bundle Group")
+            : gettext("Create Bundle Group");
+        const parentProductSelectOptions = this.getParentProductSelectOptions();
         return (
-            <form className="row bundle-group-edit" onSubmit={(e) => { self.onSave(e); }}>
+            <form className="row bundle-group-edit" onSubmit={this.onSave}>
                 <div className="col-sm-12 bundle-group-edit__section">
                     <h1>{title}</h1>
                     <div className={this.buildFormGroupClasses('bundleType')}>
-                        <label htmlFor="id_bundleType" className="control-label">Bundle Type</label>
+                        <label htmlFor="id_bundleType" className="control-label">{gettext("Bundle Type")}</label>
                         <div>
                             <select id="id_bundleType"
                                     name="bundleType"
                                     className="form-control"
                                     value={this.state.bundleType}
-                                    onChange={onEdit}
+                                    onChange={this.onEdit}
                                     disabled={this.props.isSaving}>
                                 {this.props.bundleTypeChoices.map((choice) => {
                                     return (
-                                        <option value={choice.value}>{choice.display_name}</option>
+                                        <option key={choice.value} value={choice.value}>
+                                            {choice.display_name}
+                                        </option>
                                     );
                                 })}
                             </select>
@@ -419,20 +426,20 @@ class BundleGroupEditForm extends React.PureComponent<IProps, IState> {
                         </div>
                     </div>
                     <div className={this.buildFormGroupClasses('name')}>
-                        <label htmlFor="id_name" className="control-label">Name</label>
+                        <label htmlFor="id_name" className="control-label">{gettext("Name")}</label>
                         <div>
                             <input id="id_name"
                                    name="name"
                                    maxLength={200}
                                    className="form-control"
                                    value={this.state.name}
-                                   onChange={onEdit}
+                                   onChange={this.onEdit}
                                    disabled={this.props.isSaving} />
                             {this.buildErrors('name')}
                         </div>
                     </div>
                     <div className={this.buildFormGroupClasses('headline')}>
-                        <label htmlFor="id_headline" className="control-label">Headline</label>
+                        <label htmlFor="id_headline" className="control-label">{gettext("Headline")}</label>
                         <div>
                             <textarea id="id_headline"
                                    name="headline"
@@ -440,14 +447,14 @@ class BundleGroupEditForm extends React.PureComponent<IProps, IState> {
                                    rows={10}
                                    className="form-control"
                                    value={this.state.headline}
-                                   onChange={onEdit}
+                                   onChange={this.onEdit}
                                    disabled={this.props.isSaving}>
                             </textarea>
                             {this.buildErrors('headline')}
                         </div>
                     </div>
                     <div className={this.buildFormGroupClasses('description')}>
-                        <label htmlFor="id_description" className="control-label">Description</label>
+                        <label htmlFor="id_description" className="control-label">{gettext("Description")}</label>
                         <div>
                             <textarea id="id_description"
                                       name="description"
@@ -455,21 +462,21 @@ class BundleGroupEditForm extends React.PureComponent<IProps, IState> {
                                       rows={10}
                                       className="form-control"
                                       value={this.state.description}
-                                      onChange={onEdit}
+                                      onChange={this.onEdit}
                                       disabled={this.props.isSaving}>
                             </textarea>
                             {this.buildErrors('description')}
                         </div>
                     </div>
                     <div className={this.buildFormGroupClasses('image')}>
-                        <label htmlFor="id_image" className="control-label">Image</label>
+                        <label htmlFor="id_image" className="control-label">{gettext("Image")}</label>
                         <div>
                             {this.buildCurrentImage()}
                             <input id="id_image"
                                    type="file"
                                    name="image"
                                    className="form-control"
-                                   onChange={onSelectImage}
+                                   onChange={this.onSelectImage}
                                    disabled={this.props.isSaving} />
                             {this.buildErrors('image')}
                         </div>
@@ -477,48 +484,44 @@ class BundleGroupEditForm extends React.PureComponent<IProps, IState> {
                 </div>
 
                 <div className="col-sm-12 bundle-group-edit__section">
-                    <h1>Relevant Products</h1>
-                    <p><em>Select the <strong>parent</strong> and <strong>standalone</strong> products revelant to this bundle group.</em></p>
+                    <h1>{gettext("Relevant Products")}</h1>
+                    <p><em>{gettext("Select the parent and standalone products revelant to this bundle group.")}</em></p>
                     <div className="row">
                         <div className={this.buildFormGroupClasses('triggering_parents', ['col-sm-6'])}>
-                            <label htmlFor="id_image" className="control-label">Triggers</label>
+                            <label htmlFor="id_image" className="control-label">{gettext("Triggers")}</label>
                             <div>
                                 <Select name="triggeringParents"
-                                        multi={true}
-                                        simpleValue={false}
-                                        value={this.state.triggeringParents}
-                                        onChange={(v) => { onSelectParent('triggeringParents', v); }}
-                                        options={this.getParentProductSelectOptions()}
-                                        disabled={this.props.isSaving} />
+                                        isMulti={true}
+                                        value={parentProductSelectOptions.filter(o => this.state.triggeringParents.includes(o.value))}
+                                        onChange={this.onSelectParent.bind(this, 'triggeringParents')}
+                                        options={parentProductSelectOptions}
+                                        isDisabled={this.props.isSaving} />
                                 {this.buildErrors('triggering_parents')}
                             </div>
                         </div>
                         <div className={this.buildFormGroupClasses('suggested_parents', ['col-sm-6'])}>
-                            <label htmlFor="id_image" className="control-label">Suggestions</label>
+                            <label htmlFor="id_image" className="control-label">{gettext("Suggestions")}</label>
                             <div>
                                 <Select name="suggestedProducts"
-                                        multi={true}
-                                        simpleValue={false}
-                                        value={this.state.suggestedParents}
-                                        onChange={(v) => { onSelectParent('suggestedParents', v); }}
-                                        options={this.getParentProductSelectOptions()}
-                                        disabled={this.props.isSaving} />
+                                        isMulti={true}
+                                        value={parentProductSelectOptions.filter(o => this.state.suggestedParents.includes(o.value))}
+                                        onChange={this.onSelectParent.bind(this, 'suggestedParents')}
+                                        options={parentProductSelectOptions}
+                                        isDisabled={this.props.isSaving} />
                                 {this.buildErrors('suggested_parents')}
                             </div>
                         </div>
                     </div>
                 </div>
-
                 <div className="col-sm-12 bundle-group-edit__section">
-                    <h1>Product Links</h1>
+                    <h1>{gettext("Product Links")}</h1>
                     {this.buildParentRows()}
                 </div>
-
                 <div className="col-sm-12 bundle-group-edit__section">
                     <div className="form-group">
-                        <a className="btn btn-default" onClick={onCancel}>Cancel</a>
+                        <a className="btn btn-default" onClick={this.onCancel}>{gettext("Cancel")}</a>
                         {' '}
-                        <button className="btn btn-primary" type="submit">Save</button>
+                        <button className="btn btn-primary" type="submit">{gettext("Save")}</button>
                     </div>
                 </div>
             </form>

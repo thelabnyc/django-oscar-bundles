@@ -1,7 +1,11 @@
-FROM node:8
+FROM node:10
 
 RUN mkdir -p /oscarbundles/server /oscarbundles/client
 WORKDIR /oscarbundles/client
+
+RUN apt-get update && \
+    apt-get install -y gettext && \
+    rm -rf /var/lib/apt/lists/*
 
 # Install node_modules
 ADD client/package.json /oscarbundles/client/package.json

@@ -8,7 +8,8 @@ Product = get_model('catalogue', 'Product')
 
 class BundleGroup(models.Model):
     GROUP_TYPE_OPTIONS = getattr(settings, 'BUNDLE_GROUP_TYPES', (
-        ('default', 'Default'),
+        # Translators: Bundle Group Name
+        ('default', _('Default')),
     ))
 
     bundle_type = models.CharField(_('Bundle Type'),
@@ -22,8 +23,8 @@ class BundleGroup(models.Model):
         default='')
     headline = models.TextField(_('Headline'),
         blank=True,
-        default='Forget Something?',
-        help_text='CTA headline in cart display')
+        default=_('Forget Something?'),
+        help_text=_('CTA headline in cart display'))
     description = models.TextField(_('Description'),
         blank=True,
         default='')
@@ -39,6 +40,10 @@ class BundleGroup(models.Model):
     suggested_parents = models.ManyToManyField('catalogue.Product',
         related_name='suggesting_bundle_groups',
         verbose_name=_('Suggested Products'))
+
+    class Meta:
+        verbose_name = _('Bundle Group')
+        verbose_name_plural = _('Bundle Groups')
 
 
 class Bundle(models.Model):
@@ -57,6 +62,8 @@ class Bundle(models.Model):
         help_text=_('Which product(s) should this bundle suggest when triggered?'))
 
     class Meta:
+        verbose_name = _('Bundle')
+        verbose_name_plural = _('Bundles')
         unique_together = (
             ('bundle_group', 'triggering_product'),
         )

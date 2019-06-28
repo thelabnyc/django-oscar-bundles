@@ -211,8 +211,8 @@ class BundleGroupTable extends React.Component<IProps, IState> {
 
         if (results.length <= 0) {
             const msg = searchText
-                ? `No bundle groups found for search: ${searchText}`
-                : 'No bundle groups found.';
+                ? interpolate(gettext('No bundle groups found for search: %(searchText)s'), { searchText: searchText, })
+                : gettext('No bundle groups found.');
             return (
                 <tr>
                     <td colSpan={5}>{msg}</td>
@@ -239,7 +239,7 @@ class BundleGroupTable extends React.Component<IProps, IState> {
             return g.id === self.state.selectedGroup;
         });
         return (
-            <Modal contentLabel="Edit Bundle Group"
+            <Modal contentLabel={gettext("Edit Bundle Group")}
                    style={modalStyles}
                    isOpen={this.state.editModalOpen}>
                 <BundleGroupEditForm bundleTypeChoices={this.state.bundleTypeChoices}
@@ -272,12 +272,12 @@ class BundleGroupTable extends React.Component<IProps, IState> {
             <div>
                 <div className="page-header">
                     <a className="btn btn-primary btn-lg pull-right" onClick={onCreate}>
-                        <i className="icon-plus"></i>{' '}Create new bundle group
+                        <i className="icon-plus"></i>{' '}{gettext("Create new bundle group")}
                     </a>
-                    <h1>Bundle Groups</h1>
+                    <h1>{gettext("Bundle Groups")}</h1>
                 </div>
                 <div className="table-header">
-                    <h3><i className="icon-search icon-large"></i>Search Bundle Groups</h3>
+                    <h3><i className="icon-search icon-large"></i>{gettext("Search Bundle Groups")}</h3>
                 </div>
                 <BundleGroupSearchForm searchText={this.state.searchText}
                                        onChange={onSearchTextChange} />
@@ -285,12 +285,12 @@ class BundleGroupTable extends React.Component<IProps, IState> {
                 <table className="table table-striped table-bordered">
                     <tbody>
                         <tr>
-                            <th>Name</th>
-                            <th>Type</th>
-                            <th>Image</th>
-                            <th>Triggers</th>
-                            <th>Suggestions</th>
-                            <th>Actions</th>
+                            <th>{gettext("Name")}</th>
+                            <th>{gettext("Type")}</th>
+                            <th>{gettext("Image")}</th>
+                            <th>{gettext("Triggers")}</th>
+                            <th>{gettext("Suggestions")}</th>
+                            <th>{gettext("Actions")}</th>
                         </tr>
                         {this.buildGroupRows()}
                     </tbody>

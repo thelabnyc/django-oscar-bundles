@@ -31,5 +31,6 @@
 
 {% block extrascripts %}
     {{ block.super }}
+    <script type="text/javascript" src="{% url 'oscarbundles-i18n-js' %}"></script>
     <script type="text/javascript" src="{% static 'oscarbundles/bundles.js' %}"></script>
 {% endblock %}

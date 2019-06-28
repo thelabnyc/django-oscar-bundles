@@ -1,4 +1,5 @@
 from django.conf.urls import url
+from django.views.i18n import JavaScriptCatalog
 from django.views.decorators.cache import cache_page
 from oscar.core.application import Application
 from oscarbundles.api.views import (
@@ -25,6 +26,10 @@ class DashboardBundleApplication(Application):
             url(r'^products/(?P<pk>[0-9]+)/bundles/$',
                 cache(ProductBundleList.as_view()),
                 name='product-bundle-list'),
+
+            url(r'^bundles/i18n\.js$',
+                cache(JavaScriptCatalog.as_view(packages=['oscarbundles'])),
+                name='oscarbundles-i18n-js'),
 
             # Uncached views
             url(r'^bundles/$',
