@@ -1,0 +1,154 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-06-28 22:29+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: bundles/BundleGroupTable.tsx:214
+msgid "No bundle groups found for search: %(searchText)s"
+msgstr ""
+
+#: bundles/BundleGroupTable.tsx:215
+msgid "No bundle groups found."
+msgstr ""
+
+#: bundles/BundleGroupTable.tsx:242
+#: bundles/molecules/BundleGroupEditForm.tsx:401
+msgid "Edit Bundle Group"
+msgstr ""
+
+#: bundles/BundleGroupTable.tsx:275
+msgid "Create new bundle group"
+msgstr ""
+
+#: bundles/BundleGroupTable.tsx:277
+msgid "Bundle Groups"
+msgstr ""
+
+#: bundles/BundleGroupTable.tsx:280
+msgid "Search Bundle Groups"
+msgstr ""
+
+#: bundles/BundleGroupTable.tsx:288
+#: bundles/molecules/BundleGroupEditForm.tsx:429
+msgid "Name"
+msgstr ""
+
+#: bundles/BundleGroupTable.tsx:289
+msgid "Type"
+msgstr ""
+
+#: bundles/BundleGroupTable.tsx:290
+#: bundles/molecules/BundleGroupEditForm.tsx:472
+msgid "Image"
+msgstr ""
+
+#: bundles/BundleGroupTable.tsx:291
+#: bundles/molecules/BundleGroupEditForm.tsx:491
+msgid "Triggers"
+msgstr ""
+
+#: bundles/BundleGroupTable.tsx:292
+#: bundles/molecules/BundleGroupEditForm.tsx:503
+msgid "Suggestions"
+msgstr ""
+
+#: bundles/BundleGroupTable.tsx:293
+#: bundles/molecules/BundleGroupTableRow.tsx:40
+msgid "Actions"
+msgstr ""
+
+#: bundles/molecules/BundleGroupEditForm.tsx:300
+msgid "Currently:"
+msgstr ""
+
+#: bundles/molecules/BundleGroupEditForm.tsx:308
+msgid "Clear"
+msgstr ""
+
+#: bundles/molecules/BundleGroupEditForm.tsx:362
+msgid ""
+"Select at least one trigger product and one suggested product to begin "
+"linking variants."
+msgstr ""
+
+#: bundles/molecules/BundleGroupEditForm.tsx:385
+msgid "(Trigger Parent)"
+msgstr ""
+
+#: bundles/molecules/BundleGroupEditForm.tsx:388
+msgid "(Suggestion Parent)"
+msgstr ""
+
+#: bundles/molecules/BundleGroupEditForm.tsx:402
+msgid "Create Bundle Group"
+msgstr ""
+
+#: bundles/molecules/BundleGroupEditForm.tsx:409
+msgid "Bundle Type"
+msgstr ""
+
+#: bundles/molecules/BundleGroupEditForm.tsx:442
+msgid "Headline"
+msgstr ""
+
+#: bundles/molecules/BundleGroupEditForm.tsx:457
+msgid "Description"
+msgstr ""
+
+#: bundles/molecules/BundleGroupEditForm.tsx:487
+msgid "Relevant Products"
+msgstr ""
+
+#: bundles/molecules/BundleGroupEditForm.tsx:488
+msgid ""
+"Select the parent and standalone products revelant to this bundle group."
+msgstr ""
+
+#: bundles/molecules/BundleGroupEditForm.tsx:517
+msgid "Product Links"
+msgstr ""
+
+#: bundles/molecules/BundleGroupEditForm.tsx:522
+msgid "Cancel"
+msgstr ""
+
+#: bundles/molecules/BundleGroupEditForm.tsx:524
+msgid "Save"
+msgstr ""
+
+#: bundles/molecules/BundleGroupSearchForm.tsx:37
+msgid "Search:"
+msgstr ""
+
+#: bundles/molecules/BundleGroupSearchForm.tsx:44
+msgid "Clear Search"
+msgstr ""
+
+#: bundles/molecules/BundleGroupTableRow.tsx:28
+msgid ""
+"Are you sure you want to delete this bundle group (%(name)s) and all its "
+"associated bundles?"
+msgstr ""
+
+#: bundles/molecules/BundleGroupTableRow.tsx:43
+msgid "Edit"
+msgstr ""
+
+#: bundles/molecules/BundleGroupTableRow.tsx:44
+msgid "Delete"
+msgstr ""
