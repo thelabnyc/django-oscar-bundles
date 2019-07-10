@@ -17,6 +17,10 @@ Bundles do not include offers - however it may be used in combination with an of
 Changelog
 =========
 
+0.3.3
+------------------
+- Internationalization
+
 0.3.2
 ------------------
 - Make "Headline" field a TextField so it can store long HTML strings.
