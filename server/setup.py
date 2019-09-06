@@ -19,9 +19,10 @@ requires = [
 
 extras_require = {
     'development': [
-        'psycopg2cffi>=2.7.7',
+        'coverage>=4.4.2',
         'flake8>=3.2.1',
         'ipdb>=0.10.3',
+        'psycopg2cffi>=2.7.7',
         'sphinx>=1.5.2',
         'tox>=2.6.0',
         'versiontag>=1.2.0',

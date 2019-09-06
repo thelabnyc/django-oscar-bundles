@@ -1,0 +1,88 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`#bundles/molecules/elements/ConcreteBundles renders 1`] = `
+<div
+  className="col-sm-12 bundle-group-edit__section"
+>
+  <h1>
+    Product Links (Concrete Bundles)
+  </h1>
+  <p>
+    <em>
+      Concrete bundles are bundles which link products to other specific products. They can not be customized by the end-consumer.
+    </em>
+  </p>
+  <div
+    className="row"
+    key="0"
+  >
+    <div
+      className="col-sm-6"
+    >
+      <h3>
+        <strong>
+          book-1
+        </strong>
+         
+        <em>
+          (Trigger Parent)
+        </em>
+      </h3>
+    </div>
+    <div
+      className="col-sm-6"
+    >
+      <h3>
+        <strong>
+          book-1
+        </strong>
+         
+        <em>
+          (Suggestion Parent)
+        </em>
+      </h3>
+    </div>
+    <div
+      className="col-sm-12"
+    >
+      <table
+        className="table bundle-group-edit__link-table"
+      >
+        <tbody>
+          <tr
+            key="1"
+          >
+            <th>
+              <a
+                href="http://localhost/store/dashboard/catalogue/products/1/"
+                target="_blank"
+              >
+                book-1
+              </a>
+            </th>
+            <td>
+              <StateManager
+                defaultInputValue=""
+                defaultMenuIsOpen={false}
+                defaultValue={null}
+                isDisabled={false}
+                isMulti={true}
+                onChange={[Function]}
+                options={
+                  Array [
+                    Object {
+                      "label": "book-1",
+                      "value": 1,
+                    },
+                  ]
+                }
+                value={Array []}
+              />
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+`;

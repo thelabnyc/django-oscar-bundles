@@ -46,14 +46,14 @@ class BundleGroup(models.Model):
         verbose_name_plural = _('Bundle Groups')
 
 
-class Bundle(models.Model):
+class ConcreteBundle(models.Model):
     bundle_group = models.ForeignKey(BundleGroup,
         on_delete=models.CASCADE,
-        related_name='bundles')
+        related_name='concrete_bundles')
 
     triggering_product = models.ForeignKey('catalogue.Product',
         on_delete=models.CASCADE,
-        related_name='triggering_bundles',
+        related_name='triggering_concrete_bundles',
         verbose_name=_('Triggering Product'),
         help_text=_('Which product should trigger this bundle?'))
     suggested_products = models.ManyToManyField('catalogue.Product',
@@ -62,8 +62,35 @@ class Bundle(models.Model):
         help_text=_('Which product(s) should this bundle suggest when triggered?'))
 
     class Meta:
-        verbose_name = _('Bundle')
-        verbose_name_plural = _('Bundles')
+        verbose_name = _('Concrete Bundle')
+        verbose_name_plural = _('Concrete Bundles')
         unique_together = (
             ('bundle_group', 'triggering_product'),
+        )
+
+
+class UserConfigurableBundle(models.Model):
+    bundle_group = models.ForeignKey(BundleGroup,
+        on_delete=models.CASCADE,
+        related_name='user_configurable_bundles')
+
+    triggering_product = models.ForeignKey('catalogue.Product',
+        on_delete=models.CASCADE,
+        related_name='triggering_user_configurable_bundles',
+        verbose_name=_('Triggering Product'),
+        help_text=_('Which product should trigger this bundle?'))
+    suggested_range = models.ForeignKey('offer.Range',
+        on_delete=models.CASCADE,
+        related_name='suggesting_bundles',
+        verbose_name=_('Suggested Ranges'),
+        help_text=_('Which range(s) should this bundle suggest when triggered?'))
+    quantity = models.PositiveIntegerField(_('Quantity'),
+        default=1,
+        help_text=_('How many products from the range should be suggested?'))
+
+    class Meta:
+        verbose_name = _('User Configurable Bundle')
+        verbose_name_plural = _('User Configurable Bundles')
+        unique_together = (
+            ('bundle_group', 'triggering_product', 'suggested_range'),
         )

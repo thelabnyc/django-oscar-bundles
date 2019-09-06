@@ -22,9 +22,12 @@
 
 {% block dashboard_content %}
     <div id="bundlegroup-table"
-         data-bundle-api="{% url 'bundle-list' %}"
          data-bundlegroup-api="{% url 'bundlegroup-list' %}"
-         data-bundle-product-choice-api="{% url 'bundle-product-choice-list' %}">
+         data-concretebundle-api="{% url 'concretebundle-list' %}"
+         data-concretebundle-product-choice-api="{% url 'concretebundle-product-choice-list' %}"
+         data-userconfigurablebundle-api="{% url 'userconfigurablebundle-list' %}"
+         data-userconfigurablebundle-range-choice-api="{% url 'userconfigurablebundle-range-choice-list' %}"
+     >
      </div>
 {% endblock dashboard_content %}
 
