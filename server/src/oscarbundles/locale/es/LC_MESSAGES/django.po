@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-28 22:29+0000\n"
+"POT-Creation-Date: 2019-09-09 18:49+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -70,11 +70,11 @@ msgstr ""
 msgid "Bundle Groups"
 msgstr ""
 
-#: models.py:57
+#: models.py:57 models.py:80
 msgid "Triggering Product"
 msgstr ""
 
-#: models.py:58
+#: models.py:58 models.py:81
 msgid "Which product should trigger this bundle?"
 msgstr ""
 
@@ -83,11 +83,35 @@ msgid "Which product(s) should this bundle suggest when triggered?"
 msgstr ""
 
 #: models.py:65
-msgid "Bundle"
+msgid "Concrete Bundle"
 msgstr ""
 
 #: models.py:66
-msgid "Bundles"
+msgid "Concrete Bundles"
+msgstr ""
+
+#: models.py:85
+msgid "Suggested Ranges"
+msgstr ""
+
+#: models.py:86
+msgid "Which range(s) should this bundle suggest when triggered?"
+msgstr ""
+
+#: models.py:87
+msgid "Quantity"
+msgstr ""
+
+#: models.py:89
+msgid "How many products from the range should be suggested?"
+msgstr ""
+
+#: models.py:92
+msgid "User Configurable Bundle"
+msgstr ""
+
+#: models.py:93
+msgid "User Configurable Bundles"
 msgstr ""
 
 #: templates/oscarbundles/dashboard/bundlegroup/bundlegroup-spa.html:14
