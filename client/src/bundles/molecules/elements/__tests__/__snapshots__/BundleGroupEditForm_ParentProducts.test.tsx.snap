@@ -1,0 +1,213 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`#bundles/molecules/elements/ParentProductsEditForm renders 1`] = `
+<div
+  className="col-sm-12 bundle-group-edit__section"
+>
+  <h1>
+    Relevant Products
+  </h1>
+  <p>
+    <em>
+      Select the parent and standalone products revelant to this bundle group.
+    </em>
+  </p>
+  <div
+    className="row"
+  >
+    <div
+      className="form-group col-sm-6"
+    >
+      <label
+        className="control-label"
+        htmlFor="id_image"
+      >
+        Triggers
+      </label>
+      <div>
+        <StateManager
+          defaultInputValue=""
+          defaultMenuIsOpen={false}
+          defaultValue={null}
+          isDisabled={false}
+          isMulti={true}
+          name="triggeringParents"
+          onChange={[Function]}
+          options={
+            Array [
+              Object {
+                "label": "book-1",
+                "value": 1,
+              },
+              Object {
+                "label": "book-2",
+                "value": 2,
+              },
+            ]
+          }
+          value={
+            Array [
+              Object {
+                "label": "book-1",
+                "value": 1,
+              },
+            ]
+          }
+        />
+      </div>
+    </div>
+    <div
+      className="form-group col-sm-6"
+    >
+      <label
+        className="control-label"
+        htmlFor="id_image"
+      >
+        Suggestions
+      </label>
+      <div>
+        <StateManager
+          defaultInputValue=""
+          defaultMenuIsOpen={false}
+          defaultValue={null}
+          isDisabled={false}
+          isMulti={true}
+          name="suggestedProducts"
+          onChange={[Function]}
+          options={
+            Array [
+              Object {
+                "label": "book-1",
+                "value": 1,
+              },
+              Object {
+                "label": "book-2",
+                "value": 2,
+              },
+            ]
+          }
+          value={
+            Array [
+              Object {
+                "label": "book-2",
+                "value": 2,
+              },
+            ]
+          }
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`#bundles/molecules/elements/ParentProductsEditForm renders error messages 1`] = `
+<div
+  className="col-sm-12 bundle-group-edit__section"
+>
+  <h1>
+    Relevant Products
+  </h1>
+  <p>
+    <em>
+      Select the parent and standalone products revelant to this bundle group.
+    </em>
+  </p>
+  <div
+    className="row"
+  >
+    <div
+      className="form-group has-error col-sm-6"
+    >
+      <label
+        className="control-label"
+        htmlFor="id_image"
+      >
+        Triggers
+      </label>
+      <div>
+        <StateManager
+          defaultInputValue=""
+          defaultMenuIsOpen={false}
+          defaultValue={null}
+          isDisabled={false}
+          isMulti={true}
+          name="triggeringParents"
+          onChange={[Function]}
+          options={
+            Array [
+              Object {
+                "label": "book-1",
+                "value": 1,
+              },
+              Object {
+                "label": "book-2",
+                "value": 2,
+              },
+            ]
+          }
+          value={
+            Array [
+              Object {
+                "label": "book-1",
+                "value": 1,
+              },
+            ]
+          }
+        />
+        <span
+          className="help-block"
+          key="0"
+        >
+          <i
+            className="icon-exclamation-sign"
+          />
+           
+          Test error message
+        </span>
+      </div>
+    </div>
+    <div
+      className="form-group col-sm-6"
+    >
+      <label
+        className="control-label"
+        htmlFor="id_image"
+      >
+        Suggestions
+      </label>
+      <div>
+        <StateManager
+          defaultInputValue=""
+          defaultMenuIsOpen={false}
+          defaultValue={null}
+          isDisabled={false}
+          isMulti={true}
+          name="suggestedProducts"
+          onChange={[Function]}
+          options={
+            Array [
+              Object {
+                "label": "book-1",
+                "value": 1,
+              },
+              Object {
+                "label": "book-2",
+                "value": 2,
+              },
+            ]
+          }
+          value={
+            Array [
+              Object {
+                "label": "book-2",
+                "value": 2,
+              },
+            ]
+          }
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;

@@ -1,6 +1,25 @@
 import request = require('superagent');
 import cookies = require('js-cookie');
-import {IBundleGroup, IProduct, IBundle, ICharFieldChoice} from './api.interfaces';
+import {
+    IDRFSelectOption,
+    IBundleGroup,
+    IProduct,
+    IRange,
+    IConcreteBundle,
+    IUserConfigurableBundle,
+} from './models.interfaces';
+import {
+    check,
+    ChoiceField,
+    DRFOptionsResponse,
+    BundleGroup,
+    BundleGroups,
+    Products,
+    Ranges,
+    ConcreteBundles,
+    UserConfigurableBundles,
+} from './models';
+
 
 const CSRF_HEADER = 'X-CSRFToken';
 
@@ -10,60 +29,71 @@ const getCSRFToken = function() {
 };
 
 
-const fetchData = function<T>(endpoint: string) {
+const fetchData = async (endpoint: string) => {
     return request
         .get(endpoint)
-        .set('Accept', 'application/json')
-        .then((resp) => {
-            return resp.body as T;
-        });
+        .set('Accept', 'application/json');
 };
 
 
-export const getBundleTypeChoices = function(endpoint: string) {
-    return request
+export const getBundleTypeChoices = async (endpoint: string): Promise<ReadonlyArray<IDRFSelectOption>> => {
+    const resp = await request
         .options(endpoint)
-        .set('Accept', 'application/json')
-        .then((resp) => {
-            return resp.body.actions.POST.bundle_type.choices as ICharFieldChoice[];
-        });
+        .set('Accept', 'application/json');
+    const body = check(DRFOptionsResponse.decode(resp.body));
+    const field = check(ChoiceField.decode(body.actions.POST.bundle_type));
+    const choices = field.choices;
+    return choices;
 };
 
 
-export const listBundleGroups = function(endpoint: string) {
-    return fetchData<IBundleGroup[]>(endpoint);
+export const listBundleGroups = async (endpoint: string): Promise<IBundleGroup[]> => {
+    const resp = await fetchData(endpoint);
+    return check(BundleGroups.decode(resp.body));
 };
 
 
-export const listProducts = function(endpoint: string) {
-    return fetchData<IProduct[]>(endpoint);
+export const listProducts = async (endpoint: string): Promise<IProduct[]> => {
+    const resp = await fetchData(endpoint);
+    return check(Products.decode(resp.body));
 };
 
 
-export const listBundles = function(endpoint: string) {
-    return fetchData<IBundle[]>(endpoint);
+export const listRanges = async (endpoint: string): Promise<IRange[]> => {
+    const resp = await fetchData(endpoint);
+    return check(Ranges.decode(resp.body));
 };
 
 
-const _saveBundleGroupData = function(endpoint: string, group: IBundleGroup) {
-    let req = (group.id)
+export const listConcreteBundles = async (endpoint: string): Promise<IConcreteBundle[]> => {
+    const resp = await fetchData(endpoint);
+    return check(ConcreteBundles.decode(resp.body));
+};
+
+
+export const listUserConfigurableBundles = async (endpoint: string): Promise<IUserConfigurableBundle[]> => {
+    const resp = await fetchData(endpoint);
+    return check(UserConfigurableBundles.decode(resp.body));
+};
+
+
+const _saveBundleGroupData = async (endpoint: string, group: IBundleGroup): Promise<IBundleGroup> => {
+    const req = (group.id)
         ? request.patch(`${endpoint}${group.id}/`)
         : request.post(endpoint);
     const data = {...group};
     delete data.image;
     delete data.newImage;
     delete data.clearImage;
-    return req
+    const resp = await req
         .set('Accept', 'application/json')
         .set(CSRF_HEADER, getCSRFToken())
-        .send(data)
-        .then((resp) => {
-            return resp.body as IBundleGroup;
-        });
+        .send(data);
+    return check(BundleGroup.decode(resp.body));
 };
 
 
-const _saveBundleGroupImage = function(endpoint: string, group: IBundleGroup) {
+const _saveBundleGroupImage = async (endpoint: string, group: IBundleGroup): Promise<void> => {
     if (!group.id) {
         throw new Error("Can not save image for unsaved bundle group");
     }
@@ -83,29 +113,23 @@ const _saveBundleGroupImage = function(endpoint: string, group: IBundleGroup) {
         req = req.send({ 'image': null });
     }
 
-    return req
-        .then(() => {
-            return;
-        });
+    await req;
 };
 
 
-export const saveBundleGroup = function(endpoint: string, data: IBundleGroup) {
-    return _saveBundleGroupData(endpoint, data)
-        .then((group) => {
-            data.id = group.id;  // Update bundle group ID if it was just created
-            return _saveBundleGroupImage(endpoint, data).then(() => {
-                return group;
-            });
-        });
+export const saveBundleGroup = async (endpoint: string, data: IBundleGroup): Promise<IBundleGroup> => {
+    const group = await _saveBundleGroupData(endpoint, data);
+    data.id = group.id;  // Update bundle group ID if it was just created
+    await _saveBundleGroupImage(endpoint, data);
+    return group;
 };
 
 
-export const deleteBundleGroup = function(endpoint: string, group: IBundleGroup) {
+export const deleteBundleGroup = async (endpoint: string, group: IBundleGroup): Promise<void> => {
     if (!group.id) {
         throw new Error('Can not delete unsaved bundle group');
     }
-    return request
+    await request
         .delete(`${endpoint}${group.id}/`)
         .set('Accept', 'application/json')
         .set(CSRF_HEADER, getCSRFToken());

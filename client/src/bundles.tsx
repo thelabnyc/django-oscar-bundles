@@ -5,14 +5,16 @@ import BundleGroupTable from './bundles/BundleGroupTable';
 
 type INamedInterpolationData = { [key: string]: string; };
 type IPositionalInterpolationData = string[];
-type IInterpolationData = (INamedInterpolationData | IPositionalInterpolationData);
+type IInterpolateFn =
+    ((fmt: string, obj: IPositionalInterpolationData, named?: false) => string) &
+    ((fmt: string, obj: INamedInterpolationData, named: true) => string);
 interface IDjango {
     readonly gettext: (msgid: string) => string;
     readonly ngettext: (singular: string, plural: string, count: number) => string;
     readonly gettext_noop: (msgid: string) => string;
     readonly pgettext: (context: string, msgid: string) => string;
     readonly npgettext: (context: string, singular: string, plural: string, count: number) => string;
-    readonly interpolate: (fmt: string, obj: IInterpolationData, named?: boolean) => string;
+    readonly interpolate: IInterpolateFn;
 
     readonly pluralidx: (count: number) => number;
 
@@ -43,13 +45,17 @@ declare global {
 
 const main = function() {
     const elem = document.querySelector('#bundlegroup-table') as HTMLDivElement;
-    const bundleURL = elem.dataset.bundleApi;
     const bundleGroupURL = elem.dataset.bundlegroupApi;
-    const productChoiceURL = elem.dataset.bundleProductChoiceApi;
+    const concreteBundleURL = elem.dataset.concretebundleApi;
+    const concreteBundleProductChoiceURL = elem.dataset.concretebundleProductChoiceApi;
+    const userConfigurableBundleURL = elem.dataset.userconfigurablebundleApi;
+    const userConfigurableBundleRangeChoiceURL = elem.dataset.userconfigurablebundleRangeChoiceApi;
     const component = (
-        <BundleGroupTable bundleURL={bundleURL}
-                          bundleGroupURL={bundleGroupURL}
-                          productChoiceURL={productChoiceURL} />
+        <BundleGroupTable bundleGroupURL={bundleGroupURL}
+                          concreteBundleURL={concreteBundleURL}
+                          concreteBundleProductChoiceURL={concreteBundleProductChoiceURL}
+                          userConfigurableBundleURL={userConfigurableBundleURL}
+                          userConfigurableBundleRangeChoiceURL={userConfigurableBundleRangeChoiceURL} />
     );
     render(component, elem);
 };

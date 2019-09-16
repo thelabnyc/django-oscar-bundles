@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`#bundles/molecules/elements/BundleGroupEditFormActions renders 1`] = `
+<div
+  className="col-sm-12 bundle-group-edit__section"
+>
+  <div
+    className="form-group"
+  >
+    <a
+      className="btn btn-default"
+      onClick={[Function]}
+    >
+      Cancel
+    </a>
+     
+    <button
+      className="btn btn-primary"
+      type="submit"
+    >
+      Save
+    </button>
+  </div>
+</div>
+`;

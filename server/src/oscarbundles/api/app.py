@@ -1,17 +1,22 @@
 from django.conf.urls import url
 from django.views.i18n import JavaScriptCatalog
 from django.views.decorators.cache import cache_page
+from django.views.generic.base import RedirectView
 from oscar.core.application import Application
 from oscarbundles.api.views import (
-    ProductBundleList,
+    ProductConcreteBundleList,
+    ProductUserConfigurableBundleList,
 
-    BundleList,
-    BundleDetail,
+    ConcreteBundleList,
+    ConcreteBundleDetail,
+    ConcreteBundleProductChoicesList,
+
+    UserConfigurableBundleList,
+    UserConfigurableBundleDetail,
+    UserConfigurableBundleRangeChoicesList,
 
     BundleGroupList,
     BundleGroupDetail,
-
-    BundleProductChoicesList,
 )
 
 
@@ -24,31 +29,47 @@ class DashboardBundleApplication(Application):
         urlpatterns = [
             # Cached views
             url(r'^products/(?P<pk>[0-9]+)/bundles/$',
-                cache(ProductBundleList.as_view()),
+                RedirectView.as_view(pattern_name='product-concretebundle-list'),
                 name='product-bundle-list'),
+            url(r'^products/(?P<pk>[0-9]+)/concretebundles/$',
+                ProductConcreteBundleList.as_view(),
+                name='product-concretebundle-list'),
+            url(r'^products/(?P<pk>[0-9]+)/userconfigurablebundles/$',
+                ProductUserConfigurableBundleList.as_view(),
+                name='product-userconfigurablebundle-list'),
 
             url(r'^bundles/i18n\.js$',
                 cache(JavaScriptCatalog.as_view(packages=['oscarbundles'])),
                 name='oscarbundles-i18n-js'),
 
+
             # Uncached views
-            url(r'^bundles/$',
-                BundleList.as_view(),
-                name='bundle-list'),
-            url(r'^bundles/(?P<pk>[0-9]+)/$',
-                BundleDetail.as_view(),
-                name='bundle-detail'),
-
-            url(r'^bundles/product-choices/$',
-                BundleProductChoicesList.as_view(),
-                name='bundle-product-choice-list'),
-
             url(r'^bundlegroups/$',
                 BundleGroupList.as_view(),
                 name='bundlegroup-list'),
             url(r'^bundlegroups/(?P<pk>[0-9]+)/$',
                 BundleGroupDetail.as_view(),
                 name='bundlegroup-detail'),
+
+            url(r'^concretebundles/$',
+                ConcreteBundleList.as_view(),
+                name='concretebundle-list'),
+            url(r'^concretebundles/(?P<pk>[0-9]+)/$',
+                ConcreteBundleDetail.as_view(),
+                name='concretebundle-detail'),
+            url(r'^concretebundles/product-choices/$',
+                ConcreteBundleProductChoicesList.as_view(),
+                name='concretebundle-product-choice-list'),
+
+            url(r'^userconfigurablebundles/$',
+                UserConfigurableBundleList.as_view(),
+                name='userconfigurablebundle-list'),
+            url(r'^userconfigurablebundles/(?P<pk>[0-9]+)/$',
+                UserConfigurableBundleDetail.as_view(),
+                name='userconfigurablebundle-detail'),
+            url(r'^userconfigurablebundles/range-choices/$',
+                UserConfigurableBundleRangeChoicesList.as_view(),
+                name='userconfigurablebundle-range-choice-list'),
         ]
         return self.post_process_urls(urlpatterns)
 

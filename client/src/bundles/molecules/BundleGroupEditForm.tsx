@@ -1,15 +1,27 @@
 import React = require('react');
-import classNames = require('classnames');
-import Select from 'react-select';
-import {IBundleGroup, IBundle, IProduct, ICharFieldChoice} from '../../utils/api.interfaces';
+import {
+    IBundleGroup,
+    IConcreteBundle,
+    IUserConfigurableBundle,
+    IProduct,
+    IRange,
+    IDRFSelectOptions,
+    SelectOption,
+} from '../../utils/models.interfaces';
+import {BundleGroupMetaFields} from './elements/BundleGroupEditForm_MetaFields';
+import {ParentProductsEditForm} from './elements/BundleGroupEditForm_ParentProducts';
+import {ILinkedRanges, UserConfigurableBundles} from './elements/BundleGroupEditForm_UserConfigurableBundles';
+import {ILinkedProducts, ConcreteBundles} from './elements/BundleGroupEditForm_ConcreteBundles';
+import {BundleGroupEditFormActions} from './elements/BundleGroupEditForm_Actions';
 
 import './BundleGroupEditForm.scss';
 
 
-export interface IProps {
-    bundleTypeChoices: ICharFieldChoice[];
+interface IProps {
+    bundleTypeChoices: IDRFSelectOptions;
     group: IBundleGroup | null;
     products: IProduct[];
+    ranges: IRange[];
     isSaving: boolean;
     errors: {
         bundleType?: string[];
@@ -25,7 +37,7 @@ export interface IProps {
 }
 
 
-export interface IState {
+interface IState {
     bundleType: string;
     name: string;
     headline: string;
@@ -34,16 +46,20 @@ export interface IState {
     clearImage: boolean;
     triggeringParents: number[];
     suggestedParents: number[];
-    linkedProducts: {
-        [triggeringProductID: number]: number[];
-    };
+    linkedRanges: ILinkedRanges;
+    linkedProducts: ILinkedProducts;
 }
 
 
-type SelectOption = {
-    value: number;
-    label: string;
+const _isSelectOptionArray = (opts: SelectOption | ReadonlyArray<SelectOption> | null): opts is ReadonlyArray<SelectOption> => {
+    return opts && (opts as ReadonlyArray<SelectOption>).length !== undefined;
 };
+
+const _isSelectOption = (opts: SelectOption | ReadonlyArray<SelectOption> | null): opts is SelectOption => {
+    return opts && !_isSelectOptionArray(opts);
+};
+
+
 
 
 class BundleGroupEditForm extends React.PureComponent<IProps, IState> {
@@ -54,12 +70,25 @@ class BundleGroupEditForm extends React.PureComponent<IProps, IState> {
     constructor (props: IProps) {
         super(props);
 
+        // Build linked ranges data set
+        const linkedRanges: IState['linkedRanges'] = {};
+        const configurableBundles = props.group ? props.group.user_configurable_bundles : [];
+        configurableBundles.forEach((bundle) => {
+            if (!linkedRanges[bundle.triggering_product]) {
+                linkedRanges[bundle.triggering_product] = [];
+            }
+            linkedRanges[bundle.triggering_product].push({
+                rangeID: bundle.suggested_range,
+                quantity: bundle.quantity,
+            });
+        });
+
         // Build linked products data set
         const linkedProducts: IState['linkedProducts'] = {};
-        const bundles = props.group ? props.group.bundles : [];
-        bundles.forEach((bundle) => {
+        const concreteBundles = props.group ? props.group.concrete_bundles : [];
+        concreteBundles.forEach((bundle) => {
             if (!linkedProducts[bundle.triggering_product]) {
-                linkedProducts[bundle.triggering_product] = []
+                linkedProducts[bundle.triggering_product] = [];
             }
             linkedProducts[bundle.triggering_product] = linkedProducts[bundle.triggering_product]
                 .concat(bundle.suggested_products)
@@ -68,17 +97,30 @@ class BundleGroupEditForm extends React.PureComponent<IProps, IState> {
                 });
         });
 
-        this.state = {
-            bundleType: props.group ? props.group.bundle_type : props.bundleTypeChoices[0].value,
-            name: props.group ? props.group.name : '',
-            description: props.group ? props.group.description : '',
-            headline: props.group ? props.group.headline : '',
+        // Build initial state
+        const state: IState = {
+            bundleType: '',
+            name: '',
+            description: '',
+            headline: '',
             image: null,
             clearImage: false,
-            triggeringParents: props.group ? props.group.triggering_parents : [],
-            suggestedParents: props.group ? props.group.suggested_parents : [],
+            triggeringParents: [],
+            suggestedParents: [],
+            linkedRanges: linkedRanges,
             linkedProducts: linkedProducts,
         };
+        if (props.group) {
+            state.bundleType = props.group.bundle_type;
+            state.name = props.group.name;
+            state.description = props.group.description;
+            state.headline = props.group.headline;
+            state.triggeringParents = props.group.triggering_parents;
+            state.suggestedParents = props.group.suggested_parents;
+        } else if (props.bundleTypeChoices.length > 0) {
+            state.bundleType = props.bundleTypeChoices[0].value;
+        }
+        this.state = state;
         this.productIdx = {};
         this.fillProductIdx(props.products);
     }
@@ -116,14 +158,68 @@ class BundleGroupEditForm extends React.PureComponent<IProps, IState> {
     }
 
 
+    private readonly onLinkedRangesChange = (trigger: IProduct, rangeIndex: number, opts: SelectOption | ReadonlyArray<SelectOption> | null) => {
+        let option: SelectOption | null = null;
+        if (_isSelectOption(opts)) {
+            option = opts;
+        } else if (_isSelectOptionArray(opts)) {
+            throw new Error('Can not link multiple ranges to a single trigger parent');
+        }
+        this.setState((state) => {
+            const linkedRanges = {
+                ...state.linkedRanges,
+            };
+            if (option) {
+                if (!linkedRanges[trigger.id]) {
+                    linkedRanges[trigger.id] = [];
+                }
+                linkedRanges[trigger.id][rangeIndex] = {
+                    ...(linkedRanges[trigger.id][rangeIndex] || {}),
+                    rangeID: option.value,
+                    quantity: 1,
+                };
+            } else {
+                delete linkedRanges[trigger.id][rangeIndex];
+                linkedRanges[trigger.id] = linkedRanges[trigger.id].filter(r => !!r);
+                if (linkedRanges[trigger.id].length <= 0) {
+                    delete linkedRanges[trigger.id];
+                }
+            }
+            return {...state, linkedRanges: linkedRanges, };
+        });
+    }
+
+
+    private readonly onLinkedRangesQuantityChange = (trigger: IProduct, rangeIndex: number, opts: SelectOption | ReadonlyArray<SelectOption> | null) => {
+        let option: SelectOption = { value: 1, label: '1', };
+        if (_isSelectOption(opts)) {
+            option = opts;
+        } else if (_isSelectOptionArray(opts)) {
+            throw new Error('Can not link multiple quantities to a single range parent');
+        }
+        this.setState((state) => {
+            const linkedRanges = {
+                ...state.linkedRanges,
+            };
+            if (linkedRanges[trigger.id] && linkedRanges[trigger.id][rangeIndex]) {
+                linkedRanges[trigger.id][rangeIndex] = {
+                    ...(linkedRanges[trigger.id][rangeIndex]),
+                    quantity: option.value,
+                };
+            }
+            return {...state, linkedRanges: linkedRanges, };
+        });
+    }
+
+
     private readonly onLinkedProductsChange = (trigger: IProduct, suggestParent: IProduct, opts: SelectOption | ReadonlyArray<SelectOption> | null) => {
         let options: ReadonlyArray<SelectOption>;
         if (!opts) {
             options = [];
-        } else if ((opts as ReadonlyArray<SelectOption>).length === undefined) {
-            options = [opts as SelectOption];
+        } else if (_isSelectOption(opts)) {
+            options = [opts];
         } else {
-            options = opts as ReadonlyArray<SelectOption>;
+            options = opts;
         }
         const ids = options.map((o) => { return o.value; });
         this.setState((state) => {
@@ -134,8 +230,8 @@ class BundleGroupEditForm extends React.PureComponent<IProps, IState> {
                 });
             const newIDs = oldIDs
                 .concat(ids)
-                .filter((id, i, ids) => {
-                    return ids.indexOf(id) === i;
+                .filter((id, i, _ids) => {
+                    return _ids.indexOf(id) === i;
                 });
             const linkedProducts = {...state.linkedProducts, [trigger.id]: newIDs, };
             return {...state, linkedProducts: linkedProducts, };
@@ -152,7 +248,6 @@ class BundleGroupEditForm extends React.PureComponent<IProps, IState> {
     private readonly onSave = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        const self = this;
         const data: IBundleGroup = {
             id: this.props.group ? this.props.group.id : null,
             bundle_type: this.state.bundleType,
@@ -164,26 +259,53 @@ class BundleGroupEditForm extends React.PureComponent<IProps, IState> {
             clearImage: this.state.clearImage,
             triggering_parents: this.state.triggeringParents,
             suggested_parents: this.state.suggestedParents,
-            bundles: [],
+            concrete_bundles: [],
+            user_configurable_bundles: [],
         };
+
+        Object.keys(this.state.linkedRanges).forEach((tID) => {
+            const triggerID = parseInt(tID, 10);
+            const tProduct = this.getProduct(triggerID);
+            if (data.triggering_parents.indexOf(tProduct.id) === -1 && data.triggering_parents.indexOf(tProduct.parent) === -1) {
+                return;
+            }
+            const linkedRanges = this.state.linkedRanges[triggerID];
+            linkedRanges.forEach(({rangeID, quantity}) => {
+                if (!rangeID || !quantity) {
+                    return;
+                }
+                let preExistingBundle: IUserConfigurableBundle | undefined = undefined;
+                if (this.props.group) {
+                    preExistingBundle = this.props.group.user_configurable_bundles.find((b) => {
+                        return b.triggering_product === triggerID && b.suggested_range === rangeID;
+                    });
+                }
+                data.user_configurable_bundles.push({
+                    id: preExistingBundle ? preExistingBundle.id : null,
+                    triggering_product: triggerID,
+                    suggested_range: rangeID,
+                    quantity: quantity,
+                });
+            });
+        });
 
         Object.keys(this.state.linkedProducts).forEach((tID) => {
             const triggerID = parseInt(tID, 10);
-            const tProduct = self.getProduct(triggerID);
+            const tProduct = this.getProduct(triggerID);
             if (data.triggering_parents.indexOf(tProduct.id) === -1 && data.triggering_parents.indexOf(tProduct.parent) === -1) {
                 return;
             }
 
-            let preExistingBundle: IBundle | undefined = undefined;
-            if (self.props.group) {
-                preExistingBundle = self.props.group.bundles.find((b) => {
+            let preExistingBundle: IConcreteBundle | undefined = undefined;
+            if (this.props.group) {
+                preExistingBundle = this.props.group.concrete_bundles.find((b) => {
                     return b.triggering_product === triggerID;
                 });
             }
 
-            const suggestionIDs = self.state.linkedProducts[triggerID]
+            const suggestionIDs = this.state.linkedProducts[triggerID]
                 .filter((sID) => {
-                    const sProduct = self.getProduct(sID);
+                    const sProduct = this.getProduct(sID);
                     return data.suggested_parents.indexOf(sProduct.id) !== -1 || data.suggested_parents.indexOf(sProduct.parent) !== -1;
                 });
 
@@ -191,7 +313,7 @@ class BundleGroupEditForm extends React.PureComponent<IProps, IState> {
                 return;
             }
 
-            data.bundles.push({
+            data.concrete_bundles.push({
                 id: preExistingBundle ? preExistingBundle.id : null,
                 triggering_product: triggerID,
                 suggested_products: suggestionIDs
@@ -206,324 +328,72 @@ class BundleGroupEditForm extends React.PureComponent<IProps, IState> {
         this.setState({
             clearImage: e.currentTarget.checked,
         });
-    };
+    }
 
 
-    componentWillReceiveProps(nextProps: IProps) {
+    private readonly getProduct = (productID: number) => {
+        return this.productIdx[productID];
+    }
+
+
+    componentWillReceiveProps (nextProps: IProps) {
         this.fillProductIdx(nextProps.products);
     }
 
 
     private fillProductIdx (products: IProduct[]) {
-        const self = this;
         this.productIdx = {};
         products.forEach((p) => {
-            self.productIdx[p.id] = p;
-        });
-    }
-
-
-    private getProduct (productID: number) {
-        return this.productIdx[productID];
-    }
-
-
-    private getParentProductSelectOptions () {
-        return this.props.products
-            .filter((p) => {
-                return !p.is_child;
-            })
-            .sort((a, b) => {
-                return a.title.localeCompare(b.title);
-            })
-            .map((p) => {
-                const opt: SelectOption = {
-                    value: p.id,
-                    label: p.title,
-                };
-                return opt;
-            });
-    }
-
-
-    private getChildProductSelectOptions (parent: IProduct) {
-        return this.props.products
-            .filter((p) => {
-                return !p.is_parent && (p.id === parent.id || p.parent === parent.id);
-            })
-            .sort((a, b) => {
-                return a.title.localeCompare(b.title);
-            })
-            .map((p) => {
-                const opt: SelectOption = {
-                    value: p.id,
-                    label: p.title,
-                };
-                return opt;
-            });
-    }
-
-
-    private buildFormGroupClasses (field: keyof IProps['errors'], extras: string[] = []) {
-        const classes: { [name: string]: boolean; } = {
-            'form-group': true,
-            'has-error': (this.props.errors[field])
-                ? (this.props.errors[field].length > 0)
-                : (false),
-        };
-        extras.forEach((className) => {
-            classes[className] = true;
-        });
-        return classNames(classes);
-    }
-
-
-    private buildErrors (field: keyof IProps['errors']) {
-        return (this.props.errors[field] || []).map((errorMsg, i) => {
-            return (
-                <span key={i} className="help-block">
-                    <i className="icon-exclamation-sign"></i>{' '}{errorMsg}
-                </span>
-            );
-        });
-    }
-
-
-    private buildCurrentImage () {
-        if (!this.props.group || !this.props.group.image) {
-            return null;
-        }
-        const pathParts = this.props.group.image.split('/');
-        const fileName = pathParts[pathParts.length - 1];
-        return (
-            <span>
-                {gettext("Currently:")} <a target='_blank' href={this.props.group.image}>{fileName}</a>
-                {' '}
-                <input type="checkbox"
-                       id="bundle-edit-form-clear-img"
-                       checked={this.state.clearImage}
-                       onChange={this.onClearImage}
-                       disabled={this.props.isSaving} />
-                {' '}
-                <label htmlFor="bundle-edit-form-clear-img">{gettext("Clear")}</label>
-            </span>
-        )
-    }
-
-
-    private buildBundleRows (triggerParent: IProduct, suggestParent: IProduct) {
-        const triggerOptions = this.props.products
-            .filter((p) => {
-                return !p.is_parent && (p.id === triggerParent.id || p.parent === triggerParent.id);
-            })
-            .sort((a, b) => {
-                return a.title.localeCompare(b.title);
-            });
-        const suggestOptions = this.getChildProductSelectOptions(suggestParent);
-        return (
-            <table className="table bundle-group-edit__link-table">
-                <tbody>
-                    {triggerOptions.map((trigger) => {
-                        const selectValue = (this.state.linkedProducts[trigger.id] || [])
-                            .filter((sid) => {
-                                const suggestion = this.getProduct(sid);
-                                return suggestion.id === suggestParent.id || suggestion.parent === suggestParent.id;
-                            });
-                        return (
-                            <tr key={trigger.id}>
-                                <th>
-                                    <a href={trigger.dashboard_url} target="_blank">{trigger.title}</a>
-                                </th>
-                                <td>
-                                    <Select isMulti={true}
-                                            value={suggestOptions.filter(o => selectValue.includes(o.value))}
-                                            options={suggestOptions}
-                                            onChange={this.onLinkedProductsChange.bind(this, trigger, suggestParent)}
-                                            isDisabled={this.props.isSaving} />
-                                </td>
-                            </tr>
-                        );
-                    })}
-                </tbody>
-            </table>
-        );
-    }
-
-
-    private buildParentRows () {
-        type ICombination = {
-            triggerParent: IProduct;
-            suggestParent: IProduct;
-        };
-        if (this.state.triggeringParents.length <= 0 || this.state.suggestedParents.length <= 0) {
-            return (
-                <div className="row">
-                    <div className="col-sm-12">
-                        <p><em>{gettext("Select at least one trigger product and one suggested product to begin linking variants.")}</em></p>
-                    </div>
-                </div>
-            );
-        }
-        const self = this;
-        const parentCombinations: { [key: string]: ICombination } = {};
-        const buildKey = function(triggerParent: number, suggestParent: number) {
-            return `${triggerParent}-${suggestParent}`;
-        };
-        this.state.triggeringParents.forEach((triggerID) => {
-            self.state.suggestedParents.forEach((suggestionID) => {
-                const key = buildKey(triggerID, suggestionID);
-                parentCombinations[key] = {
-                    triggerParent: self.getProduct(triggerID),
-                    suggestParent: self.getProduct(suggestionID),
-                };
-            });
-        });
-        return Object.values(parentCombinations).map((combination, i) => {
-            return (
-                <div key={i} className="row">
-                    <div className="col-sm-6">
-                        <h3><strong>{combination.triggerParent.title}</strong> <em>{gettext("(Trigger Parent)")}</em></h3>
-                    </div>
-                    <div className="col-sm-6">
-                        <h3><strong>{combination.suggestParent.title}</strong> <em>{gettext("(Suggestion Parent)")}</em></h3>
-                    </div>
-                    <div className="col-sm-12">
-                        {this.buildBundleRows(combination.triggerParent, combination.suggestParent)}
-                    </div>
-                </div>
-            );
+            this.productIdx[p.id] = p;
         });
     }
 
 
     render () {
-        const title = this.props.group
-            ? gettext("Edit Bundle Group")
-            : gettext("Create Bundle Group");
-        const parentProductSelectOptions = this.getParentProductSelectOptions();
         return (
             <form className="row bundle-group-edit" onSubmit={this.onSave}>
-                <div className="col-sm-12 bundle-group-edit__section">
-                    <h1>{title}</h1>
-                    <div className={this.buildFormGroupClasses('bundleType')}>
-                        <label htmlFor="id_bundleType" className="control-label">{gettext("Bundle Type")}</label>
-                        <div>
-                            <select id="id_bundleType"
-                                    name="bundleType"
-                                    className="form-control"
-                                    value={this.state.bundleType}
-                                    onChange={this.onEdit}
-                                    disabled={this.props.isSaving}>
-                                {this.props.bundleTypeChoices.map((choice) => {
-                                    return (
-                                        <option key={choice.value} value={choice.value}>
-                                            {choice.display_name}
-                                        </option>
-                                    );
-                                })}
-                            </select>
-                            {this.buildErrors('bundleType')}
-                        </div>
-                    </div>
-                    <div className={this.buildFormGroupClasses('name')}>
-                        <label htmlFor="id_name" className="control-label">{gettext("Name")}</label>
-                        <div>
-                            <input id="id_name"
-                                   name="name"
-                                   maxLength={200}
-                                   className="form-control"
-                                   value={this.state.name}
-                                   onChange={this.onEdit}
-                                   disabled={this.props.isSaving} />
-                            {this.buildErrors('name')}
-                        </div>
-                    </div>
-                    <div className={this.buildFormGroupClasses('headline')}>
-                        <label htmlFor="id_headline" className="control-label">{gettext("Headline")}</label>
-                        <div>
-                            <textarea id="id_headline"
-                                   name="headline"
-                                   cols={40}
-                                   rows={10}
-                                   className="form-control"
-                                   value={this.state.headline}
-                                   onChange={this.onEdit}
-                                   disabled={this.props.isSaving}>
-                            </textarea>
-                            {this.buildErrors('headline')}
-                        </div>
-                    </div>
-                    <div className={this.buildFormGroupClasses('description')}>
-                        <label htmlFor="id_description" className="control-label">{gettext("Description")}</label>
-                        <div>
-                            <textarea id="id_description"
-                                      name="description"
-                                      cols={40}
-                                      rows={10}
-                                      className="form-control"
-                                      value={this.state.description}
-                                      onChange={this.onEdit}
-                                      disabled={this.props.isSaving}>
-                            </textarea>
-                            {this.buildErrors('description')}
-                        </div>
-                    </div>
-                    <div className={this.buildFormGroupClasses('image')}>
-                        <label htmlFor="id_image" className="control-label">{gettext("Image")}</label>
-                        <div>
-                            {this.buildCurrentImage()}
-                            <input id="id_image"
-                                   type="file"
-                                   name="image"
-                                   className="form-control"
-                                   onChange={this.onSelectImage}
-                                   disabled={this.props.isSaving} />
-                            {this.buildErrors('image')}
-                        </div>
-                    </div>
-                </div>
-
-                <div className="col-sm-12 bundle-group-edit__section">
-                    <h1>{gettext("Relevant Products")}</h1>
-                    <p><em>{gettext("Select the parent and standalone products revelant to this bundle group.")}</em></p>
-                    <div className="row">
-                        <div className={this.buildFormGroupClasses('triggering_parents', ['col-sm-6'])}>
-                            <label htmlFor="id_image" className="control-label">{gettext("Triggers")}</label>
-                            <div>
-                                <Select name="triggeringParents"
-                                        isMulti={true}
-                                        value={parentProductSelectOptions.filter(o => this.state.triggeringParents.includes(o.value))}
-                                        onChange={this.onSelectParent.bind(this, 'triggeringParents')}
-                                        options={parentProductSelectOptions}
-                                        isDisabled={this.props.isSaving} />
-                                {this.buildErrors('triggering_parents')}
-                            </div>
-                        </div>
-                        <div className={this.buildFormGroupClasses('suggested_parents', ['col-sm-6'])}>
-                            <label htmlFor="id_image" className="control-label">{gettext("Suggestions")}</label>
-                            <div>
-                                <Select name="suggestedProducts"
-                                        isMulti={true}
-                                        value={parentProductSelectOptions.filter(o => this.state.suggestedParents.includes(o.value))}
-                                        onChange={this.onSelectParent.bind(this, 'suggestedParents')}
-                                        options={parentProductSelectOptions}
-                                        isDisabled={this.props.isSaving} />
-                                {this.buildErrors('suggested_parents')}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className="col-sm-12 bundle-group-edit__section">
-                    <h1>{gettext("Product Links")}</h1>
-                    {this.buildParentRows()}
-                </div>
-                <div className="col-sm-12 bundle-group-edit__section">
-                    <div className="form-group">
-                        <a className="btn btn-default" onClick={this.onCancel}>{gettext("Cancel")}</a>
-                        {' '}
-                        <button className="btn btn-primary" type="submit">{gettext("Save")}</button>
-                    </div>
-                </div>
+                <BundleGroupMetaFields
+                    bundleTypeChoices={this.props.bundleTypeChoices}
+                    group={this.props.group}
+                    isSaving={this.props.isSaving}
+                    errors={this.props.errors}
+                    bundleType={this.state.bundleType}
+                    name={this.state.name}
+                    headline={this.state.headline}
+                    description={this.state.description}
+                    image={this.state.image}
+                    clearImage={this.state.clearImage}
+                    onEdit={this.onEdit}
+                    onSelectImage={this.onSelectImage}
+                    onClearImage={this.onClearImage}
+                />
+                <ParentProductsEditForm
+                    products={this.props.products}
+                    isSaving={this.props.isSaving}
+                    errors={this.props.errors}
+                    triggeringParents={this.state.triggeringParents}
+                    suggestedParents={this.state.suggestedParents}
+                    onSelectParent={this.onSelectParent}
+                />
+                <UserConfigurableBundles
+                    ranges={this.props.ranges}
+                    isSaving={this.props.isSaving}
+                    triggeringParents={this.state.triggeringParents}
+                    linkedRanges={this.state.linkedRanges}
+                    getProduct={this.getProduct}
+                    onLinkedRangesChange={this.onLinkedRangesChange}
+                    onLinkedRangeQuantityChange={this.onLinkedRangesQuantityChange}
+                />
+                <ConcreteBundles
+                    products={this.props.products}
+                    isSaving={this.props.isSaving}
+                    triggeringParents={this.state.triggeringParents}
+                    suggestedParents={this.state.suggestedParents}
+                    linkedProducts={this.state.linkedProducts}
+                    getProduct={this.getProduct}
+                    onLinkedProductsChange={this.onLinkedProductsChange}
+                />
+                <BundleGroupEditFormActions onCancel={this.onCancel} />
             </form>
         );
     }

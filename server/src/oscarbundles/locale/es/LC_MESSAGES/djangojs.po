@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-28 22:29+0000\n"
+"POT-Creation-Date: 2019-09-09 18:49+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,117 +18,62 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: bundles/BundleGroupTable.tsx:214
+#: bundles/BundleGroupTable.tsx:242
+msgid "Loading…"
+msgstr ""
+
+#: bundles/BundleGroupTable.tsx:248
 msgid "No bundle groups found for search: %(searchText)s"
 msgstr ""
 
-#: bundles/BundleGroupTable.tsx:215
+#: bundles/BundleGroupTable.tsx:249
 msgid "No bundle groups found."
 msgstr ""
 
-#: bundles/BundleGroupTable.tsx:242
-#: bundles/molecules/BundleGroupEditForm.tsx:401
+#: bundles/BundleGroupTable.tsx:275
+#: bundles/molecules/elements/BundleGroupEditForm_MetaFields.tsx:85
 msgid "Edit Bundle Group"
 msgstr ""
 
-#: bundles/BundleGroupTable.tsx:275
+#: bundles/BundleGroupTable.tsx:296
 msgid "Create new bundle group"
 msgstr ""
 
-#: bundles/BundleGroupTable.tsx:277
+#: bundles/BundleGroupTable.tsx:298
 msgid "Bundle Groups"
 msgstr ""
 
-#: bundles/BundleGroupTable.tsx:280
+#: bundles/BundleGroupTable.tsx:301
 msgid "Search Bundle Groups"
 msgstr ""
 
-#: bundles/BundleGroupTable.tsx:288
-#: bundles/molecules/BundleGroupEditForm.tsx:429
+#: bundles/BundleGroupTable.tsx:309
+#: bundles/molecules/elements/BundleGroupEditForm_MetaFields.tsx:111
 msgid "Name"
 msgstr ""
 
-#: bundles/BundleGroupTable.tsx:289
+#: bundles/BundleGroupTable.tsx:310
 msgid "Type"
 msgstr ""
 
-#: bundles/BundleGroupTable.tsx:290
-#: bundles/molecules/BundleGroupEditForm.tsx:472
+#: bundles/BundleGroupTable.tsx:311
+#: bundles/molecules/elements/BundleGroupEditForm_MetaFields.tsx:154
 msgid "Image"
 msgstr ""
 
-#: bundles/BundleGroupTable.tsx:291
-#: bundles/molecules/BundleGroupEditForm.tsx:491
+#: bundles/BundleGroupTable.tsx:312
+#: bundles/molecules/elements/BundleGroupEditForm_ParentProducts.tsx:76
 msgid "Triggers"
 msgstr ""
 
-#: bundles/BundleGroupTable.tsx:292
-#: bundles/molecules/BundleGroupEditForm.tsx:503
+#: bundles/BundleGroupTable.tsx:313
+#: bundles/molecules/elements/BundleGroupEditForm_ParentProducts.tsx:88
 msgid "Suggestions"
 msgstr ""
 
-#: bundles/BundleGroupTable.tsx:293
-#: bundles/molecules/BundleGroupTableRow.tsx:40
+#: bundles/BundleGroupTable.tsx:314
+#: bundles/molecules/BundleGroupTableRow.tsx:42
 msgid "Actions"
-msgstr ""
-
-#: bundles/molecules/BundleGroupEditForm.tsx:300
-msgid "Currently:"
-msgstr ""
-
-#: bundles/molecules/BundleGroupEditForm.tsx:308
-msgid "Clear"
-msgstr ""
-
-#: bundles/molecules/BundleGroupEditForm.tsx:362
-msgid ""
-"Select at least one trigger product and one suggested product to begin "
-"linking variants."
-msgstr ""
-
-#: bundles/molecules/BundleGroupEditForm.tsx:385
-msgid "(Trigger Parent)"
-msgstr ""
-
-#: bundles/molecules/BundleGroupEditForm.tsx:388
-msgid "(Suggestion Parent)"
-msgstr ""
-
-#: bundles/molecules/BundleGroupEditForm.tsx:402
-msgid "Create Bundle Group"
-msgstr ""
-
-#: bundles/molecules/BundleGroupEditForm.tsx:409
-msgid "Bundle Type"
-msgstr ""
-
-#: bundles/molecules/BundleGroupEditForm.tsx:442
-msgid "Headline"
-msgstr ""
-
-#: bundles/molecules/BundleGroupEditForm.tsx:457
-msgid "Description"
-msgstr ""
-
-#: bundles/molecules/BundleGroupEditForm.tsx:487
-msgid "Relevant Products"
-msgstr ""
-
-#: bundles/molecules/BundleGroupEditForm.tsx:488
-msgid ""
-"Select the parent and standalone products revelant to this bundle group."
-msgstr ""
-
-#: bundles/molecules/BundleGroupEditForm.tsx:517
-msgid "Product Links"
-msgstr ""
-
-#: bundles/molecules/BundleGroupEditForm.tsx:522
-msgid "Cancel"
-msgstr ""
-
-#: bundles/molecules/BundleGroupEditForm.tsx:524
-msgid "Save"
 msgstr ""
 
 #: bundles/molecules/BundleGroupSearchForm.tsx:37
@@ -139,16 +84,109 @@ msgstr ""
 msgid "Clear Search"
 msgstr ""
 
-#: bundles/molecules/BundleGroupTableRow.tsx:28
+#: bundles/molecules/BundleGroupTableRow.tsx:29
 msgid ""
 "Are you sure you want to delete this bundle group (%(name)s) and all its "
 "associated bundles?"
 msgstr ""
 
-#: bundles/molecules/BundleGroupTableRow.tsx:43
+#: bundles/molecules/BundleGroupTableRow.tsx:45
 msgid "Edit"
 msgstr ""
 
-#: bundles/molecules/BundleGroupTableRow.tsx:44
+#: bundles/molecules/BundleGroupTableRow.tsx:46
 msgid "Delete"
+msgstr ""
+
+#: bundles/molecules/BundleGroupTableRow.tsx:101
+msgid "Products:"
+msgstr ""
+
+#: bundles/molecules/BundleGroupTableRow.tsx:109
+msgid "Ranges:"
+msgstr ""
+
+#: bundles/molecules/elements/BundleGroupEditForm_Actions.tsx:19
+msgid "Cancel"
+msgstr ""
+
+#: bundles/molecules/elements/BundleGroupEditForm_Actions.tsx:21
+msgid "Save"
+msgstr ""
+
+#: bundles/molecules/elements/BundleGroupEditForm_ConcreteBundles.tsx:93
+msgid ""
+"Select at least one trigger product and one suggested product to begin "
+"linking variants."
+msgstr ""
+
+#: bundles/molecules/elements/BundleGroupEditForm_ConcreteBundles.tsx:115
+msgid "(Trigger Parent)"
+msgstr ""
+
+#: bundles/molecules/elements/BundleGroupEditForm_ConcreteBundles.tsx:118
+msgid "(Suggestion Parent)"
+msgstr ""
+
+#: bundles/molecules/elements/BundleGroupEditForm_ConcreteBundles.tsx:132
+msgid "Product Links (Concrete Bundles)"
+msgstr ""
+
+#: bundles/molecules/elements/BundleGroupEditForm_ConcreteBundles.tsx:134
+msgid ""
+"Concrete bundles are bundles which link products to other specific products. "
+"They can not be customized by the end-consumer."
+msgstr ""
+
+#: bundles/molecules/elements/BundleGroupEditForm_MetaFields.tsx:69
+msgid "Currently:"
+msgstr ""
+
+#: bundles/molecules/elements/BundleGroupEditForm_MetaFields.tsx:77
+msgid "Clear"
+msgstr ""
+
+#: bundles/molecules/elements/BundleGroupEditForm_MetaFields.tsx:86
+msgid "Create Bundle Group"
+msgstr ""
+
+#: bundles/molecules/elements/BundleGroupEditForm_MetaFields.tsx:91
+msgid "Bundle Type"
+msgstr ""
+
+#: bundles/molecules/elements/BundleGroupEditForm_MetaFields.tsx:124
+msgid "Headline"
+msgstr ""
+
+#: bundles/molecules/elements/BundleGroupEditForm_MetaFields.tsx:139
+msgid "Description"
+msgstr ""
+
+#: bundles/molecules/elements/BundleGroupEditForm_ParentProducts.tsx:72
+msgid "Relevant Products"
+msgstr ""
+
+#: bundles/molecules/elements/BundleGroupEditForm_ParentProducts.tsx:73
+msgid ""
+"Select the parent and standalone products revelant to this bundle group."
+msgstr ""
+
+#: bundles/molecules/elements/BundleGroupEditForm_UserConfigurableBundles.tsx:110
+msgid "Select at least one trigger product to begin linking ranges."
+msgstr ""
+
+#: bundles/molecules/elements/BundleGroupEditForm_UserConfigurableBundles.tsx:118
+msgid "Trigger Parent"
+msgstr ""
+
+#: bundles/molecules/elements/BundleGroupEditForm_UserConfigurableBundles.tsx:121
+msgid "Suggested Range"
+msgstr ""
+
+#: bundles/molecules/elements/BundleGroupEditForm_UserConfigurableBundles.tsx:124
+msgid "Suggested Quantity"
+msgstr ""
+
+#: bundles/molecules/elements/BundleGroupEditForm_UserConfigurableBundles.tsx:140
+msgid "Range Links (User Configurable Bundles)"
 msgstr ""

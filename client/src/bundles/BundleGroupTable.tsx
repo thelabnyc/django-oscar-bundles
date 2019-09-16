@@ -1,8 +1,20 @@
 import React = require('react');
 import lunr = require('lunr');
 import Modal = require('react-modal');
-import {getBundleTypeChoices, listBundleGroups, listProducts, saveBundleGroup, deleteBundleGroup} from '../utils/api';
-import {IBundleGroup, IProduct, ICharFieldChoice} from '../utils/api.interfaces';
+import {
+    getBundleTypeChoices,
+    listBundleGroups,
+    listProducts,
+    listRanges,
+    saveBundleGroup,
+    deleteBundleGroup,
+} from '../utils/api';
+import {
+    IBundleGroup,
+    IProduct,
+    IRange,
+    IDRFSelectOptions,
+} from '../utils/models.interfaces';
 import BundleGroupSearchForm from './molecules/BundleGroupSearchForm';
 import BundleGroupEditForm from './molecules/BundleGroupEditForm';
 import BundleGroupTableRow from './molecules/BundleGroupTableRow';
@@ -26,26 +38,30 @@ const modalStyles = {
         transform: 'translate(-50%, -50%)',
         minWidth: '800px',
         maxWidth: '1000px',
-        maxHeight: '80%',
+        maxHeight: '90%',
     },
 };
 
 
 export interface IProps {
-    bundleURL: string;
     bundleGroupURL: string;
-    productChoiceURL: string;
+    concreteBundleURL: string;
+    concreteBundleProductChoiceURL: string;
+    userConfigurableBundleURL: string;
+    userConfigurableBundleRangeChoiceURL: string;
 }
 
 
 export interface IState {
-    bundleTypeChoices: ICharFieldChoice[];
+    bundleTypeChoices: IDRFSelectOptions;
     groups: IBundleGroup[];
     products: IProduct[];
+    ranges: IRange[];
     searchText: string;
     selectedGroup: number | null;
     editModalOpen: boolean;
     isSaving: boolean;
+    isLoading: boolean;
     formErrors: {
         name?: string[];
         description?: string[];
@@ -59,18 +75,70 @@ export interface IState {
 class BundleGroupTable extends React.Component<IProps, IState> {
     idx: lunr.Index | undefined;
 
-    constructor (props: IProps) {
-        super(props);
-        this.state = {
-            bundleTypeChoices: [],
-            groups: [],
-            products: [],
-            searchText: '',
-            selectedGroup: null,
-            editModalOpen: false,
-            isSaving: false,
+    state: IState = {
+        bundleTypeChoices: [],
+        groups: [],
+        products: [],
+        ranges: [],
+        searchText: '',
+        selectedGroup: null,
+        editModalOpen: false,
+        isSaving: false,
+        isLoading: true,
+        formErrors: {},
+    };
+
+
+    private readonly onSearchTextChange = (text: string) => {
+        this.setState({
+            searchText: text,
+        });
+    }
+
+
+    private readonly onCreate = (e: React.MouseEvent<HTMLElement>) => {
+        e.preventDefault();
+        this.openCreateModal();
+    }
+
+
+    private readonly onOpenEditModal = (group: IBundleGroup) => {
+        this.setState({
+            selectedGroup: group.id,
             formErrors: {},
-        };
+            editModalOpen: true,
+        });
+    }
+
+
+    private readonly onCloseModal = () => {
+        this.setState({
+            selectedGroup: null,
+            formErrors: {},
+            editModalOpen: false,
+        });
+    }
+
+
+    private readonly onSaveBundleGroup = async (data: IBundleGroup) => {
+        this.setState({ isSaving: true, });
+        try {
+            await saveBundleGroup(this.props.bundleGroupURL, data);
+            await this.loadData();
+            this.setState({ isSaving: false, });
+            this.onCloseModal();
+        } catch (err) {
+            this.setState({
+                isSaving: false,
+                formErrors: err.response.body,
+            });
+        }
+    }
+
+
+    private readonly onDeleteBundleGroup = async (data: IBundleGroup) => {
+        await deleteBundleGroup(this.props.bundleGroupURL, data);
+        return this.loadData();
     }
 
 
@@ -79,27 +147,20 @@ class BundleGroupTable extends React.Component<IProps, IState> {
     }
 
 
-    private loadData () {
-        const self = this;
+    private async loadData () {
+        this.setState({ isLoading: true, });
         const loading = Promise.all([
             getBundleTypeChoices(this.props.bundleGroupURL),
             listBundleGroups(this.props.bundleGroupURL),
-            listProducts(this.props.productChoiceURL),
+            listProducts(this.props.concreteBundleProductChoiceURL),
+            listRanges(this.props.userConfigurableBundleRangeChoiceURL),
         ]);
-        return loading.then(([choices, groups, products]) => {
-            self.setBundleTypeChoices(choices);
-            self.setGroups(groups);
-            self.setProducts(products);
-        });
-    }
-
-
-    private openEditModal (group: IBundleGroup) {
-        this.setState({
-            selectedGroup: group.id,
-            formErrors: {},
-            editModalOpen: true,
-        });
+        const [choices, groups, products, ranges] = await loading;
+        this.setBundleTypeChoices(choices);
+        this.setGroups(groups);
+        this.setProducts(products);
+        this.setRanges(ranges);
+        this.setState({ isLoading: false, });
     }
 
 
@@ -109,44 +170,6 @@ class BundleGroupTable extends React.Component<IProps, IState> {
             formErrors: {},
             editModalOpen: true,
         });
-    }
-
-
-    private closeModal () {
-        this.setState({
-            selectedGroup: null,
-            formErrors: {},
-            editModalOpen: false,
-        });
-    }
-
-
-    private saveBundleGroup (data: IBundleGroup) {
-        const self = this;
-        this.setState({ isSaving: true, });
-        saveBundleGroup(this.props.bundleGroupURL, data)
-            .then(() => {
-                return self.loadData();
-            })
-            .then(() => {
-                self.setState({ isSaving: false, });
-                self.closeModal();
-            })
-            .catch((err) => {
-                self.setState({
-                    isSaving: false,
-                    formErrors: err.response.body,
-                });
-            });
-    }
-
-
-    private deleteBundleGroup (data: IBundleGroup) {
-        const self = this;
-        deleteBundleGroup(this.props.bundleGroupURL, data)
-            .then(() => {
-                return self.loadData();
-            });
     }
 
 
@@ -161,7 +184,6 @@ class BundleGroupTable extends React.Component<IProps, IState> {
                 builder.add(g);
             });
         });
-
         // Update the component state
         this.setState({
             groups: groups,
@@ -169,7 +191,7 @@ class BundleGroupTable extends React.Component<IProps, IState> {
     }
 
 
-    private setBundleTypeChoices (choices: ICharFieldChoice[]) {
+    private setBundleTypeChoices (choices: IDRFSelectOptions) {
         this.setState({
             bundleTypeChoices: choices,
         });
@@ -183,16 +205,22 @@ class BundleGroupTable extends React.Component<IProps, IState> {
     }
 
 
+    private setRanges (ranges: IRange[]) {
+        this.setState({
+            ranges: ranges,
+        });
+    }
+
+
     private getSearchResults (searchText: string) {
         if (!this.idx) {
             return [];
         }
-        const self = this;
         const results = this.idx.search(searchText);
         return results
             .map((result) => {
                 const gid = parseInt(result.ref, 10);
-                return self.state.groups.find((g) => {
+                return this.state.groups.find((g) => {
                     return g.id === gid;
                 });
             })
@@ -203,40 +231,45 @@ class BundleGroupTable extends React.Component<IProps, IState> {
 
 
     private buildGroupRows () {
-        const self = this;
         const searchText = this.state.searchText.trim();
         const results = searchText
             ? this.getSearchResults(searchText)
             : this.state.groups;
-
-        if (results.length <= 0) {
-            const msg = searchText
-                ? interpolate(gettext('No bundle groups found for search: %(searchText)s'), { searchText: searchText, })
-                : gettext('No bundle groups found.');
+        const numTableColumns = 6;
+        if (this.state.isLoading) {
             return (
                 <tr>
-                    <td colSpan={5}>{msg}</td>
+                    <td colSpan={numTableColumns}><em>{gettext('Loading…')}</em></td>
                 </tr>
             );
         }
-
+        if (results.length <= 0) {
+            const msg = searchText
+                ? interpolate(gettext('No bundle groups found for search: %(searchText)s'), { searchText: searchText, }, true)
+                : gettext('No bundle groups found.');
+            return (
+                <tr>
+                    <td colSpan={numTableColumns}>{msg}</td>
+                </tr>
+            );
+        }
         return results.map((group) => {
             return (
                 <BundleGroupTableRow key={group.id}
-                                     bundleTypeChocies={this.state.bundleTypeChoices}
+                                     bundleTypeChoices={this.state.bundleTypeChoices}
                                      group={group}
                                      products={this.state.products}
-                                     onEdit={(g) => { self.openEditModal(g); }}
-                                     onDelete={(g) => { self.deleteBundleGroup(g); }} />
+                                     ranges={this.state.ranges}
+                                     onEdit={this.onOpenEditModal}
+                                     onDelete={this.onDeleteBundleGroup} />
             );
         });
     }
 
 
     private buildEditModal () {
-        const self = this;
         const group = this.state.groups.find((g) => {
-            return g.id === self.state.selectedGroup;
+            return g.id === this.state.selectedGroup;
         });
         return (
             <Modal contentLabel={gettext("Edit Bundle Group")}
@@ -245,33 +278,21 @@ class BundleGroupTable extends React.Component<IProps, IState> {
                 <BundleGroupEditForm bundleTypeChoices={this.state.bundleTypeChoices}
                                      group={group}
                                      products={this.state.products}
+                                     ranges={this.state.ranges}
                                      isSaving={this.state.isSaving}
                                      errors={this.state.formErrors}
-                                     onCancel={() => { self.closeModal(); }}
-                                     onSave={(d) => { self.saveBundleGroup(d); }} />
+                                     onCancel={this.onCloseModal}
+                                     onSave={this.onSaveBundleGroup} />
             </Modal>
         );
     }
 
 
     render () {
-        const self = this;
-
-        const onSearchTextChange = function(text: string) {
-            self.setState({
-                searchText: text,
-            });
-        };
-
-        const onCreate = function(e: React.MouseEvent<HTMLElement>) {
-            e.preventDefault();
-            self.openCreateModal();
-        };
-
         return (
             <div>
                 <div className="page-header">
-                    <a className="btn btn-primary btn-lg pull-right" onClick={onCreate}>
+                    <a className="btn btn-primary btn-lg pull-right" onClick={this.onCreate}>
                         <i className="icon-plus"></i>{' '}{gettext("Create new bundle group")}
                     </a>
                     <h1>{gettext("Bundle Groups")}</h1>
@@ -280,7 +301,7 @@ class BundleGroupTable extends React.Component<IProps, IState> {
                     <h3><i className="icon-search icon-large"></i>{gettext("Search Bundle Groups")}</h3>
                 </div>
                 <BundleGroupSearchForm searchText={this.state.searchText}
-                                       onChange={onSearchTextChange} />
+                                       onChange={this.onSearchTextChange} />
 
                 <table className="table table-striped table-bordered">
                     <tbody>
