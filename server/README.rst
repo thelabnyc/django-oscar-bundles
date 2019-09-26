@@ -17,6 +17,11 @@ Bundles do not include offers - however it may be used in combination with an of
 Changelog
 =========
 
+0.4.0
+------------------
+- Add support for django-oscar 2.x.
+- Drop support for django-oscar 1.x.
+
 0.3.3
 ------------------
 - Internationalization

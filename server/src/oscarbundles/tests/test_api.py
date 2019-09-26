@@ -138,7 +138,7 @@ class ConcreteBundleAPITest(APITestCase):
                 "name": "Dùｍϻϒ item class"
             },
             "title": "Dùｍϻϒ title",
-            "slug": "dumu-title",
+            "slug": "dumu03fbu03a5-title",
             "is_parent": False,
             "is_child": False,
             "parent": None,

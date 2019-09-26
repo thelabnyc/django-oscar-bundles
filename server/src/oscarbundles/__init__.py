@@ -1,1 +1,1 @@
-default_app_config = 'oscarbundles.config.Config'
+default_app_config = 'oscarbundles.apps.BundlesConfig'
