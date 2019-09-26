@@ -1,5 +1,5 @@
-import React = require('react');
-import classNames = require('classnames');
+import React from 'react';
+import classNames from 'classnames';
 import Select from 'react-select';
 import {IProduct, SelectOption} from '../../../utils/models.interfaces';
 
@@ -12,7 +12,7 @@ interface IProps {
     };
     triggeringParents: number[];
     suggestedParents: number[];
-    onSelectParent: (name: 'triggeringParents' | 'suggestedParents', opts: SelectOption | ReadonlyArray<SelectOption> | null) => void;
+    onSelectParent: (name: 'triggeringParents' | 'suggestedParents', opts: SelectOption | ReadonlyArray<SelectOption> | null | undefined) => void;
 }
 
 
@@ -41,10 +41,11 @@ export class ParentProductsEditForm extends React.PureComponent<IProps, IState> 
 
 
     private buildFormGroupClasses (field: keyof IProps['errors'], extras: string[]) {
+        const fieldErrors = this.props.errors[field];
         const classes: { [name: string]: boolean; } = {
             'form-group': true,
-            'has-error': (this.props.errors[field])
-                ? (this.props.errors[field].length > 0)
+            'has-error': fieldErrors
+                ? (fieldErrors.length > 0)
                 : (false),
         };
         extras.forEach((className) => {
@@ -77,7 +78,7 @@ export class ParentProductsEditForm extends React.PureComponent<IProps, IState> 
                         <div>
                             <Select name="triggeringParents"
                                     isMulti={true}
-                                    value={parentProductSelectOptions.filter(o => this.props.triggeringParents.includes(o.value))}
+                                    value={parentProductSelectOptions.filter((o) => this.props.triggeringParents.includes(o.value))}
                                     onChange={this.props.onSelectParent.bind(this, 'triggeringParents')}
                                     options={parentProductSelectOptions}
                                     isDisabled={this.props.isSaving} />
@@ -89,7 +90,7 @@ export class ParentProductsEditForm extends React.PureComponent<IProps, IState> 
                         <div>
                             <Select name="suggestedProducts"
                                     isMulti={true}
-                                    value={parentProductSelectOptions.filter(o => this.props.suggestedParents.includes(o.value))}
+                                    value={parentProductSelectOptions.filter((o) => this.props.suggestedParents.includes(o.value))}
                                     onChange={this.props.onSelectParent.bind(this, 'suggestedParents')}
                                     options={parentProductSelectOptions}
                                     isDisabled={this.props.isSaving} />

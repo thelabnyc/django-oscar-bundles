@@ -1,17 +1,13 @@
 import * as t from 'io-ts';
-import {reporter} from 'io-ts-reporters';
-import {Either} from 'fp-ts/lib/Either';
+import {failure} from 'io-ts/lib/PathReporter';
+import {Either, isLeft} from 'fp-ts/lib/Either';
 
 
-export const check = <T>(result: Either<t.Errors, T>) => {
-    if (result.isLeft()) {
-        const errs = reporter(result);
-        errs.forEach((err) => {
-            console.error(err);
-        });
-        throw new Error(errs[0]);
+export const check = <T>(result: Either<t.Errors, T>): T => {
+    if (isLeft(result)) {
+        throw new Error(failure(result.left).join('\n'));
     }
-    return result.value;
+    return result.right;
 };
 
 const nullable = <RT extends t.Mixed>(type: RT) => {

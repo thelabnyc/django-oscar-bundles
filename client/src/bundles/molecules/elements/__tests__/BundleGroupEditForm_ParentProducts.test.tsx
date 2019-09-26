@@ -1,4 +1,4 @@
-import React = require('react');
+import React from 'react';
 import {shallow} from 'enzyme';
 import {IProduct} from '../../../../utils/models.interfaces';
 import {ParentProductsEditForm} from '../BundleGroupEditForm_ParentProducts';

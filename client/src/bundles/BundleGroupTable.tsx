@@ -1,6 +1,6 @@
-import React = require('react');
-import lunr = require('lunr');
-import Modal = require('react-modal');
+import React from 'react';
+import lunr from 'lunr';
+import Modal from 'react-modal';
 import {
     getBundleTypeChoices,
     listBundleGroups,
@@ -224,7 +224,7 @@ class BundleGroupTable extends React.Component<IProps, IState> {
                     return g.id === gid;
                 });
             })
-            .filter((group) => {
+            .filter((group): group is IBundleGroup => {
                 return !!group;
             });
     }
@@ -255,7 +255,7 @@ class BundleGroupTable extends React.Component<IProps, IState> {
         }
         return results.map((group) => {
             return (
-                <BundleGroupTableRow key={group.id}
+                <BundleGroupTableRow key={`${group.id}`}
                                      bundleTypeChoices={this.state.bundleTypeChoices}
                                      group={group}
                                      products={this.state.products}
@@ -271,6 +271,9 @@ class BundleGroupTable extends React.Component<IProps, IState> {
         const group = this.state.groups.find((g) => {
             return g.id === this.state.selectedGroup;
         });
+        if (!group) {
+            return;
+        }
         return (
             <Modal contentLabel={gettext("Edit Bundle Group")}
                    style={modalStyles}

@@ -1,4 +1,4 @@
-import React = require('react');
+import React from 'react';
 import Select from 'react-select';
 import {IProduct, SelectOption} from '../../../utils/models.interfaces';
 
@@ -14,7 +14,7 @@ interface IProps {
     suggestedParents: number[];
     linkedProducts: ILinkedProducts;
     getProduct: (productID: number) => IProduct;
-    onLinkedProductsChange: (trigger: IProduct, suggestParent: IProduct, opts: SelectOption | ReadonlyArray<SelectOption> | null) => void;
+    onLinkedProductsChange: (trigger: IProduct, suggestParent: IProduct, opts: SelectOption | ReadonlyArray<SelectOption> | null | undefined) => void;
 }
 
 
@@ -67,7 +67,7 @@ export class ConcreteBundles extends React.PureComponent<IProps, IState> {
                                 </th>
                                 <td>
                                     <Select isMulti={true}
-                                            value={suggestOptions.filter(o => selectValue.includes(o.value))}
+                                            value={suggestOptions.filter((o) => selectValue.includes(o.value))}
                                             options={suggestOptions}
                                             onChange={this.props.onLinkedProductsChange.bind(this, trigger, suggestParent)}
                                             isDisabled={this.props.isSaving} />
@@ -130,9 +130,9 @@ export class ConcreteBundles extends React.PureComponent<IProps, IState> {
         return (
             <div className="col-sm-12 bundle-group-edit__section">
                 <h1>{gettext("Product Links (Concrete Bundles)")}</h1>
-                <p>
-                    <em>{gettext('Concrete bundles are bundles which link products to other specific products. They can not be customized by the end-consumer.')}</em>
-                </p>
+                <p><em>
+                    {gettext('Concrete bundles are bundles which link products to other specific products. They can not be customized by the end-consumer.')}
+                </em></p>
                 {this.buildParentRows()}
             </div>
         );

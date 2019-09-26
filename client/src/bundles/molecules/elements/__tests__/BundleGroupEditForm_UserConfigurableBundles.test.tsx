@@ -1,4 +1,4 @@
-import React = require('react');
+import React from 'react';
 import {shallow} from 'enzyme';
 import {IProduct, IRange} from '../../../../utils/models.interfaces';
 import {UserConfigurableBundles} from '../BundleGroupEditForm_UserConfigurableBundles';

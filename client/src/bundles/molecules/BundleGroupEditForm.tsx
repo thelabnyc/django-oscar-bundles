@@ -1,4 +1,4 @@
-import React = require('react');
+import React from 'react';
 import {
     IBundleGroup,
     IConcreteBundle,
@@ -51,12 +51,12 @@ interface IState {
 }
 
 
-const _isSelectOptionArray = (opts: SelectOption | ReadonlyArray<SelectOption> | null): opts is ReadonlyArray<SelectOption> => {
-    return opts && (opts as ReadonlyArray<SelectOption>).length !== undefined;
+const _isSelectOptionArray = (opts: SelectOption | ReadonlyArray<SelectOption> | null | undefined): opts is ReadonlyArray<SelectOption> => {
+    return !!opts && (opts as ReadonlyArray<SelectOption>).length !== undefined;
 };
 
-const _isSelectOption = (opts: SelectOption | ReadonlyArray<SelectOption> | null): opts is SelectOption => {
-    return opts && !_isSelectOptionArray(opts);
+const _isSelectOption = (opts: SelectOption | ReadonlyArray<SelectOption> | null | undefined): opts is SelectOption => {
+    return !!opts && !_isSelectOptionArray(opts);
 };
 
 
@@ -136,6 +136,9 @@ class BundleGroupEditForm extends React.PureComponent<IProps, IState> {
 
 
     private readonly onSelectImage = (e: React.FormEvent<HTMLInputElement>) => {
+        if (!e.currentTarget.files) {
+            return;
+        }
         const file = e.currentTarget.files[0];
         this.setState({
             image: file,
@@ -143,7 +146,7 @@ class BundleGroupEditForm extends React.PureComponent<IProps, IState> {
     }
 
 
-    private readonly onSelectParent = (name: 'triggeringParents' | 'suggestedParents', opts: SelectOption | ReadonlyArray<SelectOption> | null) => {
+    private readonly onSelectParent = (name: 'triggeringParents' | 'suggestedParents', opts: SelectOption | ReadonlyArray<SelectOption> | null | undefined) => {
         let options: ReadonlyArray<SelectOption>;
         if (!opts) {
             options = [];
@@ -158,7 +161,7 @@ class BundleGroupEditForm extends React.PureComponent<IProps, IState> {
     }
 
 
-    private readonly onLinkedRangesChange = (trigger: IProduct, rangeIndex: number, opts: SelectOption | ReadonlyArray<SelectOption> | null) => {
+    private readonly onLinkedRangesChange = (trigger: IProduct, rangeIndex: number, opts: SelectOption | ReadonlyArray<SelectOption> | null | undefined) => {
         let option: SelectOption | null = null;
         if (_isSelectOption(opts)) {
             option = opts;
@@ -180,7 +183,7 @@ class BundleGroupEditForm extends React.PureComponent<IProps, IState> {
                 };
             } else {
                 delete linkedRanges[trigger.id][rangeIndex];
-                linkedRanges[trigger.id] = linkedRanges[trigger.id].filter(r => !!r);
+                linkedRanges[trigger.id] = linkedRanges[trigger.id].filter((r) => !!r);
                 if (linkedRanges[trigger.id].length <= 0) {
                     delete linkedRanges[trigger.id];
                 }
@@ -190,7 +193,11 @@ class BundleGroupEditForm extends React.PureComponent<IProps, IState> {
     }
 
 
-    private readonly onLinkedRangesQuantityChange = (trigger: IProduct, rangeIndex: number, opts: SelectOption | ReadonlyArray<SelectOption> | null) => {
+    private readonly onLinkedRangesQuantityChange = (
+        trigger: IProduct,
+        rangeIndex: number,
+        opts: SelectOption | ReadonlyArray<SelectOption> | null | undefined
+    ) => {
         let option: SelectOption = { value: 1, label: '1', };
         if (_isSelectOption(opts)) {
             option = opts;
@@ -212,7 +219,11 @@ class BundleGroupEditForm extends React.PureComponent<IProps, IState> {
     }
 
 
-    private readonly onLinkedProductsChange = (trigger: IProduct, suggestParent: IProduct, opts: SelectOption | ReadonlyArray<SelectOption> | null) => {
+    private readonly onLinkedProductsChange = (
+        trigger: IProduct,
+        suggestParent: IProduct,
+        opts: SelectOption | ReadonlyArray<SelectOption> | null | undefined
+    ) => {
         let options: ReadonlyArray<SelectOption>;
         if (!opts) {
             options = [];
@@ -266,7 +277,7 @@ class BundleGroupEditForm extends React.PureComponent<IProps, IState> {
         Object.keys(this.state.linkedRanges).forEach((tID) => {
             const triggerID = parseInt(tID, 10);
             const tProduct = this.getProduct(triggerID);
-            if (data.triggering_parents.indexOf(tProduct.id) === -1 && data.triggering_parents.indexOf(tProduct.parent) === -1) {
+            if (data.triggering_parents.indexOf(tProduct.id) === -1 && (!tProduct.parent || data.triggering_parents.indexOf(tProduct.parent) === -1)) {
                 return;
             }
             const linkedRanges = this.state.linkedRanges[triggerID];
@@ -292,7 +303,7 @@ class BundleGroupEditForm extends React.PureComponent<IProps, IState> {
         Object.keys(this.state.linkedProducts).forEach((tID) => {
             const triggerID = parseInt(tID, 10);
             const tProduct = this.getProduct(triggerID);
-            if (data.triggering_parents.indexOf(tProduct.id) === -1 && data.triggering_parents.indexOf(tProduct.parent) === -1) {
+            if (data.triggering_parents.indexOf(tProduct.id) === -1 && (!tProduct.parent || data.triggering_parents.indexOf(tProduct.parent) === -1)) {
                 return;
             }
 
@@ -306,7 +317,7 @@ class BundleGroupEditForm extends React.PureComponent<IProps, IState> {
             const suggestionIDs = this.state.linkedProducts[triggerID]
                 .filter((sID) => {
                     const sProduct = this.getProduct(sID);
-                    return data.suggested_parents.indexOf(sProduct.id) !== -1 || data.suggested_parents.indexOf(sProduct.parent) !== -1;
+                    return data.suggested_parents.indexOf(sProduct.id) !== -1 || !sProduct.parent || data.suggested_parents.indexOf(sProduct.parent) !== -1;
                 });
 
             if (suggestionIDs.length <= 0) {

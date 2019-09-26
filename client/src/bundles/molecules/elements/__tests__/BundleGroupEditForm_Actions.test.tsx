@@ -1,4 +1,4 @@
-import React = require('react');
+import React from 'react';
 import {shallow} from 'enzyme';
 import {BundleGroupEditFormActions} from '../BundleGroupEditForm_Actions';
 

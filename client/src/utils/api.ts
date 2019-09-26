@@ -1,5 +1,5 @@
-import request = require('superagent');
-import cookies = require('js-cookie');
+import request from 'superagent';
+import cookies from 'js-cookie';
 import {
     IDRFSelectOption,
     IBundleGroup,
@@ -41,6 +41,9 @@ export const getBundleTypeChoices = async (endpoint: string): Promise<ReadonlyAr
         .options(endpoint)
         .set('Accept', 'application/json');
     const body = check(DRFOptionsResponse.decode(resp.body));
+    if (!body.actions.POST) {
+        return [];
+    }
     const field = check(ChoiceField.decode(body.actions.POST.bundle_type));
     const choices = field.choices;
     return choices;

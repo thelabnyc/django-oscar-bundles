@@ -1,4 +1,4 @@
-import React = require('react');
+import React from 'react';
 import {render} from 'react-dom';
 import BundleGroupTable from './bundles/BundleGroupTable';
 
@@ -45,11 +45,11 @@ declare global {
 
 const main = function() {
     const elem = document.querySelector('#bundlegroup-table') as HTMLDivElement;
-    const bundleGroupURL = elem.dataset.bundlegroupApi;
-    const concreteBundleURL = elem.dataset.concretebundleApi;
-    const concreteBundleProductChoiceURL = elem.dataset.concretebundleProductChoiceApi;
-    const userConfigurableBundleURL = elem.dataset.userconfigurablebundleApi;
-    const userConfigurableBundleRangeChoiceURL = elem.dataset.userconfigurablebundleRangeChoiceApi;
+    const bundleGroupURL = elem.dataset.bundlegroupApi || '';
+    const concreteBundleURL = elem.dataset.concretebundleApi || '';
+    const concreteBundleProductChoiceURL = elem.dataset.concretebundleProductChoiceApi || '';
+    const userConfigurableBundleURL = elem.dataset.userconfigurablebundleApi || '';
+    const userConfigurableBundleRangeChoiceURL = elem.dataset.userconfigurablebundleRangeChoiceApi || '';
     const component = (
         <BundleGroupTable bundleGroupURL={bundleGroupURL}
                           concreteBundleURL={concreteBundleURL}
