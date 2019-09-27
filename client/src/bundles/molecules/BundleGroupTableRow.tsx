@@ -1,4 +1,4 @@
-import React = require('react');
+import React from 'react';
 import {IBundleGroup, IProduct, IRange, IDRFSelectOptions} from '../../utils/models.interfaces';
 
 
@@ -70,7 +70,7 @@ class BundleGroupTableRow extends React.PureComponent<IProps, IState> {
 
 
     private buildRangeList () {
-        const rangeIDs = this.props.group.user_configurable_bundles.map(bundle => bundle.suggested_range);
+        const rangeIDs = this.props.group.user_configurable_bundles.map((bundle) => bundle.suggested_range);
         const ranges = this.props.ranges.filter((r) => {
             return rangeIDs.includes(r.id);
         });
@@ -112,10 +112,10 @@ class BundleGroupTableRow extends React.PureComponent<IProps, IState> {
             );
         }
         return (
-            <tr key={this.props.group.id}>
+            <tr key={`${this.props.group.id}`}>
                 <td>{this.props.group.name}</td>
-                <td>{bundleType.display_name}</td>
-                <td><img src={this.props.group.image} width={100} /></td>
+                <td>{bundleType ? bundleType.display_name : ''}</td>
+                <td><img src={this.props.group.image || undefined} width={100} /></td>
                 <td>
                     {this.buildProductList(this.props.group.triggering_parents)}
                 </td>

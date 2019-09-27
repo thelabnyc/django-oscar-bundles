@@ -2,30 +2,37 @@ from django.conf.urls import url
 from django.views.i18n import JavaScriptCatalog
 from django.views.decorators.cache import cache_page
 from django.views.generic.base import RedirectView
-from oscar.core.application import Application
-from oscarbundles.api.views import (
-    ProductConcreteBundleList,
-    ProductUserConfigurableBundleList,
-
-    ConcreteBundleList,
-    ConcreteBundleDetail,
-    ConcreteBundleProductChoicesList,
-
-    UserConfigurableBundleList,
-    UserConfigurableBundleDetail,
-    UserConfigurableBundleRangeChoicesList,
-
-    BundleGroupList,
-    BundleGroupDetail,
-)
+from django.utils.translation import gettext_lazy as _
+from oscar.core.application import OscarConfig
 
 
 def cache(fn):
     return cache_page(60 * 15)(fn)
 
 
-class DashboardBundleApplication(Application):
+class OscarBundlesAPIConfig(OscarConfig):
+    label = 'oscarbundles_api'
+    name = 'oscarbundles.api'
+    verbose_name = _('Oscar Bundles API')
+
+    namespace = 'oscarbundles_api'
+
     def get_urls(self):
+        from oscarbundles.api.views import (
+            ProductConcreteBundleList,
+            ProductUserConfigurableBundleList,
+
+            ConcreteBundleList,
+            ConcreteBundleDetail,
+            ConcreteBundleProductChoicesList,
+
+            UserConfigurableBundleList,
+            UserConfigurableBundleDetail,
+            UserConfigurableBundleRangeChoicesList,
+
+            BundleGroupList,
+            BundleGroupDetail,
+        )
         urlpatterns = [
             # Cached views
             url(r'^products/(?P<pk>[0-9]+)/bundles/$',
@@ -41,7 +48,6 @@ class DashboardBundleApplication(Application):
             url(r'^bundles/i18n\.js$',
                 cache(JavaScriptCatalog.as_view(packages=['oscarbundles'])),
                 name='oscarbundles-i18n-js'),
-
 
             # Uncached views
             url(r'^bundlegroups/$',
@@ -72,6 +78,3 @@ class DashboardBundleApplication(Application):
                 name='userconfigurablebundle-range-choice-list'),
         ]
         return self.post_process_urls(urlpatterns)
-
-
-application = DashboardBundleApplication()

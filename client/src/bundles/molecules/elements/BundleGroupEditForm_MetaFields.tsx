@@ -1,5 +1,5 @@
-import React = require('react');
-import classNames = require('classnames');
+import React from 'react';
+import classNames from 'classnames';
 import {
     IBundleGroup,
     IDRFSelectOptions,
@@ -37,10 +37,11 @@ interface IState {
 export class BundleGroupMetaFields extends React.PureComponent<IProps, IState> {
 
     private buildFormGroupClasses (field: keyof IProps['errors']) {
+        const fieldErrors = this.props.errors[field];
         const classes: { [name: string]: boolean; } = {
             'form-group': true,
-            'has-error': (this.props.errors[field])
-                ? (this.props.errors[field].length > 0)
+            'has-error': fieldErrors
+                ? (fieldErrors.length > 0)
                 : (false),
         };
         return classNames(classes);

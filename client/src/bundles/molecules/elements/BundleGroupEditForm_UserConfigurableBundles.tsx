@@ -1,10 +1,10 @@
-import React = require('react');
+import React from 'react';
 import Select from 'react-select';
 import {IProduct, IRange, SelectOption} from '../../../utils/models.interfaces';
 
 
 type ILinkedRange = {
-    rangeID: number;
+    rangeID: number | null;
     quantity: number;
 };
 export type ILinkedRanges = {
@@ -17,8 +17,8 @@ interface IProps {
     triggeringParents: number[];
     linkedRanges: ILinkedRanges;
     getProduct: (productID: number) => IProduct;
-    onLinkedRangesChange: (trigger: IProduct, rangeIndex: number, opts: SelectOption | ReadonlyArray<SelectOption> | null) => void;
-    onLinkedRangeQuantityChange: (trigger: IProduct, rangeIndex: number, opts: SelectOption | ReadonlyArray<SelectOption> | null) => void;
+    onLinkedRangesChange: (trigger: IProduct, rangeIndex: number, opts: SelectOption | ReadonlyArray<SelectOption> | null | undefined) => void;
+    onLinkedRangeQuantityChange: (trigger: IProduct, rangeIndex: number, opts: SelectOption | ReadonlyArray<SelectOption> | null | undefined) => void;
 }
 
 
@@ -82,13 +82,13 @@ export class UserConfigurableBundles extends React.PureComponent<IProps, IState>
                                 </th>
                                 <td>
                                     <Select isClearable={true}
-                                            value={suggestOptions.filter(o => o.value === range.rangeID)}
+                                            value={suggestOptions.filter((o) => o.value === range.rangeID)}
                                             options={suggestOptions}
                                             onChange={this.props.onLinkedRangesChange.bind(this, triggerParent, i)}
                                             isDisabled={this.props.isSaving} />
                                 </td>
                                 <td>
-                                    <Select value={quantityOptions.filter(o => (range.rangeID !== null && o.value === range.quantity))}
+                                    <Select value={quantityOptions.filter((o) => (range.rangeID !== null && o.value === range.quantity))}
                                             options={quantityOptions}
                                             onChange={this.props.onLinkedRangeQuantityChange.bind(this, triggerParent, i)}
                                             isDisabled={this.props.isSaving || range.rangeID === null} />

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-09 18:49+0000\n"
+"POT-Creation-Date: 2019-09-26 23:20+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,48 +30,48 @@ msgstr ""
 msgid "No bundle groups found."
 msgstr ""
 
-#: bundles/BundleGroupTable.tsx:275
-#: bundles/molecules/elements/BundleGroupEditForm_MetaFields.tsx:85
+#: bundles/BundleGroupTable.tsx:278
+#: bundles/molecules/elements/BundleGroupEditForm_MetaFields.tsx:86
 msgid "Edit Bundle Group"
 msgstr ""
 
-#: bundles/BundleGroupTable.tsx:296
+#: bundles/BundleGroupTable.tsx:299
 msgid "Create new bundle group"
 msgstr ""
 
-#: bundles/BundleGroupTable.tsx:298
+#: bundles/BundleGroupTable.tsx:301
 msgid "Bundle Groups"
 msgstr ""
 
-#: bundles/BundleGroupTable.tsx:301
+#: bundles/BundleGroupTable.tsx:304
 msgid "Search Bundle Groups"
 msgstr ""
 
-#: bundles/BundleGroupTable.tsx:309
-#: bundles/molecules/elements/BundleGroupEditForm_MetaFields.tsx:111
+#: bundles/BundleGroupTable.tsx:312
+#: bundles/molecules/elements/BundleGroupEditForm_MetaFields.tsx:112
 msgid "Name"
 msgstr ""
 
-#: bundles/BundleGroupTable.tsx:310
+#: bundles/BundleGroupTable.tsx:313
 msgid "Type"
 msgstr ""
 
-#: bundles/BundleGroupTable.tsx:311
-#: bundles/molecules/elements/BundleGroupEditForm_MetaFields.tsx:154
+#: bundles/BundleGroupTable.tsx:314
+#: bundles/molecules/elements/BundleGroupEditForm_MetaFields.tsx:155
 msgid "Image"
 msgstr ""
 
-#: bundles/BundleGroupTable.tsx:312
-#: bundles/molecules/elements/BundleGroupEditForm_ParentProducts.tsx:76
+#: bundles/BundleGroupTable.tsx:315
+#: bundles/molecules/elements/BundleGroupEditForm_ParentProducts.tsx:77
 msgid "Triggers"
 msgstr ""
 
-#: bundles/BundleGroupTable.tsx:313
-#: bundles/molecules/elements/BundleGroupEditForm_ParentProducts.tsx:88
+#: bundles/BundleGroupTable.tsx:316
+#: bundles/molecules/elements/BundleGroupEditForm_ParentProducts.tsx:89
 msgid "Suggestions"
 msgstr ""
 
-#: bundles/BundleGroupTable.tsx:314
+#: bundles/BundleGroupTable.tsx:317
 #: bundles/molecules/BundleGroupTableRow.tsx:42
 msgid "Actions"
 msgstr ""
@@ -138,35 +138,35 @@ msgid ""
 "They can not be customized by the end-consumer."
 msgstr ""
 
-#: bundles/molecules/elements/BundleGroupEditForm_MetaFields.tsx:69
+#: bundles/molecules/elements/BundleGroupEditForm_MetaFields.tsx:70
 msgid "Currently:"
 msgstr ""
 
-#: bundles/molecules/elements/BundleGroupEditForm_MetaFields.tsx:77
+#: bundles/molecules/elements/BundleGroupEditForm_MetaFields.tsx:78
 msgid "Clear"
 msgstr ""
 
-#: bundles/molecules/elements/BundleGroupEditForm_MetaFields.tsx:86
+#: bundles/molecules/elements/BundleGroupEditForm_MetaFields.tsx:87
 msgid "Create Bundle Group"
 msgstr ""
 
-#: bundles/molecules/elements/BundleGroupEditForm_MetaFields.tsx:91
+#: bundles/molecules/elements/BundleGroupEditForm_MetaFields.tsx:92
 msgid "Bundle Type"
 msgstr ""
 
-#: bundles/molecules/elements/BundleGroupEditForm_MetaFields.tsx:124
+#: bundles/molecules/elements/BundleGroupEditForm_MetaFields.tsx:125
 msgid "Headline"
 msgstr ""
 
-#: bundles/molecules/elements/BundleGroupEditForm_MetaFields.tsx:139
+#: bundles/molecules/elements/BundleGroupEditForm_MetaFields.tsx:140
 msgid "Description"
 msgstr ""
 
-#: bundles/molecules/elements/BundleGroupEditForm_ParentProducts.tsx:72
+#: bundles/molecules/elements/BundleGroupEditForm_ParentProducts.tsx:73
 msgid "Relevant Products"
 msgstr ""
 
-#: bundles/molecules/elements/BundleGroupEditForm_ParentProducts.tsx:73
+#: bundles/molecules/elements/BundleGroupEditForm_ParentProducts.tsx:74
 msgid ""
 "Select the parent and standalone products revelant to this bundle group."
 msgstr ""

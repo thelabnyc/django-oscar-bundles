@@ -1,11 +1,8 @@
+from django.apps import apps
 from django.conf import settings
 from django.conf.urls import include, url, i18n
 from django.contrib import admin
 from django.views.static import serve
-from oscar.app import application as oscar
-from oscarapi.app import application as oscarapi
-from oscarbundles.api.app import application as oscarbundlesapi
-from oscarbundles.dashboard.app import application as oscarbundlesdashboard
 
 MEDIA_SETTINGS = {
     'document_root': settings.MEDIA_ROOT,
@@ -17,11 +14,13 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^media/(?P<path>.*)$', serve, MEDIA_SETTINGS),
 
-    url(r'^api/', oscarbundlesapi.urls),
-    url(r'^api/', oscarapi.urls),
+    # Oscar Bundles API URLs
+    url(r'^api/', include(apps.get_app_config('oscarbundles_api').urls[0])),
+    url(r'^api/', include('oscarapi.urls')),
 
-    url(r'^dashboard/', oscarbundlesdashboard.urls),
+    # Oscar Bundles Dashboard URLs
+    url(r'^dashboard/', include(apps.get_app_config('oscarbundles_dashboard').urls[0])),
 
     # Include stock Oscar
-    url(r'', oscar.urls),
+    url(r'^', include(apps.get_app_config('oscar').urls[0])),
 ]
