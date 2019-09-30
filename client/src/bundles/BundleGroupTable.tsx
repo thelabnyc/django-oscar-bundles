@@ -271,15 +271,12 @@ class BundleGroupTable extends React.Component<IProps, IState> {
         const group = this.state.groups.find((g) => {
             return g.id === this.state.selectedGroup;
         });
-        if (!group) {
-            return;
-        }
         return (
             <Modal contentLabel={gettext("Edit Bundle Group")}
                    style={modalStyles}
                    isOpen={this.state.editModalOpen}>
                 <BundleGroupEditForm bundleTypeChoices={this.state.bundleTypeChoices}
-                                     group={group}
+                                     group={group || null}
                                      products={this.state.products}
                                      ranges={this.state.ranges}
                                      isSaving={this.state.isSaving}

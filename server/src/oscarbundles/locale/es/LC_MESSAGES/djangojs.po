@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-26 23:20+0000\n"
+"POT-Creation-Date: 2019-09-30 17:16+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,48 +30,48 @@ msgstr ""
 msgid "No bundle groups found."
 msgstr ""
 
-#: bundles/BundleGroupTable.tsx:278
+#: bundles/BundleGroupTable.tsx:275
 #: bundles/molecules/elements/BundleGroupEditForm_MetaFields.tsx:86
 msgid "Edit Bundle Group"
 msgstr ""
 
-#: bundles/BundleGroupTable.tsx:299
+#: bundles/BundleGroupTable.tsx:296
 msgid "Create new bundle group"
 msgstr ""
 
-#: bundles/BundleGroupTable.tsx:301
+#: bundles/BundleGroupTable.tsx:298
 msgid "Bundle Groups"
 msgstr ""
 
-#: bundles/BundleGroupTable.tsx:304
+#: bundles/BundleGroupTable.tsx:301
 msgid "Search Bundle Groups"
 msgstr ""
 
-#: bundles/BundleGroupTable.tsx:312
+#: bundles/BundleGroupTable.tsx:309
 #: bundles/molecules/elements/BundleGroupEditForm_MetaFields.tsx:112
 msgid "Name"
 msgstr ""
 
-#: bundles/BundleGroupTable.tsx:313
+#: bundles/BundleGroupTable.tsx:310
 msgid "Type"
 msgstr ""
 
-#: bundles/BundleGroupTable.tsx:314
+#: bundles/BundleGroupTable.tsx:311
 #: bundles/molecules/elements/BundleGroupEditForm_MetaFields.tsx:155
 msgid "Image"
 msgstr ""
 
-#: bundles/BundleGroupTable.tsx:315
+#: bundles/BundleGroupTable.tsx:312
 #: bundles/molecules/elements/BundleGroupEditForm_ParentProducts.tsx:77
 msgid "Triggers"
 msgstr ""
 
-#: bundles/BundleGroupTable.tsx:316
+#: bundles/BundleGroupTable.tsx:313
 #: bundles/molecules/elements/BundleGroupEditForm_ParentProducts.tsx:89
 msgid "Suggestions"
 msgstr ""
 
-#: bundles/BundleGroupTable.tsx:317
+#: bundles/BundleGroupTable.tsx:314
 #: bundles/molecules/BundleGroupTableRow.tsx:42
 msgid "Actions"
 msgstr ""
