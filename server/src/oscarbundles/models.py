@@ -39,7 +39,8 @@ class BundleGroup(models.Model):
         verbose_name=_('Triggering Products'))
     suggested_parents = models.ManyToManyField('catalogue.Product',
         related_name='suggesting_bundle_groups',
-        verbose_name=_('Suggested Products'))
+        verbose_name=_('Suggested Products'),
+        blank=True)
 
     class Meta:
         verbose_name = _('Bundle Group')

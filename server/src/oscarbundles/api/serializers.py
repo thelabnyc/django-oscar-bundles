@@ -97,7 +97,10 @@ class UserConfigurableBundleSerializer(serializers.ModelSerializer):
         )
 
     def get_suggested_range_products(self, obj):
-        return obj.suggested_range.all_products().values_list('pk', flat=True)
+        return obj.suggested_range\
+            .all_products()\
+            .exclude(structure=Product.CHILD)\
+            .values_list('pk', flat=True)
 
 
 # =============================================================================
