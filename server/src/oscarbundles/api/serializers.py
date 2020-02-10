@@ -107,6 +107,7 @@ class UserConfigurableBundleSerializer(serializers.ModelSerializer):
 # Bundle Group Serializers
 # =============================================================================
 class BundleGroupSerializer(serializers.ModelSerializer):
+    image = serializers.ImageField(use_url=True, allow_null=True, required=False)
     concrete_bundles = InlineConcreteBundleSerializer(many=True)
     user_configurable_bundles = InlineUserConfigurableBundleSerializer(many=True)
 
