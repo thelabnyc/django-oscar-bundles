@@ -17,6 +17,10 @@ Bundles do not include offers - however it may be used in combination with an of
 Changelog
 =========
 
+0.4.1
+------------------
+- Fix bug breaking image uploads in the bundle group API.
+
 0.4.0
 ------------------
 - Add support for django-oscar 2.x.
