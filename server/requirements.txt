@@ -1,5 +1,5 @@
 Babel==2.3.4
-Django==1.9.12
+Django==1.11.28
 django-extra-views==0.6.4
 django-haystack==2.5.1
 django-oscar==1.3
