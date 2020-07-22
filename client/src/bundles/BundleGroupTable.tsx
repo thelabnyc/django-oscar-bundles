@@ -27,7 +27,7 @@ Modal.setAppElement('#bundlegroup-table');
 const modalStyles = {
     overlay: {
         backgroundColor: 'rgba(51, 51, 51, 0.8)',
-        zIndex: '2000',
+        zIndex: 2000,
     },
     content: {
         top: '50%',
