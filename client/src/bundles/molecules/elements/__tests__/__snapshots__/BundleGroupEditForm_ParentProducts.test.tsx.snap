@@ -1,213 +1,535 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`#bundles/molecules/elements/ParentProductsEditForm renders 1`] = `
-<div
-  className="col-sm-12 bundle-group-edit__section"
->
-  <h1>
-    Relevant Products
-  </h1>
-  <p>
-    <em>
-      Select the parent and standalone products revelant to this bundle group.
-    </em>
-  </p>
+<DocumentFragment>
   <div
-    className="row"
+    class="col-sm-12 bundle-group-edit__section"
   >
+    <h1>
+      Relevant Products
+    </h1>
+    <p>
+      <em>
+        Select the parent and standalone products revelant to this bundle group.
+      </em>
+    </p>
     <div
-      className="form-group col-sm-6"
+      class="row"
     >
-      <label
-        className="control-label"
-        htmlFor="id_image"
+      <div
+        class="form-group col-sm-6"
       >
-        Triggers
-      </label>
-      <div>
-        <StateManager
-          defaultInputValue=""
-          defaultMenuIsOpen={false}
-          defaultValue={null}
-          isDisabled={false}
-          isMulti={true}
-          name="triggeringParents"
-          onChange={[Function]}
-          options={
-            Array [
-              Object {
-                "label": "book-1",
-                "value": 1,
-              },
-              Object {
-                "label": "book-2",
-                "value": 2,
-              },
-            ]
-          }
-          value={
-            Array [
-              Object {
-                "label": "book-1",
-                "value": 1,
-              },
-            ]
-          }
-        />
+        <label
+          class="control-label"
+          for="id_image"
+        >
+          Triggers
+        </label>
+        <div>
+          <div
+            class=" css-2b097c-container"
+          >
+            <div
+              class=" css-yk16xz-control"
+            >
+              <div
+                class=" css-g1d714-ValueContainer"
+              >
+                <div
+                  class="css-1rhbuit-multiValue"
+                >
+                  <div
+                    class="css-12jo7m5"
+                  >
+                    book-1
+                  </div>
+                  <div
+                    class="css-xb97g8"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="css-tj5bde-Svg"
+                      focusable="false"
+                      height="14"
+                      viewBox="0 0 20 20"
+                      width="14"
+                    >
+                      <path
+                        d="M14.348 14.849c-0.469 0.469-1.229 0.469-1.697 0l-2.651-3.030-2.651 3.029c-0.469 0.469-1.229 0.469-1.697 0-0.469-0.469-0.469-1.229 0-1.697l2.758-3.15-2.759-3.152c-0.469-0.469-0.469-1.228 0-1.697s1.228-0.469 1.697 0l2.652 3.031 2.651-3.031c0.469-0.469 1.228-0.469 1.697 0s0.469 1.229 0 1.697l-2.758 3.152 2.758 3.15c0.469 0.469 0.469 1.229 0 1.698z"
+                      />
+                    </svg>
+                  </div>
+                </div>
+                <div
+                  class="css-b8ldur-Input"
+                >
+                  <div
+                    class=""
+                    style="display: inline-block;"
+                  >
+                    <input
+                      aria-autocomplete="list"
+                      autocapitalize="none"
+                      autocomplete="off"
+                      autocorrect="off"
+                      id="react-select-2-input"
+                      spellcheck="false"
+                      style="box-sizing: content-box; width: 2px; border: 0px; opacity: 1; outline: 0; padding: 0px;"
+                      tabindex="0"
+                      type="text"
+                      value=""
+                    />
+                    <div
+                      style="position: absolute; top: 0px; left: 0px; visibility: hidden; height: 0px; overflow: scroll; white-space: pre; font-family: -webkit-small-control; letter-spacing: normal; text-transform: none;"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                class=" css-1hb7zxy-IndicatorsContainer"
+              >
+                <div
+                  aria-hidden="true"
+                  class=" css-tlfecz-indicatorContainer"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="css-tj5bde-Svg"
+                    focusable="false"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    width="20"
+                  >
+                    <path
+                      d="M14.348 14.849c-0.469 0.469-1.229 0.469-1.697 0l-2.651-3.030-2.651 3.029c-0.469 0.469-1.229 0.469-1.697 0-0.469-0.469-0.469-1.229 0-1.697l2.758-3.15-2.759-3.152c-0.469-0.469-0.469-1.228 0-1.697s1.228-0.469 1.697 0l2.652 3.031 2.651-3.031c0.469-0.469 1.228-0.469 1.697 0s0.469 1.229 0 1.697l-2.758 3.152 2.758 3.15c0.469 0.469 0.469 1.229 0 1.698z"
+                    />
+                  </svg>
+                </div>
+                <span
+                  class=" css-1okebmr-indicatorSeparator"
+                />
+                <div
+                  aria-hidden="true"
+                  class=" css-tlfecz-indicatorContainer"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="css-tj5bde-Svg"
+                    focusable="false"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    width="20"
+                  >
+                    <path
+                      d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div>
+              <input
+                name="triggeringParents"
+                type="hidden"
+                value="1"
+              />
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-    <div
-      className="form-group col-sm-6"
-    >
-      <label
-        className="control-label"
-        htmlFor="id_image"
+      <div
+        class="form-group col-sm-6"
       >
-        Suggestions
-      </label>
-      <div>
-        <StateManager
-          defaultInputValue=""
-          defaultMenuIsOpen={false}
-          defaultValue={null}
-          isDisabled={false}
-          isMulti={true}
-          name="suggestedProducts"
-          onChange={[Function]}
-          options={
-            Array [
-              Object {
-                "label": "book-1",
-                "value": 1,
-              },
-              Object {
-                "label": "book-2",
-                "value": 2,
-              },
-            ]
-          }
-          value={
-            Array [
-              Object {
-                "label": "book-2",
-                "value": 2,
-              },
-            ]
-          }
-        />
+        <label
+          class="control-label"
+          for="id_image"
+        >
+          Suggestions
+        </label>
+        <div>
+          <div
+            class=" css-2b097c-container"
+          >
+            <div
+              class=" css-yk16xz-control"
+            >
+              <div
+                class=" css-g1d714-ValueContainer"
+              >
+                <div
+                  class="css-1rhbuit-multiValue"
+                >
+                  <div
+                    class="css-12jo7m5"
+                  >
+                    book-2
+                  </div>
+                  <div
+                    class="css-xb97g8"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="css-tj5bde-Svg"
+                      focusable="false"
+                      height="14"
+                      viewBox="0 0 20 20"
+                      width="14"
+                    >
+                      <path
+                        d="M14.348 14.849c-0.469 0.469-1.229 0.469-1.697 0l-2.651-3.030-2.651 3.029c-0.469 0.469-1.229 0.469-1.697 0-0.469-0.469-0.469-1.229 0-1.697l2.758-3.15-2.759-3.152c-0.469-0.469-0.469-1.228 0-1.697s1.228-0.469 1.697 0l2.652 3.031 2.651-3.031c0.469-0.469 1.228-0.469 1.697 0s0.469 1.229 0 1.697l-2.758 3.152 2.758 3.15c0.469 0.469 0.469 1.229 0 1.698z"
+                      />
+                    </svg>
+                  </div>
+                </div>
+                <div
+                  class="css-b8ldur-Input"
+                >
+                  <div
+                    class=""
+                    style="display: inline-block;"
+                  >
+                    <input
+                      aria-autocomplete="list"
+                      autocapitalize="none"
+                      autocomplete="off"
+                      autocorrect="off"
+                      id="react-select-3-input"
+                      spellcheck="false"
+                      style="box-sizing: content-box; width: 2px; border: 0px; opacity: 1; outline: 0; padding: 0px;"
+                      tabindex="0"
+                      type="text"
+                      value=""
+                    />
+                    <div
+                      style="position: absolute; top: 0px; left: 0px; visibility: hidden; height: 0px; overflow: scroll; white-space: pre; font-family: -webkit-small-control; letter-spacing: normal; text-transform: none;"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                class=" css-1hb7zxy-IndicatorsContainer"
+              >
+                <div
+                  aria-hidden="true"
+                  class=" css-tlfecz-indicatorContainer"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="css-tj5bde-Svg"
+                    focusable="false"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    width="20"
+                  >
+                    <path
+                      d="M14.348 14.849c-0.469 0.469-1.229 0.469-1.697 0l-2.651-3.030-2.651 3.029c-0.469 0.469-1.229 0.469-1.697 0-0.469-0.469-0.469-1.229 0-1.697l2.758-3.15-2.759-3.152c-0.469-0.469-0.469-1.228 0-1.697s1.228-0.469 1.697 0l2.652 3.031 2.651-3.031c0.469-0.469 1.228-0.469 1.697 0s0.469 1.229 0 1.697l-2.758 3.152 2.758 3.15c0.469 0.469 0.469 1.229 0 1.698z"
+                    />
+                  </svg>
+                </div>
+                <span
+                  class=" css-1okebmr-indicatorSeparator"
+                />
+                <div
+                  aria-hidden="true"
+                  class=" css-tlfecz-indicatorContainer"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="css-tj5bde-Svg"
+                    focusable="false"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    width="20"
+                  >
+                    <path
+                      d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div>
+              <input
+                name="suggestedProducts"
+                type="hidden"
+                value="2"
+              />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`#bundles/molecules/elements/ParentProductsEditForm renders error messages 1`] = `
-<div
-  className="col-sm-12 bundle-group-edit__section"
->
-  <h1>
-    Relevant Products
-  </h1>
-  <p>
-    <em>
-      Select the parent and standalone products revelant to this bundle group.
-    </em>
-  </p>
+<DocumentFragment>
   <div
-    className="row"
+    class="col-sm-12 bundle-group-edit__section"
   >
+    <h1>
+      Relevant Products
+    </h1>
+    <p>
+      <em>
+        Select the parent and standalone products revelant to this bundle group.
+      </em>
+    </p>
     <div
-      className="form-group has-error col-sm-6"
+      class="row"
     >
-      <label
-        className="control-label"
-        htmlFor="id_image"
+      <div
+        class="form-group has-error col-sm-6"
       >
-        Triggers
-      </label>
-      <div>
-        <StateManager
-          defaultInputValue=""
-          defaultMenuIsOpen={false}
-          defaultValue={null}
-          isDisabled={false}
-          isMulti={true}
-          name="triggeringParents"
-          onChange={[Function]}
-          options={
-            Array [
-              Object {
-                "label": "book-1",
-                "value": 1,
-              },
-              Object {
-                "label": "book-2",
-                "value": 2,
-              },
-            ]
-          }
-          value={
-            Array [
-              Object {
-                "label": "book-1",
-                "value": 1,
-              },
-            ]
-          }
-        />
-        <span
-          className="help-block"
-          key="0"
+        <label
+          class="control-label"
+          for="id_image"
         >
-          <i
-            className="icon-exclamation-sign"
-          />
-           
-          Test error message
-        </span>
+          Triggers
+        </label>
+        <div>
+          <div
+            class=" css-2b097c-container"
+          >
+            <div
+              class=" css-yk16xz-control"
+            >
+              <div
+                class=" css-g1d714-ValueContainer"
+              >
+                <div
+                  class="css-1rhbuit-multiValue"
+                >
+                  <div
+                    class="css-12jo7m5"
+                  >
+                    book-1
+                  </div>
+                  <div
+                    class="css-xb97g8"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="css-tj5bde-Svg"
+                      focusable="false"
+                      height="14"
+                      viewBox="0 0 20 20"
+                      width="14"
+                    >
+                      <path
+                        d="M14.348 14.849c-0.469 0.469-1.229 0.469-1.697 0l-2.651-3.030-2.651 3.029c-0.469 0.469-1.229 0.469-1.697 0-0.469-0.469-0.469-1.229 0-1.697l2.758-3.15-2.759-3.152c-0.469-0.469-0.469-1.228 0-1.697s1.228-0.469 1.697 0l2.652 3.031 2.651-3.031c0.469-0.469 1.228-0.469 1.697 0s0.469 1.229 0 1.697l-2.758 3.152 2.758 3.15c0.469 0.469 0.469 1.229 0 1.698z"
+                      />
+                    </svg>
+                  </div>
+                </div>
+                <div
+                  class="css-b8ldur-Input"
+                >
+                  <div
+                    class=""
+                    style="display: inline-block;"
+                  >
+                    <input
+                      aria-autocomplete="list"
+                      autocapitalize="none"
+                      autocomplete="off"
+                      autocorrect="off"
+                      id="react-select-4-input"
+                      spellcheck="false"
+                      style="box-sizing: content-box; width: 2px; border: 0px; opacity: 1; outline: 0; padding: 0px;"
+                      tabindex="0"
+                      type="text"
+                      value=""
+                    />
+                    <div
+                      style="position: absolute; top: 0px; left: 0px; visibility: hidden; height: 0px; overflow: scroll; white-space: pre; font-family: -webkit-small-control; letter-spacing: normal; text-transform: none;"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                class=" css-1hb7zxy-IndicatorsContainer"
+              >
+                <div
+                  aria-hidden="true"
+                  class=" css-tlfecz-indicatorContainer"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="css-tj5bde-Svg"
+                    focusable="false"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    width="20"
+                  >
+                    <path
+                      d="M14.348 14.849c-0.469 0.469-1.229 0.469-1.697 0l-2.651-3.030-2.651 3.029c-0.469 0.469-1.229 0.469-1.697 0-0.469-0.469-0.469-1.229 0-1.697l2.758-3.15-2.759-3.152c-0.469-0.469-0.469-1.228 0-1.697s1.228-0.469 1.697 0l2.652 3.031 2.651-3.031c0.469-0.469 1.228-0.469 1.697 0s0.469 1.229 0 1.697l-2.758 3.152 2.758 3.15c0.469 0.469 0.469 1.229 0 1.698z"
+                    />
+                  </svg>
+                </div>
+                <span
+                  class=" css-1okebmr-indicatorSeparator"
+                />
+                <div
+                  aria-hidden="true"
+                  class=" css-tlfecz-indicatorContainer"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="css-tj5bde-Svg"
+                    focusable="false"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    width="20"
+                  >
+                    <path
+                      d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div>
+              <input
+                name="triggeringParents"
+                type="hidden"
+                value="1"
+              />
+            </div>
+          </div>
+          <span
+            class="help-block"
+          >
+            <i
+              class="fas fa-exclamation"
+            />
+             Test error message
+          </span>
+        </div>
       </div>
-    </div>
-    <div
-      className="form-group col-sm-6"
-    >
-      <label
-        className="control-label"
-        htmlFor="id_image"
+      <div
+        class="form-group col-sm-6"
       >
-        Suggestions
-      </label>
-      <div>
-        <StateManager
-          defaultInputValue=""
-          defaultMenuIsOpen={false}
-          defaultValue={null}
-          isDisabled={false}
-          isMulti={true}
-          name="suggestedProducts"
-          onChange={[Function]}
-          options={
-            Array [
-              Object {
-                "label": "book-1",
-                "value": 1,
-              },
-              Object {
-                "label": "book-2",
-                "value": 2,
-              },
-            ]
-          }
-          value={
-            Array [
-              Object {
-                "label": "book-2",
-                "value": 2,
-              },
-            ]
-          }
-        />
+        <label
+          class="control-label"
+          for="id_image"
+        >
+          Suggestions
+        </label>
+        <div>
+          <div
+            class=" css-2b097c-container"
+          >
+            <div
+              class=" css-yk16xz-control"
+            >
+              <div
+                class=" css-g1d714-ValueContainer"
+              >
+                <div
+                  class="css-1rhbuit-multiValue"
+                >
+                  <div
+                    class="css-12jo7m5"
+                  >
+                    book-2
+                  </div>
+                  <div
+                    class="css-xb97g8"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="css-tj5bde-Svg"
+                      focusable="false"
+                      height="14"
+                      viewBox="0 0 20 20"
+                      width="14"
+                    >
+                      <path
+                        d="M14.348 14.849c-0.469 0.469-1.229 0.469-1.697 0l-2.651-3.030-2.651 3.029c-0.469 0.469-1.229 0.469-1.697 0-0.469-0.469-0.469-1.229 0-1.697l2.758-3.15-2.759-3.152c-0.469-0.469-0.469-1.228 0-1.697s1.228-0.469 1.697 0l2.652 3.031 2.651-3.031c0.469-0.469 1.228-0.469 1.697 0s0.469 1.229 0 1.697l-2.758 3.152 2.758 3.15c0.469 0.469 0.469 1.229 0 1.698z"
+                      />
+                    </svg>
+                  </div>
+                </div>
+                <div
+                  class="css-b8ldur-Input"
+                >
+                  <div
+                    class=""
+                    style="display: inline-block;"
+                  >
+                    <input
+                      aria-autocomplete="list"
+                      autocapitalize="none"
+                      autocomplete="off"
+                      autocorrect="off"
+                      id="react-select-5-input"
+                      spellcheck="false"
+                      style="box-sizing: content-box; width: 2px; border: 0px; opacity: 1; outline: 0; padding: 0px;"
+                      tabindex="0"
+                      type="text"
+                      value=""
+                    />
+                    <div
+                      style="position: absolute; top: 0px; left: 0px; visibility: hidden; height: 0px; overflow: scroll; white-space: pre; font-family: -webkit-small-control; letter-spacing: normal; text-transform: none;"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                class=" css-1hb7zxy-IndicatorsContainer"
+              >
+                <div
+                  aria-hidden="true"
+                  class=" css-tlfecz-indicatorContainer"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="css-tj5bde-Svg"
+                    focusable="false"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    width="20"
+                  >
+                    <path
+                      d="M14.348 14.849c-0.469 0.469-1.229 0.469-1.697 0l-2.651-3.030-2.651 3.029c-0.469 0.469-1.229 0.469-1.697 0-0.469-0.469-0.469-1.229 0-1.697l2.758-3.15-2.759-3.152c-0.469-0.469-0.469-1.228 0-1.697s1.228-0.469 1.697 0l2.652 3.031 2.651-3.031c0.469-0.469 1.228-0.469 1.697 0s0.469 1.229 0 1.697l-2.758 3.152 2.758 3.15c0.469 0.469 0.469 1.229 0 1.698z"
+                    />
+                  </svg>
+                </div>
+                <span
+                  class=" css-1okebmr-indicatorSeparator"
+                />
+                <div
+                  aria-hidden="true"
+                  class=" css-tlfecz-indicatorContainer"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="css-tj5bde-Svg"
+                    focusable="false"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    width="20"
+                  >
+                    <path
+                      d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div>
+              <input
+                name="suggestedProducts"
+                type="hidden"
+                value="2"
+              />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;

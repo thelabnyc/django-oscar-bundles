@@ -1,23 +1,24 @@
 import React from 'react';
-import {shallow} from 'enzyme';
+import {render, screen} from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import {BundleGroupEditFormActions} from '../BundleGroupEditForm_Actions';
 
 
 describe('#bundles/molecules/elements/BundleGroupEditFormActions', () => {
 
     it('renders', () => {
-        const wrapper = shallow(
+        const wrapper = render(
             <BundleGroupEditFormActions
                 onCancel={() => null}
             />
         );
-        expect(wrapper).toMatchSnapshot();
+        expect(wrapper.asFragment()).toMatchSnapshot();
     });
 
 
     it('triggers close callback', () => {
         const onCancel = jest.fn();
-        const wrapper = shallow(
+        render(
             <BundleGroupEditFormActions
                 onCancel={onCancel}
             />
@@ -25,7 +26,7 @@ describe('#bundles/molecules/elements/BundleGroupEditFormActions', () => {
 
         expect(onCancel).toHaveBeenCalledTimes(0);
 
-        wrapper.find('.btn').first().simulate('click');
+        userEvent.click(screen.getByText('Cancel'));
 
         expect(onCancel).toHaveBeenCalledTimes(1);
     });

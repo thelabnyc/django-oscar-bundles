@@ -1,5 +1,5 @@
 import React from 'react';
-import {shallow} from 'enzyme';
+import {render} from '@testing-library/react';
 import {IProduct} from '../../../../utils/models.interfaces';
 import {ParentProductsEditForm} from '../BundleGroupEditForm_ParentProducts';
 
@@ -39,7 +39,7 @@ const products: IProduct[] = [
 describe('#bundles/molecules/elements/ParentProductsEditForm', () => {
 
     it('renders', () => {
-        const wrapper = shallow(
+        const wrapper = render(
             <ParentProductsEditForm
                 products={products}
                 isSaving={false}
@@ -50,12 +50,12 @@ describe('#bundles/molecules/elements/ParentProductsEditForm', () => {
                 onSelectParent={() => null}
             />
         );
-        expect(wrapper).toMatchSnapshot();
+        expect(wrapper.asFragment()).toMatchSnapshot();
     });
 
 
     it('renders error messages', () => {
-        const wrapper = shallow(
+        const wrapper = render(
             <ParentProductsEditForm
                 products={products}
                 isSaving={false}
@@ -68,7 +68,7 @@ describe('#bundles/molecules/elements/ParentProductsEditForm', () => {
                 onSelectParent={() => null}
             />
         );
-        expect(wrapper).toMatchSnapshot();
+        expect(wrapper.asFragment()).toMatchSnapshot();
     });
 
 });

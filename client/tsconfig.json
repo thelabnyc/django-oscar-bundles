@@ -1,8 +1,4 @@
 {
-    "awesomeTypescriptLoaderOptions": {
-        "useBabel": true,
-        "babelCore": "@babel/core"
-    },
     "compilerOptions": {
         "allowJs": true,
         "allowSyntheticDefaultImports": true,
@@ -39,8 +35,5 @@
         "strict": true,
         "strictNullChecks": true,
         "target": "es6"
-    },
-    "include": [
-        "./src/**/*"
-    ]
+    }
 }

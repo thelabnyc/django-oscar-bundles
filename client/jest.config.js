@@ -8,9 +8,6 @@ module.exports = {
     setupFiles: [
         "<rootDir>/test/setup-django-i18n.js"
     ],
-    setupFilesAfterEnv: [
-        "<rootDir>/test/setup.ts"
-    ],
     testPathIgnorePatterns: [
         ".*responses.ts"
     ],
@@ -21,9 +18,6 @@ module.exports = {
         "ts",
         "tsx"
     ],
-    snapshotSerializers: [
-        "enzyme-to-json/serializer"
-    ],
     timers: "fake",
     collectCoverage: true,
     collectCoverageFrom: [
@@ -31,7 +25,6 @@ module.exports = {
         "src/**/*.{js,jsx,ts,tsx}"
     ],
     coverageReporters: [
-        // "html",
         "text"
     ]
 };

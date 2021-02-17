@@ -1,5 +1,5 @@
 import React from 'react';
-import {shallow} from 'enzyme';
+import {render} from '@testing-library/react';
 import {IProduct, IRange} from '../../../../utils/models.interfaces';
 import {UserConfigurableBundles} from '../BundleGroupEditForm_UserConfigurableBundles';
 
@@ -55,7 +55,7 @@ const ranges: IRange[] = [
 describe('#bundles/molecules/elements/UserConfigurableBundles', () => {
 
     it('renders', () => {
-        const wrapper = shallow(
+        const wrapper = render(
             <UserConfigurableBundles
                 ranges={ranges}
                 isSaving={false}
@@ -73,7 +73,7 @@ describe('#bundles/molecules/elements/UserConfigurableBundles', () => {
                 onLinkedRangeQuantityChange={() => null}
             />
         );
-        expect(wrapper).toMatchSnapshot();
+        expect(wrapper.asFragment()).toMatchSnapshot();
     });
 
 });

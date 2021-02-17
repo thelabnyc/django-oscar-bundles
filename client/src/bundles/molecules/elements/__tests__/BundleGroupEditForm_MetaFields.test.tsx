@@ -1,12 +1,12 @@
 import React from 'react';
-import {shallow} from 'enzyme';
+import {render} from '@testing-library/react';
 import {BundleGroupMetaFields} from '../BundleGroupEditForm_MetaFields';
 
 
 describe('#bundles/molecules/elements/BundleGroupMetaFields', () => {
 
     it('renders', () => {
-        const wrapper = shallow(
+        const wrapper = render(
             <BundleGroupMetaFields
                 bundleTypeChoices={[
                     {
@@ -41,12 +41,12 @@ describe('#bundles/molecules/elements/BundleGroupMetaFields', () => {
                 onClearImage={() => null}
             />
         );
-        expect(wrapper).toMatchSnapshot();
+        expect(wrapper.asFragment()).toMatchSnapshot();
     });
 
 
     it('renders error messages', () => {
-        const wrapper = shallow(
+        const wrapper = render(
             <BundleGroupMetaFields
                 bundleTypeChoices={[]}
                 group={null}
@@ -69,7 +69,7 @@ describe('#bundles/molecules/elements/BundleGroupMetaFields', () => {
                 onClearImage={() => null}
             />
         );
-        expect(wrapper).toMatchSnapshot();
+        expect(wrapper.asFragment()).toMatchSnapshot();
     });
 
 });

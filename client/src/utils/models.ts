@@ -165,7 +165,7 @@ export const BundleGroup = t.interface({
     name: t.string,
     description: t.string,
     headline: t.string,
-    image: nullable(t.string),
+    image: optional(nullable(t.string)),
     newImage: optional(nullable(file)),
     clearImage: optional(t.boolean),
     triggering_parents: t.array(t.number),

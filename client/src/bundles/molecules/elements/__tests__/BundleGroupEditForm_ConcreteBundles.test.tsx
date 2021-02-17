@@ -1,5 +1,5 @@
 import React from 'react';
-import {shallow} from 'enzyme';
+import {render} from '@testing-library/react';
 import {IProduct} from '../../../../utils/models.interfaces';
 import {ConcreteBundles} from '../BundleGroupEditForm_ConcreteBundles';
 
@@ -39,7 +39,7 @@ const products: IProduct[] = [
 describe('#bundles/molecules/elements/ConcreteBundles', () => {
 
     it('renders', () => {
-        const wrapper = shallow(
+        const wrapper = render(
             <ConcreteBundles
                 products={products}
                 isSaving={false}
@@ -52,7 +52,7 @@ describe('#bundles/molecules/elements/ConcreteBundles', () => {
                 onLinkedProductsChange={() => null}
             />
         );
-        expect(wrapper).toMatchSnapshot();
+        expect(wrapper.asFragment()).toMatchSnapshot();
     });
 
 });
