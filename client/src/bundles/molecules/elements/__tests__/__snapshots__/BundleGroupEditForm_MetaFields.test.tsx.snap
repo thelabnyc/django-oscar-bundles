@@ -1,272 +1,243 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`#bundles/molecules/elements/BundleGroupMetaFields renders 1`] = `
-<div
-  className="col-sm-12 bundle-group-edit__section"
->
-  <h1>
-    Edit Bundle Group
-  </h1>
+<DocumentFragment>
   <div
-    className="form-group"
+    class="col-sm-12 bundle-group-edit__section"
   >
-    <label
-      className="control-label"
-      htmlFor="id_bundleType"
+    <h1>
+      Edit Bundle Group
+    </h1>
+    <div
+      class="form-group"
     >
-      Bundle Type
-    </label>
-    <div>
-      <select
-        className="form-control"
-        disabled={false}
-        id="id_bundleType"
-        name="bundleType"
-        onChange={[Function]}
-        value=""
+      <label
+        class="control-label"
+        for="id_bundleType"
       >
-        <option
-          key="default"
-          value="default"
+        Bundle Type
+      </label>
+      <div>
+        <select
+          class="form-control"
+          id="id_bundleType"
+          name="bundleType"
         >
-          Default
-        </option>
-      </select>
+          <option
+            value="default"
+          >
+            Default
+          </option>
+        </select>
+      </div>
     </div>
-  </div>
-  <div
-    className="form-group"
-  >
-    <label
-      className="control-label"
-      htmlFor="id_name"
+    <div
+      class="form-group"
     >
-      Name
-    </label>
-    <div>
-      <input
-        className="form-control"
-        disabled={false}
-        id="id_name"
-        maxLength={200}
-        name="name"
-        onChange={[Function]}
-        value=""
-      />
-    </div>
-  </div>
-  <div
-    className="form-group"
-  >
-    <label
-      className="control-label"
-      htmlFor="id_headline"
-    >
-      Headline
-    </label>
-    <div>
-      <textarea
-        className="form-control"
-        cols={40}
-        disabled={false}
-        id="id_headline"
-        name="headline"
-        onChange={[Function]}
-        rows={4}
-        value=""
-      />
-    </div>
-  </div>
-  <div
-    className="form-group"
-  >
-    <label
-      className="control-label"
-      htmlFor="id_description"
-    >
-      Description
-    </label>
-    <div>
-      <textarea
-        className="form-control"
-        cols={40}
-        disabled={false}
-        id="id_description"
-        name="description"
-        onChange={[Function]}
-        rows={4}
-        value=""
-      />
-    </div>
-  </div>
-  <div
-    className="form-group"
-  >
-    <label
-      className="control-label"
-      htmlFor="id_image"
-    >
-      Image
-    </label>
-    <div>
-      <span>
-        Currently:
-         
-        <a
-          href="https://placeimg.com/640/480/any"
-          target="_blank"
-        >
-          any
-        </a>
-         
+      <label
+        class="control-label"
+        for="id_name"
+      >
+        Name
+      </label>
+      <div>
         <input
-          checked={false}
-          disabled={false}
-          id="bundle-edit-form-clear-img"
-          onChange={[Function]}
-          type="checkbox"
+          class="form-control"
+          id="id_name"
+          maxlength="200"
+          name="name"
+          value=""
         />
-         
-        <label
-          htmlFor="bundle-edit-form-clear-img"
-        >
-          Clear
-        </label>
-      </span>
-      <input
-        className="form-control"
-        disabled={false}
-        id="id_image"
-        name="image"
-        onChange={[Function]}
-        type="file"
-      />
+      </div>
+    </div>
+    <div
+      class="form-group"
+    >
+      <label
+        class="control-label"
+        for="id_headline"
+      >
+        Headline
+      </label>
+      <div>
+        <textarea
+          class="form-control"
+          cols="40"
+          id="id_headline"
+          name="headline"
+          rows="4"
+        />
+      </div>
+    </div>
+    <div
+      class="form-group"
+    >
+      <label
+        class="control-label"
+        for="id_description"
+      >
+        Description
+      </label>
+      <div>
+        <textarea
+          class="form-control"
+          cols="40"
+          id="id_description"
+          name="description"
+          rows="4"
+        />
+      </div>
+    </div>
+    <div
+      class="form-group"
+    >
+      <label
+        class="control-label"
+        for="id_image"
+      >
+        Image
+      </label>
+      <div>
+        <span>
+          Currently: 
+          <a
+            href="https://placeimg.com/640/480/any"
+            target="_blank"
+          >
+            any
+          </a>
+           
+          <input
+            id="bundle-edit-form-clear-img"
+            type="checkbox"
+          />
+           
+          <label
+            for="bundle-edit-form-clear-img"
+          >
+            Clear
+          </label>
+        </span>
+        <input
+          class="form-control"
+          id="id_image"
+          name="image"
+          type="file"
+        />
+      </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`#bundles/molecules/elements/BundleGroupMetaFields renders error messages 1`] = `
-<div
-  className="col-sm-12 bundle-group-edit__section"
->
-  <h1>
-    Create Bundle Group
-  </h1>
+<DocumentFragment>
   <div
-    className="form-group"
+    class="col-sm-12 bundle-group-edit__section"
   >
-    <label
-      className="control-label"
-      htmlFor="id_bundleType"
+    <h1>
+      Create Bundle Group
+    </h1>
+    <div
+      class="form-group"
     >
-      Bundle Type
-    </label>
-    <div>
-      <select
-        className="form-control"
-        disabled={false}
-        id="id_bundleType"
-        name="bundleType"
-        onChange={[Function]}
-        value=""
-      />
-    </div>
-  </div>
-  <div
-    className="form-group has-error"
-  >
-    <label
-      className="control-label"
-      htmlFor="id_name"
-    >
-      Name
-    </label>
-    <div>
-      <input
-        className="form-control"
-        disabled={false}
-        id="id_name"
-        maxLength={200}
-        name="name"
-        onChange={[Function]}
-        value=""
-      />
-      <span
-        className="help-block"
-        key="0"
+      <label
+        class="control-label"
+        for="id_bundleType"
       >
-        <i
-          className="icon-exclamation-sign"
+        Bundle Type
+      </label>
+      <div>
+        <select
+          class="form-control"
+          id="id_bundleType"
+          name="bundleType"
         />
-         
-        Please choose a valid name
-      </span>
+      </div>
     </div>
-  </div>
-  <div
-    className="form-group"
-  >
-    <label
-      className="control-label"
-      htmlFor="id_headline"
+    <div
+      class="form-group has-error"
     >
-      Headline
-    </label>
-    <div>
-      <textarea
-        className="form-control"
-        cols={40}
-        disabled={false}
-        id="id_headline"
-        name="headline"
-        onChange={[Function]}
-        rows={4}
-        value=""
-      />
+      <label
+        class="control-label"
+        for="id_name"
+      >
+        Name
+      </label>
+      <div>
+        <input
+          class="form-control"
+          id="id_name"
+          maxlength="200"
+          name="name"
+          value=""
+        />
+        <span
+          class="help-block"
+        >
+          <i
+            class="fas fa-exclamation"
+          />
+           Please choose a valid name
+        </span>
+      </div>
     </div>
-  </div>
-  <div
-    className="form-group"
-  >
-    <label
-      className="control-label"
-      htmlFor="id_description"
+    <div
+      class="form-group"
     >
-      Description
-    </label>
-    <div>
-      <textarea
-        className="form-control"
-        cols={40}
-        disabled={false}
-        id="id_description"
-        name="description"
-        onChange={[Function]}
-        rows={4}
-        value=""
-      />
+      <label
+        class="control-label"
+        for="id_headline"
+      >
+        Headline
+      </label>
+      <div>
+        <textarea
+          class="form-control"
+          cols="40"
+          id="id_headline"
+          name="headline"
+          rows="4"
+        />
+      </div>
     </div>
-  </div>
-  <div
-    className="form-group"
-  >
-    <label
-      className="control-label"
-      htmlFor="id_image"
+    <div
+      class="form-group"
     >
-      Image
-    </label>
-    <div>
-      <input
-        className="form-control"
-        disabled={false}
-        id="id_image"
-        name="image"
-        onChange={[Function]}
-        type="file"
-      />
+      <label
+        class="control-label"
+        for="id_description"
+      >
+        Description
+      </label>
+      <div>
+        <textarea
+          class="form-control"
+          cols="40"
+          id="id_description"
+          name="description"
+          rows="4"
+        />
+      </div>
+    </div>
+    <div
+      class="form-group"
+    >
+      <label
+        class="control-label"
+        for="id_image"
+      >
+        Image
+      </label>
+      <div>
+        <input
+          class="form-control"
+          id="id_image"
+          name="image"
+          type="file"
+        />
+      </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;

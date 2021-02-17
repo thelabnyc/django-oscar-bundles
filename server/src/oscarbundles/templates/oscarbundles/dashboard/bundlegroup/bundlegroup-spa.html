@@ -9,14 +9,16 @@
 
 
 {% block breadcrumbs %}
-    <ul class="breadcrumb">
-        <li>
-            <a href="{% url 'dashboard:index' %}">{% trans "Dashboard" %}</a>
-        </li>
-        <li>
-            <a href="{% url 'dashboard-bundle-group-list' %}">{% trans "Bundle Groups" %}</a>
-        </li>
-    </ul>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="{% url 'dashboard:index' %}">{% trans "Dashboard" %}</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+                <a href="{% url 'dashboard-bundle-group-list' %}">{% trans "Bundle Groups" %}</a>
+            </li>
+        </ol>
+    </nav>
 {% endblock %}
 
 
@@ -34,6 +36,8 @@
 
 {% block extrascripts %}
     {{ block.super }}
+    <link type="text/css" rel="stylesheet" src="{% static 'oscarbundles/bundles.css' %}" />
     <script type="text/javascript" src="{% url 'oscarbundles-i18n-js' %}"></script>
+    <script type="text/javascript" src="{% static 'oscarbundles/vendor.js' %}"></script>
     <script type="text/javascript" src="{% static 'oscarbundles/bundles.js' %}"></script>
 {% endblock %}

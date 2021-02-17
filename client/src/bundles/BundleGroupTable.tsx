@@ -292,13 +292,13 @@ class BundleGroupTable extends React.Component<IProps, IState> {
         return (
             <div>
                 <div className="page-header">
-                    <a className="btn btn-primary btn-lg pull-right" onClick={this.onCreate}>
-                        <i className="icon-plus"></i>{' '}{gettext("Create new bundle group")}
+                    <a className="btn btn-primary float-right" onClick={this.onCreate}>
+                        <i className="fas fa-plus-circle"></i>{' '}{gettext("Create new bundle group")}
                     </a>
                     <h1>{gettext("Bundle Groups")}</h1>
                 </div>
                 <div className="table-header">
-                    <h3><i className="icon-search icon-large"></i>{gettext("Search Bundle Groups")}</h3>
+                    <h3><i className="fas fa-search"></i>{gettext("Search Bundle Groups")}</h3>
                 </div>
                 <BundleGroupSearchForm searchText={this.state.searchText}
                                        onChange={this.onSearchTextChange} />

@@ -37,13 +37,13 @@ class BundleGroupTableRow extends React.PureComponent<IProps, IState> {
         };
         return (
             <div className="btn-toolbar">
-                <div className="btn-group">
-                    <button className="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                <div className="dropdown">
+                    <button className="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {gettext("Actions")}{' '}<span className="caret"></span>
                     </button>
-                    <ul className="dropdown-menu pull-right">
-                        <li><a onClick={onEdit}>{gettext("Edit")}</a></li>
-                        <li><a onClick={onDelete}>{gettext("Delete")}</a></li>
+                    <ul className="dropdown-menu dropdown-menu-right">
+                        <a className="dropdown-item" onClick={onEdit}>{gettext("Edit")}</a>
+                        <a className="dropdown-item" onClick={onDelete}>{gettext("Delete")}</a>
                     </ul>
                 </div>
             </div>

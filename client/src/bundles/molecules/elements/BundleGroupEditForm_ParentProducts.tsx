@@ -59,7 +59,7 @@ export class ParentProductsEditForm extends React.PureComponent<IProps, IState> 
         return (this.props.errors[field] || []).map((errorMsg, i) => {
             return (
                 <span key={i} className="help-block">
-                    <i className="icon-exclamation-sign"></i>{' '}{errorMsg}
+                    <i className="fas fa-exclamation"></i>{' '}{errorMsg}
                 </span>
             );
         });

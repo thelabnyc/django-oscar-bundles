@@ -1,25 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`#bundles/molecules/elements/BundleGroupEditFormActions renders 1`] = `
-<div
-  className="col-sm-12 bundle-group-edit__section"
->
+<DocumentFragment>
   <div
-    className="form-group"
+    class="col-sm-12 bundle-group-edit__section"
   >
-    <a
-      className="btn btn-default"
-      onClick={[Function]}
+    <div
+      class="form-group"
     >
-      Cancel
-    </a>
-     
-    <button
-      className="btn btn-primary"
-      type="submit"
-    >
-      Save
-    </button>
+      <a
+        class="btn btn-secondary"
+      >
+        Cancel
+      </a>
+       
+      <button
+        class="btn btn-primary"
+        type="submit"
+      >
+        Save
+      </button>
+    </div>
   </div>
-</div>
+</DocumentFragment>
 `;
