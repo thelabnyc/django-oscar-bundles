@@ -17,6 +17,13 @@ Bundles do not include offers - however it may be used in combination with an of
 Changelog
 =========
 
+2.0.0
+------------------
+- Oscar 3.0 Compatibility
+
+1.0.0
+------------------
+
 0.4.1
 ------------------
 - Fix bug breaking image uploads in the bundle group API.
