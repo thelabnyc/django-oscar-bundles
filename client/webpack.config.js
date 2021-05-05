@@ -73,7 +73,7 @@ const rules = [
 let plugins = [
     new BundleTracker({
         path: BUILD_DIR,
-        filename: 'webpack-stats.json'
+        filename: path.resolve(BUILD_DIR, 'webpack-stats.json'),
     }),
     new webpack.DefinePlugin({
         'process.env':{
@@ -99,7 +99,8 @@ const config = {
     },
     output: {
         path: BUILD_DIR,
-        filename: '[name].js'
+        filename: '[name].js',
+        clean: true,
     },
     plugins: plugins,
     module: {

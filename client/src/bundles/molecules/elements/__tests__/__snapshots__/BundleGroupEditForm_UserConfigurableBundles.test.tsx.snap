@@ -63,6 +63,12 @@ exports[`#bundles/molecules/elements/UserConfigurableBundles renders 1`] = `
                 <div
                   class=" css-2b097c-container"
                 >
+                  <span
+                    aria-atomic="false"
+                    aria-live="polite"
+                    aria-relevant="additions text"
+                    class="css-1f43avz-a11yText-A11yText"
+                  />
                   <div
                     class=" css-yk16xz-control"
                   >
@@ -147,6 +153,12 @@ exports[`#bundles/molecules/elements/UserConfigurableBundles renders 1`] = `
                 <div
                   class=" css-2b097c-container"
                 >
+                  <span
+                    aria-atomic="false"
+                    aria-live="polite"
+                    aria-relevant="additions text"
+                    class="css-1f43avz-a11yText-A11yText"
+                  />
                   <div
                     class=" css-yk16xz-control"
                   >
@@ -224,6 +236,12 @@ exports[`#bundles/molecules/elements/UserConfigurableBundles renders 1`] = `
                 <div
                   class=" css-2b097c-container"
                 >
+                  <span
+                    aria-atomic="false"
+                    aria-live="polite"
+                    aria-relevant="additions text"
+                    class="css-1f43avz-a11yText-A11yText"
+                  />
                   <div
                     class=" css-yk16xz-control"
                   >
@@ -291,6 +309,12 @@ exports[`#bundles/molecules/elements/UserConfigurableBundles renders 1`] = `
                 <div
                   class=" css-14jk2my-container"
                 >
+                  <span
+                    aria-atomic="false"
+                    aria-live="polite"
+                    aria-relevant="additions text"
+                    class="css-1f43avz-a11yText-A11yText"
+                  />
                   <div
                     class=" css-1fhf3k1-control"
                   >
@@ -303,7 +327,7 @@ exports[`#bundles/molecules/elements/UserConfigurableBundles renders 1`] = `
                         Select...
                       </div>
                       <div
-                        class="css-b8ldur-Input"
+                        class="css-1bwsx9e-Input"
                       >
                         <div
                           class=""
