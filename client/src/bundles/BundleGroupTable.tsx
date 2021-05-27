@@ -1,6 +1,6 @@
-import React from 'react';
-import lunr from 'lunr';
-import Modal from 'react-modal';
+import React from "react";
+import lunr from "lunr";
+import Modal from "react-modal";
 import {
     getBundleTypeChoices,
     listBundleGroups,
@@ -8,40 +8,38 @@ import {
     listRanges,
     saveBundleGroup,
     deleteBundleGroup,
-} from '../utils/api';
+} from "../utils/api";
 import {
     IBundleGroup,
     IProduct,
     IRange,
     IDRFSelectOptions,
-} from '../utils/models.interfaces';
-import BundleGroupSearchForm from './molecules/BundleGroupSearchForm';
-import BundleGroupEditForm from './molecules/BundleGroupEditForm';
-import BundleGroupTableRow from './molecules/BundleGroupTableRow';
+} from "../utils/models.interfaces";
+import BundleGroupSearchForm from "./molecules/BundleGroupSearchForm";
+import BundleGroupEditForm from "./molecules/BundleGroupEditForm";
+import BundleGroupTableRow from "./molecules/BundleGroupTableRow";
 
-import './BundleGroupTable.scss';
+import "./BundleGroupTable.scss";
 
-
-Modal.setAppElement('#bundlegroup-table');
+Modal.setAppElement("#bundlegroup-table");
 
 const modalStyles = {
     overlay: {
-        backgroundColor: 'rgba(51, 51, 51, 0.8)',
+        backgroundColor: "rgba(51, 51, 51, 0.8)",
         zIndex: 2000,
     },
     content: {
-        top: '50%',
-        left: '50%',
-        right: 'auto',
-        bottom: 'auto',
-        marginRight: '-50%',
-        transform: 'translate(-50%, -50%)',
-        minWidth: '800px',
-        maxWidth: '1000px',
-        maxHeight: '90%',
+        top: "50%",
+        left: "50%",
+        right: "auto",
+        bottom: "auto",
+        marginRight: "-50%",
+        transform: "translate(-50%, -50%)",
+        minWidth: "800px",
+        maxWidth: "1000px",
+        maxHeight: "90%",
     },
 };
-
 
 export interface IProps {
     bundleGroupURL: string;
@@ -50,7 +48,6 @@ export interface IProps {
     userConfigurableBundleURL: string;
     userConfigurableBundleRangeChoiceURL: string;
 }
-
 
 export interface IState {
     bundleTypeChoices: IDRFSelectOptions;
@@ -71,7 +68,6 @@ export interface IState {
     };
 }
 
-
 class BundleGroupTable extends React.Component<IProps, IState> {
     idx: lunr.Index | undefined;
 
@@ -80,7 +76,7 @@ class BundleGroupTable extends React.Component<IProps, IState> {
         groups: [],
         products: [],
         ranges: [],
-        searchText: '',
+        searchText: "",
         selectedGroup: null,
         editModalOpen: false,
         isSaving: false,
@@ -88,19 +84,16 @@ class BundleGroupTable extends React.Component<IProps, IState> {
         formErrors: {},
     };
 
-
     private readonly onSearchTextChange = (text: string) => {
         this.setState({
             searchText: text,
         });
-    }
-
+    };
 
     private readonly onCreate = (e: React.MouseEvent<HTMLElement>) => {
         e.preventDefault();
         this.openCreateModal();
-    }
-
+    };
 
     private readonly onOpenEditModal = (group: IBundleGroup) => {
         this.setState({
@@ -108,8 +101,7 @@ class BundleGroupTable extends React.Component<IProps, IState> {
             formErrors: {},
             editModalOpen: true,
         });
-    }
-
+    };
 
     private readonly onCloseModal = () => {
         this.setState({
@@ -117,15 +109,14 @@ class BundleGroupTable extends React.Component<IProps, IState> {
             formErrors: {},
             editModalOpen: false,
         });
-    }
-
+    };
 
     private readonly onSaveBundleGroup = async (data: IBundleGroup) => {
-        this.setState({ isSaving: true, });
+        this.setState({ isSaving: true });
         try {
             await saveBundleGroup(this.props.bundleGroupURL, data);
             await this.loadData();
-            this.setState({ isSaving: false, });
+            this.setState({ isSaving: false });
             this.onCloseModal();
         } catch (err) {
             this.setState({
@@ -133,22 +124,19 @@ class BundleGroupTable extends React.Component<IProps, IState> {
                 formErrors: err.response.body,
             });
         }
-    }
-
+    };
 
     private readonly onDeleteBundleGroup = async (data: IBundleGroup) => {
         await deleteBundleGroup(this.props.bundleGroupURL, data);
         return this.loadData();
-    }
+    };
 
-
-    componentDidMount () {
+    componentDidMount() {
         this.loadData();
     }
 
-
-    private async loadData () {
-        this.setState({ isLoading: true, });
+    private async loadData() {
+        this.setState({ isLoading: true });
         const loading = Promise.all([
             getBundleTypeChoices(this.props.bundleGroupURL),
             listBundleGroups(this.props.bundleGroupURL),
@@ -160,11 +148,10 @@ class BundleGroupTable extends React.Component<IProps, IState> {
         this.setGroups(groups);
         this.setProducts(products);
         this.setRanges(ranges);
-        this.setState({ isLoading: false, });
+        this.setState({ isLoading: false });
     }
 
-
-    private openCreateModal () {
+    private openCreateModal() {
         this.setState({
             selectedGroup: null,
             formErrors: {},
@@ -172,14 +159,13 @@ class BundleGroupTable extends React.Component<IProps, IState> {
         });
     }
 
-
-    private setGroups (groups: IBundleGroup[]) {
+    private setGroups(groups: IBundleGroup[]) {
         // Update the search index
-        this.idx = lunr(function() {
+        this.idx = lunr(function () {
             const builder = this;
-            builder.ref('id');
-            builder.field('name');
-            builder.field('description');
+            builder.ref("id");
+            builder.field("name");
+            builder.field("description");
             groups.forEach((g) => {
                 builder.add(g);
             });
@@ -190,29 +176,25 @@ class BundleGroupTable extends React.Component<IProps, IState> {
         });
     }
 
-
-    private setBundleTypeChoices (choices: IDRFSelectOptions) {
+    private setBundleTypeChoices(choices: IDRFSelectOptions) {
         this.setState({
             bundleTypeChoices: choices,
         });
     }
 
-
-    private setProducts (products: IProduct[]) {
+    private setProducts(products: IProduct[]) {
         this.setState({
             products: products,
         });
     }
 
-
-    private setRanges (ranges: IRange[]) {
+    private setRanges(ranges: IRange[]) {
         this.setState({
             ranges: ranges,
         });
     }
 
-
-    private getSearchResults (searchText: string) {
+    private getSearchResults(searchText: string) {
         if (!this.idx) {
             return [];
         }
@@ -229,8 +211,7 @@ class BundleGroupTable extends React.Component<IProps, IState> {
             });
     }
 
-
-    private buildGroupRows () {
+    private buildGroupRows() {
         const searchText = this.state.searchText.trim();
         const results = searchText
             ? this.getSearchResults(searchText)
@@ -239,14 +220,22 @@ class BundleGroupTable extends React.Component<IProps, IState> {
         if (this.state.isLoading) {
             return (
                 <tr>
-                    <td colSpan={numTableColumns}><em>{gettext('Loading…')}</em></td>
+                    <td colSpan={numTableColumns}>
+                        <em>{gettext("Loading…")}</em>
+                    </td>
                 </tr>
             );
         }
         if (results.length <= 0) {
             const msg = searchText
-                ? interpolate(gettext('No bundle groups found for search: %(searchText)s'), { searchText: searchText, }, true)
-                : gettext('No bundle groups found.');
+                ? interpolate(
+                      gettext(
+                          "No bundle groups found for search: %(searchText)s"
+                      ),
+                      { searchText: searchText },
+                      true
+                  )
+                : gettext("No bundle groups found.");
             return (
                 <tr>
                     <td colSpan={numTableColumns}>{msg}</td>
@@ -255,53 +244,66 @@ class BundleGroupTable extends React.Component<IProps, IState> {
         }
         return results.map((group) => {
             return (
-                <BundleGroupTableRow key={`${group.id}`}
-                                     bundleTypeChoices={this.state.bundleTypeChoices}
-                                     group={group}
-                                     products={this.state.products}
-                                     ranges={this.state.ranges}
-                                     onEdit={this.onOpenEditModal}
-                                     onDelete={this.onDeleteBundleGroup} />
+                <BundleGroupTableRow
+                    key={`${group.id}`}
+                    bundleTypeChoices={this.state.bundleTypeChoices}
+                    group={group}
+                    products={this.state.products}
+                    ranges={this.state.ranges}
+                    onEdit={this.onOpenEditModal}
+                    onDelete={this.onDeleteBundleGroup}
+                />
             );
         });
     }
 
-
-    private buildEditModal () {
+    private buildEditModal() {
         const group = this.state.groups.find((g) => {
             return g.id === this.state.selectedGroup;
         });
         return (
-            <Modal contentLabel={gettext("Edit Bundle Group")}
-                   style={modalStyles}
-                   isOpen={this.state.editModalOpen}>
-                <BundleGroupEditForm bundleTypeChoices={this.state.bundleTypeChoices}
-                                     group={group || null}
-                                     products={this.state.products}
-                                     ranges={this.state.ranges}
-                                     isSaving={this.state.isSaving}
-                                     errors={this.state.formErrors}
-                                     onCancel={this.onCloseModal}
-                                     onSave={this.onSaveBundleGroup} />
+            <Modal
+                contentLabel={gettext("Edit Bundle Group")}
+                style={modalStyles}
+                isOpen={this.state.editModalOpen}
+            >
+                <BundleGroupEditForm
+                    bundleTypeChoices={this.state.bundleTypeChoices}
+                    group={group || null}
+                    products={this.state.products}
+                    ranges={this.state.ranges}
+                    isSaving={this.state.isSaving}
+                    errors={this.state.formErrors}
+                    onCancel={this.onCloseModal}
+                    onSave={this.onSaveBundleGroup}
+                />
             </Modal>
         );
     }
 
-
-    render () {
+    render() {
         return (
             <div>
                 <div className="page-header">
-                    <a className="btn btn-primary float-right" onClick={this.onCreate}>
-                        <i className="fas fa-plus-circle"></i>{' '}{gettext("Create new bundle group")}
+                    <a
+                        className="btn btn-primary float-right"
+                        onClick={this.onCreate}
+                    >
+                        <i className="fas fa-plus-circle"></i>{" "}
+                        {gettext("Create new bundle group")}
                     </a>
                     <h1>{gettext("Bundle Groups")}</h1>
                 </div>
                 <div className="table-header">
-                    <h3><i className="fas fa-search"></i>{gettext("Search Bundle Groups")}</h3>
+                    <h3>
+                        <i className="fas fa-search"></i>
+                        {gettext("Search Bundle Groups")}
+                    </h3>
                 </div>
-                <BundleGroupSearchForm searchText={this.state.searchText}
-                                       onChange={this.onSearchTextChange} />
+                <BundleGroupSearchForm
+                    searchText={this.state.searchText}
+                    onChange={this.onSearchTextChange}
+                />
 
                 <table className="table table-striped table-bordered">
                     <tbody>

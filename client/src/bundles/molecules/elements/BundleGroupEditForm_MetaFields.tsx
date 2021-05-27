@@ -1,10 +1,9 @@
-import React from 'react';
-import classNames from 'classnames';
+import React from "react";
+import classNames from "classnames";
 import {
     IBundleGroup,
     IDRFSelectOptions,
-} from '../../../utils/models.interfaces';
-
+} from "../../../utils/models.interfaces";
 
 interface IProps {
     bundleTypeChoices: IDRFSelectOptions;
@@ -24,144 +23,165 @@ interface IProps {
     image: File | null;
     clearImage: boolean;
 
-    onEdit: (e: React.FormEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => void;
+    onEdit: (
+        e: React.FormEvent<
+            HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+        >
+    ) => void;
     onSelectImage: (e: React.FormEvent<HTMLInputElement>) => void;
     onClearImage: (e: React.FormEvent<HTMLInputElement>) => void;
 }
 
-
-interface IState {
-}
-
+interface IState {}
 
 export class BundleGroupMetaFields extends React.PureComponent<IProps, IState> {
-
-    private buildFormGroupClasses (field: keyof IProps['errors']) {
+    private buildFormGroupClasses(field: keyof IProps["errors"]) {
         const fieldErrors = this.props.errors[field];
-        const classes: { [name: string]: boolean; } = {
-            'form-group': true,
-            'has-error': fieldErrors
-                ? (fieldErrors.length > 0)
-                : (false),
+        const classes: { [name: string]: boolean } = {
+            "form-group": true,
+            "has-error": fieldErrors ? fieldErrors.length > 0 : false,
         };
         return classNames(classes);
     }
 
-
-    private buildErrors (field: keyof IProps['errors']) {
+    private buildErrors(field: keyof IProps["errors"]) {
         return (this.props.errors[field] || []).map((errorMsg, i) => {
             return (
                 <span key={i} className="help-block">
-                    <i className="fas fa-exclamation"></i>{' '}{errorMsg}
+                    <i className="fas fa-exclamation"></i> {errorMsg}
                 </span>
             );
         });
     }
 
-
-    private buildCurrentImage () {
+    private buildCurrentImage() {
         if (!this.props.group || !this.props.group.image) {
             return null;
         }
-        const pathParts = this.props.group.image.split('/');
+        const pathParts = this.props.group.image.split("/");
         const fileName = pathParts[pathParts.length - 1];
         return (
             <span>
-                {gettext("Currently:")} <a target='_blank' href={this.props.group.image}>{fileName}</a>
-                {' '}
-                <input type="checkbox"
-                       id="bundle-edit-form-clear-img"
-                       checked={this.props.clearImage}
-                       onChange={this.props.onClearImage}
-                       disabled={this.props.isSaving} />
-                {' '}
-                <label htmlFor="bundle-edit-form-clear-img">{gettext("Clear")}</label>
+                {gettext("Currently:")}{" "}
+                <a target="_blank" href={this.props.group.image}>
+                    {fileName}
+                </a>{" "}
+                <input
+                    type="checkbox"
+                    id="bundle-edit-form-clear-img"
+                    checked={this.props.clearImage}
+                    onChange={this.props.onClearImage}
+                    disabled={this.props.isSaving}
+                />{" "}
+                <label htmlFor="bundle-edit-form-clear-img">
+                    {gettext("Clear")}
+                </label>
             </span>
         );
     }
 
-
-    render () {
+    render() {
         const title = this.props.group
             ? gettext("Edit Bundle Group")
             : gettext("Create Bundle Group");
         return (
             <div className="col-sm-12 bundle-group-edit__section">
                 <h1>{title}</h1>
-                <div className={this.buildFormGroupClasses('bundleType')}>
-                    <label htmlFor="id_bundleType" className="control-label">{gettext("Bundle Type")}</label>
+                <div className={this.buildFormGroupClasses("bundleType")}>
+                    <label htmlFor="id_bundleType" className="control-label">
+                        {gettext("Bundle Type")}
+                    </label>
                     <div>
-                        <select id="id_bundleType"
-                                name="bundleType"
-                                className="form-control"
-                                value={this.props.bundleType}
-                                onChange={this.props.onEdit}
-                                disabled={this.props.isSaving}>
+                        <select
+                            id="id_bundleType"
+                            name="bundleType"
+                            className="form-control"
+                            value={this.props.bundleType}
+                            onChange={this.props.onEdit}
+                            disabled={this.props.isSaving}
+                        >
                             {this.props.bundleTypeChoices.map((choice) => {
                                 return (
-                                    <option key={choice.value} value={choice.value}>
+                                    <option
+                                        key={choice.value}
+                                        value={choice.value}
+                                    >
                                         {choice.display_name}
                                     </option>
                                 );
                             })}
                         </select>
-                        {this.buildErrors('bundleType')}
+                        {this.buildErrors("bundleType")}
                     </div>
                 </div>
-                <div className={this.buildFormGroupClasses('name')}>
-                    <label htmlFor="id_name" className="control-label">{gettext("Name")}</label>
+                <div className={this.buildFormGroupClasses("name")}>
+                    <label htmlFor="id_name" className="control-label">
+                        {gettext("Name")}
+                    </label>
                     <div>
-                        <input id="id_name"
-                               name="name"
-                               maxLength={200}
-                               className="form-control"
-                               value={this.props.name}
-                               onChange={this.props.onEdit}
-                               disabled={this.props.isSaving} />
-                        {this.buildErrors('name')}
+                        <input
+                            id="id_name"
+                            name="name"
+                            maxLength={200}
+                            className="form-control"
+                            value={this.props.name}
+                            onChange={this.props.onEdit}
+                            disabled={this.props.isSaving}
+                        />
+                        {this.buildErrors("name")}
                     </div>
                 </div>
-                <div className={this.buildFormGroupClasses('headline')}>
-                    <label htmlFor="id_headline" className="control-label">{gettext("Headline")}</label>
+                <div className={this.buildFormGroupClasses("headline")}>
+                    <label htmlFor="id_headline" className="control-label">
+                        {gettext("Headline")}
+                    </label>
                     <div>
-                        <textarea id="id_headline"
-                               name="headline"
-                               cols={40}
-                               rows={4}
-                               className="form-control"
-                               value={this.props.headline}
-                               onChange={this.props.onEdit}
-                               disabled={this.props.isSaving}>
-                        </textarea>
-                        {this.buildErrors('headline')}
+                        <textarea
+                            id="id_headline"
+                            name="headline"
+                            cols={40}
+                            rows={4}
+                            className="form-control"
+                            value={this.props.headline}
+                            onChange={this.props.onEdit}
+                            disabled={this.props.isSaving}
+                        ></textarea>
+                        {this.buildErrors("headline")}
                     </div>
                 </div>
-                <div className={this.buildFormGroupClasses('description')}>
-                    <label htmlFor="id_description" className="control-label">{gettext("Description")}</label>
+                <div className={this.buildFormGroupClasses("description")}>
+                    <label htmlFor="id_description" className="control-label">
+                        {gettext("Description")}
+                    </label>
                     <div>
-                        <textarea id="id_description"
-                                  name="description"
-                                  cols={40}
-                                  rows={4}
-                                  className="form-control"
-                                  value={this.props.description}
-                                  onChange={this.props.onEdit}
-                                  disabled={this.props.isSaving}>
-                        </textarea>
-                        {this.buildErrors('description')}
+                        <textarea
+                            id="id_description"
+                            name="description"
+                            cols={40}
+                            rows={4}
+                            className="form-control"
+                            value={this.props.description}
+                            onChange={this.props.onEdit}
+                            disabled={this.props.isSaving}
+                        ></textarea>
+                        {this.buildErrors("description")}
                     </div>
                 </div>
-                <div className={this.buildFormGroupClasses('image')}>
-                    <label htmlFor="id_image" className="control-label">{gettext("Image")}</label>
+                <div className={this.buildFormGroupClasses("image")}>
+                    <label htmlFor="id_image" className="control-label">
+                        {gettext("Image")}
+                    </label>
                     <div>
                         {this.buildCurrentImage()}
-                        <input id="id_image"
-                               type="file"
-                               name="image"
-                               className="form-control"
-                               onChange={this.props.onSelectImage}
-                               disabled={this.props.isSaving} />
-                        {this.buildErrors('image')}
+                        <input
+                            id="id_image"
+                            type="file"
+                            name="image"
+                            className="form-control"
+                            onChange={this.props.onSelectImage}
+                            disabled={this.props.isSaving}
+                        />
+                        {this.buildErrors("image")}
                     </div>
                 </div>
             </div>

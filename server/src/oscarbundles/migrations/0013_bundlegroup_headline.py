@@ -8,13 +8,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('oscarbundles', '0012_auto_20180319_1613'),
+        ("oscarbundles", "0012_auto_20180319_1613"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='bundlegroup',
-            name='headline',
-            field=models.CharField(blank=True, default='Forget Something?', help_text='CTA headline in cart display', max_length=200),
+            model_name="bundlegroup",
+            name="headline",
+            field=models.CharField(
+                blank=True,
+                default="Forget Something?",
+                help_text="CTA headline in cart display",
+                max_length=200,
+            ),
         ),
     ]

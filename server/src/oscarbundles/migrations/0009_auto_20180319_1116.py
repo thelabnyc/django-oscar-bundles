@@ -6,14 +6,15 @@ from django.db import migrations
 
 
 def make_group_trigger_data_unique(apps, schema_editor):
-    Bundle = apps.get_model('oscarbundles', 'Bundle')
-    for bundle in Bundle.objects.order_by('id').all():
-        conflicts = Bundle.objects\
-            .filter(bundle_group=bundle.bundle_group)\
-            .filter(triggering_product=bundle.triggering_product)\
-            .exclude(pk=bundle.pk)\
-            .order_by('id')\
+    Bundle = apps.get_model("oscarbundles", "Bundle")
+    for bundle in Bundle.objects.order_by("id").all():
+        conflicts = (
+            Bundle.objects.filter(bundle_group=bundle.bundle_group)
+            .filter(triggering_product=bundle.triggering_product)
+            .exclude(pk=bundle.pk)
+            .order_by("id")
             .all()
+        )
         for conflict in conflicts:
             for suggested_product in conflict.suggested_products.all():
                 bundle.suggested_products.add(suggested_product)
@@ -24,7 +25,7 @@ def make_group_trigger_data_unique(apps, schema_editor):
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('oscarbundles', '0008_auto_20180318_1933'),
+        ("oscarbundles", "0008_auto_20180318_1933"),
     ]
 
     operations = [

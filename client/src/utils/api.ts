@@ -1,5 +1,5 @@
-import request from 'superagent';
-import cookies from 'js-cookie';
+import request from "superagent";
+import cookies from "js-cookie";
 import {
     IDRFSelectOption,
     IBundleGroup,
@@ -7,7 +7,7 @@ import {
     IRange,
     IConcreteBundle,
     IUserConfigurableBundle,
-} from './models.interfaces';
+} from "./models.interfaces";
 import {
     check,
     ChoiceField,
@@ -18,28 +18,24 @@ import {
     Ranges,
     ConcreteBundles,
     UserConfigurableBundles,
-} from './models';
+} from "./models";
 
+const CSRF_HEADER = "X-CSRFToken";
 
-const CSRF_HEADER = 'X-CSRFToken';
-
-
-const getCSRFToken = function() {
-    return cookies.get('csrftoken') || '';
+const getCSRFToken = function () {
+    return cookies.get("csrftoken") || "";
 };
-
 
 const fetchData = async (endpoint: string) => {
-    return request
-        .get(endpoint)
-        .set('Accept', 'application/json');
+    return request.get(endpoint).set("Accept", "application/json");
 };
 
-
-export const getBundleTypeChoices = async (endpoint: string): Promise<ReadonlyArray<IDRFSelectOption>> => {
+export const getBundleTypeChoices = async (
+    endpoint: string
+): Promise<ReadonlyArray<IDRFSelectOption>> => {
     const resp = await request
         .options(endpoint)
-        .set('Accept', 'application/json');
+        .set("Accept", "application/json");
     const body = check(DRFOptionsResponse.decode(resp.body));
     if (!body.actions.POST) {
         return [];
@@ -49,54 +45,59 @@ export const getBundleTypeChoices = async (endpoint: string): Promise<ReadonlyAr
     return choices;
 };
 
-
-export const listBundleGroups = async (endpoint: string): Promise<IBundleGroup[]> => {
+export const listBundleGroups = async (
+    endpoint: string
+): Promise<IBundleGroup[]> => {
     const resp = await fetchData(endpoint);
     return check(BundleGroups.decode(resp.body));
 };
-
 
 export const listProducts = async (endpoint: string): Promise<IProduct[]> => {
     const resp = await fetchData(endpoint);
     return check(Products.decode(resp.body));
 };
 
-
 export const listRanges = async (endpoint: string): Promise<IRange[]> => {
     const resp = await fetchData(endpoint);
     return check(Ranges.decode(resp.body));
 };
 
-
-export const listConcreteBundles = async (endpoint: string): Promise<IConcreteBundle[]> => {
+export const listConcreteBundles = async (
+    endpoint: string
+): Promise<IConcreteBundle[]> => {
     const resp = await fetchData(endpoint);
     return check(ConcreteBundles.decode(resp.body));
 };
 
-
-export const listUserConfigurableBundles = async (endpoint: string): Promise<IUserConfigurableBundle[]> => {
+export const listUserConfigurableBundles = async (
+    endpoint: string
+): Promise<IUserConfigurableBundle[]> => {
     const resp = await fetchData(endpoint);
     return check(UserConfigurableBundles.decode(resp.body));
 };
 
-
-const _saveBundleGroupData = async (endpoint: string, group: IBundleGroup): Promise<IBundleGroup> => {
-    const req = (group.id)
+const _saveBundleGroupData = async (
+    endpoint: string,
+    group: IBundleGroup
+): Promise<IBundleGroup> => {
+    const req = group.id
         ? request.patch(`${endpoint}${group.id}/`)
         : request.post(endpoint);
-    const data = {...group};
+    const data = { ...group };
     delete data.image;
     delete data.newImage;
     delete data.clearImage;
     const resp = await req
-        .set('Accept', 'application/json')
+        .set("Accept", "application/json")
         .set(CSRF_HEADER, getCSRFToken())
         .send(data);
     return check(BundleGroup.decode(resp.body));
 };
 
-
-const _saveBundleGroupImage = async (endpoint: string, group: IBundleGroup): Promise<void> => {
+const _saveBundleGroupImage = async (
+    endpoint: string,
+    group: IBundleGroup
+): Promise<void> => {
     if (!group.id) {
         throw new Error("Can not save image for unsaved bundle group");
     }
@@ -107,33 +108,37 @@ const _saveBundleGroupImage = async (endpoint: string, group: IBundleGroup): Pro
 
     let req = request
         .patch(`${endpoint}${group.id}/`)
-        .set('Accept', 'application/json')
+        .set("Accept", "application/json")
         .set(CSRF_HEADER, getCSRFToken());
 
     if (group.newImage && !group.clearImage) {
-        req = req.attach('image', group.newImage, group.newImage.name);
+        req = req.attach("image", group.newImage, group.newImage.name);
     } else if (group.clearImage) {
-        req = req.send({ 'image': null });
+        req = req.send({ image: null });
     }
 
     await req;
 };
 
-
-export const saveBundleGroup = async (endpoint: string, data: IBundleGroup): Promise<IBundleGroup> => {
+export const saveBundleGroup = async (
+    endpoint: string,
+    data: IBundleGroup
+): Promise<IBundleGroup> => {
     const group = await _saveBundleGroupData(endpoint, data);
-    data.id = group.id;  // Update bundle group ID if it was just created
+    data.id = group.id; // Update bundle group ID if it was just created
     await _saveBundleGroupImage(endpoint, data);
     return group;
 };
 
-
-export const deleteBundleGroup = async (endpoint: string, group: IBundleGroup): Promise<void> => {
+export const deleteBundleGroup = async (
+    endpoint: string,
+    group: IBundleGroup
+): Promise<void> => {
     if (!group.id) {
-        throw new Error('Can not delete unsaved bundle group');
+        throw new Error("Can not delete unsaved bundle group");
     }
     await request
         .delete(`${endpoint}${group.id}/`)
-        .set('Accept', 'application/json')
+        .set("Accept", "application/json")
         .set(CSRF_HEADER, getCSRFToken());
 };

@@ -1,6 +1,10 @@
-import React from 'react';
-import {IBundleGroup, IProduct, IRange, IDRFSelectOptions} from '../../utils/models.interfaces';
-
+import React from "react";
+import {
+    IBundleGroup,
+    IProduct,
+    IRange,
+    IDRFSelectOptions,
+} from "../../utils/models.interfaces";
 
 export interface IProps {
     bundleTypeChoices: IDRFSelectOptions;
@@ -11,22 +15,20 @@ export interface IProps {
     onDelete: (group: IBundleGroup) => void;
 }
 
-
-export interface IState {
-}
-
+export interface IState {}
 
 class BundleGroupTableRow extends React.PureComponent<IProps, IState> {
-
-    private buildGroupActions () {
+    private buildGroupActions() {
         const self = this;
-        const onEdit = function(e: React.MouseEvent<HTMLAnchorElement>) {
+        const onEdit = function (e: React.MouseEvent<HTMLAnchorElement>) {
             e.preventDefault();
             self.props.onEdit(self.props.group);
         };
-        const onDelete = function(e: React.MouseEvent<HTMLAnchorElement>) {
+        const onDelete = function (e: React.MouseEvent<HTMLAnchorElement>) {
             e.preventDefault();
-            const msgFormat = gettext("Are you sure you want to delete this bundle group (%(name)s) and all its associated bundles?");
+            const msgFormat = gettext(
+                "Are you sure you want to delete this bundle group (%(name)s) and all its associated bundles?"
+            );
             const data = {
                 name: self.props.group.name,
             };
@@ -38,20 +40,29 @@ class BundleGroupTableRow extends React.PureComponent<IProps, IState> {
         return (
             <div className="btn-toolbar">
                 <div className="dropdown">
-                    <button className="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        {gettext("Actions")}{' '}<span className="caret"></span>
+                    <button
+                        className="btn btn-secondary dropdown-toggle"
+                        type="button"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                    >
+                        {gettext("Actions")} <span className="caret"></span>
                     </button>
                     <ul className="dropdown-menu dropdown-menu-right">
-                        <a className="dropdown-item" onClick={onEdit}>{gettext("Edit")}</a>
-                        <a className="dropdown-item" onClick={onDelete}>{gettext("Delete")}</a>
+                        <a className="dropdown-item" onClick={onEdit}>
+                            {gettext("Edit")}
+                        </a>
+                        <a className="dropdown-item" onClick={onDelete}>
+                            {gettext("Delete")}
+                        </a>
                     </ul>
                 </div>
             </div>
         );
     }
 
-
-    private buildProductList (productIDs: number[]) {
+    private buildProductList(productIDs: number[]) {
         const products = this.props.products.filter((p) => {
             return productIDs.indexOf(p.id) !== -1;
         });
@@ -68,9 +79,10 @@ class BundleGroupTableRow extends React.PureComponent<IProps, IState> {
         );
     }
 
-
-    private buildRangeList () {
-        const rangeIDs = this.props.group.user_configurable_bundles.map((bundle) => bundle.suggested_range);
+    private buildRangeList() {
+        const rangeIDs = this.props.group.user_configurable_bundles.map(
+            (bundle) => bundle.suggested_range
+        );
         const ranges = this.props.ranges.filter((r) => {
             return rangeIDs.includes(r.id);
         });
@@ -87,8 +99,7 @@ class BundleGroupTableRow extends React.PureComponent<IProps, IState> {
         );
     }
 
-
-    render () {
+    render() {
         const self = this;
         const bundleType = this.props.bundleTypeChoices.find((choice) => {
             return choice.value === self.props.group.bundle_type;
@@ -114,8 +125,13 @@ class BundleGroupTableRow extends React.PureComponent<IProps, IState> {
         return (
             <tr key={`${this.props.group.id}`}>
                 <td>{this.props.group.name}</td>
-                <td>{bundleType ? bundleType.display_name : ''}</td>
-                <td><img src={this.props.group.image || undefined} width={100} /></td>
+                <td>{bundleType ? bundleType.display_name : ""}</td>
+                <td>
+                    <img
+                        src={this.props.group.image || undefined}
+                        width={100}
+                    />
+                </td>
                 <td>
                     {this.buildProductList(this.props.group.triggering_parents)}
                 </td>

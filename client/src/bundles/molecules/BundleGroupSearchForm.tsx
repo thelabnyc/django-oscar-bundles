@@ -1,32 +1,27 @@
-import React from 'react';
-
+import React from "react";
 
 export interface IProps {
     searchText: string;
     onChange: (searchText: string) => void;
 }
 
-
-export interface IState {
-}
-
+export interface IState {}
 
 class BundleGroupSearchForm extends React.PureComponent<IProps, IState> {
-
-    render () {
+    render() {
         const self = this;
 
-        const onChange = function(e: React.FormEvent<HTMLInputElement>) {
+        const onChange = function (e: React.FormEvent<HTMLInputElement>) {
             e.preventDefault();
             self.props.onChange(e.currentTarget.value);
         };
 
-        const onClear = function(e: React.FormEvent<HTMLButtonElement>) {
+        const onClear = function (e: React.FormEvent<HTMLButtonElement>) {
             e.preventDefault();
             self.props.onChange("");
         };
 
-        const onSubmit = function(e: React.FormEvent<HTMLFormElement>) {
+        const onSubmit = function (e: React.FormEvent<HTMLFormElement>) {
             e.preventDefault();
         };
 
@@ -41,8 +36,7 @@ class BundleGroupSearchForm extends React.PureComponent<IProps, IState> {
                             value={this.props.searchText}
                             onChange={onChange}
                         />
-                    </span>
-                    {' '}
+                    </span>{" "}
                     <button
                         type="button"
                         className="btn btn-secondary"

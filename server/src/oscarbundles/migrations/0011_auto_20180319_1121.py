@@ -8,13 +8,13 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('catalogue', '0008_auto_20160304_1652'),
-        ('oscarbundles', '0010_auto_20180319_1116'),
+        ("catalogue", "0008_auto_20160304_1652"),
+        ("oscarbundles", "0010_auto_20180319_1116"),
     ]
 
     operations = [
         migrations.AlterUniqueTogether(
-            name='bundle',
-            unique_together=set([('bundle_group', 'triggering_product')]),
+            name="bundle",
+            unique_together=set([("bundle_group", "triggering_product")]),
         ),
     ]
