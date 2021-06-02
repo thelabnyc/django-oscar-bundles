@@ -1,11 +1,10 @@
-import * as t from 'io-ts';
-import {failure} from 'io-ts/lib/PathReporter';
-import {Either, isLeft} from 'fp-ts/lib/Either';
-
+import * as t from "io-ts";
+import { failure } from "io-ts/lib/PathReporter";
+import { Either, isLeft } from "fp-ts/lib/Either";
 
 export const check = <T>(result: Either<t.Errors, T>): T => {
     if (isLeft(result)) {
-        throw new Error(failure(result.left).join('\n'));
+        throw new Error(failure(result.left).join("\n"));
     }
     return result.right;
 };
@@ -19,10 +18,10 @@ export const optional = <RT extends t.Mixed>(type: RT) => {
 };
 
 class FileType extends t.Type<File> {
-    readonly _tag: 'NumberType' = 'NumberType';
+    readonly _tag: "NumberType" = "NumberType";
     constructor() {
         super(
-            'number',
+            "number",
             (f): f is File => {
                 return f instanceof File;
             },
@@ -34,8 +33,6 @@ class FileType extends t.Type<File> {
     }
 }
 const file = new FileType();
-
-
 
 export const DRFSelectOption = t.interface({
     value: t.string,
@@ -108,16 +105,15 @@ export const DRFOptionsResponse = t.interface({
     }),
 });
 
-
-
-
 export const Product = t.interface({
     id: t.number,
     dashboard_url: t.string,
-    product_class: nullable(t.interface({
-        id: t.number,
-        name: t.string,
-    })),
+    product_class: nullable(
+        t.interface({
+            id: t.number,
+            name: t.string,
+        })
+    ),
     title: t.string,
     slug: t.string,
     is_parent: t.boolean,
@@ -126,8 +122,6 @@ export const Product = t.interface({
     children: t.array(t.number),
 });
 export const Products = t.array(Product);
-
-
 
 export const Range = t.interface({
     id: t.number,
@@ -138,16 +132,12 @@ export const Range = t.interface({
 });
 export const Ranges = t.array(Range);
 
-
-
 export const ConcreteBundle = t.interface({
     id: nullable(t.number),
     triggering_product: t.number,
     suggested_products: t.array(t.number),
 });
 export const ConcreteBundles = t.array(ConcreteBundle);
-
-
 
 export const UserConfigurableBundle = t.interface({
     id: nullable(t.number),
@@ -156,8 +146,6 @@ export const UserConfigurableBundle = t.interface({
     quantity: t.number,
 });
 export const UserConfigurableBundles = t.array(UserConfigurableBundle);
-
-
 
 export const BundleGroup = t.interface({
     id: nullable(t.number),

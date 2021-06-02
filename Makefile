@@ -12,3 +12,12 @@ translations:
 	cd ../../server/src/oscarbundles && \
 	django-admin makemessages -a && \
 	django-admin compilemessages
+
+fmt_client:
+	cd client && \
+	yarn prettier --no-color --write .
+
+fmt_server:
+	black server/
+
+fmt: fmt_client fmt_server

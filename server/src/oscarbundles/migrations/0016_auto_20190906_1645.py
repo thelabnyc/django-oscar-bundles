@@ -6,12 +6,12 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('oscarbundles', '0015_auto_20190826_1326'),
+        ("oscarbundles", "0015_auto_20190826_1326"),
     ]
 
     operations = [
         migrations.AlterUniqueTogether(
-            name='userconfigurablebundle',
-            unique_together={('bundle_group', 'triggering_product', 'suggested_range')},
+            name="userconfigurablebundle",
+            unique_together={("bundle_group", "triggering_product", "suggested_range")},
         ),
     ]

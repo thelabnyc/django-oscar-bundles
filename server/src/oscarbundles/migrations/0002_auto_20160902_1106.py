@@ -9,50 +9,115 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('oscarbundles', '0001_initial'),
+        ("oscarbundles", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='BundleGroup',
+            name="BundleGroup",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(blank=True, default='', help_text='Optional name for this bundle', max_length=200, verbose_name='Name')),
-                ('description', models.TextField(blank=True, default='', help_text='Optional description for this bundle', verbose_name='Description')),
-                ('image', models.ImageField(blank=True, max_length=255, null=True, upload_to='images/products/%Y/%m/')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "name",
+                    models.CharField(
+                        blank=True,
+                        default="",
+                        help_text="Optional name for this bundle",
+                        max_length=200,
+                        verbose_name="Name",
+                    ),
+                ),
+                (
+                    "description",
+                    models.TextField(
+                        blank=True,
+                        default="",
+                        help_text="Optional description for this bundle",
+                        verbose_name="Description",
+                    ),
+                ),
+                (
+                    "image",
+                    models.ImageField(
+                        blank=True,
+                        max_length=255,
+                        null=True,
+                        upload_to="images/products/%Y/%m/",
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
         ),
         migrations.AddField(
-            model_name='bundle',
-            name='image',
-            field=models.ImageField(blank=True, max_length=255, null=True, upload_to='images/products/%Y/%m/'),
+            model_name="bundle",
+            name="image",
+            field=models.ImageField(
+                blank=True,
+                max_length=255,
+                null=True,
+                upload_to="images/products/%Y/%m/",
+            ),
         ),
         migrations.AlterField(
-            model_name='bundle',
-            name='description',
-            field=models.TextField(blank=True, default='', help_text='Optional description for this bundle', verbose_name='Description'),
+            model_name="bundle",
+            name="description",
+            field=models.TextField(
+                blank=True,
+                default="",
+                help_text="Optional description for this bundle",
+                verbose_name="Description",
+            ),
         ),
         migrations.AlterField(
-            model_name='bundle',
-            name='name',
-            field=models.CharField(blank=True, default='', help_text='Optional name for this bundle', max_length=200, verbose_name='Name'),
+            model_name="bundle",
+            name="name",
+            field=models.CharField(
+                blank=True,
+                default="",
+                help_text="Optional name for this bundle",
+                max_length=200,
+                verbose_name="Name",
+            ),
         ),
         migrations.AlterField(
-            model_name='bundle',
-            name='suggested_products',
-            field=models.ManyToManyField(help_text='Which product(s) should this bundle suggest when triggered?', related_name='suggesting_bundles', to='catalogue.Product', verbose_name='Suggested Products'),
+            model_name="bundle",
+            name="suggested_products",
+            field=models.ManyToManyField(
+                help_text="Which product(s) should this bundle suggest when triggered?",
+                related_name="suggesting_bundles",
+                to="catalogue.Product",
+                verbose_name="Suggested Products",
+            ),
         ),
         migrations.AlterField(
-            model_name='bundle',
-            name='triggering_products',
-            field=models.ManyToManyField(help_text='Which product(s) should trigger this bundle?', related_name='triggering_bundles', to='catalogue.Product', verbose_name='Triggering Products'),
+            model_name="bundle",
+            name="triggering_products",
+            field=models.ManyToManyField(
+                help_text="Which product(s) should trigger this bundle?",
+                related_name="triggering_bundles",
+                to="catalogue.Product",
+                verbose_name="Triggering Products",
+            ),
         ),
         migrations.AddField(
-            model_name='bundle',
-            name='bundle_group',
-            field=models.ForeignKey(blank=True, help_text='Optional grouping for bundle', null=True, on_delete=django.db.models.deletion.CASCADE, to='oscarbundles.BundleGroup'),
+            model_name="bundle",
+            name="bundle_group",
+            field=models.ForeignKey(
+                blank=True,
+                help_text="Optional grouping for bundle",
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="oscarbundles.BundleGroup",
+            ),
         ),
     ]

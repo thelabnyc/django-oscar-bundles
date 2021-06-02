@@ -10,18 +10,50 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('catalogue', '0008_auto_20160304_1652'),
+        ("catalogue", "0008_auto_20160304_1652"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Bundle',
+            name="Bundle",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(blank=True, default='', max_length=200, verbose_name='Name')),
-                ('description', models.TextField(blank=True, default='', verbose_name='Description')),
-                ('suggested_products', models.ManyToManyField(related_name='suggesting_bundles', to='catalogue.Product', verbose_name='Suggested Products')),
-                ('triggering_products', models.ManyToManyField(related_name='triggering_bundles', to='catalogue.Product', verbose_name='Triggering Products')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "name",
+                    models.CharField(
+                        blank=True, default="", max_length=200, verbose_name="Name"
+                    ),
+                ),
+                (
+                    "description",
+                    models.TextField(
+                        blank=True, default="", verbose_name="Description"
+                    ),
+                ),
+                (
+                    "suggested_products",
+                    models.ManyToManyField(
+                        related_name="suggesting_bundles",
+                        to="catalogue.Product",
+                        verbose_name="Suggested Products",
+                    ),
+                ),
+                (
+                    "triggering_products",
+                    models.ManyToManyField(
+                        related_name="triggering_bundles",
+                        to="catalogue.Product",
+                        verbose_name="Triggering Products",
+                    ),
+                ),
             ],
         ),
     ]

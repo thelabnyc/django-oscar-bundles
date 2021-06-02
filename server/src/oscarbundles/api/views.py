@@ -14,17 +14,17 @@ from oscarbundles.api.serializers import (
     UserConfigurableBundleSerializer,
 )
 
-Product = get_model('catalogue', 'Product')
-Range = get_model('offer', 'Range')
+Product = get_model("catalogue", "Product")
+Range = get_model("offer", "Range")
 
-API_PERMS = (permissions.DjangoModelPermissionsOrAnonReadOnly, )
+API_PERMS = (permissions.DjangoModelPermissionsOrAnonReadOnly,)
 
 
 # =============================================================================
 # Bundles by Product
 # =============================================================================
 class ProductConcreteBundleList(generics.ListAPIView):
-    permission_classes = (permissions.AllowAny, )
+    permission_classes = (permissions.AllowAny,)
     serializer_class = ConcreteBundleSerializer
 
     def get(self, request, pk):
@@ -32,13 +32,13 @@ class ProductConcreteBundleList(generics.ListAPIView):
         return super().get(request, pk)
 
     def get_queryset(self):
-        qs = ConcreteBundle.objects.order_by('id')
+        qs = ConcreteBundle.objects.order_by("id")
         qs = qs.filter(triggering_product=self.product)
         return qs.all()
 
 
 class ProductUserConfigurableBundleList(generics.ListAPIView):
-    permission_classes = (permissions.AllowAny, )
+    permission_classes = (permissions.AllowAny,)
     serializer_class = UserConfigurableBundleSerializer
 
     def get(self, request, pk):
@@ -46,7 +46,7 @@ class ProductUserConfigurableBundleList(generics.ListAPIView):
         return super().get(request, pk)
 
     def get_queryset(self):
-        qs = UserConfigurableBundle.objects.order_by('id')
+        qs = UserConfigurableBundle.objects.order_by("id")
         qs = qs.filter(triggering_product=self.product)
         return qs.all()
 
@@ -56,21 +56,20 @@ class ProductUserConfigurableBundleList(generics.ListAPIView):
 # =============================================================================
 class BundleGroupList(generics.ListCreateAPIView):
     permission_classes = API_PERMS
-    queryset = BundleGroup.objects\
-        .prefetch_related(
-            'triggering_parents',
-            'suggested_parents',
-            'concrete_bundles',
-            'concrete_bundles__triggering_product',
-            'concrete_bundles__suggested_products',
-            'user_configurable_bundles')\
-        .order_by('id')
+    queryset = BundleGroup.objects.prefetch_related(
+        "triggering_parents",
+        "suggested_parents",
+        "concrete_bundles",
+        "concrete_bundles__triggering_product",
+        "concrete_bundles__suggested_products",
+        "user_configurable_bundles",
+    ).order_by("id")
     serializer_class = BundleGroupSerializer
 
 
 class BundleGroupDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = API_PERMS
-    queryset = BundleGroup.objects.order_by('id')
+    queryset = BundleGroup.objects.order_by("id")
     serializer_class = BundleGroupSerializer
 
 
@@ -79,27 +78,29 @@ class BundleGroupDetail(generics.RetrieveUpdateDestroyAPIView):
 # =============================================================================
 class ConcreteBundleList(generics.ListAPIView):
     permission_classes = API_PERMS
-    queryset = ConcreteBundle.objects\
-        .select_related('bundle_group')\
-        .prefetch_related('triggering_product', 'suggested_products')\
-        .order_by('id')
+    queryset = (
+        ConcreteBundle.objects.select_related("bundle_group")
+        .prefetch_related("triggering_product", "suggested_products")
+        .order_by("id")
+    )
     serializer_class = ConcreteBundleSerializer
 
 
 class ConcreteBundleDetail(generics.RetrieveAPIView):
     permission_classes = API_PERMS
-    queryset = ConcreteBundle.objects\
-        .select_related('bundle_group')\
-        .prefetch_related('triggering_product', 'suggested_products')\
-        .order_by('id')
+    queryset = (
+        ConcreteBundle.objects.select_related("bundle_group")
+        .prefetch_related("triggering_product", "suggested_products")
+        .order_by("id")
+    )
     serializer_class = ConcreteBundleSerializer
 
 
 class ConcreteBundleProductChoicesList(generics.ListAPIView):
     permission_classes = API_PERMS
-    queryset = Product.objects\
-        .prefetch_related('product_class', 'children')\
-        .order_by('id')
+    queryset = Product.objects.prefetch_related("product_class", "children").order_by(
+        "id"
+    )
     serializer_class = ProductSerializer
 
 
@@ -108,19 +109,17 @@ class ConcreteBundleProductChoicesList(generics.ListAPIView):
 # =============================================================================
 class UserConfigurableBundleList(generics.ListAPIView):
     permission_classes = API_PERMS
-    queryset = UserConfigurableBundle.objects\
-        .order_by('id')
+    queryset = UserConfigurableBundle.objects.order_by("id")
     serializer_class = UserConfigurableBundleSerializer
 
 
 class UserConfigurableBundleDetail(generics.RetrieveAPIView):
     permission_classes = API_PERMS
-    queryset = UserConfigurableBundle.objects.order_by('id')
+    queryset = UserConfigurableBundle.objects.order_by("id")
     serializer_class = UserConfigurableBundleSerializer
 
 
 class UserConfigurableBundleRangeChoicesList(generics.ListAPIView):
     permission_classes = API_PERMS
-    queryset = Range.objects\
-        .order_by('id')
+    queryset = Range.objects.order_by("id")
     serializer_class = RangeSerializer

@@ -6,7 +6,7 @@ from django.db import migrations
 
 
 def update_triggering_parents(apps, schema_editor):
-    BundleGroup = apps.get_model('oscarbundles', 'BundleGroup')
+    BundleGroup = apps.get_model("oscarbundles", "BundleGroup")
     for group in BundleGroup.objects.all():
         for bundle in group.bundle_set.all():
             for product in bundle.triggering_products.all():
@@ -18,7 +18,7 @@ def update_triggering_parents(apps, schema_editor):
 
 
 def update_suggested_parents(apps, schema_editor):
-    BundleGroup = apps.get_model('oscarbundles', 'BundleGroup')
+    BundleGroup = apps.get_model("oscarbundles", "BundleGroup")
     for group in BundleGroup.objects.all():
         for bundle in group.bundle_set.all():
             for product in bundle.suggested_products.all():
@@ -32,7 +32,7 @@ def update_suggested_parents(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('oscarbundles', '0003_auto_20180315_1137'),
+        ("oscarbundles", "0003_auto_20180315_1137"),
     ]
 
     operations = [

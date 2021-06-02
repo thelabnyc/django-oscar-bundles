@@ -8,16 +8,21 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('oscarbundles', '0011_auto_20180319_1121'),
+        ("oscarbundles", "0011_auto_20180319_1121"),
     ]
 
     operations = [
         migrations.DeleteModel(
-            name='BundleType',
+            name="BundleType",
         ),
         migrations.AddField(
-            model_name='bundlegroup',
-            name='bundle_type',
-            field=models.CharField(choices=[('default', 'Default')], default='default', max_length=200, verbose_name='Bundle Type'),
+            model_name="bundlegroup",
+            name="bundle_type",
+            field=models.CharField(
+                choices=[("default", "Default")],
+                default="default",
+                max_length=200,
+                verbose_name="Bundle Type",
+            ),
         ),
     ]

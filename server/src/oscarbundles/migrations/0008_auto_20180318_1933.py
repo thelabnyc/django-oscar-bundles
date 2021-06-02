@@ -9,23 +9,38 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('oscarbundles', '0007_auto_20180318_1919'),
+        ("oscarbundles", "0007_auto_20180318_1919"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='bundle',
-            name='bundle_group',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='bundles', to='oscarbundles.BundleGroup'),
+            model_name="bundle",
+            name="bundle_group",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="bundles",
+                to="oscarbundles.BundleGroup",
+            ),
         ),
         migrations.AlterField(
-            model_name='bundle',
-            name='suggested_products',
-            field=models.ManyToManyField(help_text='Which product(s) should this bundle suggest when triggered?', related_name='suggesting_bundles', to='catalogue.Product', verbose_name='Suggested Products'),
+            model_name="bundle",
+            name="suggested_products",
+            field=models.ManyToManyField(
+                help_text="Which product(s) should this bundle suggest when triggered?",
+                related_name="suggesting_bundles",
+                to="catalogue.Product",
+                verbose_name="Suggested Products",
+            ),
         ),
         migrations.AlterField(
-            model_name='bundle',
-            name='triggering_product',
-            field=models.ForeignKey(help_text='Which product should trigger this bundle?', on_delete=django.db.models.deletion.CASCADE, related_name='triggering_bundles', to='catalogue.Product', verbose_name='Triggering Product'),
+            model_name="bundle",
+            name="triggering_product",
+            field=models.ForeignKey(
+                help_text="Which product should trigger this bundle?",
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="triggering_bundles",
+                to="catalogue.Product",
+                verbose_name="Triggering Product",
+            ),
         ),
     ]

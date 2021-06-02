@@ -8,10 +8,10 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('oscarbundles', '0006_auto_20180318_1907'),
+        ("oscarbundles", "0006_auto_20180318_1907"),
     ]
 
     operations = [
-        migrations.DeleteModel('Bundle'),
-        migrations.RenameModel('BundleEntry', 'Bundle'),
+        migrations.DeleteModel("Bundle"),
+        migrations.RenameModel("BundleEntry", "Bundle"),
     ]

@@ -6,21 +6,22 @@ from django.db import migrations
 
 
 def cleanup_bundles(apps, schema_editor):
-    Bundle = apps.get_model('oscarbundles', 'Bundle')
-    for bundle in Bundle.objects.order_by('id').all():
+    Bundle = apps.get_model("oscarbundles", "Bundle")
+    for bundle in Bundle.objects.order_by("id").all():
         if bundle.suggested_products.all().count() <= 0:
             bundle.delete()
 
+
 def cleanup_bundle_groups(apps, schema_editor):
-    BundleGroup = apps.get_model('oscarbundles', 'BundleGroup')
-    for group in BundleGroup.objects.order_by('id').all():
+    BundleGroup = apps.get_model("oscarbundles", "BundleGroup")
+    for group in BundleGroup.objects.order_by("id").all():
         if group.bundles.all().count() <= 0:
             group.delete()
 
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('oscarbundles', '0009_auto_20180319_1116'),
+        ("oscarbundles", "0009_auto_20180319_1116"),
     ]
 
     operations = [
