@@ -1,4 +1,4 @@
-from django.conf.urls import url
+from django.urls import re_path
 from django.views.i18n import JavaScriptCatalog
 from django.views.decorators.cache import cache_page
 from django.views.generic.base import RedirectView
@@ -33,59 +33,61 @@ class OscarBundlesAPIConfig(OscarConfig):
 
         urlpatterns = [
             # Cached views
-            url(
+            re_path(
                 r"^products/(?P<pk>[0-9]+)/bundles/$",
                 RedirectView.as_view(pattern_name="product-concretebundle-list"),
                 name="product-bundle-list",
             ),
-            url(
+            re_path(
                 r"^products/(?P<pk>[0-9]+)/concretebundles/$",
                 ProductConcreteBundleList.as_view(),
                 name="product-concretebundle-list",
             ),
-            url(
+            re_path(
                 r"^products/(?P<pk>[0-9]+)/userconfigurablebundles/$",
                 ProductUserConfigurableBundleList.as_view(),
                 name="product-userconfigurablebundle-list",
             ),
-            url(
+            re_path(
                 r"^bundles/i18n\.js$",
                 cache(JavaScriptCatalog.as_view(packages=["oscarbundles"])),
                 name="oscarbundles-i18n-js",
             ),
             # Uncached views
-            url(r"^bundlegroups/$", BundleGroupList.as_view(), name="bundlegroup-list"),
-            url(
+            re_path(
+                r"^bundlegroups/$", BundleGroupList.as_view(), name="bundlegroup-list"
+            ),
+            re_path(
                 r"^bundlegroups/(?P<pk>[0-9]+)/$",
                 BundleGroupDetail.as_view(),
                 name="bundlegroup-detail",
             ),
-            url(
+            re_path(
                 r"^concretebundles/$",
                 ConcreteBundleList.as_view(),
                 name="concretebundle-list",
             ),
-            url(
+            re_path(
                 r"^concretebundles/(?P<pk>[0-9]+)/$",
                 ConcreteBundleDetail.as_view(),
                 name="concretebundle-detail",
             ),
-            url(
+            re_path(
                 r"^concretebundles/product-choices/$",
                 ConcreteBundleProductChoicesList.as_view(),
                 name="concretebundle-product-choice-list",
             ),
-            url(
+            re_path(
                 r"^userconfigurablebundles/$",
                 UserConfigurableBundleList.as_view(),
                 name="userconfigurablebundle-list",
             ),
-            url(
+            re_path(
                 r"^userconfigurablebundles/(?P<pk>[0-9]+)/$",
                 UserConfigurableBundleDetail.as_view(),
                 name="userconfigurablebundle-detail",
             ),
-            url(
+            re_path(
                 r"^userconfigurablebundles/range-choices/$",
                 UserConfigurableBundleRangeChoicesList.as_view(),
                 name="userconfigurablebundle-range-choice-list",
