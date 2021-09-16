@@ -17,6 +17,10 @@ Bundles do not include offers - however it may be used in combination with an of
 Changelog
 =========
 
+2.0.1
+------------------
+- Fix bug in bundle edit form when removing suggested parents.
+
 2.0.0
 ------------------
 - Oscar 3.0 Compatibility
