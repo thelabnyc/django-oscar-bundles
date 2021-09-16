@@ -364,8 +364,9 @@ class BundleGroupEditForm extends React.PureComponent<IProps, IState> {
                     const sProduct = this.getProduct(sID);
                     return (
                         data.suggested_parents.indexOf(sProduct.id) !== -1 ||
-                        !sProduct.parent ||
-                        data.suggested_parents.indexOf(sProduct.parent) !== -1
+                        (sProduct.parent &&
+                            data.suggested_parents.indexOf(sProduct.parent) !==
+                                -1)
                     );
                 }
             );
