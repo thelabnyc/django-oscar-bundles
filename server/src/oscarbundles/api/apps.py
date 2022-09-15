@@ -14,6 +14,7 @@ class OscarBundlesAPIConfig(OscarConfig):
     label = "oscarbundles_api"
     name = "oscarbundles.api"
     verbose_name = _("Oscar Bundles API")
+    default = True
 
     namespace = "oscarbundles_api"
 
