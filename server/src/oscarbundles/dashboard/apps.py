@@ -7,6 +7,7 @@ class OscarBundlesDashboardConfig(OscarDashboardConfig):
     label = "oscarbundles_dashboard"
     name = "oscarbundles.dashboard"
     verbose_name = _("Oscar Bundles Dashboard")
+    default = True
 
     namespace = "oscarbundles_dashboard"
     default_permissions = [
