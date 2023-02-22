@@ -7,7 +7,9 @@ module.exports = {
     setupFiles: ["<rootDir>/test/setup-django-i18n.js"],
     testPathIgnorePatterns: [".*responses.ts"],
     moduleFileExtensions: ["js", "jsx", "json", "ts", "tsx"],
-    timers: "fake",
+    fakeTimers: {
+        enableGlobally: true,
+    },
     collectCoverage: true,
     collectCoverageFrom: ["src/*.{js,jsx,ts,tsx}", "src/**/*.{js,jsx,ts,tsx}"],
     coverageReporters: ["text"],
