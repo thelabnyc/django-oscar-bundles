@@ -27,8 +27,12 @@ exports[`#bundles/molecules/elements/ParentProductsEditForm renders 1`] = `
         </label>
         <div>
           <div
-            class=" css-2b097c-container"
+            class=" css-b62m3t-container"
           >
+            <span
+              class="css-1f43avz-a11yText-A11yText"
+              id="react-select-2-live-region"
+            />
             <span
               aria-atomic="false"
               aria-live="polite"
@@ -36,21 +40,23 @@ exports[`#bundles/molecules/elements/ParentProductsEditForm renders 1`] = `
               class="css-1f43avz-a11yText-A11yText"
             />
             <div
-              class=" css-yk16xz-control"
+              class=" css-13cymwt-control"
             >
               <div
-                class=" css-g1d714-ValueContainer"
+                class=" css-3w2yfm-ValueContainer"
               >
                 <div
-                  class="css-1rhbuit-multiValue"
+                  class=" css-1p3m7a8-multiValue"
                 >
                   <div
-                    class="css-12jo7m5"
+                    class=" css-wsp0cs-MultiValueGeneric"
                   >
                     book-1
                   </div>
                   <div
-                    class="css-xb97g8"
+                    aria-label="Remove book-1"
+                    class=" css-12a83d4-MultiValueRemove"
+                    role="button"
                   >
                     <svg
                       aria-hidden="true"
@@ -67,28 +73,25 @@ exports[`#bundles/molecules/elements/ParentProductsEditForm renders 1`] = `
                   </div>
                 </div>
                 <div
-                  class="css-b8ldur-Input"
+                  class=" css-qbdosj-Input"
+                  data-value=""
                 >
-                  <div
+                  <input
+                    aria-autocomplete="list"
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    autocapitalize="none"
+                    autocomplete="off"
+                    autocorrect="off"
                     class=""
-                    style="display: inline-block;"
-                  >
-                    <input
-                      aria-autocomplete="list"
-                      autocapitalize="none"
-                      autocomplete="off"
-                      autocorrect="off"
-                      id="react-select-2-input"
-                      spellcheck="false"
-                      style="box-sizing: content-box; width: 2px; border: 0px; opacity: 1; outline: 0; padding: 0px;"
-                      tabindex="0"
-                      type="text"
-                      value=""
-                    />
-                    <div
-                      style="position: absolute; top: 0px; left: 0px; visibility: hidden; height: 0px; overflow: scroll; white-space: pre; font-family: -webkit-small-control; letter-spacing: normal; text-transform: none;"
-                    />
-                  </div>
+                    id="react-select-2-input"
+                    role="combobox"
+                    spellcheck="false"
+                    style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
+                    tabindex="0"
+                    type="text"
+                    value=""
+                  />
                 </div>
               </div>
               <div
@@ -96,7 +99,7 @@ exports[`#bundles/molecules/elements/ParentProductsEditForm renders 1`] = `
               >
                 <div
                   aria-hidden="true"
-                  class=" css-tlfecz-indicatorContainer"
+                  class=" css-1xc3v61-indicatorContainer"
                 >
                   <svg
                     aria-hidden="true"
@@ -112,11 +115,11 @@ exports[`#bundles/molecules/elements/ParentProductsEditForm renders 1`] = `
                   </svg>
                 </div>
                 <span
-                  class=" css-1okebmr-indicatorSeparator"
+                  class=" css-1u9des2-indicatorSeparator"
                 />
                 <div
                   aria-hidden="true"
-                  class=" css-tlfecz-indicatorContainer"
+                  class=" css-1xc3v61-indicatorContainer"
                 >
                   <svg
                     aria-hidden="true"
@@ -154,8 +157,12 @@ exports[`#bundles/molecules/elements/ParentProductsEditForm renders 1`] = `
         </label>
         <div>
           <div
-            class=" css-2b097c-container"
+            class=" css-b62m3t-container"
           >
+            <span
+              class="css-1f43avz-a11yText-A11yText"
+              id="react-select-3-live-region"
+            />
             <span
               aria-atomic="false"
               aria-live="polite"
@@ -163,21 +170,23 @@ exports[`#bundles/molecules/elements/ParentProductsEditForm renders 1`] = `
               class="css-1f43avz-a11yText-A11yText"
             />
             <div
-              class=" css-yk16xz-control"
+              class=" css-13cymwt-control"
             >
               <div
-                class=" css-g1d714-ValueContainer"
+                class=" css-3w2yfm-ValueContainer"
               >
                 <div
-                  class="css-1rhbuit-multiValue"
+                  class=" css-1p3m7a8-multiValue"
                 >
                   <div
-                    class="css-12jo7m5"
+                    class=" css-wsp0cs-MultiValueGeneric"
                   >
                     book-2
                   </div>
                   <div
-                    class="css-xb97g8"
+                    aria-label="Remove book-2"
+                    class=" css-12a83d4-MultiValueRemove"
+                    role="button"
                   >
                     <svg
                       aria-hidden="true"
@@ -194,28 +203,25 @@ exports[`#bundles/molecules/elements/ParentProductsEditForm renders 1`] = `
                   </div>
                 </div>
                 <div
-                  class="css-b8ldur-Input"
+                  class=" css-qbdosj-Input"
+                  data-value=""
                 >
-                  <div
+                  <input
+                    aria-autocomplete="list"
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    autocapitalize="none"
+                    autocomplete="off"
+                    autocorrect="off"
                     class=""
-                    style="display: inline-block;"
-                  >
-                    <input
-                      aria-autocomplete="list"
-                      autocapitalize="none"
-                      autocomplete="off"
-                      autocorrect="off"
-                      id="react-select-3-input"
-                      spellcheck="false"
-                      style="box-sizing: content-box; width: 2px; border: 0px; opacity: 1; outline: 0; padding: 0px;"
-                      tabindex="0"
-                      type="text"
-                      value=""
-                    />
-                    <div
-                      style="position: absolute; top: 0px; left: 0px; visibility: hidden; height: 0px; overflow: scroll; white-space: pre; font-family: -webkit-small-control; letter-spacing: normal; text-transform: none;"
-                    />
-                  </div>
+                    id="react-select-3-input"
+                    role="combobox"
+                    spellcheck="false"
+                    style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
+                    tabindex="0"
+                    type="text"
+                    value=""
+                  />
                 </div>
               </div>
               <div
@@ -223,7 +229,7 @@ exports[`#bundles/molecules/elements/ParentProductsEditForm renders 1`] = `
               >
                 <div
                   aria-hidden="true"
-                  class=" css-tlfecz-indicatorContainer"
+                  class=" css-1xc3v61-indicatorContainer"
                 >
                   <svg
                     aria-hidden="true"
@@ -239,11 +245,11 @@ exports[`#bundles/molecules/elements/ParentProductsEditForm renders 1`] = `
                   </svg>
                 </div>
                 <span
-                  class=" css-1okebmr-indicatorSeparator"
+                  class=" css-1u9des2-indicatorSeparator"
                 />
                 <div
                   aria-hidden="true"
-                  class=" css-tlfecz-indicatorContainer"
+                  class=" css-1xc3v61-indicatorContainer"
                 >
                   <svg
                     aria-hidden="true"
@@ -302,8 +308,12 @@ exports[`#bundles/molecules/elements/ParentProductsEditForm renders error messag
         </label>
         <div>
           <div
-            class=" css-2b097c-container"
+            class=" css-b62m3t-container"
           >
+            <span
+              class="css-1f43avz-a11yText-A11yText"
+              id="react-select-4-live-region"
+            />
             <span
               aria-atomic="false"
               aria-live="polite"
@@ -311,21 +321,23 @@ exports[`#bundles/molecules/elements/ParentProductsEditForm renders error messag
               class="css-1f43avz-a11yText-A11yText"
             />
             <div
-              class=" css-yk16xz-control"
+              class=" css-13cymwt-control"
             >
               <div
-                class=" css-g1d714-ValueContainer"
+                class=" css-3w2yfm-ValueContainer"
               >
                 <div
-                  class="css-1rhbuit-multiValue"
+                  class=" css-1p3m7a8-multiValue"
                 >
                   <div
-                    class="css-12jo7m5"
+                    class=" css-wsp0cs-MultiValueGeneric"
                   >
                     book-1
                   </div>
                   <div
-                    class="css-xb97g8"
+                    aria-label="Remove book-1"
+                    class=" css-12a83d4-MultiValueRemove"
+                    role="button"
                   >
                     <svg
                       aria-hidden="true"
@@ -342,28 +354,25 @@ exports[`#bundles/molecules/elements/ParentProductsEditForm renders error messag
                   </div>
                 </div>
                 <div
-                  class="css-b8ldur-Input"
+                  class=" css-qbdosj-Input"
+                  data-value=""
                 >
-                  <div
+                  <input
+                    aria-autocomplete="list"
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    autocapitalize="none"
+                    autocomplete="off"
+                    autocorrect="off"
                     class=""
-                    style="display: inline-block;"
-                  >
-                    <input
-                      aria-autocomplete="list"
-                      autocapitalize="none"
-                      autocomplete="off"
-                      autocorrect="off"
-                      id="react-select-4-input"
-                      spellcheck="false"
-                      style="box-sizing: content-box; width: 2px; border: 0px; opacity: 1; outline: 0; padding: 0px;"
-                      tabindex="0"
-                      type="text"
-                      value=""
-                    />
-                    <div
-                      style="position: absolute; top: 0px; left: 0px; visibility: hidden; height: 0px; overflow: scroll; white-space: pre; font-family: -webkit-small-control; letter-spacing: normal; text-transform: none;"
-                    />
-                  </div>
+                    id="react-select-4-input"
+                    role="combobox"
+                    spellcheck="false"
+                    style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
+                    tabindex="0"
+                    type="text"
+                    value=""
+                  />
                 </div>
               </div>
               <div
@@ -371,7 +380,7 @@ exports[`#bundles/molecules/elements/ParentProductsEditForm renders error messag
               >
                 <div
                   aria-hidden="true"
-                  class=" css-tlfecz-indicatorContainer"
+                  class=" css-1xc3v61-indicatorContainer"
                 >
                   <svg
                     aria-hidden="true"
@@ -387,11 +396,11 @@ exports[`#bundles/molecules/elements/ParentProductsEditForm renders error messag
                   </svg>
                 </div>
                 <span
-                  class=" css-1okebmr-indicatorSeparator"
+                  class=" css-1u9des2-indicatorSeparator"
                 />
                 <div
                   aria-hidden="true"
-                  class=" css-tlfecz-indicatorContainer"
+                  class=" css-1xc3v61-indicatorContainer"
                 >
                   <svg
                     aria-hidden="true"
@@ -437,8 +446,12 @@ exports[`#bundles/molecules/elements/ParentProductsEditForm renders error messag
         </label>
         <div>
           <div
-            class=" css-2b097c-container"
+            class=" css-b62m3t-container"
           >
+            <span
+              class="css-1f43avz-a11yText-A11yText"
+              id="react-select-5-live-region"
+            />
             <span
               aria-atomic="false"
               aria-live="polite"
@@ -446,21 +459,23 @@ exports[`#bundles/molecules/elements/ParentProductsEditForm renders error messag
               class="css-1f43avz-a11yText-A11yText"
             />
             <div
-              class=" css-yk16xz-control"
+              class=" css-13cymwt-control"
             >
               <div
-                class=" css-g1d714-ValueContainer"
+                class=" css-3w2yfm-ValueContainer"
               >
                 <div
-                  class="css-1rhbuit-multiValue"
+                  class=" css-1p3m7a8-multiValue"
                 >
                   <div
-                    class="css-12jo7m5"
+                    class=" css-wsp0cs-MultiValueGeneric"
                   >
                     book-2
                   </div>
                   <div
-                    class="css-xb97g8"
+                    aria-label="Remove book-2"
+                    class=" css-12a83d4-MultiValueRemove"
+                    role="button"
                   >
                     <svg
                       aria-hidden="true"
@@ -477,28 +492,25 @@ exports[`#bundles/molecules/elements/ParentProductsEditForm renders error messag
                   </div>
                 </div>
                 <div
-                  class="css-b8ldur-Input"
+                  class=" css-qbdosj-Input"
+                  data-value=""
                 >
-                  <div
+                  <input
+                    aria-autocomplete="list"
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    autocapitalize="none"
+                    autocomplete="off"
+                    autocorrect="off"
                     class=""
-                    style="display: inline-block;"
-                  >
-                    <input
-                      aria-autocomplete="list"
-                      autocapitalize="none"
-                      autocomplete="off"
-                      autocorrect="off"
-                      id="react-select-5-input"
-                      spellcheck="false"
-                      style="box-sizing: content-box; width: 2px; border: 0px; opacity: 1; outline: 0; padding: 0px;"
-                      tabindex="0"
-                      type="text"
-                      value=""
-                    />
-                    <div
-                      style="position: absolute; top: 0px; left: 0px; visibility: hidden; height: 0px; overflow: scroll; white-space: pre; font-family: -webkit-small-control; letter-spacing: normal; text-transform: none;"
-                    />
-                  </div>
+                    id="react-select-5-input"
+                    role="combobox"
+                    spellcheck="false"
+                    style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
+                    tabindex="0"
+                    type="text"
+                    value=""
+                  />
                 </div>
               </div>
               <div
@@ -506,7 +518,7 @@ exports[`#bundles/molecules/elements/ParentProductsEditForm renders error messag
               >
                 <div
                   aria-hidden="true"
-                  class=" css-tlfecz-indicatorContainer"
+                  class=" css-1xc3v61-indicatorContainer"
                 >
                   <svg
                     aria-hidden="true"
@@ -522,11 +534,11 @@ exports[`#bundles/molecules/elements/ParentProductsEditForm renders error messag
                   </svg>
                 </div>
                 <span
-                  class=" css-1okebmr-indicatorSeparator"
+                  class=" css-1u9des2-indicatorSeparator"
                 />
                 <div
                   aria-hidden="true"
-                  class=" css-tlfecz-indicatorContainer"
+                  class=" css-1xc3v61-indicatorContainer"
                 >
                   <svg
                     aria-hidden="true"

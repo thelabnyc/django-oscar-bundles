@@ -1,4 +1,3 @@
-import request from "superagent";
 import cookies from "js-cookie";
 import {
     IDRFSelectOption,
@@ -22,21 +21,29 @@ import {
 
 const CSRF_HEADER = "X-CSRFToken";
 
-const getCSRFToken = function () {
+const getCSRFToken = function (): string {
     return cookies.get("csrftoken") || "";
 };
 
 const fetchData = async (endpoint: string) => {
-    return request.get(endpoint).set("Accept", "application/json");
+    return fetch(endpoint, {
+        method: "GET",
+        headers: {
+            Accept: "application/json",
+        },
+    });
 };
 
 export const getBundleTypeChoices = async (
     endpoint: string
 ): Promise<ReadonlyArray<IDRFSelectOption>> => {
-    const resp = await request
-        .options(endpoint)
-        .set("Accept", "application/json");
-    const body = check(DRFOptionsResponse.decode(resp.body));
+    const resp = await fetch(endpoint, {
+        method: "OPTIONS",
+        headers: {
+            Accept: "application/json",
+        },
+    });
+    const body = check(DRFOptionsResponse.decode(await resp.json()));
     if (!body.actions.POST) {
         return [];
     }
@@ -80,17 +87,22 @@ const _saveBundleGroupData = async (
     endpoint: string,
     group: IBundleGroup
 ): Promise<IBundleGroup> => {
-    const req = group.id
-        ? request.patch(`${endpoint}${group.id}/`)
-        : request.post(endpoint);
+    const [method, url] = group.id
+        ? ["PATCH", `${endpoint}${group.id}/`]
+        : ["POST", endpoint];
     const data = { ...group };
     delete data.image;
     delete data.newImage;
     delete data.clearImage;
-    const resp = await req
-        .set("Accept", "application/json")
-        .set(CSRF_HEADER, getCSRFToken())
-        .send(data);
+    const resp = await fetch(url, {
+        method: method,
+        headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+            [CSRF_HEADER]: getCSRFToken(),
+        },
+        body: JSON.stringify(data),
+    });
     return check(BundleGroup.decode(resp.body));
 };
 
@@ -106,18 +118,34 @@ const _saveBundleGroupImage = async (
         return Promise.resolve();
     }
 
-    let req = request
-        .patch(`${endpoint}${group.id}/`)
-        .set("Accept", "application/json")
-        .set(CSRF_HEADER, getCSRFToken());
-
     if (group.newImage && !group.clearImage) {
-        req = req.attach("image", group.newImage, group.newImage.name);
-    } else if (group.clearImage) {
-        req = req.send({ image: null });
+        const formData = new FormData();
+        formData.append(`image`, group.newImage, group.newImage.name);
+        await fetch(`${endpoint}${group.id}/`, {
+            method: "PATCH",
+            headers: {
+                Accept: "application/json",
+                [CSRF_HEADER]: getCSRFToken(),
+            },
+            body: formData,
+        });
+        return;
     }
 
-    await req;
+    if (group.clearImage) {
+        await fetch(`${endpoint}${group.id}/`, {
+            method: "PATCH",
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                [CSRF_HEADER]: getCSRFToken(),
+            },
+            body: JSON.stringify({
+                image: null,
+            }),
+        });
+        return;
+    }
 };
 
 export const saveBundleGroup = async (
@@ -137,8 +165,11 @@ export const deleteBundleGroup = async (
     if (!group.id) {
         throw new Error("Can not delete unsaved bundle group");
     }
-    await request
-        .delete(`${endpoint}${group.id}/`)
-        .set("Accept", "application/json")
-        .set(CSRF_HEADER, getCSRFToken());
+    await fetch(`${endpoint}${group.id}/`, {
+        method: "DELETE",
+        headers: {
+            Accept: "application/json",
+            [CSRF_HEADER]: getCSRFToken(),
+        },
+    });
 };

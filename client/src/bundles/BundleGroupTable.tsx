@@ -121,7 +121,8 @@ class BundleGroupTable extends React.Component<IProps, IState> {
         } catch (err) {
             this.setState({
                 isSaving: false,
-                formErrors: err.response.body,
+                /* tslint:disable-next-line */
+                formErrors: (err as any).response.body,
             });
         }
     };
