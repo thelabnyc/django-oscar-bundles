@@ -49,7 +49,6 @@ export const getBundleTypeChoices = async (
     }
     const field = check(ChoiceField.decode(body.actions.POST.bundle_type));
     const choices = field.choices;
-    console.log("getBundleTypeChoices", choices)
     return choices;
 };
 
@@ -57,37 +56,31 @@ export const listBundleGroups = async (
     endpoint: string
 ): Promise<IBundleGroup[]> => {
     const resp = await fetchData(endpoint);
-    console.log(endpoint, 'ENDPOINT::')
-
-    console.log(resp.body, 'listBundleGroups3::')
-
-    return check(BundleGroups.decode(resp.body));
+    return check(BundleGroups.decode(await resp.json()));
 };
 
 export const listProducts = async (endpoint: string): Promise<IProduct[]> => {
     const resp = await fetchData(endpoint);
-    console.log(resp, 'listProducts:::')
-    return check(Products.decode(resp.body));
+    return check(Products.decode(await resp.json()));
 };
 
 export const listRanges = async (endpoint: string): Promise<IRange[]> => {
     const resp = await fetchData(endpoint);
-    console.log(resp.body, 'listRanges:::')
-    return check(Ranges.decode(resp.body));
+    return check(Ranges.decode(await resp.json()));
 };
 
 export const listConcreteBundles = async (
     endpoint: string
 ): Promise<IConcreteBundle[]> => {
     const resp = await fetchData(endpoint);
-    return check(ConcreteBundles.decode(resp.body));
+    return check(ConcreteBundles.decode(await resp.json()));
 };
 
 export const listUserConfigurableBundles = async (
     endpoint: string
 ): Promise<IUserConfigurableBundle[]> => {
     const resp = await fetchData(endpoint);
-    return check(UserConfigurableBundles.decode(resp.body));
+    return check(UserConfigurableBundles.decode(await resp.json()));
 };
 
 const _saveBundleGroupData = async (
@@ -110,7 +103,7 @@ const _saveBundleGroupData = async (
         },
         body: JSON.stringify(data),
     });
-    return check(BundleGroup.decode(resp.body));
+    return check(BundleGroup.decode(await resp.json()));
 };
 
 const _saveBundleGroupImage = async (
