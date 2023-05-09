@@ -46,6 +46,7 @@ interface IState {
     name: string;
     headline: string;
     description: string;
+    is_active: boolean | undefined | null;
     image: File | null;
     clearImage: boolean;
     triggeringParents: number[];
@@ -57,6 +58,7 @@ interface IState {
 const _isSelectOptionArray = (
     opts: SelectOption | ReadonlyArray<SelectOption> | null | undefined
 ): opts is ReadonlyArray<SelectOption> => {
+    console.log(opts, 'OPTS:')
     return !!opts && (opts as ReadonlyArray<SelectOption>).length !== undefined;
 };
 
@@ -109,6 +111,7 @@ class BundleGroupEditForm extends React.PureComponent<IProps, IState> {
             name: "",
             description: "",
             headline: "",
+            is_active: true,
             image: null,
             clearImage: false,
             triggeringParents: [],
@@ -121,6 +124,7 @@ class BundleGroupEditForm extends React.PureComponent<IProps, IState> {
             state.name = props.group.name;
             state.description = props.group.description;
             state.headline = props.group.headline;
+            state.is_active = props.group.is_active;
             state.triggeringParents = props.group.triggering_parents;
             state.suggestedParents = props.group.suggested_parents;
         } else if (props.bundleTypeChoices.length > 0) {
@@ -295,6 +299,7 @@ class BundleGroupEditForm extends React.PureComponent<IProps, IState> {
             name: this.state.name,
             description: this.state.description,
             headline: this.state.headline,
+            is_active: this.state.is_active,
             image: this.props.group ? this.props.group.image : "",
             newImage: this.state.clearImage ? null : this.state.image,
             clearImage: this.state.clearImage,
@@ -418,6 +423,7 @@ class BundleGroupEditForm extends React.PureComponent<IProps, IState> {
                     name={this.state.name}
                     headline={this.state.headline}
                     description={this.state.description}
+                    is_active={this.state.is_active || false}
                     image={this.state.image}
                     clearImage={this.state.clearImage}
                     onEdit={this.onEdit}

@@ -24,6 +24,8 @@ class BundleGroup(models.Model):
     )
 
     name = models.CharField(_("Name"), max_length=200, blank=True, default="")
+    is_active = models.BooleanField(_("is_active"), default=True)
+
     headline = models.TextField(
         _("Headline"),
         blank=True,

@@ -20,6 +20,7 @@ describe("#bundles/molecules/elements/BundleGroupMetaFields", () => {
                     headline: "",
                     image: "https://placeimg.com/640/480/any",
                     newImage: null,
+                    is_active: true,
                     clearImage: false,
                     triggering_parents: [],
                     suggested_parents: [],
@@ -33,6 +34,7 @@ describe("#bundles/molecules/elements/BundleGroupMetaFields", () => {
                 headline={""}
                 description={""}
                 image={null}
+                is_active= {true}
                 clearImage={false}
                 onEdit={() => null}
                 onSelectImage={() => null}
@@ -59,6 +61,7 @@ describe("#bundles/molecules/elements/BundleGroupMetaFields", () => {
                 name={""}
                 headline={""}
                 description={""}
+                is_active={true}
                 image={null}
                 clearImage={false}
                 onEdit={() => null}

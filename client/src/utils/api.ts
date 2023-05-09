@@ -49,6 +49,7 @@ export const getBundleTypeChoices = async (
     }
     const field = check(ChoiceField.decode(body.actions.POST.bundle_type));
     const choices = field.choices;
+    console.log("getBundleTypeChoices", choices)
     return choices;
 };
 
@@ -56,16 +57,22 @@ export const listBundleGroups = async (
     endpoint: string
 ): Promise<IBundleGroup[]> => {
     const resp = await fetchData(endpoint);
+    console.log(endpoint, 'ENDPOINT::')
+
+    console.log(resp.body, 'listBundleGroups3::')
+
     return check(BundleGroups.decode(resp.body));
 };
 
 export const listProducts = async (endpoint: string): Promise<IProduct[]> => {
     const resp = await fetchData(endpoint);
+    console.log(resp, 'listProducts:::')
     return check(Products.decode(resp.body));
 };
 
 export const listRanges = async (endpoint: string): Promise<IRange[]> => {
     const resp = await fetchData(endpoint);
+    console.log(resp.body, 'listRanges:::')
     return check(Ranges.decode(resp.body));
 };
 

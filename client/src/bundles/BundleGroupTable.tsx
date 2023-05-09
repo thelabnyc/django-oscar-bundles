@@ -133,18 +133,36 @@ class BundleGroupTable extends React.Component<IProps, IState> {
     };
 
     componentDidMount() {
+        console.log('loading data:::')
         this.loadData();
     }
 
-    private async loadData() {
+    public async loadData() {
+        console.log('loading data2:::')
+
         this.setState({ isLoading: true });
+        console.log('loading data3:::')
+        
         const loading = Promise.all([
             getBundleTypeChoices(this.props.bundleGroupURL),
             listBundleGroups(this.props.bundleGroupURL),
+        ]);
+
+        const loading2 = Promise.all([
             listProducts(this.props.concreteBundleProductChoiceURL),
             listRanges(this.props.userConfigurableBundleRangeChoiceURL),
         ]);
-        const [choices, groups, products, ranges] = await loading;
+
+        
+        console.log('loading data4:::')
+
+        const [choices, groups] =  await loading;
+        console.log('loading data5:::')
+
+        const [products, ranges] = await loading2
+        console.log('loading data6:::')
+
+        // console.log([choices, groups, products, ranges], 'arr:::')
         this.setBundleTypeChoices(choices);
         this.setGroups(groups);
         this.setProducts(products);

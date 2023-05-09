@@ -19,6 +19,7 @@ interface IProps {
     bundleType: string;
     name: string;
     headline: string;
+    is_active: boolean;
     description: string;
     image: File | null;
     clearImage: boolean;
@@ -148,6 +149,31 @@ export class BundleGroupMetaFields extends React.PureComponent<IProps, IState> {
                         ></textarea>
                         {this.buildErrors("headline")}
                     </div>
+                </div>
+                <div>
+                    <select
+                        id="id_active_status"
+                        name="active_status"
+                        className="form-control"
+                        value={String(this.props.is_active)}
+                        onChange={this.props.onEdit}
+                        disabled={this.props.isSaving}
+                    >
+                        {this.props.bundleTypeChoices.map((choice) => {
+                            return (
+                                <option
+                                    key={choice.value}
+                                    value={choice.value}
+                                >
+                                    {choice.display_name}
+                                </option>
+                            );
+                        })}
+                    </select>
+                    {/* {this.buildErrors("bundleType")} */}
+                </div>
+                <div>
+                    TEST6
                 </div>
                 <div className={this.buildFormGroupClasses("description")}>
                     <label htmlFor="id_description" className="control-label">
