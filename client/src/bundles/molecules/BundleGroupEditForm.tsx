@@ -46,6 +46,7 @@ interface IState {
     name: string;
     headline: string;
     description: string;
+    isActive: boolean | undefined | null;
     image: File | null;
     clearImage: boolean;
     triggeringParents: number[];
@@ -109,6 +110,7 @@ class BundleGroupEditForm extends React.PureComponent<IProps, IState> {
             name: "",
             description: "",
             headline: "",
+            isActive: true,
             image: null,
             clearImage: false,
             triggeringParents: [],
@@ -121,6 +123,7 @@ class BundleGroupEditForm extends React.PureComponent<IProps, IState> {
             state.name = props.group.name;
             state.description = props.group.description;
             state.headline = props.group.headline;
+            state.isActive = props.group.is_active;
             state.triggeringParents = props.group.triggering_parents;
             state.suggestedParents = props.group.suggested_parents;
         } else if (props.bundleTypeChoices.length > 0) {
@@ -295,6 +298,7 @@ class BundleGroupEditForm extends React.PureComponent<IProps, IState> {
             name: this.state.name,
             description: this.state.description,
             headline: this.state.headline,
+            is_active: this.state.isActive,
             image: this.props.group ? this.props.group.image : "",
             newImage: this.state.clearImage ? null : this.state.image,
             clearImage: this.state.clearImage,
@@ -418,6 +422,7 @@ class BundleGroupEditForm extends React.PureComponent<IProps, IState> {
                     name={this.state.name}
                     headline={this.state.headline}
                     description={this.state.description}
+                    isActive={this.state.isActive || false}
                     image={this.state.image}
                     clearImage={this.state.clearImage}
                     onEdit={this.onEdit}

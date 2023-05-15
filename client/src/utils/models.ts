@@ -152,6 +152,7 @@ export const BundleGroup = t.interface({
     bundle_type: t.string,
     name: t.string,
     description: t.string,
+    is_active: optional(nullable(t.boolean)),
     headline: t.string,
     image: optional(nullable(t.string)),
     newImage: optional(nullable(file)),

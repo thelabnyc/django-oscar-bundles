@@ -22,10 +22,12 @@ class ConcreteBundleAPITest(APITestCase):
 
         self.bundle_name = "A bundle of bundles"
         self.bundle_headline = "We want you to buy one of these"
+        self.bundle_is_active = True
 
         self.bundle_group1 = BundleGroup()
         self.bundle_group1.name = self.bundle_name
         self.bundle_group1.headline = self.bundle_headline
+        self.bundle_group1.is_active = self.bundle_is_active
         self.bundle_group1.save()
         self.bundle_group1.triggering_parents.set([self.product1, self.product2])
         self.bundle_group1.suggested_parents.set([self.product3, self.product4])
@@ -71,6 +73,7 @@ class ConcreteBundleAPITest(APITestCase):
                         "bundle_type": "default",
                         "name": self.bundle_name,
                         "headline": self.bundle_headline,
+                        "is_active": self.bundle_is_active,
                         "description": "",
                         "image": None,
                     },
@@ -84,6 +87,7 @@ class ConcreteBundleAPITest(APITestCase):
                         "bundle_type": "default",
                         "name": self.bundle_name,
                         "headline": self.bundle_headline,
+                        "is_active": self.bundle_is_active,
                         "description": "",
                         "image": None,
                     },
@@ -97,6 +101,7 @@ class ConcreteBundleAPITest(APITestCase):
                         "bundle_type": "default",
                         "name": self.bundle_name,
                         "headline": "Forget Something?",
+                        "is_active": self.bundle_is_active,
                         "description": "",
                         "image": None,
                     },
@@ -119,6 +124,7 @@ class ConcreteBundleAPITest(APITestCase):
                     "bundle_type": "default",
                     "name": self.bundle_name,
                     "headline": self.bundle_headline,
+                    "is_active": self.bundle_is_active,
                     "description": "",
                     "image": None,
                 },
@@ -165,6 +171,7 @@ class ConcreteBundleAPITest(APITestCase):
                         "bundle_type": "default",
                         "name": self.bundle_name,
                         "headline": self.bundle_headline,
+                        "is_active": self.bundle_is_active,
                         "description": "",
                         "image": None,
                     },
@@ -187,6 +194,7 @@ class ConcreteBundleAPITest(APITestCase):
                         "bundle_type": "default",
                         "name": self.bundle_name,
                         "headline": self.bundle_headline,
+                        "is_active": self.bundle_is_active,
                         "description": "",
                         "image": None,
                     },
@@ -200,6 +208,7 @@ class ConcreteBundleAPITest(APITestCase):
                         "bundle_type": "default",
                         "name": self.bundle_name,
                         "headline": "Forget Something?",
+                        "is_active": self.bundle_is_active,
                         "description": "",
                         "image": None,
                     },
@@ -227,10 +236,12 @@ class UserConfigurableBundleAPITest(APITestCase):
 
         self.bundle_name = "A bundle of bundles"
         self.bundle_headline = "We want you to buy one of these"
+        self.bundle_is_active = True
 
         self.bundle_group1 = BundleGroup()
         self.bundle_group1.name = self.bundle_name
         self.bundle_group1.headline = self.bundle_headline
+        self.bundle_group1.is_active = self.bundle_is_active
         self.bundle_group1.save()
         self.bundle_group1.triggering_parents.set([self.product1, self.product2])
         self.bundle_group1.suggested_parents.set([self.product3, self.product4])
@@ -274,6 +285,7 @@ class UserConfigurableBundleAPITest(APITestCase):
                 "bundle_type": "default",
                 "name": self.bundle_name,
                 "headline": self.bundle_headline,
+                "is_active": self.bundle_is_active,
                 "description": "",
                 "image": None,
             },
@@ -298,6 +310,7 @@ class UserConfigurableBundleAPITest(APITestCase):
                 "bundle_type": "default",
                 "name": self.bundle_name,
                 "headline": self.bundle_headline,
+                "is_active": self.bundle_is_active,
                 "description": "",
                 "image": None,
             },
@@ -354,10 +367,12 @@ class BundleGroupAPITest(APITestCase):
 
         self.bundle_name = "A bundle of bundles"
         self.bundle_headline = "We want you to buy one of these"
+        self.bundle_is_active = True
 
         self.bundle_group1 = BundleGroup()
         self.bundle_group1.name = self.bundle_name
         self.bundle_group1.headline = self.bundle_headline
+        self.bundle_group1.is_active = self.bundle_is_active
         self.bundle_group1.save()
         self.bundle_group1.triggering_parents.set([self.product1, self.product2])
         self.bundle_group1.suggested_parents.set([self.product3, self.product4])
@@ -446,6 +461,7 @@ class BundleGroupAPITest(APITestCase):
                 "bundle_type": "default",
                 "name": "test bundle 1",
                 "headline": "test headline",
+                "is_active": True,
                 "description": "test description",
                 "image": None,
                 "triggering_parents": [self.product1.pk],
@@ -518,6 +534,7 @@ class BundleGroupAPITest(APITestCase):
                 "bundle_type": "default",
                 "name": "test bundle 1",
                 "headline": "test headline",
+                "is_active": True,
                 "description": "test description",
                 "image": None,
                 "triggering_parents": [self.product1.pk],

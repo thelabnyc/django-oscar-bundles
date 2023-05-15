@@ -11,6 +11,7 @@ interface IProps {
     isSaving: boolean;
     errors: {
         bundleType?: string[];
+        isActive?: string[];
         name?: string[];
         headline?: string[];
         description?: string[];
@@ -19,6 +20,7 @@ interface IProps {
     bundleType: string;
     name: string;
     headline: string;
+    isActive: boolean;
     description: string;
     image: File | null;
     clearImage: boolean;
@@ -147,6 +149,33 @@ export class BundleGroupMetaFields extends React.PureComponent<IProps, IState> {
                             disabled={this.props.isSaving}
                         ></textarea>
                         {this.buildErrors("headline")}
+                    </div>
+                </div>
+                <div className={this.buildFormGroupClasses("isActive")}>
+                    <label htmlFor="id_active_status" className="control-label">
+                        {gettext("Active Status")}
+                    </label>
+                    <div>
+                        <select
+                            id="id_isActive"
+                            name="isActive"
+                            className="form-control"
+                            value={String(this.props.isActive)}
+                            onChange={this.props.onEdit}
+                            disabled={this.props.isSaving}
+                        >
+                            {[
+                                { display_name: "Active", value: "true" },
+                                { display_name: "Inactive", value: "false" },
+                            ].map((choice, index) => {
+                                return (
+                                    <option key={index} value={choice.value}>
+                                        {choice.display_name}
+                                    </option>
+                                );
+                            })}
+                        </select>
+                        {this.buildErrors("isActive")}
                     </div>
                 </div>
                 <div className={this.buildFormGroupClasses("description")}>

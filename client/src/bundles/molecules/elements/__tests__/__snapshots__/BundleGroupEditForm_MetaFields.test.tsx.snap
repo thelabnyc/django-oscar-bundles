@@ -74,6 +74,34 @@ exports[`#bundles/molecules/elements/BundleGroupMetaFields renders 1`] = `
     >
       <label
         class="control-label"
+        for="id_active_status"
+      >
+        Active Status
+      </label>
+      <div>
+        <select
+          class="form-control"
+          id="id_isActive"
+          name="isActive"
+        >
+          <option
+            value="true"
+          >
+            Active
+          </option>
+          <option
+            value="false"
+          >
+            Inactive
+          </option>
+        </select>
+      </div>
+    </div>
+    <div
+      class="form-group"
+    >
+      <label
+        class="control-label"
         for="id_description"
       >
         Description
@@ -199,6 +227,34 @@ exports[`#bundles/molecules/elements/BundleGroupMetaFields renders error message
           name="headline"
           rows="4"
         />
+      </div>
+    </div>
+    <div
+      class="form-group"
+    >
+      <label
+        class="control-label"
+        for="id_active_status"
+      >
+        Active Status
+      </label>
+      <div>
+        <select
+          class="form-control"
+          id="id_isActive"
+          name="isActive"
+        >
+          <option
+            value="true"
+          >
+            Active
+          </option>
+          <option
+            value="false"
+          >
+            Inactive
+          </option>
+        </select>
       </div>
     </div>
     <div

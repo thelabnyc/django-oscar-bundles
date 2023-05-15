@@ -24,6 +24,8 @@ class BundleGroup(models.Model):
     )
 
     name = models.CharField(_("Name"), max_length=200, blank=True, default="")
+    is_active = models.BooleanField(_("Is Active"), default=True)
+
     headline = models.TextField(
         _("Headline"),
         blank=True,
@@ -50,6 +52,12 @@ class BundleGroup(models.Model):
     class Meta:
         verbose_name = _("Bundle Group")
         verbose_name_plural = _("Bundle Groups")
+
+    class ActiveModelManager(models.Manager):
+        def active(self):
+            return self.filter(is_active=True)
+
+    objects = ActiveModelManager()
 
 
 class ConcreteBundle(models.Model):
