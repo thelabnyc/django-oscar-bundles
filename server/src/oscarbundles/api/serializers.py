@@ -17,6 +17,7 @@ class InlineBundleGroupSerializer(serializers.ModelSerializer):
             "id",
             "bundle_type",
             "name",
+            "is_active",
             "headline",
             "description",
             "image",
@@ -147,6 +148,7 @@ class BundleGroupSerializer(serializers.ModelSerializer):
             "bundle_type",
             "name",
             "headline",
+            "is_active",
             "description",
             "image",
             "triggering_parents",
@@ -160,6 +162,7 @@ class BundleGroupSerializer(serializers.ModelSerializer):
             bundle_type=validated_data.get("bundle_type", None),
             name=validated_data.get("name", ""),
             headline=validated_data.get("headline", ""),
+            is_active=validated_data.get("is_active", True),
             description=validated_data.get("description", ""),
             image=validated_data.get("image", None),
         )
@@ -176,6 +179,7 @@ class BundleGroupSerializer(serializers.ModelSerializer):
         group.bundle_type = validated_data.get("bundle_type", group.bundle_type)
         group.name = validated_data.get("name", group.name)
         group.headline = validated_data.get("headline", group.headline)
+        group.is_active = validated_data.get("is_active", group.is_active)
         group.description = validated_data.get("description", group.description)
         if "image" in validated_data:
             group.image = validated_data["image"]

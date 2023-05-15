@@ -33,7 +33,7 @@ class ProductConcreteBundleList(generics.ListAPIView):
 
     def get_queryset(self):
         qs = ConcreteBundle.objects.order_by("id")
-        qs = qs.filter(triggering_product=self.product)
+        qs = qs.filter(triggering_product=self.product, bundle_group__is_active=True)
         return qs.all()
 
 
@@ -47,7 +47,7 @@ class ProductUserConfigurableBundleList(generics.ListAPIView):
 
     def get_queryset(self):
         qs = UserConfigurableBundle.objects.order_by("id")
-        qs = qs.filter(triggering_product=self.product)
+        qs = qs.filter(triggering_product=self.product, bundle_group__is_active=True)
         return qs.all()
 
 

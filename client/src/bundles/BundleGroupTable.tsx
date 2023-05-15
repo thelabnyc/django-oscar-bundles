@@ -314,6 +314,7 @@ class BundleGroupTable extends React.Component<IProps, IState> {
                             <th>{gettext("Image")}</th>
                             <th>{gettext("Triggers")}</th>
                             <th>{gettext("Suggestions")}</th>
+                            <th>{gettext("Active Status")}</th>
                             <th>{gettext("Actions")}</th>
                         </tr>
                         {this.buildGroupRows()}

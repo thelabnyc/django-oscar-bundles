@@ -139,6 +139,11 @@ class BundleGroupTableRow extends React.PureComponent<IProps, IState> {
                     {suggestedProducts}
                     {suggestedRanges}
                 </td>
+                <td>
+                    {this.props.group.is_active
+                        ? gettext("Active")
+                        : gettext("Inactive")}
+                </td>
                 <td>{this.buildGroupActions()}</td>
             </tr>
         );
