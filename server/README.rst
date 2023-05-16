@@ -17,6 +17,14 @@ Bundles do not include offers - however it may be used in combination with an of
 Changelog
 =========
 
+2.1.0
+------------------
+- Added the ability to temporarily deactivate a bundle.
+- Add Python 3.11 to test suite.
+- Add Oscar 3.2 to test suite.
+- Fix deprecation warnings for Django 4.0 and 4.1
+- Upgrade JS build process from Node.js v14 to v18.
+
 2.0.1
 ------------------
 - Fix bug in bundle edit form when removing suggested parents.
