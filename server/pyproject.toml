@@ -1,0 +1,34 @@
+[build-system]
+requires = [ "poetry-core>=1.0.0",]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "django-oscar-bundles"
+version = "2.2.0.post2"
+description = "An extension on top of django-oscar providing product bundle functionality."
+authors = [ "thelabnyc <thelabdev@thelabnyc.com>",]
+readme = "README.rst"
+homepage = "https://gitlab.com/thelabnyc/django-oscar/django-oscar-bundles/"
+repository = "https://gitlab.com/thelabnyc/django-oscar/django-oscar-bundles/"
+license = "ISC"
+
+[[tool.poetry.packages]]
+include = "oscarbundles"
+from = "src"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+Django = ">=3.2"
+django-oscar = ">=3.2.2"
+django-oscar-api = ">=3.0.0"
+phonenumbers = ">=8.8.8"
+
+[tool.poetry.group.dev.dependencies]
+coverage = ">=4.4.2"
+flake8 = ">=3.2.1"
+ipdb = ">=0.10.3"
+psycopg2-binary = ">=2.8.4"
+sorl-thumbnail = ">=11.04"
+sphinx = ">=1.5.2"
+tox = ">=2.6.0"
+unittest-xml-reporting = ">=3.0.4"
