@@ -231,10 +231,10 @@ class BundleGroupTable extends React.Component<IProps, IState> {
             const msg = searchText
                 ? interpolate(
                       gettext(
-                          "No bundle groups found for search: %(searchText)s"
+                          "No bundle groups found for search: %(searchText)s",
                       ),
                       { searchText: searchText },
-                      true
+                      true,
                   )
                 : gettext("No bundle groups found.");
             return (

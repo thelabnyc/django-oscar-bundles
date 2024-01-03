@@ -35,7 +35,7 @@ const fetchData = async (endpoint: string) => {
 };
 
 export const getBundleTypeChoices = async (
-    endpoint: string
+    endpoint: string,
 ): Promise<ReadonlyArray<IDRFSelectOption>> => {
     const resp = await fetch(endpoint, {
         method: "OPTIONS",
@@ -53,7 +53,7 @@ export const getBundleTypeChoices = async (
 };
 
 export const listBundleGroups = async (
-    endpoint: string
+    endpoint: string,
 ): Promise<IBundleGroup[]> => {
     const resp = await fetchData(endpoint);
     return check(BundleGroups.decode(await resp.json()));
@@ -70,14 +70,14 @@ export const listRanges = async (endpoint: string): Promise<IRange[]> => {
 };
 
 export const listConcreteBundles = async (
-    endpoint: string
+    endpoint: string,
 ): Promise<IConcreteBundle[]> => {
     const resp = await fetchData(endpoint);
     return check(ConcreteBundles.decode(await resp.json()));
 };
 
 export const listUserConfigurableBundles = async (
-    endpoint: string
+    endpoint: string,
 ): Promise<IUserConfigurableBundle[]> => {
     const resp = await fetchData(endpoint);
     return check(UserConfigurableBundles.decode(await resp.json()));
@@ -85,7 +85,7 @@ export const listUserConfigurableBundles = async (
 
 const _saveBundleGroupData = async (
     endpoint: string,
-    group: IBundleGroup
+    group: IBundleGroup,
 ): Promise<IBundleGroup> => {
     const [method, url] = group.id
         ? ["PATCH", `${endpoint}${group.id}/`]
@@ -108,7 +108,7 @@ const _saveBundleGroupData = async (
 
 const _saveBundleGroupImage = async (
     endpoint: string,
-    group: IBundleGroup
+    group: IBundleGroup,
 ): Promise<void> => {
     if (!group.id) {
         throw new Error("Can not save image for unsaved bundle group");
@@ -150,7 +150,7 @@ const _saveBundleGroupImage = async (
 
 export const saveBundleGroup = async (
     endpoint: string,
-    data: IBundleGroup
+    data: IBundleGroup,
 ): Promise<IBundleGroup> => {
     const group = await _saveBundleGroupData(endpoint, data);
     data.id = group.id; // Update bundle group ID if it was just created
@@ -160,7 +160,7 @@ export const saveBundleGroup = async (
 
 export const deleteBundleGroup = async (
     endpoint: string,
-    group: IBundleGroup
+    group: IBundleGroup,
 ): Promise<void> => {
     if (!group.id) {
         throw new Error("Can not delete unsaved bundle group");

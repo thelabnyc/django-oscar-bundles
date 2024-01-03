@@ -44,7 +44,7 @@ describe("#bundles/molecules/elements/ParentProductsEditForm", () => {
                 triggeringParents={[1]}
                 suggestedParents={[2]}
                 onSelectParent={() => null}
-            />
+            />,
         );
         expect(wrapper.asFragment()).toMatchSnapshot();
     });
@@ -61,7 +61,7 @@ describe("#bundles/molecules/elements/ParentProductsEditForm", () => {
                 triggeringParents={[1]}
                 suggestedParents={[2]}
                 onSelectParent={() => null}
-            />
+            />,
         );
         expect(wrapper.asFragment()).toMatchSnapshot();
     });

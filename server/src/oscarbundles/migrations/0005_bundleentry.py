@@ -7,7 +7,6 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("catalogue", "0008_auto_20160304_1652"),
         ("oscarbundles", "0004_auto_20180315_1349"),

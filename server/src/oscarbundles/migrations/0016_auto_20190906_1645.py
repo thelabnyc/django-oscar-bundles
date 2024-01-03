@@ -4,7 +4,6 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("oscarbundles", "0015_auto_20190826_1326"),
     ]

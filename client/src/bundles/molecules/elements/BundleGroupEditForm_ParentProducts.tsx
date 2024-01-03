@@ -14,7 +14,7 @@ interface IProps {
     suggestedParents: number[];
     onSelectParent: (
         name: "triggeringParents" | "suggestedParents",
-        opts: SelectOption | ReadonlyArray<SelectOption> | null | undefined
+        opts: SelectOption | ReadonlyArray<SelectOption> | null | undefined,
     ) => void;
 }
 
@@ -43,7 +43,7 @@ export class ParentProductsEditForm extends React.PureComponent<
 
     private buildFormGroupClasses(
         field: keyof IProps["errors"],
-        extras: string[]
+        extras: string[],
     ) {
         const fieldErrors = this.props.errors[field];
         const classes: { [name: string]: boolean } = {
@@ -74,7 +74,7 @@ export class ParentProductsEditForm extends React.PureComponent<
                 <p>
                     <em>
                         {gettext(
-                            "Select the parent and standalone products revelant to this bundle group."
+                            "Select the parent and standalone products revelant to this bundle group.",
                         )}
                     </em>
                 </p>
@@ -82,7 +82,7 @@ export class ParentProductsEditForm extends React.PureComponent<
                     <div
                         className={this.buildFormGroupClasses(
                             "triggering_parents",
-                            ["col-sm-6"]
+                            ["col-sm-6"],
                         )}
                     >
                         <label htmlFor="id_image" className="control-label">
@@ -94,12 +94,12 @@ export class ParentProductsEditForm extends React.PureComponent<
                                 isMulti={true}
                                 value={parentProductSelectOptions.filter((o) =>
                                     this.props.triggeringParents.includes(
-                                        o.value
-                                    )
+                                        o.value,
+                                    ),
                                 )}
                                 onChange={this.props.onSelectParent.bind(
                                     this,
-                                    "triggeringParents"
+                                    "triggeringParents",
                                 )}
                                 options={parentProductSelectOptions}
                                 isDisabled={this.props.isSaving}
@@ -110,7 +110,7 @@ export class ParentProductsEditForm extends React.PureComponent<
                     <div
                         className={this.buildFormGroupClasses(
                             "suggested_parents",
-                            ["col-sm-6"]
+                            ["col-sm-6"],
                         )}
                     >
                         <label htmlFor="id_image" className="control-label">
@@ -122,12 +122,12 @@ export class ParentProductsEditForm extends React.PureComponent<
                                 isMulti={true}
                                 value={parentProductSelectOptions.filter((o) =>
                                     this.props.suggestedParents.includes(
-                                        o.value
-                                    )
+                                        o.value,
+                                    ),
                                 )}
                                 onChange={this.props.onSelectParent.bind(
                                     this,
-                                    "suggestedParents"
+                                    "suggestedParents",
                                 )}
                                 options={parentProductSelectOptions}
                                 isDisabled={this.props.isSaving}

@@ -69,7 +69,7 @@ describe("#bundles/molecules/elements/UserConfigurableBundles", () => {
                 getProduct={() => products[0]}
                 onLinkedRangesChange={() => null}
                 onLinkedRangeQuantityChange={() => null}
-            />
+            />,
         );
         expect(wrapper.asFragment()).toMatchSnapshot();
     });

@@ -28,7 +28,7 @@ class FileType extends t.Type<File> {
             (u, c) => {
                 return this.is(u) ? t.success(u) : t.failure(u, c);
             },
-            t.identity
+            t.identity,
         );
     }
 }
@@ -112,7 +112,7 @@ export const Product = t.interface({
         t.interface({
             id: t.number,
             name: t.string,
-        })
+        }),
     ),
     title: t.string,
     slug: t.string,

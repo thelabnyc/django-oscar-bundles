@@ -16,7 +16,7 @@ interface IProps {
     onLinkedProductsChange: (
         trigger: IProduct,
         suggestParent: IProduct,
-        opts: SelectOption | ReadonlyArray<SelectOption> | null | undefined
+        opts: SelectOption | ReadonlyArray<SelectOption> | null | undefined,
     ) => void;
 }
 
@@ -82,13 +82,13 @@ export class ConcreteBundles extends React.PureComponent<IProps, IState> {
                                     <Select
                                         isMulti={true}
                                         value={suggestOptions.filter((o) =>
-                                            selectValue.includes(o.value)
+                                            selectValue.includes(o.value),
                                         )}
                                         options={suggestOptions}
                                         onChange={this.props.onLinkedProductsChange.bind(
                                             this,
                                             trigger,
-                                            suggestParent
+                                            suggestParent,
                                         )}
                                         isDisabled={this.props.isSaving}
                                     />
@@ -116,7 +116,7 @@ export class ConcreteBundles extends React.PureComponent<IProps, IState> {
                         <p>
                             <em>
                                 {gettext(
-                                    "Select at least one trigger product and one suggested product to begin linking variants."
+                                    "Select at least one trigger product and one suggested product to begin linking variants.",
                                 )}
                             </em>
                         </p>
@@ -127,7 +127,7 @@ export class ConcreteBundles extends React.PureComponent<IProps, IState> {
         const parentCombinations: { [key: string]: ICombination } = {};
         const buildKey = function (
             triggerParent: number,
-            suggestParent: number
+            suggestParent: number,
         ) {
             return `${triggerParent}-${suggestParent}`;
         };
@@ -158,7 +158,7 @@ export class ConcreteBundles extends React.PureComponent<IProps, IState> {
                     <div className="col-sm-12">
                         {this.buildBundleRows(
                             combination.triggerParent,
-                            combination.suggestParent
+                            combination.suggestParent,
                         )}
                     </div>
                 </div>
@@ -173,7 +173,7 @@ export class ConcreteBundles extends React.PureComponent<IProps, IState> {
                 <p>
                     <em>
                         {gettext(
-                            "Concrete bundles are bundles which link products to other specific products. They can not be customized by the end-consumer."
+                            "Concrete bundles are bundles which link products to other specific products. They can not be customized by the end-consumer.",
                         )}
                     </em>
                 </p>
