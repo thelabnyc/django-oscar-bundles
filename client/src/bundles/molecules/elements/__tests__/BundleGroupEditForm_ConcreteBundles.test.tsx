@@ -47,7 +47,7 @@ describe("#bundles/molecules/elements/ConcreteBundles", () => {
                 }}
                 getProduct={() => products[0]}
                 onLinkedProductsChange={() => null}
-            />
+            />,
         );
         expect(wrapper.asFragment()).toMatchSnapshot();
     });

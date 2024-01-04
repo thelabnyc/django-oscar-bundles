@@ -30,7 +30,6 @@ def update_suggested_parents(apps, schema_editor):
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("oscarbundles", "0003_auto_20180315_1137"),
     ]

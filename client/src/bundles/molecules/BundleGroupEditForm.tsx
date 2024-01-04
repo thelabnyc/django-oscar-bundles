@@ -56,13 +56,13 @@ interface IState {
 }
 
 const _isSelectOptionArray = (
-    opts: SelectOption | ReadonlyArray<SelectOption> | null | undefined
+    opts: SelectOption | ReadonlyArray<SelectOption> | null | undefined,
 ): opts is ReadonlyArray<SelectOption> => {
     return !!opts && (opts as ReadonlyArray<SelectOption>).length !== undefined;
 };
 
 const _isSelectOption = (
-    opts: SelectOption | ReadonlyArray<SelectOption> | null | undefined
+    opts: SelectOption | ReadonlyArray<SelectOption> | null | undefined,
 ): opts is SelectOption => {
     return !!opts && !_isSelectOptionArray(opts);
 };
@@ -137,7 +137,7 @@ class BundleGroupEditForm extends React.PureComponent<IProps, IState> {
     private readonly onEdit = (
         e: React.FormEvent<
             HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-        >
+        >,
     ) => {
         const name = e.currentTarget.name as keyof IState;
         const value = e.currentTarget.value;
@@ -158,7 +158,7 @@ class BundleGroupEditForm extends React.PureComponent<IProps, IState> {
 
     private readonly onSelectParent = (
         name: "triggeringParents" | "suggestedParents",
-        opts: SelectOption | ReadonlyArray<SelectOption> | null | undefined
+        opts: SelectOption | ReadonlyArray<SelectOption> | null | undefined,
     ) => {
         let options: ReadonlyArray<SelectOption>;
         if (!opts) {
@@ -181,14 +181,14 @@ class BundleGroupEditForm extends React.PureComponent<IProps, IState> {
     private readonly onLinkedRangesChange = (
         trigger: IProduct,
         rangeIndex: number,
-        opts: SelectOption | ReadonlyArray<SelectOption> | null | undefined
+        opts: SelectOption | ReadonlyArray<SelectOption> | null | undefined,
     ) => {
         let option: SelectOption | null = null;
         if (_isSelectOption(opts)) {
             option = opts;
         } else if (_isSelectOptionArray(opts)) {
             throw new Error(
-                "Can not link multiple ranges to a single trigger parent"
+                "Can not link multiple ranges to a single trigger parent",
             );
         }
         this.setState((state) => {
@@ -207,7 +207,7 @@ class BundleGroupEditForm extends React.PureComponent<IProps, IState> {
             } else {
                 delete linkedRanges[trigger.id][rangeIndex];
                 linkedRanges[trigger.id] = linkedRanges[trigger.id].filter(
-                    (r) => !!r
+                    (r) => !!r,
                 );
                 if (linkedRanges[trigger.id].length <= 0) {
                     delete linkedRanges[trigger.id];
@@ -220,14 +220,14 @@ class BundleGroupEditForm extends React.PureComponent<IProps, IState> {
     private readonly onLinkedRangesQuantityChange = (
         trigger: IProduct,
         rangeIndex: number,
-        opts: SelectOption | ReadonlyArray<SelectOption> | null | undefined
+        opts: SelectOption | ReadonlyArray<SelectOption> | null | undefined,
     ) => {
         let option: SelectOption = { value: 1, label: "1" };
         if (_isSelectOption(opts)) {
             option = opts;
         } else if (_isSelectOptionArray(opts)) {
             throw new Error(
-                "Can not link multiple quantities to a single range parent"
+                "Can not link multiple quantities to a single range parent",
             );
         }
         this.setState((state) => {
@@ -250,7 +250,7 @@ class BundleGroupEditForm extends React.PureComponent<IProps, IState> {
     private readonly onLinkedProductsChange = (
         trigger: IProduct,
         suggestParent: IProduct,
-        opts: SelectOption | ReadonlyArray<SelectOption> | null | undefined
+        opts: SelectOption | ReadonlyArray<SelectOption> | null | undefined,
     ) => {
         let options: ReadonlyArray<SelectOption>;
         if (!opts) {
@@ -271,7 +271,7 @@ class BundleGroupEditForm extends React.PureComponent<IProps, IState> {
                         suggestion.id !== suggestParent.id &&
                         suggestion.parent !== suggestParent.id
                     );
-                }
+                },
             );
             const newIDs = oldIDs.concat(ids).filter((id, i, _ids) => {
                 return _ids.indexOf(id) === i;
@@ -359,7 +359,7 @@ class BundleGroupEditForm extends React.PureComponent<IProps, IState> {
                 preExistingBundle = this.props.group.concrete_bundles.find(
                     (b) => {
                         return b.triggering_product === triggerID;
-                    }
+                    },
                 );
             }
 
@@ -372,7 +372,7 @@ class BundleGroupEditForm extends React.PureComponent<IProps, IState> {
                             data.suggested_parents.indexOf(sProduct.parent) !==
                                 -1)
                     );
-                }
+                },
             );
 
             if (suggestionIDs.length <= 0) {

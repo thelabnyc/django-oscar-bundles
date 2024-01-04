@@ -6,7 +6,6 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("catalogue", "0008_auto_20160304_1652"),
         ("oscarbundles", "0010_auto_20180319_1116"),

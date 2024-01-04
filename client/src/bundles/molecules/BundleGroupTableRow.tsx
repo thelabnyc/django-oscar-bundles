@@ -27,7 +27,7 @@ class BundleGroupTableRow extends React.PureComponent<IProps, IState> {
         const onDelete = function (e: React.MouseEvent<HTMLAnchorElement>) {
             e.preventDefault();
             const msgFormat = gettext(
-                "Are you sure you want to delete this bundle group (%(name)s) and all its associated bundles?"
+                "Are you sure you want to delete this bundle group (%(name)s) and all its associated bundles?",
             );
             const data = {
                 name: self.props.group.name,
@@ -81,7 +81,7 @@ class BundleGroupTableRow extends React.PureComponent<IProps, IState> {
 
     private buildRangeList() {
         const rangeIDs = this.props.group.user_configurable_bundles.map(
-            (bundle) => bundle.suggested_range
+            (bundle) => bundle.suggested_range,
         );
         const ranges = this.props.ranges.filter((r) => {
             return rangeIDs.includes(r.id);

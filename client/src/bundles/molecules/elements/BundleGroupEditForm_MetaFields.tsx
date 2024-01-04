@@ -28,7 +28,7 @@ interface IProps {
     onEdit: (
         e: React.FormEvent<
             HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-        >
+        >,
     ) => void;
     onSelectImage: (e: React.FormEvent<HTMLInputElement>) => void;
     onClearImage: (e: React.FormEvent<HTMLInputElement>) => void;

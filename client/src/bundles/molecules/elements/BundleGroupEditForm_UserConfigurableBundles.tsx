@@ -23,12 +23,12 @@ interface IProps {
     onLinkedRangesChange: (
         trigger: IProduct,
         rangeIndex: number,
-        opts: SelectOption | ReadonlyArray<SelectOption> | null | undefined
+        opts: SelectOption | ReadonlyArray<SelectOption> | null | undefined,
     ) => void;
     onLinkedRangeQuantityChange: (
         trigger: IProduct,
         rangeIndex: number,
-        opts: SelectOption | ReadonlyArray<SelectOption> | null | undefined
+        opts: SelectOption | ReadonlyArray<SelectOption> | null | undefined,
     ) => void;
 }
 
@@ -103,13 +103,13 @@ export class UserConfigurableBundles extends React.PureComponent<
                                     <Select
                                         isClearable={true}
                                         value={suggestOptions.filter(
-                                            (o) => o.value === range.rangeID
+                                            (o) => o.value === range.rangeID,
                                         )}
                                         options={suggestOptions}
                                         onChange={this.props.onLinkedRangesChange.bind(
                                             this,
                                             triggerParent,
-                                            i
+                                            i,
                                         )}
                                         isDisabled={this.props.isSaving}
                                     />
@@ -119,13 +119,13 @@ export class UserConfigurableBundles extends React.PureComponent<
                                         value={quantityOptions.filter(
                                             (o) =>
                                                 range.rangeID !== null &&
-                                                o.value === range.quantity
+                                                o.value === range.quantity,
                                         )}
                                         options={quantityOptions}
                                         onChange={this.props.onLinkedRangeQuantityChange.bind(
                                             this,
                                             triggerParent,
-                                            i
+                                            i,
                                         )}
                                         isDisabled={
                                             this.props.isSaving ||
@@ -149,7 +149,7 @@ export class UserConfigurableBundles extends React.PureComponent<
                         <p>
                             <em>
                                 {gettext(
-                                    "Select at least one trigger product to begin linking ranges."
+                                    "Select at least one trigger product to begin linking ranges.",
                                 )}
                             </em>
                         </p>

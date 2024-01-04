@@ -10,7 +10,7 @@ type IPositionalInterpolationData = string[];
 type IInterpolateFn = ((
     fmt: string,
     obj: IPositionalInterpolationData,
-    named?: false
+    named?: false,
 ) => string) &
     ((fmt: string, obj: INamedInterpolationData, named: true) => string);
 interface IDjango {
@@ -18,7 +18,7 @@ interface IDjango {
     readonly ngettext: (
         singular: string,
         plural: string,
-        count: number
+        count: number,
     ) => string;
     readonly gettext_noop: (msgid: string) => string;
     readonly pgettext: (context: string, msgid: string) => string;
@@ -26,7 +26,7 @@ interface IDjango {
         context: string,
         singular: string,
         plural: string,
-        count: number
+        count: number,
     ) => string;
     readonly interpolate: IInterpolateFn;
 

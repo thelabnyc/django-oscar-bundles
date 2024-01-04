@@ -42,7 +42,7 @@ django.npgettext = function (context, singular, plural, count) {
     var value = django.ngettext(
         context + "\x04" + singular,
         context + "\x04" + plural,
-        count
+        count,
     );
     if (value.indexOf("\x04") != -1) {
         value = django.ngettext(singular, plural, count);

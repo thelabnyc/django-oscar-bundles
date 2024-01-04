@@ -39,7 +39,7 @@ describe("#bundles/molecules/elements/BundleGroupMetaFields", () => {
                 onEdit={() => null}
                 onSelectImage={() => null}
                 onClearImage={() => null}
-            />
+            />,
         );
         expect(wrapper.asFragment()).toMatchSnapshot();
     });
@@ -67,7 +67,7 @@ describe("#bundles/molecules/elements/BundleGroupMetaFields", () => {
                 onEdit={() => null}
                 onSelectImage={() => null}
                 onClearImage={() => null}
-            />
+            />,
         );
         expect(wrapper.asFragment()).toMatchSnapshot();
     });

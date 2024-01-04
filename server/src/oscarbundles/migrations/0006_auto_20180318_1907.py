@@ -35,7 +35,6 @@ def migrate_to_old_bundles(apps, schema_editor):
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("oscarbundles", "0005_bundleentry"),
     ]
