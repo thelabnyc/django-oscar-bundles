@@ -354,13 +354,13 @@ elasticsearch = ["elasticsearch (>=5,<8)"]
 
 [[package]]
 name = "django-oscar"
-version = "3.2.2"
+version = "3.2.4"
 description = "A domain-driven e-commerce framework for Django"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "django-oscar-3.2.2.tar.gz", hash = "sha256:e3dd783a888daa08fdf8a045efc3a1c691f89f931a16ecc9b5868a6995f30a3b"},
-    {file = "django_oscar-3.2.2-py3-none-any.whl", hash = "sha256:ee00679a8b605304ecfdfc463c0c2b473a6775524a9aa90a9e70fa4822b000f2"},
+    {file = "django-oscar-3.2.4.tar.gz", hash = "sha256:79a48dfd3cd9a6d93636e55bc7cba25abb56c05c200fcd0c0f30face9566a998"},
+    {file = "django_oscar-3.2.4-py3-none-any.whl", hash = "sha256:22d2f2725ba273335f12f28bf7ed79f49a63ee2d16bd842e103c90b2a65bb504"},
 ]
 
 [package.dependencies]
