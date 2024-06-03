@@ -78,7 +78,7 @@
  * http://api.jqueryui.com/category/ui-core/
  */
 
-/*! js-cookie v3.0.1 | MIT */
+/*! js-cookie v3.0.5 | MIT */
 
 /**
  * @license React
