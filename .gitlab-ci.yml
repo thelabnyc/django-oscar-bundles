@@ -29,9 +29,9 @@ lint_typescript:
   image: node:20
   script:
     - cd client/
-    - NODE_ENV=dev yarn
-    - yarn run lint
-    - yarn run test
+    - NODE_ENV=dev npm ci
+    - npm run lint
+    - npm run test
     - NODE_ENV=production node_modules/.bin/webpack
 
 test:
