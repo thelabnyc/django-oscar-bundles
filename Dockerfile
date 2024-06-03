@@ -12,8 +12,8 @@ RUN apt-get update && \
 
 # Install node_modules
 ADD client/package.json /oscarbundles/client/package.json
-ADD client/yarn.lock /oscarbundles/client/yarn.lock
-RUN yarn --force-lockfile
+ADD client/package-lock.json /oscarbundles/client/package-lock.json
+RUN npm ci
 VOLUME /oscarbundles/client/node_modules
 
 # Include NPM's .bin directory in the sys path

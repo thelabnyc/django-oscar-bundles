@@ -21,7 +21,7 @@ test_precommit: install_precommit
 
 fmt_client:
 	cd client && \
-	yarn prettier --no-color --write .
+	npm run prettier --no-color --write .
 
 fmt_server:
 	black .
