@@ -19,22 +19,21 @@ export interface IState {}
 
 class BundleGroupTableRow extends React.PureComponent<IProps, IState> {
     private buildGroupActions() {
-        const self = this;
-        const onEdit = function (e: React.MouseEvent<HTMLAnchorElement>) {
+        const onEdit = (e: React.MouseEvent<HTMLAnchorElement>) => {
             e.preventDefault();
-            self.props.onEdit(self.props.group);
+            this.props.onEdit(this.props.group);
         };
-        const onDelete = function (e: React.MouseEvent<HTMLAnchorElement>) {
+        const onDelete = (e: React.MouseEvent<HTMLAnchorElement>) => {
             e.preventDefault();
             const msgFormat = gettext(
                 "Are you sure you want to delete this bundle group (%(name)s) and all its associated bundles?",
             );
             const data = {
-                name: self.props.group.name,
+                name: this.props.group.name,
             };
             const msg = interpolate(msgFormat, data, true);
             if (confirm(msg)) {
-                self.props.onDelete(self.props.group);
+                this.props.onDelete(this.props.group);
             }
         };
         return (
@@ -100,9 +99,8 @@ class BundleGroupTableRow extends React.PureComponent<IProps, IState> {
     }
 
     render() {
-        const self = this;
         const bundleType = this.props.bundleTypeChoices.find((choice) => {
-            return choice.value === self.props.group.bundle_type;
+            return choice.value === this.props.group.bundle_type;
         });
         let suggestedProducts: JSX.Element | null = null;
         let suggestedRanges: JSX.Element | null = null;

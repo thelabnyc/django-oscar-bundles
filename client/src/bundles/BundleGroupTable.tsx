@@ -121,7 +121,7 @@ class BundleGroupTable extends React.Component<IProps, IState> {
         } catch (err) {
             this.setState({
                 isSaving: false,
-                /* tslint:disable-next-line */
+                /* eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-explicit-any,@typescript-eslint/no-unsafe-assignment */
                 formErrors: (err as any).response.body,
             });
         }
@@ -133,7 +133,9 @@ class BundleGroupTable extends React.Component<IProps, IState> {
     };
 
     componentDidMount() {
-        this.loadData();
+        this.loadData().catch((err) => {
+            console.error(err);
+        });
     }
 
     private async loadData() {
@@ -163,12 +165,11 @@ class BundleGroupTable extends React.Component<IProps, IState> {
     private setGroups(groups: IBundleGroup[]) {
         // Update the search index
         this.idx = lunr(function () {
-            const builder = this;
-            builder.ref("id");
-            builder.field("name");
-            builder.field("description");
+            this.ref("id");
+            this.field("name");
+            this.field("description");
             groups.forEach((g) => {
-                builder.add(g);
+                this.add(g);
             });
         });
         // Update the component state
@@ -252,7 +253,11 @@ class BundleGroupTable extends React.Component<IProps, IState> {
                     products={this.state.products}
                     ranges={this.state.ranges}
                     onEdit={this.onOpenEditModal}
-                    onDelete={this.onDeleteBundleGroup}
+                    onDelete={(bg) => {
+                        this.onDeleteBundleGroup(bg).catch((err) => {
+                            console.error(err);
+                        });
+                    }}
                 />
             );
         });
@@ -276,7 +281,11 @@ class BundleGroupTable extends React.Component<IProps, IState> {
                     isSaving={this.state.isSaving}
                     errors={this.state.formErrors}
                     onCancel={this.onCloseModal}
-                    onSave={this.onSaveBundleGroup}
+                    onSave={(bg) => {
+                        this.onSaveBundleGroup(bg).catch((err) => {
+                            console.error(err);
+                        });
+                    }}
                 />
             </Modal>
         );
