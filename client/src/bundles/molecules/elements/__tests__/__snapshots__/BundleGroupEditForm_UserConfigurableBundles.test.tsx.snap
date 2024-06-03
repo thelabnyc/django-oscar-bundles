@@ -72,6 +72,7 @@ exports[`#bundles/molecules/elements/UserConfigurableBundles renders 1`] = `
                     aria-live="polite"
                     aria-relevant="additions text"
                     class="css-1f43avz-a11yText-A11yText"
+                    role="log"
                   />
                   <div
                     class=" css-13cymwt-control"
@@ -89,6 +90,7 @@ exports[`#bundles/molecules/elements/UserConfigurableBundles renders 1`] = `
                         data-value=""
                       >
                         <input
+                          aria-activedescendant=""
                           aria-autocomplete="list"
                           aria-expanded="false"
                           aria-haspopup="true"
@@ -163,6 +165,7 @@ exports[`#bundles/molecules/elements/UserConfigurableBundles renders 1`] = `
                     aria-live="polite"
                     aria-relevant="additions text"
                     class="css-1f43avz-a11yText-A11yText"
+                    role="log"
                   />
                   <div
                     class=" css-13cymwt-control"
@@ -180,6 +183,7 @@ exports[`#bundles/molecules/elements/UserConfigurableBundles renders 1`] = `
                         data-value=""
                       >
                         <input
+                          aria-activedescendant=""
                           aria-autocomplete="list"
                           aria-expanded="false"
                           aria-haspopup="true"
@@ -247,6 +251,7 @@ exports[`#bundles/molecules/elements/UserConfigurableBundles renders 1`] = `
                     aria-live="polite"
                     aria-relevant="additions text"
                     class="css-1f43avz-a11yText-A11yText"
+                    role="log"
                   />
                   <div
                     class=" css-13cymwt-control"
@@ -265,6 +270,7 @@ exports[`#bundles/molecules/elements/UserConfigurableBundles renders 1`] = `
                         data-value=""
                       >
                         <input
+                          aria-activedescendant=""
                           aria-autocomplete="list"
                           aria-describedby="react-select-4-placeholder"
                           aria-expanded="false"
@@ -323,8 +329,10 @@ exports[`#bundles/molecules/elements/UserConfigurableBundles renders 1`] = `
                     aria-live="polite"
                     aria-relevant="additions text"
                     class="css-1f43avz-a11yText-A11yText"
+                    role="log"
                   />
                   <div
+                    aria-disabled="true"
                     class=" css-16xfy0z-control"
                   >
                     <div
@@ -341,6 +349,7 @@ exports[`#bundles/molecules/elements/UserConfigurableBundles renders 1`] = `
                         data-value=""
                       >
                         <input
+                          aria-activedescendant=""
                           aria-autocomplete="list"
                           aria-describedby="react-select-5-placeholder"
                           aria-expanded="false"
