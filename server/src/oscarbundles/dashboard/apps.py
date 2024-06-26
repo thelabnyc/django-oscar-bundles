@@ -1,4 +1,4 @@
-from django.urls import re_path
+from django.urls import path
 from django.utils.translation import gettext_lazy as _
 from oscar.core.application import OscarDashboardConfig
 
@@ -18,8 +18,8 @@ class OscarBundlesDashboardConfig(OscarDashboardConfig):
         from .views import BundleGroupSPAView
 
         urlpatterns = [
-            re_path(
-                r"^bundle-groups/$",
+            path(
+                "bundle-groups/",
                 BundleGroupSPAView.as_view(),
                 name="dashboard-bundle-group-list",
             ),
