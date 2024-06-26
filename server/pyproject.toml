@@ -25,7 +25,7 @@ phonenumbers = ">=8.8.8"
 
 [tool.poetry.group.dev.dependencies]
 coverage = ">=7.5.4"
-flake8 = ">=3.2.1"
+flake8 = ">=5.0.4"
 ipdb = ">=0.10.3"
 psycopg2-binary = ">=2.8.4"
 sorl-thumbnail = ">=11.04"
