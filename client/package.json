@@ -7,7 +7,7 @@
     "license": "ISC",
     "private": true,
     "scripts": {
-        "lint": "eslint -c .eslintrc.js ./src",
+        "lint": "eslint -c .eslintrc.json --ext .ts --ext .tsx ./src",
         "test": "jest"
     },
     "dependencies": {
@@ -21,7 +21,6 @@
         "react-dom": "^18.2.0",
         "react-modal": "^3.3.2",
         "react-select": "^5.7.0",
-        "redux": "^4.0.1",
         "regenerator-runtime": "^0.14.0",
         "tslib": "^2.6.2"
     },
@@ -33,6 +32,7 @@
         "@testing-library/jest-dom": "^6.4.6",
         "@testing-library/react": "^16.0.0",
         "@testing-library/user-event": "^14.4.3",
+        "@thelabnyc/standards": "^0.2.1",
         "@types/eslint__js": "^8.42.3",
         "@types/jest": "^29.4.0",
         "@types/js-cookie": "^3.0.3",

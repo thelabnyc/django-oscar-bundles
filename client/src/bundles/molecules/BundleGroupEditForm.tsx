@@ -399,7 +399,7 @@ class BundleGroupEditForm extends React.PureComponent<IProps, IState> {
         return this.productIdx[productID];
     };
 
-    componentWillReceiveProps(nextProps: IProps) {
+    UNSAFE_componentWillReceiveProps(nextProps: IProps) {
         this.fillProductIdx(nextProps.products);
     }
 

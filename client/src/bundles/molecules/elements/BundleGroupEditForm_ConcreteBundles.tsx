@@ -74,6 +74,7 @@ export class ConcreteBundles extends React.PureComponent<IProps, IState> {
                                     <a
                                         href={trigger.dashboard_url}
                                         target="_blank"
+                                        rel="noreferrer"
                                     >
                                         {trigger.title}
                                     </a>

@@ -95,6 +95,7 @@ export class UserConfigurableBundles extends React.PureComponent<
                                     <a
                                         href={triggerParent.dashboard_url}
                                         target="_blank"
+                                        rel="noreferrer"
                                     >
                                         {triggerParent.title}
                                     </a>

@@ -53,6 +53,7 @@ exports[`#bundles/molecules/elements/ConcreteBundles renders 1`] = `
               <th>
                 <a
                   href="http://localhost/store/dashboard/catalogue/products/1/"
+                  rel="noreferrer"
                   target="_blank"
                 >
                   book-1

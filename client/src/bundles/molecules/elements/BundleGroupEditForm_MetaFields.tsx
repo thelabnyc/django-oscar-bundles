@@ -65,7 +65,11 @@ export class BundleGroupMetaFields extends React.PureComponent<IProps, IState> {
         return (
             <span>
                 {gettext("Currently:")}{" "}
-                <a target="_blank" href={this.props.group.image}>
+                <a
+                    target="_blank"
+                    rel="noreferrer"
+                    href={this.props.group.image}
+                >
                     {fileName}
                 </a>{" "}
                 <input

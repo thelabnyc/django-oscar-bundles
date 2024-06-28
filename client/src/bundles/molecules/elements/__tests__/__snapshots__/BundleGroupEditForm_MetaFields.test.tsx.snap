@@ -130,6 +130,7 @@ exports[`#bundles/molecules/elements/BundleGroupMetaFields renders 1`] = `
           Currently: 
           <a
             href="https://placeimg.com/640/480/any"
+            rel="noreferrer"
             target="_blank"
           >
             any

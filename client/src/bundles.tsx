@@ -2,7 +2,7 @@
 import "core-js/stable";
 import "regenerator-runtime/runtime";
 import React from "react";
-import { render } from "react-dom";
+import { createRoot } from "react-dom/client";
 import BundleGroupTable from "./bundles/BundleGroupTable";
 
 type INamedInterpolationData = { [key: string]: string };
@@ -65,7 +65,8 @@ const main = function () {
         elem.dataset.userconfigurablebundleApi || "";
     const userConfigurableBundleRangeChoiceURL =
         elem.dataset.userconfigurablebundleRangeChoiceApi || "";
-    const component = (
+    const root = createRoot(elem);
+    root.render(
         <BundleGroupTable
             bundleGroupURL={bundleGroupURL}
             concreteBundleURL={concreteBundleURL}
@@ -74,9 +75,8 @@ const main = function () {
             userConfigurableBundleRangeChoiceURL={
                 userConfigurableBundleRangeChoiceURL
             }
-        />
+        />,
     );
-    render(component, elem);
 };
 
 main();
