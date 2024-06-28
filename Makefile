@@ -1,6 +1,6 @@
 .PHONY: statics translations
 
-DOCKERCOMPOSE = docker-compose
+DOCKERCOMPOSE = docker compose
 
 statics:
 	@$(DOCKERCOMPOSE) run --rm -e NODE_ENV=production node webpack
