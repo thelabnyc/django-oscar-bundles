@@ -62,6 +62,6 @@
         "typescript-eslint": "^7.14.1",
         "webpack": "^5.92.1",
         "webpack-bundle-tracker": "^3.1.0",
-        "webpack-cli": "^5.0.1"
+        "webpack-cli": "^5.1.4"
     }
 }
