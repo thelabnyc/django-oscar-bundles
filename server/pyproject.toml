@@ -21,7 +21,7 @@ python = "^3.10"
 Django = "^4.2.14"
 django-oscar = "^3.2.4"
 django-oscar-api = "^3.2.4"
-phonenumbers = "^8.13.40"
+phonenumbers = "^8.13.42"
 
 [tool.poetry.group.dev.dependencies]
 coverage = "^7.6.0"
