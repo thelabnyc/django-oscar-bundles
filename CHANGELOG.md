@@ -1,5 +1,40 @@
 # Changes
 
+## v2.2.1b0 (2024-08-08)
+
+### Fix
+
+- **deps**: update dependency core-js to ^3.38.0
+- **deps**: update dependency phonenumbers to ^8.13.42
+- **deps**: update dependency fp-ts to ^2.16.9
+- **deps**: update dependency django to ^4.2.14
+- **deps**: update dependency tslib to ^2.6.3
+- **deps**: update dependency fp-ts to ^2.16.8
+- **deps**: update dependency regenerator-runtime to ^0.14.1
+- **deps**: update dependency react-select to ^5.8.0
+- **deps**: update dependency react-modal to ^3.16.1
+- **deps**: update dependency phonenumbers to ^8.13.40
+- **deps**: update dependency lunr to ^2.3.9
+- **deps**: update dependency js-cookie to ^3.0.5
+- **deps**: update dependency io-ts to ^2.2.21
+- **deps**: update dependency fp-ts to ^2.16.7
+- **deps**: update dependency django to ^4.2.13
+- **deps**: update dependency core-js to ^3.37.1
+- **deps**: update dependency classnames to ^2.5.1
+- **deps**: update dependency phonenumbers to v8.13.39
+- **deps**: update dependency phonenumbers to v8.13.38
+- **deps**: update dependency tslib to v2.6.3
+- **deps**: update dependency react-select to v5.8.0
+- **deps**: update dependency regenerator-runtime to ^0.14.0
+- **deps**: update dependency fp-ts to v2.16.6
+- **deps**: update dependency core-js to v3.37.1
+- **deps**: update dependency classnames to v2.5.1
+- **deps**: update dependency phonenumbers to v8.13.37
+- **deps**: update dependency js-cookie to v3.0.5
+- **deps**: update dependency io-ts to v2.2.21
+- **deps**: update dependency django-oscar to v3.2.4
+- **deps**: update dependency django to v4.2.13
+
 ## v2.2.0
 
 - Add support for django-oscar 3.2.2
