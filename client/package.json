@@ -22,7 +22,7 @@
         "react-modal": "^3.16.1",
         "react-select": "^5.8.0",
         "regenerator-runtime": "^0.14.1",
-        "tslib": "^2.6.3"
+        "tslib": "^2.7.0"
     },
     "devDependencies": {
         "@babel/core": "^7.25.2",
