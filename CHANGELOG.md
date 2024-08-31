@@ -1,5 +1,15 @@
 # Changes
 
+## v2.2.1 (2024-08-31)
+
+### Fix
+
+- **deps**: update dependency phonenumbers to ^8.13.44
+- **deps**: update dependency tslib to ^2.7.0
+- **deps**: update dependency core-js to ^3.38.1
+- **deps**: update dependency phonenumbers to ^8.13.43
+- **deps**: update dependency django to ^4.2.15
+
 ## v2.2.1b0 (2024-08-08)
 
 ### Fix
