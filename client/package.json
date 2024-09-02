@@ -30,7 +30,7 @@
         "@babel/preset-react": "^7.24.7",
         "@testing-library/dom": "10.4.0",
         "@testing-library/jest-dom": "^6.5.0",
-        "@testing-library/react": "^16.0.0",
+        "@testing-library/react": "^16.0.1",
         "@testing-library/user-event": "^14.5.2",
         "@thelabnyc/standards": "^0.3.3",
         "@types/eslint__js": "^8.42.3",
