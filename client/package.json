@@ -32,7 +32,7 @@
         "@testing-library/jest-dom": "^6.5.0",
         "@testing-library/react": "^16.0.1",
         "@testing-library/user-event": "^14.5.2",
-        "@thelabnyc/standards": "^0.3.3",
+        "@thelabnyc/standards": "^0.3.4",
         "@types/eslint__js": "^8.42.3",
         "@types/jest": "^29.5.13",
         "@types/js-cookie": "^3.0.6",
