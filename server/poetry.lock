@@ -1124,14 +1124,19 @@ files = [
 
 [[package]]
 name = "sorl-thumbnail"
-version = "12.10.0"
+version = "12.11.0"
 description = "Thumbnails for Django"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "sorl-thumbnail-12.10.0.tar.gz", hash = "sha256:de95a49217fdfeced222fa3ceaa01d312ee2f8aad56ba34d6c70f2dee9a84938"},
-    {file = "sorl_thumbnail-12.10.0-py3-none-any.whl", hash = "sha256:733eb2eee392d4a874f88fb3ed6f0572fa9c361b06e0411b83e435ba69c51f52"},
+    {file = "sorl_thumbnail-12.11.0-py3-none-any.whl", hash = "sha256:e3e375013ca3f14bca9f98fe9861153adac3a6ea4af5e9dc3f31cb605df765b5"},
+    {file = "sorl_thumbnail-12.11.0.tar.gz", hash = "sha256:191b89c27ecb40b5c2a35549d557d17c4841c6aff439b2e17b938b91eea463b3"},
 ]
+
+[package.extras]
+pgmagick = ["pgmagick"]
+pil = ["pillow"]
+wand = ["wand"]
 
 [[package]]
 name = "sqlparse"
@@ -1290,4 +1295,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "239d30475d3c56fbeac17b4c58f642a0255aa7c9f40af70ad9e3cecc977ced15"
+content-hash = "64a828b67b02ed48df87989e1567dd012d2ce520f521c8e866b5ae7461afb6fd"
