@@ -1,5 +1,16 @@
 # Changes
 
+## v2.2.2 (2024-09-25)
+
+### Fix
+
+- **deps**: update dependency django-oscar-api to v3.3.0
+- **deps**: update dependency react-select to ^5.8.1
+- **deps**: update dependency django-oscar to v3.2.5
+- pin django-oscar version due to breaking changes in patch versions
+- **deps**: update dependency phonenumbers to ^8.13.45
+- **deps**: update dependency django to ^4.2.16
+
 ## v2.2.1 (2024-08-31)
 
 ### Fix
