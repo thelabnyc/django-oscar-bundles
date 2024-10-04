@@ -27,7 +27,7 @@ exports[`#bundles/molecules/elements/ParentProductsEditForm renders 1`] = `
         </label>
         <div>
           <div
-            class=" css-b62m3t-container"
+            class="css-b62m3t-container"
           >
             <span
               class="css-1f43avz-a11yText-A11yText"
@@ -41,22 +41,22 @@ exports[`#bundles/molecules/elements/ParentProductsEditForm renders 1`] = `
               role="log"
             />
             <div
-              class=" css-13cymwt-control"
+              class="css-13cymwt-control"
             >
               <div
-                class=" css-1dyz3mf"
+                class="css-1dyz3mf"
               >
                 <div
-                  class=" css-1p3m7a8-multiValue"
+                  class="css-1p3m7a8-multiValue"
                 >
                   <div
-                    class=" css-9jq23d"
+                    class="css-9jq23d"
                   >
                     book-1
                   </div>
                   <div
                     aria-label="Remove book-1"
-                    class=" css-v7duua"
+                    class="css-v7duua"
                     role="button"
                   >
                     <svg
@@ -74,7 +74,7 @@ exports[`#bundles/molecules/elements/ParentProductsEditForm renders 1`] = `
                   </div>
                 </div>
                 <div
-                  class=" css-19bb58m"
+                  class="css-19bb58m"
                   data-value=""
                 >
                   <input
@@ -97,11 +97,11 @@ exports[`#bundles/molecules/elements/ParentProductsEditForm renders 1`] = `
                 </div>
               </div>
               <div
-                class=" css-1wy0on6"
+                class="css-1wy0on6"
               >
                 <div
                   aria-hidden="true"
-                  class=" css-1xc3v61-indicatorContainer"
+                  class="css-1xc3v61-indicatorContainer"
                 >
                   <svg
                     aria-hidden="true"
@@ -117,11 +117,11 @@ exports[`#bundles/molecules/elements/ParentProductsEditForm renders 1`] = `
                   </svg>
                 </div>
                 <span
-                  class=" css-1u9des2-indicatorSeparator"
+                  class="css-1u9des2-indicatorSeparator"
                 />
                 <div
                   aria-hidden="true"
-                  class=" css-1xc3v61-indicatorContainer"
+                  class="css-1xc3v61-indicatorContainer"
                 >
                   <svg
                     aria-hidden="true"
@@ -159,7 +159,7 @@ exports[`#bundles/molecules/elements/ParentProductsEditForm renders 1`] = `
         </label>
         <div>
           <div
-            class=" css-b62m3t-container"
+            class="css-b62m3t-container"
           >
             <span
               class="css-1f43avz-a11yText-A11yText"
@@ -173,22 +173,22 @@ exports[`#bundles/molecules/elements/ParentProductsEditForm renders 1`] = `
               role="log"
             />
             <div
-              class=" css-13cymwt-control"
+              class="css-13cymwt-control"
             >
               <div
-                class=" css-1dyz3mf"
+                class="css-1dyz3mf"
               >
                 <div
-                  class=" css-1p3m7a8-multiValue"
+                  class="css-1p3m7a8-multiValue"
                 >
                   <div
-                    class=" css-9jq23d"
+                    class="css-9jq23d"
                   >
                     book-2
                   </div>
                   <div
                     aria-label="Remove book-2"
-                    class=" css-v7duua"
+                    class="css-v7duua"
                     role="button"
                   >
                     <svg
@@ -206,7 +206,7 @@ exports[`#bundles/molecules/elements/ParentProductsEditForm renders 1`] = `
                   </div>
                 </div>
                 <div
-                  class=" css-19bb58m"
+                  class="css-19bb58m"
                   data-value=""
                 >
                   <input
@@ -229,11 +229,11 @@ exports[`#bundles/molecules/elements/ParentProductsEditForm renders 1`] = `
                 </div>
               </div>
               <div
-                class=" css-1wy0on6"
+                class="css-1wy0on6"
               >
                 <div
                   aria-hidden="true"
-                  class=" css-1xc3v61-indicatorContainer"
+                  class="css-1xc3v61-indicatorContainer"
                 >
                   <svg
                     aria-hidden="true"
@@ -249,11 +249,11 @@ exports[`#bundles/molecules/elements/ParentProductsEditForm renders 1`] = `
                   </svg>
                 </div>
                 <span
-                  class=" css-1u9des2-indicatorSeparator"
+                  class="css-1u9des2-indicatorSeparator"
                 />
                 <div
                   aria-hidden="true"
-                  class=" css-1xc3v61-indicatorContainer"
+                  class="css-1xc3v61-indicatorContainer"
                 >
                   <svg
                     aria-hidden="true"
@@ -312,7 +312,7 @@ exports[`#bundles/molecules/elements/ParentProductsEditForm renders error messag
         </label>
         <div>
           <div
-            class=" css-b62m3t-container"
+            class="css-b62m3t-container"
           >
             <span
               class="css-1f43avz-a11yText-A11yText"
@@ -326,22 +326,22 @@ exports[`#bundles/molecules/elements/ParentProductsEditForm renders error messag
               role="log"
             />
             <div
-              class=" css-13cymwt-control"
+              class="css-13cymwt-control"
             >
               <div
-                class=" css-1dyz3mf"
+                class="css-1dyz3mf"
               >
                 <div
-                  class=" css-1p3m7a8-multiValue"
+                  class="css-1p3m7a8-multiValue"
                 >
                   <div
-                    class=" css-9jq23d"
+                    class="css-9jq23d"
                   >
                     book-1
                   </div>
                   <div
                     aria-label="Remove book-1"
-                    class=" css-v7duua"
+                    class="css-v7duua"
                     role="button"
                   >
                     <svg
@@ -359,7 +359,7 @@ exports[`#bundles/molecules/elements/ParentProductsEditForm renders error messag
                   </div>
                 </div>
                 <div
-                  class=" css-19bb58m"
+                  class="css-19bb58m"
                   data-value=""
                 >
                   <input
@@ -382,11 +382,11 @@ exports[`#bundles/molecules/elements/ParentProductsEditForm renders error messag
                 </div>
               </div>
               <div
-                class=" css-1wy0on6"
+                class="css-1wy0on6"
               >
                 <div
                   aria-hidden="true"
-                  class=" css-1xc3v61-indicatorContainer"
+                  class="css-1xc3v61-indicatorContainer"
                 >
                   <svg
                     aria-hidden="true"
@@ -402,11 +402,11 @@ exports[`#bundles/molecules/elements/ParentProductsEditForm renders error messag
                   </svg>
                 </div>
                 <span
-                  class=" css-1u9des2-indicatorSeparator"
+                  class="css-1u9des2-indicatorSeparator"
                 />
                 <div
                   aria-hidden="true"
-                  class=" css-1xc3v61-indicatorContainer"
+                  class="css-1xc3v61-indicatorContainer"
                 >
                   <svg
                     aria-hidden="true"
@@ -452,7 +452,7 @@ exports[`#bundles/molecules/elements/ParentProductsEditForm renders error messag
         </label>
         <div>
           <div
-            class=" css-b62m3t-container"
+            class="css-b62m3t-container"
           >
             <span
               class="css-1f43avz-a11yText-A11yText"
@@ -466,22 +466,22 @@ exports[`#bundles/molecules/elements/ParentProductsEditForm renders error messag
               role="log"
             />
             <div
-              class=" css-13cymwt-control"
+              class="css-13cymwt-control"
             >
               <div
-                class=" css-1dyz3mf"
+                class="css-1dyz3mf"
               >
                 <div
-                  class=" css-1p3m7a8-multiValue"
+                  class="css-1p3m7a8-multiValue"
                 >
                   <div
-                    class=" css-9jq23d"
+                    class="css-9jq23d"
                   >
                     book-2
                   </div>
                   <div
                     aria-label="Remove book-2"
-                    class=" css-v7duua"
+                    class="css-v7duua"
                     role="button"
                   >
                     <svg
@@ -499,7 +499,7 @@ exports[`#bundles/molecules/elements/ParentProductsEditForm renders error messag
                   </div>
                 </div>
                 <div
-                  class=" css-19bb58m"
+                  class="css-19bb58m"
                   data-value=""
                 >
                   <input
@@ -522,11 +522,11 @@ exports[`#bundles/molecules/elements/ParentProductsEditForm renders error messag
                 </div>
               </div>
               <div
-                class=" css-1wy0on6"
+                class="css-1wy0on6"
               >
                 <div
                   aria-hidden="true"
-                  class=" css-1xc3v61-indicatorContainer"
+                  class="css-1xc3v61-indicatorContainer"
                 >
                   <svg
                     aria-hidden="true"
@@ -542,11 +542,11 @@ exports[`#bundles/molecules/elements/ParentProductsEditForm renders error messag
                   </svg>
                 </div>
                 <span
-                  class=" css-1u9des2-indicatorSeparator"
+                  class="css-1u9des2-indicatorSeparator"
                 />
                 <div
                   aria-hidden="true"
-                  class=" css-1xc3v61-indicatorContainer"
+                  class="css-1xc3v61-indicatorContainer"
                 >
                   <svg
                     aria-hidden="true"
