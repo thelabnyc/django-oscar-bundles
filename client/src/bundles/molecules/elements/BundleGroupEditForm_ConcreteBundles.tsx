@@ -20,9 +20,7 @@ interface IProps {
     ) => void;
 }
 
-interface IState {}
-
-export class ConcreteBundles extends React.PureComponent<IProps, IState> {
+export class ConcreteBundles extends React.PureComponent<IProps> {
     private getChildProductSelectOptions(parent: IProduct) {
         return this.props.products
             .filter((p) => {

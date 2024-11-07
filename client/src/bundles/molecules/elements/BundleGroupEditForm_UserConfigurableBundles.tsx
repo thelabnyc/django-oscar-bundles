@@ -32,17 +32,12 @@ interface IProps {
     ) => void;
 }
 
-interface IState {}
-
 const helpText =
     gettext(`User configurable bundles are bundles which link parent/standalone products to ranges of \
 other products. Their intent is to represent a group of products related to the suggesting parent, rather than a \
 specific one-to-one mapping of product to product.`);
 
-export class UserConfigurableBundles extends React.PureComponent<
-    IProps,
-    IState
-> {
+export class UserConfigurableBundles extends React.PureComponent<IProps> {
     private getRangeSelectOptions() {
         const rangeOptions = this.props.ranges
             .sort((a, b) => {

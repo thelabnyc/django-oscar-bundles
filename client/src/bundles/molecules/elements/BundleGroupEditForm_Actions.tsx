@@ -4,12 +4,7 @@ interface IProps {
     onCancel: (e: React.MouseEvent<HTMLElement>) => void;
 }
 
-interface IState {}
-
-export class BundleGroupEditFormActions extends React.PureComponent<
-    IProps,
-    IState
-> {
+export class BundleGroupEditFormActions extends React.PureComponent<IProps> {
     render() {
         return (
             <div className="col-sm-12 bundle-group-edit__section">

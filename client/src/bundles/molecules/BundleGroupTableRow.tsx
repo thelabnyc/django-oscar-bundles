@@ -15,9 +15,7 @@ export interface IProps {
     onDelete: (group: IBundleGroup) => void;
 }
 
-export interface IState {}
-
-class BundleGroupTableRow extends React.PureComponent<IProps, IState> {
+class BundleGroupTableRow extends React.PureComponent<IProps> {
     private buildGroupActions() {
         const onEdit = (e: React.MouseEvent<HTMLAnchorElement>) => {
             e.preventDefault();

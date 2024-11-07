@@ -5,9 +5,7 @@ export interface IProps {
     onChange: (searchText: string) => void;
 }
 
-export interface IState {}
-
-class BundleGroupSearchForm extends React.PureComponent<IProps, IState> {
+class BundleGroupSearchForm extends React.PureComponent<IProps> {
     render() {
         const onChange = (e: React.FormEvent<HTMLInputElement>) => {
             e.preventDefault();

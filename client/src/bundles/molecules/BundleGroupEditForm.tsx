@@ -205,7 +205,7 @@ class BundleGroupEditForm extends React.PureComponent<IProps, IState> {
                     quantity: 1,
                 };
             } else {
-                delete linkedRanges[trigger.id][rangeIndex];
+                linkedRanges[trigger.id].splice(rangeIndex, 1);
                 linkedRanges[trigger.id] = linkedRanges[trigger.id].filter(
                     (r) => !!r,
                 );
