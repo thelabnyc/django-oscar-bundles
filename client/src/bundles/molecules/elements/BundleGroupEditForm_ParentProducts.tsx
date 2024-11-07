@@ -18,12 +18,7 @@ interface IProps {
     ) => void;
 }
 
-interface IState {}
-
-export class ParentProductsEditForm extends React.PureComponent<
-    IProps,
-    IState
-> {
+export class ParentProductsEditForm extends React.PureComponent<IProps> {
     private getParentProductSelectOptions() {
         return this.props.products
             .filter((p) => {

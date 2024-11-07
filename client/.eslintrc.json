@@ -1,6 +1,0 @@
-{
-    "extends": ["./node_modules/@thelabnyc/standards/eslintrc.js"],
-    "rules": {
-        "@typescript-eslint/no-unnecessary-condition": 0
-    }
-}

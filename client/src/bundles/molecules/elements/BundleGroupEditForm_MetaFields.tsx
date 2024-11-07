@@ -34,9 +34,7 @@ interface IProps {
     onClearImage: (e: React.FormEvent<HTMLInputElement>) => void;
 }
 
-interface IState {}
-
-export class BundleGroupMetaFields extends React.PureComponent<IProps, IState> {
+export class BundleGroupMetaFields extends React.PureComponent<IProps> {
     private buildFormGroupClasses(field: keyof IProps["errors"]) {
         const fieldErrors = this.props.errors[field];
         const classes: { [name: string]: boolean } = {
