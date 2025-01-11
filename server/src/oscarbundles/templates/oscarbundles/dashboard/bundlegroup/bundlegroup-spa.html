@@ -24,6 +24,7 @@
 
 {% block dashboard_content %}
     <div id="bundlegroup-table"
+         data-bundlegrouptype-api="{% url 'bundlegrouptype-list' %}"
          data-bundlegroup-api="{% url 'bundlegroup-list' %}"
          data-concretebundle-api="{% url 'concretebundle-list' %}"
          data-concretebundle-product-choice-api="{% url 'concretebundle-product-choice-list' %}"

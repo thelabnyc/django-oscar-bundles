@@ -2,7 +2,7 @@ import React from "react";
 import lunr from "lunr";
 import Modal from "react-modal";
 import {
-    getBundleTypeChoices,
+    listBundleGroupTypes,
     listBundleGroups,
     listProducts,
     listRanges,
@@ -42,6 +42,7 @@ const modalStyles = {
 };
 
 export interface IProps {
+    bundleGroupTypeURL: string;
     bundleGroupURL: string;
     concreteBundleURL: string;
     concreteBundleProductChoiceURL: string;
@@ -141,7 +142,7 @@ class BundleGroupTable extends React.Component<IProps, IState> {
     private async loadData() {
         this.setState({ isLoading: true });
         const loading = Promise.all([
-            getBundleTypeChoices(this.props.bundleGroupURL),
+            listBundleGroupTypes(this.props.bundleGroupTypeURL),
             listBundleGroups(this.props.bundleGroupURL),
             listProducts(this.props.concreteBundleProductChoiceURL),
             listRanges(this.props.userConfigurableBundleRangeChoiceURL),
