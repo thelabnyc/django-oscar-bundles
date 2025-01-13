@@ -9,8 +9,7 @@ import {
 } from "./models.interfaces";
 import {
     check,
-    ChoiceField,
-    DRFOptionsResponse,
+    DRFSelectOptions,
     BundleGroup,
     BundleGroups,
     Products,
@@ -34,22 +33,11 @@ const fetchData = async (endpoint: string) => {
     });
 };
 
-export const getBundleTypeChoices = async (
+export const listBundleGroupTypes = async (
     endpoint: string,
 ): Promise<ReadonlyArray<IDRFSelectOption>> => {
-    const resp = await fetch(endpoint, {
-        method: "OPTIONS",
-        headers: {
-            Accept: "application/json",
-        },
-    });
-    const body = check(DRFOptionsResponse.decode(await resp.json()));
-    if (!body.actions.POST) {
-        return [];
-    }
-    const field = check(ChoiceField.decode(body.actions.POST.bundle_type));
-    const choices = field.choices;
-    return choices;
+    const resp = await fetchData(endpoint);
+    return check(DRFSelectOptions.decode(await resp.json()));
 };
 
 export const listBundleGroups = async (

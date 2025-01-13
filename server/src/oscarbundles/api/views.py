@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404
 from rest_framework import generics, permissions
+from rest_framework.response import Response
 from oscar.core.loading import get_model
 from oscarbundles.models import (
     BundleGroup,
@@ -54,6 +55,21 @@ class ProductUserConfigurableBundleList(generics.ListAPIView):
 # =============================================================================
 # Bundle Groups
 # =============================================================================
+class BundleGroupTypeList(generics.ListAPIView):
+    permission_classes = API_PERMS
+    queryset = BundleGroup.objects.get_queryset()
+
+    def get(self, request):
+        choices = [
+            {
+                "display_name": label,
+                "value": value,
+            }
+            for value, label in BundleGroup.GROUP_TYPE_OPTIONS
+        ]
+        return Response(choices)
+
+
 class BundleGroupList(generics.ListCreateAPIView):
     permission_classes = API_PERMS
     queryset = BundleGroup.objects.prefetch_related(

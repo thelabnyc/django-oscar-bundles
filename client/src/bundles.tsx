@@ -57,6 +57,7 @@ declare global {
 
 const main = function () {
     const elem = document.querySelector("#bundlegroup-table") as HTMLDivElement;
+    const bundleGroupTypeURL = elem.dataset.bundlegrouptypeApi || "";
     const bundleGroupURL = elem.dataset.bundlegroupApi || "";
     const concreteBundleURL = elem.dataset.concretebundleApi || "";
     const concreteBundleProductChoiceURL =
@@ -68,6 +69,7 @@ const main = function () {
     const root = createRoot(elem);
     root.render(
         <BundleGroupTable
+            bundleGroupTypeURL={bundleGroupTypeURL}
             bundleGroupURL={bundleGroupURL}
             concreteBundleURL={concreteBundleURL}
             concreteBundleProductChoiceURL={concreteBundleProductChoiceURL}

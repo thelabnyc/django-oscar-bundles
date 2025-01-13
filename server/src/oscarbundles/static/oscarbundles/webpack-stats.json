@@ -3,31 +3,27 @@
   "assets": {
     "bundles.css": {
       "name": "bundles.css",
-      "path": "/oscarbundles/server/src/oscarbundles/static/oscarbundles/bundles.css"
+      "path": "/Users/crgwbr/Projects/tempur-sealy/thelab-foss/django-oscar-bundles/server/src/oscarbundles/static/oscarbundles/bundles.css"
     },
     "bundles.css.map": {
       "name": "bundles.css.map",
-      "path": "/oscarbundles/server/src/oscarbundles/static/oscarbundles/bundles.css.map"
+      "path": "/Users/crgwbr/Projects/tempur-sealy/thelab-foss/django-oscar-bundles/server/src/oscarbundles/static/oscarbundles/bundles.css.map"
     },
     "bundles.js": {
       "name": "bundles.js",
-      "path": "/oscarbundles/server/src/oscarbundles/static/oscarbundles/bundles.js"
+      "path": "/Users/crgwbr/Projects/tempur-sealy/thelab-foss/django-oscar-bundles/server/src/oscarbundles/static/oscarbundles/bundles.js"
     },
     "bundles.js.map": {
       "name": "bundles.js.map",
-      "path": "/oscarbundles/server/src/oscarbundles/static/oscarbundles/bundles.js.map"
+      "path": "/Users/crgwbr/Projects/tempur-sealy/thelab-foss/django-oscar-bundles/server/src/oscarbundles/static/oscarbundles/bundles.js.map"
     },
     "vendor.js": {
       "name": "vendor.js",
-      "path": "/oscarbundles/server/src/oscarbundles/static/oscarbundles/vendor.js"
-    },
-    "vendor.js.LICENSE.txt": {
-      "name": "vendor.js.LICENSE.txt",
-      "path": "/oscarbundles/server/src/oscarbundles/static/oscarbundles/vendor.js.LICENSE.txt"
+      "path": "/Users/crgwbr/Projects/tempur-sealy/thelab-foss/django-oscar-bundles/server/src/oscarbundles/static/oscarbundles/vendor.js"
     },
     "vendor.js.map": {
       "name": "vendor.js.map",
-      "path": "/oscarbundles/server/src/oscarbundles/static/oscarbundles/vendor.js.map"
+      "path": "/Users/crgwbr/Projects/tempur-sealy/thelab-foss/django-oscar-bundles/server/src/oscarbundles/static/oscarbundles/vendor.js.map"
     }
   },
   "chunks": {

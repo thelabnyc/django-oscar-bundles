@@ -28,6 +28,7 @@ class OscarBundlesAPIConfig(OscarConfig):
             UserConfigurableBundleList,
             UserConfigurableBundleDetail,
             UserConfigurableBundleRangeChoicesList,
+            BundleGroupTypeList,
             BundleGroupList,
             BundleGroupDetail,
         )
@@ -55,6 +56,11 @@ class OscarBundlesAPIConfig(OscarConfig):
                 name="oscarbundles-i18n-js",
             ),
             # Uncached views
+            path(
+                "bundlegrouptypes/",
+                BundleGroupTypeList.as_view(),
+                name="bundlegrouptype-list",
+            ),
             path("bundlegroups/", BundleGroupList.as_view(), name="bundlegroup-list"),
             path(
                 "bundlegroups/<int:pk>/",
