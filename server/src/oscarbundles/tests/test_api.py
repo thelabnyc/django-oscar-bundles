@@ -1,14 +1,11 @@
 from django.contrib.auth.models import User
+from oscar.core.loading import get_model
+from oscar.test.factories import create_product
 from rest_framework import status
 from rest_framework.reverse import reverse
 from rest_framework.test import APITestCase
-from oscar.test.factories import create_product
-from oscar.core.loading import get_model
-from ..models import (
-    BundleGroup,
-    ConcreteBundle,
-    UserConfigurableBundle,
-)
+
+from ..models import BundleGroup, ConcreteBundle, UserConfigurableBundle
 
 Range = get_model("offer", "Range")
 

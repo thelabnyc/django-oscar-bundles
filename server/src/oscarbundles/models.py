@@ -1,9 +1,16 @@
-from django.db import models
+from typing import TYPE_CHECKING
+
 from django.conf import settings
+from django.db import models
+from django.db.models import QuerySet
 from django.utils.translation import gettext_lazy as _
+from django_stubs_ext.db.models import TypedModelMeta
 from oscar.core.loading import get_model
 
-Product = get_model("catalogue", "Product")
+if TYPE_CHECKING:
+    from oscar.apps.catalogue.models import Product
+else:
+    Product = get_model("catalogue", "Product")
 
 
 class BundleGroup(models.Model):
@@ -38,23 +45,25 @@ class BundleGroup(models.Model):
     )
 
     triggering_parents = models.ManyToManyField(
-        "catalogue.Product",
+        Product,
         related_name="triggering_bundle_groups",
         verbose_name=_("Triggering Products"),
     )
-    suggested_parents = models.ManyToManyField(
-        "catalogue.Product",
-        related_name="suggesting_bundle_groups",
-        verbose_name=_("Suggested Products"),
-        blank=True,
+    suggested_parents: models.ManyToManyField[Product, models.Model] = (
+        models.ManyToManyField(
+            Product,
+            related_name="suggesting_bundle_groups",
+            verbose_name=_("Suggested Products"),
+            blank=True,
+        )
     )
 
-    class Meta:
+    class Meta(TypedModelMeta):
         verbose_name = _("Bundle Group")
         verbose_name_plural = _("Bundle Groups")
 
-    class ActiveModelManager(models.Manager):
-        def active(self):
+    class ActiveModelManager(models.Manager["BundleGroup"]):
+        def active(self) -> QuerySet["BundleGroup"]:
             return self.filter(is_active=True)
 
     objects = ActiveModelManager()
@@ -79,7 +88,7 @@ class ConcreteBundle(models.Model):
         help_text=_("Which product(s) should this bundle suggest when triggered?"),
     )
 
-    class Meta:
+    class Meta(TypedModelMeta):
         verbose_name = _("Concrete Bundle")
         verbose_name_plural = _("Concrete Bundles")
         unique_together = (("bundle_group", "triggering_product"),)
@@ -110,7 +119,7 @@ class UserConfigurableBundle(models.Model):
         help_text=_("How many products from the range should be suggested?"),
     )
 
-    class Meta:
+    class Meta(TypedModelMeta):
         verbose_name = _("User Configurable Bundle")
         verbose_name_plural = _("User Configurable Bundles")
         unique_together = (("bundle_group", "triggering_product", "suggested_range"),)

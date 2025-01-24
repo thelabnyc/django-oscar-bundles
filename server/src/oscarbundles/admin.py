@@ -1,17 +1,18 @@
 from django.contrib import admin
-from .models import ConcreteBundle, BundleGroup, UserConfigurableBundle
+
+from .models import BundleGroup, ConcreteBundle, UserConfigurableBundle
 
 
 @admin.register(BundleGroup)
-class BundleGroupAdmin(admin.ModelAdmin):
+class BundleGroupAdmin(admin.ModelAdmin[BundleGroup]):
     pass
 
 
 @admin.register(ConcreteBundle)
-class BundleAdmin(admin.ModelAdmin):
+class BundleAdmin(admin.ModelAdmin[ConcreteBundle]):
     pass
 
 
 @admin.register(UserConfigurableBundle)
-class UserConfigurableBundleAdmin(admin.ModelAdmin):
+class UserConfigurableBundleAdmin(admin.ModelAdmin[UserConfigurableBundle]):
     pass
