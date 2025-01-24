@@ -1,6 +1,10 @@
+from typing import TYPE_CHECKING
+
+from django.db.models import QuerySet
 from django.shortcuts import get_object_or_404
 from oscar.core.loading import get_model
 from rest_framework import generics, permissions
+from rest_framework.request import Request
 from rest_framework.response import Response
 
 from oscarbundles.api.serializers import (
@@ -12,8 +16,12 @@ from oscarbundles.api.serializers import (
 )
 from oscarbundles.models import BundleGroup, ConcreteBundle, UserConfigurableBundle
 
-Product = get_model("catalogue", "Product")
-Range = get_model("offer", "Range")
+if TYPE_CHECKING:
+    from oscar.apps.catalogue.models import Product
+    from oscar.apps.offer.models import Range
+else:
+    Product = get_model("catalogue", "Product")
+    Range = get_model("offer", "Range")
 
 API_PERMS = (permissions.DjangoModelPermissionsOrAnonReadOnly,)
 
@@ -21,29 +29,29 @@ API_PERMS = (permissions.DjangoModelPermissionsOrAnonReadOnly,)
 # =============================================================================
 # Bundles by Product
 # =============================================================================
-class ProductConcreteBundleList(generics.ListAPIView):
+class ProductConcreteBundleList(generics.ListAPIView[ConcreteBundle]):
     permission_classes = (permissions.AllowAny,)
     serializer_class = ConcreteBundleSerializer
 
-    def get(self, request, pk):
+    def get(self, request: Request, pk: int) -> Response:
         self.product = get_object_or_404(Product, pk=pk)
         return super().get(request, pk)
 
-    def get_queryset(self):
+    def get_queryset(self) -> QuerySet[ConcreteBundle]:
         qs = ConcreteBundle.objects.order_by("id")
         qs = qs.filter(triggering_product=self.product, bundle_group__is_active=True)
         return qs.all()
 
 
-class ProductUserConfigurableBundleList(generics.ListAPIView):
+class ProductUserConfigurableBundleList(generics.ListAPIView[UserConfigurableBundle]):
     permission_classes = (permissions.AllowAny,)
     serializer_class = UserConfigurableBundleSerializer
 
-    def get(self, request, pk):
+    def get(self, request: Request, pk: int) -> Response:
         self.product = get_object_or_404(Product, pk=pk)
         return super().get(request, pk)
 
-    def get_queryset(self):
+    def get_queryset(self) -> QuerySet[UserConfigurableBundle]:
         qs = UserConfigurableBundle.objects.order_by("id")
         qs = qs.filter(triggering_product=self.product, bundle_group__is_active=True)
         return qs.all()
@@ -52,11 +60,11 @@ class ProductUserConfigurableBundleList(generics.ListAPIView):
 # =============================================================================
 # Bundle Groups
 # =============================================================================
-class BundleGroupTypeList(generics.ListAPIView):
+class BundleGroupTypeList(generics.ListAPIView[BundleGroup]):
     permission_classes = API_PERMS
     queryset = BundleGroup.objects.get_queryset()
 
-    def get(self, request):
+    def get(self, request: Request) -> Response:
         choices = [
             {
                 "display_name": label,
@@ -67,7 +75,7 @@ class BundleGroupTypeList(generics.ListAPIView):
         return Response(choices)
 
 
-class BundleGroupList(generics.ListCreateAPIView):
+class BundleGroupList(generics.ListCreateAPIView[BundleGroup]):
     permission_classes = API_PERMS
     queryset = BundleGroup.objects.prefetch_related(
         "triggering_parents",
@@ -80,7 +88,7 @@ class BundleGroupList(generics.ListCreateAPIView):
     serializer_class = BundleGroupSerializer
 
 
-class BundleGroupDetail(generics.RetrieveUpdateDestroyAPIView):
+class BundleGroupDetail(generics.RetrieveUpdateDestroyAPIView[BundleGroup]):
     permission_classes = API_PERMS
     queryset = BundleGroup.objects.order_by("id")
     serializer_class = BundleGroupSerializer
@@ -89,7 +97,7 @@ class BundleGroupDetail(generics.RetrieveUpdateDestroyAPIView):
 # =============================================================================
 # Concrete Bundles
 # =============================================================================
-class ConcreteBundleList(generics.ListAPIView):
+class ConcreteBundleList(generics.ListAPIView[ConcreteBundle]):
     permission_classes = API_PERMS
     queryset = (
         ConcreteBundle.objects.select_related("bundle_group")
@@ -99,7 +107,7 @@ class ConcreteBundleList(generics.ListAPIView):
     serializer_class = ConcreteBundleSerializer
 
 
-class ConcreteBundleDetail(generics.RetrieveAPIView):
+class ConcreteBundleDetail(generics.RetrieveAPIView[ConcreteBundle]):
     permission_classes = API_PERMS
     queryset = (
         ConcreteBundle.objects.select_related("bundle_group")
@@ -109,7 +117,7 @@ class ConcreteBundleDetail(generics.RetrieveAPIView):
     serializer_class = ConcreteBundleSerializer
 
 
-class ConcreteBundleProductChoicesList(generics.ListAPIView):
+class ConcreteBundleProductChoicesList(generics.ListAPIView[Product]):
     permission_classes = API_PERMS
     queryset = Product.objects.prefetch_related("product_class", "children").order_by(
         "id"
@@ -120,19 +128,19 @@ class ConcreteBundleProductChoicesList(generics.ListAPIView):
 # =============================================================================
 # User Configurable Bundles
 # =============================================================================
-class UserConfigurableBundleList(generics.ListAPIView):
+class UserConfigurableBundleList(generics.ListAPIView[UserConfigurableBundle]):
     permission_classes = API_PERMS
     queryset = UserConfigurableBundle.objects.order_by("id")
     serializer_class = UserConfigurableBundleSerializer
 
 
-class UserConfigurableBundleDetail(generics.RetrieveAPIView):
+class UserConfigurableBundleDetail(generics.RetrieveAPIView[UserConfigurableBundle]):
     permission_classes = API_PERMS
     queryset = UserConfigurableBundle.objects.order_by("id")
     serializer_class = UserConfigurableBundleSerializer
 
 
-class UserConfigurableBundleRangeChoicesList(generics.ListAPIView):
+class UserConfigurableBundleRangeChoicesList(generics.ListAPIView[Range]):
     permission_classes = API_PERMS
     queryset = Range.objects.order_by("id")
     serializer_class = RangeSerializer

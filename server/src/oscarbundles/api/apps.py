@@ -1,4 +1,7 @@
+from collections.abc import Callable
+
 from django.urls import path
+from django.urls.resolvers import URLPattern, URLResolver
 from django.utils.translation import gettext_lazy as _
 from django.views.decorators.cache import cache_page
 from django.views.generic.base import RedirectView
@@ -6,7 +9,7 @@ from django.views.i18n import JavaScriptCatalog
 from oscar.core.application import OscarConfig
 
 
-def cache(fn):
+def cache[T, **P](fn: Callable[P, T]) -> Callable[P, T]:
     return cache_page(60 * 15)(fn)
 
 
@@ -18,7 +21,7 @@ class OscarBundlesAPIConfig(OscarConfig):
 
     namespace = "oscarbundles_api"
 
-    def get_urls(self):
+    def get_urls(self) -> list[URLPattern | URLResolver]:
         from oscarbundles.api.views import (
             BundleGroupDetail,
             BundleGroupList,
@@ -98,4 +101,4 @@ class OscarBundlesAPIConfig(OscarConfig):
                 name="userconfigurablebundle-range-choice-list",
             ),
         ]
-        return self.post_process_urls(urlpatterns)
+        return self.post_process_urls(urlpatterns)  # type:ignore[no-any-return]
