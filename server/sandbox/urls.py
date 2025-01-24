@@ -1,8 +1,8 @@
 from django.apps import apps
 from django.conf import settings
-from django.conf.urls import include, i18n
-from django.urls import path
+from django.conf.urls import i18n, include
 from django.contrib import admin
+from django.urls import path
 from django.views.static import serve
 
 MEDIA_SETTINGS = {"document_root": settings.MEDIA_ROOT, "show_indexes": True}

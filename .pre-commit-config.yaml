@@ -28,6 +28,13 @@ repos:
       - id: black
         types: [file, python]
 
+  - repo: https://github.com/pycqa/isort
+    rev: "5.13.2"
+    hooks:
+      - id: isort
+        name: isort (python)
+        args: [--settings-path, server/pyproject.toml]
+
   - repo: https://github.com/commitizen-tools/commitizen
     rev: v4.1.0
     hooks:

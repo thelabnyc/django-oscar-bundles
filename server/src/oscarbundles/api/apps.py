@@ -1,8 +1,8 @@
 from django.urls import path
-from django.views.i18n import JavaScriptCatalog
+from django.utils.translation import gettext_lazy as _
 from django.views.decorators.cache import cache_page
 from django.views.generic.base import RedirectView
-from django.utils.translation import gettext_lazy as _
+from django.views.i18n import JavaScriptCatalog
 from oscar.core.application import OscarConfig
 
 
@@ -20,17 +20,17 @@ class OscarBundlesAPIConfig(OscarConfig):
 
     def get_urls(self):
         from oscarbundles.api.views import (
+            BundleGroupDetail,
+            BundleGroupList,
+            BundleGroupTypeList,
+            ConcreteBundleDetail,
+            ConcreteBundleList,
+            ConcreteBundleProductChoicesList,
             ProductConcreteBundleList,
             ProductUserConfigurableBundleList,
-            ConcreteBundleList,
-            ConcreteBundleDetail,
-            ConcreteBundleProductChoicesList,
-            UserConfigurableBundleList,
             UserConfigurableBundleDetail,
+            UserConfigurableBundleList,
             UserConfigurableBundleRangeChoicesList,
-            BundleGroupTypeList,
-            BundleGroupList,
-            BundleGroupDetail,
         )
 
         urlpatterns = [

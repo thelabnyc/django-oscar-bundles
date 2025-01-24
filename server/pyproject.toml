@@ -31,3 +31,7 @@ psycopg2-binary = "^2.9.10"
 sorl-thumbnail = "^12.11.0"
 tox = "^4.23.2"
 unittest-xml-reporting = "^3.2.0"
+
+[tool.isort]
+profile = "black"
+from_first = true

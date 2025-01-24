@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import ConcreteBundle, BundleGroup, UserConfigurableBundle
+
+from .models import BundleGroup, ConcreteBundle, UserConfigurableBundle
 
 
 @admin.register(BundleGroup)

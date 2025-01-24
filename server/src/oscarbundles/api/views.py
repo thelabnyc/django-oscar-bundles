@@ -1,19 +1,16 @@
 from django.shortcuts import get_object_or_404
+from oscar.core.loading import get_model
 from rest_framework import generics, permissions
 from rest_framework.response import Response
-from oscar.core.loading import get_model
-from oscarbundles.models import (
-    BundleGroup,
-    ConcreteBundle,
-    UserConfigurableBundle,
-)
+
 from oscarbundles.api.serializers import (
-    ProductSerializer,
-    RangeSerializer,
     BundleGroupSerializer,
     ConcreteBundleSerializer,
+    ProductSerializer,
+    RangeSerializer,
     UserConfigurableBundleSerializer,
 )
+from oscarbundles.models import BundleGroup, ConcreteBundle, UserConfigurableBundle
 
 Product = get_model("catalogue", "Product")
 Range = get_model("offer", "Range")

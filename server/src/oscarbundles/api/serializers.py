@@ -1,5 +1,6 @@
-from rest_framework import serializers
 from oscar.core.loading import get_model
+from rest_framework import serializers
+
 from ..models import BundleGroup, ConcreteBundle, UserConfigurableBundle
 
 ProductClass = get_model("catalogue", "ProductClass")
