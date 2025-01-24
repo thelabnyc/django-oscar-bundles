@@ -1,5 +1,33 @@
 # Changes
 
+## v2.2.3 (2025-01-24)
+
+### Fix
+
+- add type annotations (#28357)
+- **deps**: update dependency phonenumbers to ^8.13.53
+- **deps**: update dependency django to ^4.2.18
+- **deps**: update react monorepo to v19
+- list bundle types via GET instead of OPTIONS request
+- **deps**: update dependency core-js to ^3.40.0
+- **deps**: update dependency react-modal to ^3.16.3
+- **deps**: update dependency react-select to ^5.9.0
+- **deps**: update dependency phonenumbers to ^8.13.52
+- **deps**: update dependency io-ts to ^2.2.22
+- **deps**: update dependency django to ^4.2.17
+- **deps**: update dependency phonenumbers to ^8.13.51
+- **deps**: update dependency phonenumbers to ^8.13.50
+- **deps**: update dependency react-select to ^5.8.3
+- **deps**: update dependency phonenumbers to ^8.13.49
+- **deps**: update dependency core-js to ^3.39.0
+- **deps**: update dependency tslib to ^2.8.1
+- **deps**: update dependency react-select to ^5.8.2
+- **deps**: update dependency phonenumbers to ^8.13.48
+- **deps**: update dependency tslib to ^2.8.0
+- remove @babel/plugin-syntax-dynamic-import plugin
+- **deps**: update dependency phonenumbers to ^8.13.47
+- **deps**: update dependency phonenumbers to ^8.13.46
+
 ## v2.2.2 (2024-09-25)
 
 ### Fix
