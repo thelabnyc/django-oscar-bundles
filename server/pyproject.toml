@@ -21,7 +21,7 @@ python = "^3.12"
 Django = "^4.2.18"
 django-oscar = "3.2.5"
 django-oscar-api = "3.3.0"
-phonenumbers = "^8.13.53"
+phonenumbers = "^8.13.54"
 django-stubs-ext = "^5.1.2"
 
 [tool.poetry.group.dev.dependencies]
