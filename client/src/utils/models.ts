@@ -18,7 +18,7 @@ export const optional = <RT extends t.Mixed>(type: RT) => {
 };
 
 class FileType extends t.Type<File> {
-    readonly _tag = "NumberType" as const;
+    readonly _tag = "NumberType";
     constructor() {
         super(
             "number",
