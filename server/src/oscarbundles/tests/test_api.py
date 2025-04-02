@@ -291,7 +291,7 @@ class UserConfigurableBundleAPITest(APITestCase):
         self.assertEqual(resp.data[0]["suggested_range"], self.rangeA.pk)
         self.assertEqual(
             set(resp.data[0]["suggested_range_products"]),
-            set([self.product3.pk, self.product4.pk]),
+            {self.product3.pk, self.product4.pk},
         )
         self.assertEqual(resp.data[0]["quantity"], 1)
 
@@ -316,7 +316,7 @@ class UserConfigurableBundleAPITest(APITestCase):
         self.assertEqual(resp.data["suggested_range"], self.rangeA.pk)
         self.assertEqual(
             set(resp.data["suggested_range_products"]),
-            set([self.product3.pk, self.product4.pk]),
+            {self.product3.pk, self.product4.pk},
         )
         self.assertEqual(resp.data["quantity"], 1)
 
