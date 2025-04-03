@@ -1,5 +1,29 @@
 # Changes
 
+## v2.3.0 (2025-04-03)
+
+### Feat
+
+- add support for Django 5.0
+
+### Fix
+
+- **deps**: update react monorepo to ^19.1.0
+- **deps**: update dependency phonenumbers to ^9.0.2
+- **deps**: update dependency phonenumbers to v9
+- **deps**: update dependency django to ^4.2.20
+- **deps**: update dependency react-select to ^5.10.1
+- **deps**: update dependency core-js to ^3.41.0
+- **deps**: update dependency phonenumbers to ^8.13.55
+- **deps**: update dependency django-stubs-ext to ^5.1.3
+- **deps**: update dependency django to ^4.2.19
+- **deps**: update dependency phonenumbers to ^8.13.54
+- **deps**: update dependency react-select to ^5.10.0
+
+### Refactor
+
+- add pyupgrade / django-upgrade precommit hooks
+
 ## v2.2.3 (2025-01-24)
 
 ### Fix

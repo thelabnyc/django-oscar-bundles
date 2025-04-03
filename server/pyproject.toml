@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "django-oscar-bundles"
-version = "2.2.3"
+version = "2.3.0"
 description = "An extension on top of django-oscar providing product bundle functionality."
 authors = ["thelab <thelabdev@thelab.co>"]
 readme = "README.rst"
