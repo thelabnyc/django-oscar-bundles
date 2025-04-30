@@ -1,7 +1,7 @@
 # =============================================================================
 # NodeJS Static Assets
 # =============================================================================
-FROM node:20@sha256:e83a3ef5d6b308bcc900c4798317f85ae5d0a5a65e3a979570f5141b386912ab as client
+FROM node:20@sha256:6f076db82169a365abca591093bdf020f9e8827a8add8ea3826556c290b340c0 as client
 
 RUN mkdir -p /oscarbundles/server /oscarbundles/client
 WORKDIR /oscarbundles/client
