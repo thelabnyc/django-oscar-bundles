@@ -32,7 +32,7 @@ psycopg2-binary = "2.9.10"
 sorl-thumbnail = "12.11.0"
 tox = "4.26.0"
 unittest-xml-reporting = "3.2.0"
-mypy = "1.15.0"
+mypy = "1.16.0"
 django-stubs = "5.2.0"
 djangorestframework-stubs = "3.16.0"
 
