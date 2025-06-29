@@ -1,40 +1,47 @@
 [build-system]
-requires = [ "poetry-core>=2.1.2",]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
-[tool.poetry]
+[project]
 name = "django-oscar-bundles"
 version = "2.3.0"
 description = "An extension on top of django-oscar providing product bundle functionality."
-authors = ["thelab <thelabdev@thelab.co>"]
 readme = "README.rst"
-homepage = "https://gitlab.com/thelabnyc/django-oscar/django-oscar-bundles/"
-repository = "https://gitlab.com/thelabnyc/django-oscar/django-oscar-bundles/"
-license = "ISC"
+license = { text = "ISC" }
+dependencies = [
+    "Django (>=4.2)",
+    "django-oscar (>=4.0,<4.1)",
+    "django-oscar-api (==3.3.0)",
+    "phonenumbers (>=9.0.3,<10)",
+    "django-stubs-ext (>=5.1.3,<6)",
+]
+requires-python = ">=3.12"
 
-[[tool.poetry.packages]]
-include = "oscarbundles"
-from = "src"
+[[project.authors]]
+name = "thelab"
+email = "thelabdev@thelab.co"
 
-[tool.poetry.dependencies]
-python = "^3.12"
-Django = ">=4.2"
-django-oscar = ">=4.0,<4.1"
-django-oscar-api = "3.3.0"
-phonenumbers = "^9.0.3"
-django-stubs-ext = "^5.1.3"
+[project.urls]
+Homepage = "https://gitlab.com/thelabnyc/django-oscar/django-oscar-bundles/"
+Repository = "https://gitlab.com/thelabnyc/django-oscar/django-oscar-bundles/"
 
-[tool.poetry.group.dev.dependencies]
-coverage = "7.9.1"
-flake8 = "7.3.0"
-ipdb = "0.13.13"
-psycopg2-binary = "2.9.10"
-sorl-thumbnail = "12.11.0"
-tox = "4.27.0"
-unittest-xml-reporting = "3.2.0"
-mypy = "1.16.1"
-django-stubs = "5.2.1"
-djangorestframework-stubs = "3.16.0"
+[dependency-groups]
+dev = [
+    "coverage (==7.9.1)",
+    "flake8 (==7.3.0)",
+    "ipdb (==0.13.13)",
+    "psycopg2-binary (==2.9.10)",
+    "sorl-thumbnail (==12.11.0)",
+    "tox (==4.27.0)",
+    "unittest-xml-reporting (==3.2.0)",
+    "mypy (==1.16.1)",
+    "django-stubs (==5.2.1)",
+    "djangorestframework-stubs (==3.16.0)",
+    "tox-uv>=1.26.1",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["oscarbundles"]
 
 [tool.mypy]
 python_version = "3.12"
@@ -69,6 +76,7 @@ ignore_errors = true
 [[tool.mypy.overrides]]
 module = "*.tests.*"
 ignore_errors = true
+
 
 [tool.django-stubs]
 django_settings_module = "sandbox.settings"
