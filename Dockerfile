@@ -44,7 +44,7 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 COPY server/ /oscarbundles/server/
-RUN poetry install
+RUN uv sync
 
 RUN mkdir /oscarbundles/tox
 ENV TOX_WORK_DIR='/oscarbundles/tox'
