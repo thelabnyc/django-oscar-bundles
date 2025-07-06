@@ -27,7 +27,7 @@ Repository = "https://gitlab.com/thelabnyc/django-oscar/django-oscar-bundles/"
 
 [dependency-groups]
 dev = [
-    "coverage (==7.9.1)",
+    "coverage (==7.9.2)",
     "flake8 (==7.3.0)",
     "ipdb (==0.13.13)",
     "psycopg2-binary (==2.9.10)",
