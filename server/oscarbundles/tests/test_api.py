@@ -275,18 +275,20 @@ class UserConfigurableBundleAPITest(APITestCase):
         resp = self.client.get(url)
         self.assertEqual(resp.status_code, status.HTTP_200_OK)
         self.assertEqual(resp.data[0]["id"], self.bundle1.pk)
-        self.assertEqual(
-            resp.data[0]["bundle_group"],
-            {
-                "id": self.bundle_group1.pk,
-                "bundle_type": "default",
-                "name": self.bundle_name,
-                "headline": self.bundle_headline,
-                "is_active": self.bundle_is_active,
-                "description": "",
-                "image": None,
-            },
-        ),
+        (
+            self.assertEqual(
+                resp.data[0]["bundle_group"],
+                {
+                    "id": self.bundle_group1.pk,
+                    "bundle_type": "default",
+                    "name": self.bundle_name,
+                    "headline": self.bundle_headline,
+                    "is_active": self.bundle_is_active,
+                    "description": "",
+                    "image": None,
+                },
+            ),
+        )
         self.assertEqual(resp.data[0]["triggering_product"], self.product1.pk)
         self.assertEqual(resp.data[0]["suggested_range"], self.rangeA.pk)
         self.assertEqual(
@@ -300,18 +302,20 @@ class UserConfigurableBundleAPITest(APITestCase):
         resp = self.client.get(url)
         self.assertEqual(resp.status_code, status.HTTP_200_OK)
         self.assertEqual(resp.data["id"], self.bundle1.pk)
-        self.assertEqual(
-            resp.data["bundle_group"],
-            {
-                "id": self.bundle_group1.pk,
-                "bundle_type": "default",
-                "name": self.bundle_name,
-                "headline": self.bundle_headline,
-                "is_active": self.bundle_is_active,
-                "description": "",
-                "image": None,
-            },
-        ),
+        (
+            self.assertEqual(
+                resp.data["bundle_group"],
+                {
+                    "id": self.bundle_group1.pk,
+                    "bundle_type": "default",
+                    "name": self.bundle_name,
+                    "headline": self.bundle_headline,
+                    "is_active": self.bundle_is_active,
+                    "description": "",
+                    "image": None,
+                },
+            ),
+        )
         self.assertEqual(resp.data["triggering_product"], self.product1.pk)
         self.assertEqual(resp.data["suggested_range"], self.rangeA.pk)
         self.assertEqual(
