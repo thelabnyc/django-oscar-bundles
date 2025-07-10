@@ -1,5 +1,5 @@
-server/src/oscarbundles/static/oscarbundles/*.css      -diff merge=ours
-server/src/oscarbundles/static/oscarbundles/*.css.map  -diff merge=ours
-server/src/oscarbundles/static/oscarbundles/*.js       -diff merge=ours
-server/src/oscarbundles/static/oscarbundles/*.js.map   -diff merge=ours
-server/src/oscarbundles/static/oscarbundles/*.json     -diff merge=ours
+server/oscarbundles/static/oscarbundles/*.css      -diff merge=ours
+server/oscarbundles/static/oscarbundles/*.css.map  -diff merge=ours
+server/oscarbundles/static/oscarbundles/*.js       -diff merge=ours
+server/oscarbundles/static/oscarbundles/*.js.map   -diff merge=ours
+server/oscarbundles/static/oscarbundles/*.json     -diff merge=ours

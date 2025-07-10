@@ -1,2 +1,2 @@
 *.snap
-server/src/oscarbundles/static/oscarbundles/*
+server/oscarbundles/static/oscarbundles/*
