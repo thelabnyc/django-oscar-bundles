@@ -9,6 +9,6 @@ statics:
 translations:
 	cd client/src && \
 	django-admin makemessages -a --extension=ts,tsx --domain djangojs && \
-	cd ../../server/src/oscarbundles && \
+	cd ../../server/oscarbundles && \
 	django-admin makemessages -a && \
 	django-admin compilemessages
