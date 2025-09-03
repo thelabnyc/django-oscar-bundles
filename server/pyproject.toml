@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "django-oscar-bundles"
-version = "2.3.0"
+version = "2.4.0"
 description = "An extension on top of django-oscar providing product bundle functionality."
 readme = "README.rst"
 license = { text = "ISC" }
