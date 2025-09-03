@@ -264,7 +264,7 @@ wheels = [
 
 [[package]]
 name = "django-oscar-bundles"
-version = "2.3.0"
+version = "2.4.0"
 source = { editable = "." }
 dependencies = [
     { name = "django" },
@@ -309,7 +309,7 @@ dev = [
     { name = "ruff", specifier = ">=0.11.6" },
     { name = "sorl-thumbnail", specifier = "==12.11.0" },
     { name = "tox", specifier = "==4.29.0" },
-    { name = "tox-uv", specifier = ">=1.26.1" },
+    { name = "tox-uv", specifier = ">=1.28.0" },
     { name = "unittest-xml-reporting", specifier = "==3.2.0" },
 ]
 
