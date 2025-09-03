@@ -43,6 +43,11 @@ dev = [
 [tool.hatch.build.targets.wheel]
 packages = ["oscarbundles"]
 
+[[tool.uv.index]]
+name = "thelabnyc"
+url = "https://gitlab.com/api/v4/groups/269576/-/packages/pypi/simple"
+explicit = true
+
 [tool.mypy]
 python_version = "3.12"
 plugins = ["mypy_django_plugin.main", "mypy_drf_plugin.main"]
