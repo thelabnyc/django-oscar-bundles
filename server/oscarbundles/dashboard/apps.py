@@ -10,7 +10,7 @@ class OscarBundlesDashboardConfig(OscarDashboardConfig):
     verbose_name = _("Oscar Bundles Dashboard")
     default = True
 
-    namespace = "oscarbundles_dashboard"
+    namespace = "oscarbundles_dashboard"  # type:ignore[assignment]
     default_permissions = [  # type:ignore[assignment]
         "is_staff",
     ]

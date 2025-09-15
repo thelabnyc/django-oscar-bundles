@@ -19,7 +19,7 @@ class OscarBundlesAPIConfig(OscarConfig):
     verbose_name = _("Oscar Bundles API")
     default = True
 
-    namespace = "oscarbundles_api"
+    namespace = "oscarbundles_api"  # type:ignore[assignment]
 
     def get_urls(self) -> list[URLPattern | URLResolver]:
         from oscarbundles.api.views import (
