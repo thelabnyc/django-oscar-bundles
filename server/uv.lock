@@ -295,7 +295,7 @@ requires-dist = [
     { name = "django-oscar", specifier = ">=4.0,<4.1" },
     { name = "django-oscar-api", specifier = "==3.3.0" },
     { name = "django-stubs-ext", specifier = ">=5.2.5,<6" },
-    { name = "phonenumbers", specifier = ">=9.0.13,<10" },
+    { name = "phonenumbers", specifier = ">=9.0.14,<10" },
 ]
 
 [package.metadata.requires-dev]
