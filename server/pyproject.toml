@@ -36,7 +36,7 @@ dev = [
     "unittest-xml-reporting (==3.2.0)",
     "mypy (==1.18.1)",
     "django-stubs (==5.2.5)",
-    "djangorestframework-stubs (==3.16.2)",
+    "djangorestframework-stubs (==3.16.3)",
     "tox-uv>=1.28.0",
 ]
 
