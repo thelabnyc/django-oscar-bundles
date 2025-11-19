@@ -1,5 +1,23 @@
 # Changes
 
+## v2.4.1 (2025-11-19)
+
+### Fix
+
+- **deps**: update dependency django-oscar to >=4.1,<4.2
+- **deps**: update dependency phonenumbers to >=9.0.18,<10
+- **deps**: update dependency phonenumbers to >=9.0.17,<10
+- **deps**: update dependency phonenumbers to >=9.0.16,<10
+- **deps**: update dependency django-stubs-ext to >=5.2.7,<6
+- **deps**: update dependency django-stubs-ext to >=5.2.6,<6
+- **deps**: update dependency phonenumbers to >=9.0.15,<10
+- **deps**: update dependency phonenumbers to >=9.0.14,<10
+- **deps**: update dependency django-stubs-ext to >=5.2.5,<6
+- **deps**: update dependency django-stubs-ext to >=5.2.4,<6
+- **deps**: update dependency phonenumbers to >=9.0.13,<10
+- prevent renovate from pointing all URLs at gitlab
+- **deps**: update dependency django-stubs-ext to >=5.2.2,<6
+
 ## v2.4.0 (2025-09-03)
 
 ### Feat
