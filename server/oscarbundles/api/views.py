@@ -3,6 +3,10 @@ from typing import TYPE_CHECKING
 from django.db.models import QuerySet
 from django.shortcuts import get_object_or_404
 from oscar.core.loading import get_model
+from rest_framework import generics, permissions
+from rest_framework.request import Request
+from rest_framework.response import Response
+
 from oscarbundles.api.serializers import (
     BundleGroupSerializer,
     ConcreteBundleSerializer,
@@ -11,9 +15,6 @@ from oscarbundles.api.serializers import (
     UserConfigurableBundleSerializer,
 )
 from oscarbundles.models import BundleGroup, ConcreteBundle, UserConfigurableBundle
-from rest_framework import generics, permissions
-from rest_framework.request import Request
-from rest_framework.response import Response
 
 if TYPE_CHECKING:
     from oscar.apps.catalogue.models import Product
