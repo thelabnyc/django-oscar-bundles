@@ -12,7 +12,7 @@ dependencies = [
     "Django (>=5.2)",
     "django-oscar (>=4.0,<4.2)",
     "django-oscar-api (==3.3.0)",
-    "phonenumbers (>=9.0.21,<10)",
+    "phonenumbers (>=9.0.22,<10)",
     "django-stubs-ext (>=5.2.8,<6)",
 ]
 requires-python = ">=3.12"
