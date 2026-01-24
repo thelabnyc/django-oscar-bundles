@@ -35,7 +35,7 @@ dev = [
     "tox (==4.34.1)",
     "unittest-xml-reporting (==3.2.0)",
     "mypy (==1.19.1)",
-    "django-stubs (==5.2.8)",
+    "django-stubs (==5.2.9)",
     "djangorestframework-stubs (==3.16.7)",
     "tox-uv>=1.29.0",
 ]
