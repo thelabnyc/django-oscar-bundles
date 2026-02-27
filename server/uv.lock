@@ -279,7 +279,7 @@ dev = [
     { name = "ruff", specifier = ">=0.15.2" },
     { name = "sorl-thumbnail", specifier = "==12.11.0" },
     { name = "tox", specifier = "==4.45.0" },
-    { name = "tox-uv", specifier = ">=1.31.0" },
+    { name = "tox-uv", specifier = ">=1.32.0" },
     { name = "unittest-xml-reporting", specifier = "==3.2.0" },
 ]
 
