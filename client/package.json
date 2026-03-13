@@ -46,7 +46,7 @@
         "jest": "30.3.0",
         "jest-cli": "30.3.0",
         "jest-environment-jsdom": "30.3.0",
-        "mini-css-extract-plugin": "2.10.0",
+        "mini-css-extract-plugin": "2.10.1",
         "postcss": "8.5.8",
         "postcss-loader": "8.2.1",
         "prettier": "3.8.1",
