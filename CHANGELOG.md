@@ -1,5 +1,27 @@
 # Changes
 
+## v2.5.0b0 (2026-03-20)
+
+### Feat
+
+- add django-oscar-stubs for type checking
+- support Python 3.14
+
+### Fix
+
+- **deps**: update dependency phonenumbers to >=9.0.26,<10
+- **deps**: update dependency phonenumbers to >=9.0.25,<10
+- **deps**: update dependency phonenumbers to >=9.0.24,<10
+- **deps**: update dependency phonenumbers to >=9.0.23,<10
+- **deps**: update dependency django-stubs-ext to >=5.2.9,<6
+- **deps**: update dependency phonenumbers to >=9.0.22,<10
+- **deps**: update dependency phonenumbers to >=9.0.21,<10
+- **deps**: update dependency django to >=5.2
+- **deps**: update dependency django to >=4.2.27
+- **deps**: update dependency phonenumbers to >=9.0.20,<10
+- **deps**: update dependency django-stubs-ext to >=5.2.8,<6
+- **deps**: update dependency phonenumbers to >=9.0.19,<10
+
 ## v2.4.1 (2025-11-19)
 
 ### Fix
