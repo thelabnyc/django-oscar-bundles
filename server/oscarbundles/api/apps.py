@@ -19,7 +19,7 @@ class OscarBundlesAPIConfig(OscarConfig):
     verbose_name = _("Oscar Bundles API")
     default = True
 
-    namespace = "oscarbundles_api"  # type:ignore[assignment]
+    namespace = "oscarbundles_api"
 
     def get_urls(self) -> list[URLPattern | URLResolver]:
         from oscarbundles.api.views import (
@@ -36,7 +36,7 @@ class OscarBundlesAPIConfig(OscarConfig):
             UserConfigurableBundleRangeChoicesList,
         )
 
-        urlpatterns = [
+        urlpatterns: list[URLPattern | URLResolver] = [
             # Cached views
             path(
                 "products/<int:pk>/bundles/",
@@ -101,4 +101,4 @@ class OscarBundlesAPIConfig(OscarConfig):
                 name="userconfigurablebundle-range-choice-list",
             ),
         ]
-        return self.post_process_urls(urlpatterns)  # type:ignore[no-any-return]
+        return self.post_process_urls(urlpatterns)

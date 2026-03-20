@@ -38,6 +38,7 @@ dev = [
     "django-stubs (==5.2.9)",
     "djangorestframework-stubs (==3.16.8)",
     "tox-uv>=1.33.4",
+    "django-oscar-stubs>=4.1.0b2",
 ]
 
 [tool.hatch.build.targets.wheel]
@@ -50,7 +51,7 @@ explicit = true
 
 [tool.mypy]
 python_version = "3.12"
-plugins = ["mypy_django_plugin.main", "mypy_drf_plugin.main"]
+plugins = ["mypy_django_plugin.main", "mypy_drf_plugin.main", "mypy_oscar_plugin"]
 
 # Strict mode, see mypy --help
 warn_unused_configs = true
@@ -71,7 +72,7 @@ show_error_codes = true
 strict_equality = true
 
 [[tool.mypy.overrides]]
-module = "oscar.*"
+module = "oscarapi.*"
 follow_untyped_imports = true
 
 [[tool.mypy.overrides]]

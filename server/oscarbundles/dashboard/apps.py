@@ -10,19 +10,19 @@ class OscarBundlesDashboardConfig(OscarDashboardConfig):
     verbose_name = _("Oscar Bundles Dashboard")
     default = True
 
-    namespace = "oscarbundles_dashboard"  # type:ignore[assignment]
-    default_permissions = [  # type:ignore[assignment]
+    namespace = "oscarbundles_dashboard"
+    default_permissions = [
         "is_staff",
     ]
 
     def get_urls(self) -> list[URLPattern | URLResolver]:
         from .views import BundleGroupSPAView
 
-        urlpatterns = [
+        urlpatterns: list[URLPattern | URLResolver] = [
             path(
                 "bundle-groups/",
                 BundleGroupSPAView.as_view(),
                 name="dashboard-bundle-group-list",
             ),
         ]
-        return self.post_process_urls(urlpatterns)  # type:ignore[no-any-return]
+        return self.post_process_urls(urlpatterns)
