@@ -1,16 +1,12 @@
-from typing import TYPE_CHECKING
-
 from django.conf import settings
 from django.db import models
 from django.db.models import QuerySet
 from django.utils.translation import gettext_lazy as _
 from django_stubs_ext.db.models import TypedModelMeta
+from oscar.apps.catalogue.abstract_models import AbstractProduct
 from oscar.core.loading import get_model
 
-if TYPE_CHECKING:
-    from oscar.apps.catalogue.models import Product
-else:
-    Product = get_model("catalogue", "Product")
+Product = get_model("catalogue", "Product")
 
 
 class BundleGroup(models.Model):
@@ -44,12 +40,14 @@ class BundleGroup(models.Model):
         upload_to=settings.OSCAR_IMAGE_FOLDER, max_length=255, blank=True, null=True
     )
 
-    triggering_parents = models.ManyToManyField(
-        Product,
-        related_name="triggering_bundle_groups",
-        verbose_name=_("Triggering Products"),
+    triggering_parents: models.ManyToManyField[AbstractProduct, models.Model] = (
+        models.ManyToManyField(
+            Product,
+            related_name="triggering_bundle_groups",
+            verbose_name=_("Triggering Products"),
+        )
     )
-    suggested_parents: models.ManyToManyField[Product, models.Model] = (
+    suggested_parents: models.ManyToManyField[AbstractProduct, models.Model] = (
         models.ManyToManyField(
             Product,
             related_name="suggesting_bundle_groups",

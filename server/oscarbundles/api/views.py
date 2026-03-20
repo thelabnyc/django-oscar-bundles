@@ -1,5 +1,3 @@
-from typing import TYPE_CHECKING
-
 from django.db.models import QuerySet
 from django.shortcuts import get_object_or_404
 from oscar.core.loading import get_model
@@ -16,12 +14,8 @@ from oscarbundles.api.serializers import (
 )
 from oscarbundles.models import BundleGroup, ConcreteBundle, UserConfigurableBundle
 
-if TYPE_CHECKING:
-    from oscar.apps.catalogue.models import Product
-    from oscar.apps.offer.models import Range
-else:
-    Product = get_model("catalogue", "Product")
-    Range = get_model("offer", "Range")
+Product = get_model("catalogue", "Product")
+Range = get_model("offer", "Range")
 
 API_PERMS = (permissions.DjangoModelPermissionsOrAnonReadOnly,)
 

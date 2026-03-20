@@ -6,14 +6,12 @@ from rest_framework import serializers
 
 from ..models import BundleGroup, ConcreteBundle, UserConfigurableBundle
 
+ProductClass = get_model("catalogue", "ProductClass")
+Product = get_model("catalogue", "Product")
+Range = get_model("offer", "Range")
+
 if TYPE_CHECKING:
-    from oscar.apps.catalogue.models import Product, ProductClass
-    from oscar.apps.offer.models import Range
     from rest_framework.validators import Validator
-else:
-    ProductClass = get_model("catalogue", "ProductClass")
-    Product = get_model("catalogue", "Product")
-    Range = get_model("offer", "Range")
 
 
 # =============================================================================
@@ -156,8 +154,8 @@ class UserConfigurableBundleSerializer(
     def get_suggested_range_products(
         self,
         obj: UserConfigurableBundle,
-    ) -> Sequence[int]:
-        return (  # type:ignore[no-any-return]
+    ) -> list[int]:
+        return list(
             obj.suggested_range.all_products()
             .exclude(structure=Product.CHILD)
             .values_list("pk", flat=True)
