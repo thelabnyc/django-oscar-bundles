@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "django-oscar-bundles"
-version = "2.5.0b0"
+version = "2.5.0b1"
 description = "An extension on top of django-oscar providing product bundle functionality."
 readme = "README.rst"
 license = { text = "ISC" }
@@ -13,7 +13,7 @@ dependencies = [
     "django-oscar (>=4.0,<4.2)",
     "django-oscar-api (==3.3.0)",
     "phonenumbers (>=9.0.26,<10)",
-    "django-stubs-ext (>=5.2.9,<6)",
+    "django-stubs-ext (>=5.2.9)",
 ]
 requires-python = ">=3.12"
 
