@@ -1,5 +1,12 @@
 # Changes
 
+## v2.5.0b1 (2026-03-21)
+
+### Fix
+
+- update django-oscar-stubs
+- loosen django-stubs-ext upper bound to allow version 6.x
+
 ## v2.5.0b0 (2026-03-20)
 
 ### Feat
