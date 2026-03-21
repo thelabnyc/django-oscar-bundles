@@ -38,7 +38,7 @@ dev = [
     "django-stubs (==5.2.9)",
     "djangorestframework-stubs (==3.16.8)",
     "tox-uv>=1.33.4",
-    "django-oscar-stubs>=4.1.0b2",
+    "django-oscar-stubs>=4.1.0b4",
 ]
 
 [tool.hatch.build.targets.wheel]
