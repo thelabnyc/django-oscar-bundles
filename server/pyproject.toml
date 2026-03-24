@@ -13,7 +13,7 @@ dependencies = [
     "django-oscar (>=4.0,<4.2)",
     "django-oscar-api (==3.3.0)",
     "phonenumbers (>=9.0.26,<10)",
-    "django-stubs-ext (>=5.2.9)",
+    "django-stubs-ext (>=6.0.1)",
 ]
 requires-python = ">=3.12"
 
