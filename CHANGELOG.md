@@ -1,19 +1,6 @@
 # Changes
 
-## v2.5.0b2 (2026-03-21)
-
-### Fix
-
-- update django-oscar-stubs
-
-## v2.5.0b1 (2026-03-21)
-
-### Fix
-
-- update django-oscar-stubs
-- loosen django-stubs-ext upper bound to allow version 6.x
-
-## v2.5.0b0 (2026-03-20)
+## v2.5.0 (2026-03-31)
 
 ### Feat
 
@@ -22,6 +9,10 @@
 
 ### Fix
 
+- django-stubs versions
+- **deps**: update dependency django-stubs-ext to >=6.0.1
+- update django-oscar-stubs
+- loosen django-stubs-ext upper bound to allow version 6.x
 - **deps**: update dependency phonenumbers to >=9.0.26,<10
 - **deps**: update dependency phonenumbers to >=9.0.25,<10
 - **deps**: update dependency phonenumbers to >=9.0.24,<10
