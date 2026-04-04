@@ -34,7 +34,7 @@ dev = [
     "sorl-thumbnail (==12.11.0)",
     "tox (==4.52.0)",
     "unittest-xml-reporting (==3.2.0)",
-    "mypy (==1.19.1)",
+    "mypy (==1.20.0)",
     "django-stubs (==5.2.9)",
     "djangorestframework-stubs (==3.16.9)",
     "tox-uv>=1.34.0",
