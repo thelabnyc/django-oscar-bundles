@@ -5,7 +5,6 @@
         "alwaysStrict": true,
         "declaration": false,
         "declarationMap": false,
-        "downlevelIteration": true,
         "esModuleInterop": true,
         "forceConsistentCasingInFileNames": true,
         "importHelpers": true,
@@ -13,7 +12,7 @@
         "jsx": "react",
         "lib": ["es6", "es2017", "es2015.collection", "es2015.iterable", "dom"],
         "module": "esnext",
-        "moduleResolution": "node",
+        "moduleResolution": "bundler",
         "newLine": "lf",
         "noFallthroughCasesInSwitch": true,
         "noImplicitAny": true,
@@ -28,6 +27,7 @@
         "sourceMap": true,
         "strict": true,
         "strictNullChecks": true,
-        "target": "es6"
+        "target": "es6",
+        "types": ["jest"]
     }
 }
