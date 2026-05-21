@@ -13,7 +13,7 @@ dependencies = [
     "django-oscar (>=4.0,<4.2)",
     "django-oscar-api (==3.3.0)",
     "phonenumbers (>=9.0.30,<10)",
-    "django-stubs-ext (>=5.2.9)",
+    "django-stubs-ext (>=6.0.4)",
 ]
 requires-python = ">=3.12"
 
@@ -35,8 +35,8 @@ dev = [
     "tox (==4.54.0)",
     "unittest-xml-reporting (==4.0.0)",
     "mypy (==1.20.2)",
-    "django-stubs (==5.2.9)",
-    "djangorestframework-stubs (==3.16.9)",
+    "django-stubs (==6.0.4)",
+    "djangorestframework-stubs (==3.17.0)",
     "tox-uv>=1.35.2",
     "django-oscar-stubs>=4.1.0b6",
 ]

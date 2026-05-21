@@ -52,7 +52,7 @@ class InlineConcreteBundleSerializer(serializers.ModelSerializer[ConcreteBundle]
 class InlineUserConfigurableBundleData(TypedDict):
     id: int
     triggering_product: int
-    suggested_range: Sequence[int]
+    suggested_range: int
     quantity: int
 
 
