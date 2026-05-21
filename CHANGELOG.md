@@ -1,5 +1,14 @@
 # Changes
 
+## v2.5.1 (2026-05-21)
+
+### Fix
+
+- **deps**: update dependency phonenumbers to >=9.0.30,<10
+- **deps**: update dependency phonenumbers to >=9.0.29,<10
+- **deps**: update dependency phonenumbers to >=9.0.28,<10
+- **deps**: update dependency phonenumbers to >=9.0.27,<10
+
 ## v2.5.0 (2026-03-31)
 
 ### Feat
