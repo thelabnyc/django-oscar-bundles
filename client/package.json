@@ -55,7 +55,7 @@
         "source-map-loader": "5.0.0",
         "style-loader": "4.0.0",
         "ts-jest": "29.4.11",
-        "ts-loader": "9.6.0",
+        "ts-loader": "9.6.1",
         "typescript": "6.0.3",
         "webpack": "5.107.2",
         "webpack-bundle-tracker": "3.2.4",
