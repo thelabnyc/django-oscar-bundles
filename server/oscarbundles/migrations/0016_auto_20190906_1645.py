@@ -4,11 +4,11 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-    dependencies = [
+    dependencies = [  # noqa: RUF012
         ("oscarbundles", "0015_auto_20190826_1326"),
     ]
 
-    operations = [
+    operations = [  # noqa: RUF012
         migrations.AlterUniqueTogether(
             name="userconfigurablebundle",
             unique_together={("bundle_group", "triggering_product", "suggested_range")},

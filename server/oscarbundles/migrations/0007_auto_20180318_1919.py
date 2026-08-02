@@ -4,11 +4,11 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-    dependencies = [
+    dependencies = [  # noqa: RUF012
         ("oscarbundles", "0006_auto_20180318_1907"),
     ]
 
-    operations = [
+    operations = [  # noqa: RUF012
         migrations.DeleteModel("Bundle"),
         migrations.RenameModel("BundleEntry", "Bundle"),
     ]

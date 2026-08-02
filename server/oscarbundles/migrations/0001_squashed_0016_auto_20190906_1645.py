@@ -3,7 +3,7 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-    replaces = [
+    replaces = [  # noqa: RUF012
         ("oscarbundles", "0001_initial"),
         ("oscarbundles", "0002_auto_20160902_1106"),
         ("oscarbundles", "0003_auto_20180315_1137"),
@@ -24,12 +24,12 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
+    dependencies = [  # noqa: RUF012
         ("catalogue", "0008_auto_20160304_1652"),
         ("offer", "0001_initial"),
     ]
 
-    operations = [
+    operations = [  # noqa: RUF012
         migrations.CreateModel(
             name="BundleGroup",
             fields=[

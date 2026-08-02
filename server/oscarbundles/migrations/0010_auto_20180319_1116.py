@@ -18,11 +18,11 @@ def cleanup_bundle_groups(apps, schema_editor):
 
 
 class Migration(migrations.Migration):
-    dependencies = [
+    dependencies = [  # noqa: RUF012
         ("oscarbundles", "0009_auto_20180319_1116"),
     ]
 
-    operations = [
+    operations = [  # noqa: RUF012
         migrations.RunPython(cleanup_bundles),
         migrations.RunPython(cleanup_bundle_groups),
     ]

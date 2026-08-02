@@ -1,7 +1,7 @@
 import os
 
 from django.utils.translation import gettext_lazy as _
-from oscar.defaults import *  # noqa
+from oscar.defaults import *
 import django_stubs_ext
 
 django_stubs_ext.monkeypatch()
@@ -187,8 +187,8 @@ EMAIL_BACKEND = "django.core.mail.backends.locmem.EmailBackend"
 
 
 # Append to Oscar dashboard navigation
-OSCAR_DASHBOARD_NAVIGATION.append(  # NOQA
-    {  # NOQA
+OSCAR_DASHBOARD_NAVIGATION.append(
+    {
         "label": "Bundles",
         "icon": "icon-sitemap",
         "children": [
