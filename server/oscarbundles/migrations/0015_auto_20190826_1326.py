@@ -5,13 +5,13 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-    dependencies = [
+    dependencies = [  # noqa: RUF012
         ("catalogue", "0008_auto_20160304_1652"),
         ("offer", "0001_initial"),
         ("oscarbundles", "0014_auto_20190305_0420"),
     ]
 
-    operations = [
+    operations = [  # noqa: RUF012
         migrations.AlterModelOptions(
             name="bundlegroup",
             options={

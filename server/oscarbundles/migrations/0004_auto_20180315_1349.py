@@ -28,11 +28,11 @@ def update_suggested_parents(apps, schema_editor):
 
 
 class Migration(migrations.Migration):
-    dependencies = [
+    dependencies = [  # noqa: RUF012
         ("oscarbundles", "0003_auto_20180315_1137"),
     ]
 
-    operations = [
+    operations = [  # noqa: RUF012
         migrations.RunPython(update_triggering_parents),
         migrations.RunPython(update_suggested_parents),
     ]

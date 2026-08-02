@@ -11,7 +11,7 @@ class OscarBundlesDashboardConfig(OscarDashboardConfig):
     default = True
 
     namespace = "oscarbundles_dashboard"
-    default_permissions = [
+    default_permissions = [  # noqa: RUF012
         "is_staff",
     ]
 

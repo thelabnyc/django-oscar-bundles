@@ -33,10 +33,10 @@ def migrate_to_old_bundles(apps, schema_editor):
 
 
 class Migration(migrations.Migration):
-    dependencies = [
+    dependencies = [  # noqa: RUF012
         ("oscarbundles", "0005_bundleentry"),
     ]
 
-    operations = [
+    operations = [  # noqa: RUF012
         migrations.RunPython(migrate_to_new_bundles, migrate_to_old_bundles),
     ]

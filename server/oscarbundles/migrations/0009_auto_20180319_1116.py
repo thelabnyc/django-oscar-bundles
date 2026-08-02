@@ -22,10 +22,10 @@ def make_group_trigger_data_unique(apps, schema_editor):
 
 
 class Migration(migrations.Migration):
-    dependencies = [
+    dependencies = [  # noqa: RUF012
         ("oscarbundles", "0008_auto_20180318_1933"),
     ]
 
-    operations = [
+    operations = [  # noqa: RUF012
         migrations.RunPython(make_group_trigger_data_unique),
     ]

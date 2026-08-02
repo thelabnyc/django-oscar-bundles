@@ -5,12 +5,12 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-    dependencies = [
+    dependencies = [  # noqa: RUF012
         ("catalogue", "0008_auto_20160304_1652"),
         ("oscarbundles", "0002_auto_20160902_1106"),
     ]
 
-    operations = [
+    operations = [  # noqa: RUF012
         migrations.CreateModel(
             name="BundleType",
             fields=[

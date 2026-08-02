@@ -139,8 +139,7 @@ class ConcreteBundleAPITest(APITestCase):
             resp.data[0],
             {
                 "id": self.product1.pk,
-                "dashboard_url": "http://testserver/dashboard/catalogue/products/%s/"
-                % self.product1.pk,
+                "dashboard_url": f"http://testserver/dashboard/catalogue/products/{self.product1.pk}/",
                 "product_class": {
                     "id": self.product1.product_class.pk,
                     "name": "Dùｍϻϒ item class",
@@ -333,16 +332,14 @@ class UserConfigurableBundleAPITest(APITestCase):
             [
                 {
                     "id": self.rangeA.pk,
-                    "dashboard_url": "http://testserver/dashboard/ranges/%s/"
-                    % self.rangeA.pk,
+                    "dashboard_url": f"http://testserver/dashboard/ranges/{self.rangeA.pk}/",
                     "name": "RangeA",
                     "slug": "rangea",
                     "description": "",
                 },
                 {
                     "id": self.rangeB.pk,
-                    "dashboard_url": "http://testserver/dashboard/ranges/%s/"
-                    % self.rangeB.pk,
+                    "dashboard_url": f"http://testserver/dashboard/ranges/{self.rangeB.pk}/",
                     "name": "RangeB",
                     "slug": "rangeb",
                     "description": "",
