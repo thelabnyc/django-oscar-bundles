@@ -1,5 +1,21 @@
 # Changes
 
+## v2.5.2 (2026-08-18)
+
+### Fix
+
+- **deps**: update dependency phonenumbers to >=9.0.37,<10
+- **deps**: update django-oscar-stubs to >=4.2.0b0
+- **deps**: update dependency django-oscar to >=4.2,<4.3
+- **deps**: update dependency django-oscar to >=4.0,<4.3
+- **deps**: update dependency django-oscar to >=4.2,<4.3
+- **deps**: update dependency phonenumbers to >=9.0.36,<10
+- **deps**: update dependency phonenumbers to >=9.0.35,<10
+- **deps**: update dependency phonenumbers to >=9.0.34,<10
+- **deps**: update dependency phonenumbers to >=9.0.33,<10
+- **deps**: update dependency phonenumbers to >=9.0.32,<10
+- **deps**: update dependency phonenumbers to >=9.0.31,<10
+
 ## v2.5.1 (2026-05-21)
 
 ### Fix
