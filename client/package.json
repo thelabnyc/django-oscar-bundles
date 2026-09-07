@@ -39,7 +39,7 @@
         "@types/react": "^19.1.2",
         "@types/react-dom": "^19.1.2",
         "@types/react-modal": "3.16.3",
-        "autoprefixer": "10.5.4",
+        "autoprefixer": "10.5.5",
         "babel-loader": "10.1.1",
         "css-loader": "7.1.5",
         "cssnano": "9.0.2",
