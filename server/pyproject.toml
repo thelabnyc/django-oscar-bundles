@@ -30,7 +30,7 @@ dev = [
     "coverage (==7.16.0)",
     "ruff (>=0.16.6)",
     "ipdb (==0.13.13)",
-    "psycopg2-binary (==2.9.12)",
+    "psycopg2-binary (==2.9.13)",
     "sorl-thumbnail (==13.1.0)",
     "tox (==4.61.4)",
     "unittest-xml-reporting (==4.0.0)",
