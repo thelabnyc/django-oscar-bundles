@@ -54,7 +54,7 @@
         "sass-loader": "17.0.1",
         "source-map-loader": "5.0.0",
         "style-loader": "4.0.0",
-        "ts-jest": "29.4.12",
+        "ts-jest": "29.4.13",
         "ts-loader": "9.6.2",
         "typescript": "6.0.3",
         "webpack": "5.111.1",
