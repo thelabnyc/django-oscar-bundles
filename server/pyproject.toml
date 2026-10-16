@@ -31,7 +31,7 @@ dev = [
     "ruff (>=0.17.0)",
     "ipdb (==0.13.13)",
     "psycopg2-binary (==2.9.13)",
-    "sorl-thumbnail (==13.1.0)",
+    "sorl-thumbnail (==13.2.0)",
     "tox (==4.65.4)",
     "unittest-xml-reporting (==4.0.0)",
     "mypy (==2.4.0)",
