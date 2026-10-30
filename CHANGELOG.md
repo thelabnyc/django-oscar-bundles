@@ -1,5 +1,21 @@
 # Changes
 
+## v2.6.0 (2026-10-30)
+
+### Feat
+
+- test Django 6.0 and 6.1, drop Django 4.2 and Oscar 4.0/4.1
+- support Python 3.15 and drop Python 3.12
+
+### Fix
+
+- **deps**: update dependency phonenumbers to >=9.0.42,<10
+- **deps**: update dependency phonenumbers to >=9.0.41,<10
+- **deps**: update dependency django-oscar to >=4.2.1,<4.3
+- **deps**: update dependency phonenumbers to >=9.0.40,<10
+- **deps**: update dependency phonenumbers to >=9.0.39,<10
+- **deps**: update dependency phonenumbers to >=9.0.38,<10
+
 ## v2.5.2 (2026-08-18)
 
 ### Fix
