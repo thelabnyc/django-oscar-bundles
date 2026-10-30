@@ -27,7 +27,7 @@ This is a **monorepo with two distinct parts**:
 # Start all services (includes PostgreSQL, runs migrations)
 docker compose up
 
-# Run full test matrix (Python 3.12/3.13 × Django 4.2/5.1/5.2 × Oscar versions)
+# Run full test matrix (Python 3.13/3.14/3.15 × Django 5.2/6.0/6.1 × Oscar 4.2)
 docker compose run --rm test uv run tox
 
 # Run tests quickly (single environment)
