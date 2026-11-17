@@ -1,7 +1,11 @@
+from collections.abc import Sequence
+
 from django.conf import settings
 from django.db import models
 from django.db.models import QuerySet
+from django.utils.functional import classproperty
 from django.utils.translation import gettext_lazy as _
+from django_stubs_ext import StrOrPromise
 from django_stubs_ext.db.models import TypedModelMeta
 from oscar.apps.catalogue.abstract_models import AbstractProduct
 from oscar.core.loading import get_model
@@ -9,8 +13,16 @@ from oscar.core.loading import get_model
 Product = get_model("catalogue", "Product")
 
 
-class BundleGroup(models.Model):
-    GROUP_TYPE_OPTIONS = getattr(
+def get_bundle_group_types() -> Sequence[tuple[str, StrOrPromise]]:
+    """
+    Return the bundle group types a project allows, from the
+    ``BUNDLE_GROUP_TYPES`` setting.
+
+    The field takes this function, not its result, so that migrations record a
+    reference to it rather than one project's list of types. Projects can then
+    change the setting without generating a migration inside this package.
+    """
+    types: Sequence[tuple[str, StrOrPromise]] = getattr(
         settings,
         "BUNDLE_GROUP_TYPES",
         (
@@ -18,12 +30,25 @@ class BundleGroup(models.Model):
             ("default", _("Default")),
         ),
     )
+    return types
+
+
+def get_default_bundle_group_type() -> str:
+    return get_bundle_group_types()[0][0]
+
+
+class BundleGroup(models.Model):
+    @classproperty
+    def GROUP_TYPE_OPTIONS(cls) -> Sequence[tuple[str, StrOrPromise]]:
+        """Kept for code written against earlier releases; prefer
+        ``get_bundle_group_types()``."""
+        return get_bundle_group_types()
 
     bundle_type = models.CharField(
         _("Bundle Type"),
         max_length=200,
-        default=GROUP_TYPE_OPTIONS[0][0],
-        choices=GROUP_TYPE_OPTIONS,
+        default=get_default_bundle_group_type,
+        choices=get_bundle_group_types,
     )
 
     name = models.CharField(_("Name"), max_length=200, blank=True, default="")
