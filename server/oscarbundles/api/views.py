@@ -12,7 +12,12 @@ from oscarbundles.api.serializers import (
     RangeSerializer,
     UserConfigurableBundleSerializer,
 )
-from oscarbundles.models import BundleGroup, ConcreteBundle, UserConfigurableBundle
+from oscarbundles.models import (
+    BundleGroup,
+    ConcreteBundle,
+    UserConfigurableBundle,
+    get_bundle_group_types,
+)
 
 Product = get_model("catalogue", "Product")
 Range = get_model("offer", "Range")
@@ -64,7 +69,7 @@ class BundleGroupTypeList(generics.ListAPIView[BundleGroup]):
                 "display_name": label,
                 "value": value,
             }
-            for value, label in BundleGroup.GROUP_TYPE_OPTIONS
+            for value, label in get_bundle_group_types()
         ]
         return Response(choices)
 
