@@ -1,5 +1,14 @@
 # Changes
 
+## v2.6.1 (2026-11-17)
+
+### Fix
+
+- read BUNDLE_GROUP_TYPES at runtime so projects need no migration
+- **deps**: update dependency phonenumbers to >=9.0.43,<10
+- fail the build if any apt source stays on HTTP (#37684)
+- fetch Debian packages over HTTPS (#37684)
+
 ## v2.6.0 (2026-10-30)
 
 ### Feat
