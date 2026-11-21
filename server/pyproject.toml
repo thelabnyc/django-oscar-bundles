@@ -32,12 +32,12 @@ dev = [
     "ipdb (==0.13.13)",
     "psycopg2-binary (==2.9.13)",
     "sorl-thumbnail (==13.5.0)",
-    "tox (==4.67.13)",
+    "tox (==4.67.15)",
     "unittest-xml-reporting (==4.0.0)",
     "mypy (==2.4.1)",
     "django-stubs (==6.1.2)",
     "djangorestframework-stubs (==3.18.2)",
-    "tox-uv>=1.37.7",
+    "tox-uv>=1.37.9",
     "django-oscar-stubs>=4.2.0",
 ]
 
